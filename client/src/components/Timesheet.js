@@ -6,7 +6,7 @@ import TimesheetColumn from './TimesheetColumn';
 export default function Timesheet({ buttonText, children, handleButtonClick, titleText }) {
   return(
     <div className="timesheet">
-      <h2 className="timesheet-title">{titleText}</h2>
+      <div className="timesheet-title">{titleText}</div>
       <div className="timesheet-row">
         <TimesheetColumn colNumber="1"/>
         <TimesheetColumn colNumber="2"/>

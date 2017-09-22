@@ -9,11 +9,25 @@
     width: 15%;
     padding-left: $left-right-padding;
     // height: 30px;
+    @include respond-to(handhelds) { 
+      width: 23%;
+    }
+    
+    @include respond-to(small-screens) { 
+      width: 23%;
+    }
   }
   
   &.timesheet-col2 {
     width: 65%;
     // padding-left: 19%;
+    @include respond-to(handhelds) { 
+      width: 46%;
+    }
+    
+    @include respond-to(small-screens) { 
+      width: 46%;
+    }
   }
   
   &.timesheet-col3 {
@@ -21,6 +35,13 @@
     text-align: right;
     padding-right: $left-right-padding;
     // visibility: hidden;rtical-align: middle;
+    @include respond-to(handhelds) { 
+      width: 31%;
+    }
+    
+    @include respond-to(small-screens) { 
+      width: 31%;
+    }
   }
   
   &.timesheet-col4 {
@@ -32,8 +53,12 @@
     color: $faded-black;
     font-weight: normal;
     font-size: 16px;
+    line-height: 1;
     margin-top: 2.4px;
     margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   
   .timesheet-col-time {

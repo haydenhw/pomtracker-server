@@ -26,13 +26,16 @@
         left: 7%;
       }
     }
-    
   }
-
   
   .edit-time, 
   .editing {
     font-size: 1.5em;
+  }
+  
+  @include respond-to(handhelds) { 
+    width: auto;
+    max-width: 225px;
   }
 }
 

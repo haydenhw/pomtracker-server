@@ -13,6 +13,7 @@
   
   .timesheet-row {
     padding: 25px;
+    position: relative;
   }
   
   .timesheet-title {
@@ -23,10 +24,21 @@
     // margin-top: 20px;
     margin: 0;
     text-align: center;
+    
+    @include respond-to(handhelds) { 
+      font-size: 20px;
+      margin-left: 5%;
+      margin-right: 25px;
+    }
   }    
   
   .timesheet-add-button {
     background-color: $primary-color;
+    white-space: nowrap;
+    
+    @include respond-to(handhelds) { 
+      @include centerVertHoriz();
+    }
   }
   
   .total-time {
@@ -40,12 +52,14 @@
   }
   
   @include respond-to(handhelds) { 
+    box-shadow: 0 0 0;
+    min-width: 100%;
     width: 100%;
   }
   
   @include respond-to(small-screens) {
-  }
-   
-  @include respond-to(medium-screens) { 
+    box-shadow: 0 0 0;
+    min-width: 100%;
+    width: 100%;
   }
 }
