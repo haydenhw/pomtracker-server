@@ -38,4 +38,14 @@
       font-size: .95em;
     }  
   }
+  
+  @include respond-to(handhelds) { 
+    width: 100%;
+  }
+  
+  @include respond-to(small-screens) {
+  }
+   
+  @include respond-to(medium-screens) { 
+  }
 }

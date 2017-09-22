@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const shouldResetDb = false;
+// const shouldResetDb = false;
 
 const { PORT, DATABASE_URL } = require('./server-files/config');
 const { Projects } = require('./server-files/models');
-const { sampleData } = require('./server-files/sampleData');
+// const { sampleData } = require('./server-files/sampleData');
 
 const projectRouter = require('./server-files/routes/projectRouter');
 const taskRouter = require('./server-files/routes/taskRouter');
@@ -31,23 +31,21 @@ app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
 });
 
-const seedSampleData = () => {
-    const seedData = sampleData.projects;
-
-    return Projects.insertMany(seedData);
-};
-
-function resetDb() {
-    return new Promise((resolve, reject) => {
-        console.warn('Resetting database');
-        mongoose.connection.dropDatabase()
-    .then((result) => {
-        seedSampleData();
-        resolve(result);
-    })
-    .catch((err) => { return reject(err); });
-    });
-}
+//     const seedData = sampleData.projects;
+//
+//     return Projects.insertMany(seedData);
+// };
+// function resetDb() {
+//     return new Promise((resolve, reject) => {
+//         console.warn('Resetting database');
+//         mongoose.connection.dropDatabase()
+//     .then((result) => {
+//         seedSampleData();
+//         resolve(result);
+//     })
+//     .catch((err) => { return reject(err); });
+//     });
+// }
 function tearDownDb() {
     return new Promise((resolve, reject) => {
         console.warn('Deleting database');
@@ -57,9 +55,9 @@ function tearDownDb() {
     });
 }
 
-if (shouldResetDb === true) {
-    resetDb();
-}
+// if (shouldResetDb === true) {
+//     resetDb();
+// }
 
 if (shouldDeleteDb === true) {
     tearDownDb();
