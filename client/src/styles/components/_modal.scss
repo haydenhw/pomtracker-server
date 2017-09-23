@@ -28,21 +28,6 @@
       padding-top: 46px;
       position: relative;
       
-      @include respond-to(handhelds) { 
-        height: 100%;
-        width: 100%;
-        min-width: 100%;
-        min-height: 100%;
-        padding: 20px;
-      }
-      
-      @include respond-to(small-screens) {
-        height: 90%;
-        width: 90%;
-        min-width: 90%;
-        min-height: 90%;
-      }
-      
       &.fullscreen-modal  {
         .modal-close {
           // display: none;
@@ -64,16 +49,15 @@
         @include respond-to(handhelds) {
           display: block;
           position: static;
-          padding-left: 75px;
-          padding-right: 75px;
-          margin: 10px auto;
+          padding: 16px 100px;
+          margin: 20px auto;
         }
         
-        @include respond-to(small-screens) {
-          display: block;
-          position: static;
-          margin: 0 auto;
-        }
+        // @include respond-to(small-screens) {
+        //   display: block;
+        //   position: static;
+        //   margin: 0 auto;
+        // }
       }      
       
       .modal-close {
@@ -84,6 +68,7 @@
         float: right;
         font-size: 31px;
         font-weight: bold;
+        z-index: 9999;
         
         &:hover {
           cursor: pointer; 
@@ -96,6 +81,21 @@
           cursor: pointer;
         }  
       }    
+      
+      @include respond-to(handhelds) { 
+        // height: 100%;
+        width: 95%;
+        min-width: 95%;
+        // min-height: 100%;
+        padding: 20px;
+      }
+      
+      @include respond-to(small-screens) {
+        // height: 90%;
+        width: 90%;
+        min-width: 90%;
+        // min-height: 90%;
+      }
     }
   }
   
