@@ -16,7 +16,6 @@ $form-margin-left: 30%;
   font-size: .75em;
   font-family: 'Roboto';
   
-  
   .button-wrapper {
     // border: 1px solid #000;
     position: relative;
@@ -62,6 +61,10 @@ $form-margin-left: 30%;
   button {
     margin: 0;
   }
+    
+  @include respond-to(handhelds) { 
+    width: auto;
+  }
 }
 
 .modal {
@@ -83,19 +86,3 @@ $form-margin-left: 30%;
   }
 }
 
-.add-tasks-form {
-  text-align: left;
-  margin-top: 44px;
-  
-  .input-wrapper {
-    display: inline-block;
-    width: 100%;
-  }
-}
-
-.form-task-list-item {
-  border: 1px solid #000;
-  width: 200px;
-  margin-bottom: 2px;
-  height: 30px;
-}

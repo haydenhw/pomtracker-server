@@ -24,6 +24,7 @@
 }  
 
 .form-container {
+  border: 1px solid #000;
   // border: 1px solid #000;
   width: 70%;
   max-width: 960px;
@@ -71,5 +72,12 @@
     line-height: 1.2;
     color: $faded-black;
     margin-bottom: 40px;
+  }
+  
+  @include respond-to(handhelds) { 
+    width: 100%;
+  }
+  
+  @include respond-to(small-screens) {
   }
 }

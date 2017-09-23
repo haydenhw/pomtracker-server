@@ -22,9 +22,26 @@
       font-weight:300;
       min-height: 450px;
       min-width: 650px;
+      overflow: auto;
+      // height: 100%;
       padding: 106px 58px;
       padding-top: 46px;
       position: relative;
+      
+      @include respond-to(handhelds) { 
+        height: 100%;
+        width: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        padding: 20px;
+      }
+      
+      @include respond-to(small-screens) {
+        height: 90%;
+        width: 90%;
+        min-width: 90%;
+        min-height: 90%;
+      }
       
       &.fullscreen-modal  {
         .modal-close {
@@ -43,6 +60,20 @@
         right: 0;
         bottom: 0;
         margin: 0 80px 23px 0;
+        
+        @include respond-to(handhelds) {
+          display: block;
+          position: static;
+          padding-left: 75px;
+          padding-right: 75px;
+          margin: 10px auto;
+        }
+        
+        @include respond-to(small-screens) {
+          display: block;
+          position: static;
+          margin: 0 auto;
+        }
       }      
       
       .modal-close {
