@@ -5,7 +5,10 @@
   .form-container {
     padding-bottom: 100px;
     top: 0;
-    // min-height: 53vh;
+    
+    @include respond-to(handhelds) { 
+      padding-bottom: 20px;
+    }
   } 
   
   .form-page-button-group {
@@ -13,18 +16,35 @@
     bottom: 0;
     right: 0;
     // margin-top: 25px;
-    // text-align: right;
+    text-align: left;
     
     .form-page-button {
+      display: inline-block;
       position: static; 
       margin-bottom: 0; 
       margin-left: 10px;
+      
+      @include respond-to(handhelds) { 
+        font-size: 17px;
+        margin-left: 0;
+        margin-right: 15px;
+        margin-top: 15px;
+        padding: 14px 32px;
+      }
     }
+    
+    @include respond-to(handhelds) { 
+      position: static;
+      text-align: left;
+    }
+  }
+  
+  @include respond-to(handhelds) { 
+    padding: 30px 20px;
   }
 }  
 
 .form-container {
-  border: 1px solid #000;
   // border: 1px solid #000;
   width: 70%;
   max-width: 960px;
@@ -51,6 +71,10 @@
   
   .form-error {
     color: $error-red;
+    
+    @include respond-to(handhelds) { 
+      font-size: 16px;
+    }
   }  
   
   .form-field-wrapper {

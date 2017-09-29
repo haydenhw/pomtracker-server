@@ -16,7 +16,7 @@ import TotalTime from '../components/TotalTime';
 import Select from './Select';
 import Timer from './Timer';
 
-import {isDevOnboardingActive} from '../srcConfig/devSettings';
+import { isDevOnboardingActive } from '../srcConfig/devSettings';
 
 export default class TimeTracker extends Component {
   constructor(props) {
@@ -270,8 +270,10 @@ export default class TimeTracker extends Component {
                 onActionButtonClick={this.handleAddTasks.bind(this)}
               />
         }
-        <Modal modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-         rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
+        <Modal
+          isCloseButtonActive={isDevOnboardingActive || !isOnboardingActive}
+          modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
+          rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
         />
       </div>
     );

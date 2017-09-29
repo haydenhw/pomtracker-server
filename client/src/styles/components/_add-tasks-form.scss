@@ -13,7 +13,7 @@ $form-margin-left: 30%;
   // border: 1px solid #000;
   margin: 25px auto;
   width: $form-width;
-  font-size: .75em;
+  font-size: 14px;
   font-family: 'Roboto';
   
   .button-wrapper {
@@ -64,6 +64,7 @@ $form-margin-left: 30%;
     
   @include respond-to(handhelds) { 
     width: auto;
+    max-height: 125px;
   }
 }
 
@@ -77,12 +78,21 @@ $form-margin-left: 30%;
   .form-task-list {
     max-height: 22vh;
     overflow-y: auto;
+    @include respond-to(handhelds) { 
+      max-height: 15vh;
+      
+      .form-error {
+        display: none;
+      }
+    }
   }
 }
 
 .normal-modal {
   .form-task-list {
     max-height: 265px;
+    @include respond-to(handhelds) { 
+      max-height: 15vh;
+    }
   }
 }
-

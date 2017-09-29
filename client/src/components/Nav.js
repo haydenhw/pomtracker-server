@@ -10,16 +10,25 @@ export default function Nav(props) {
         <img className="nav-logo-image" src="images/black-white-tomato-timer.png" alt="tomato timer logo"/>
         <h1 className="nav-logo-text"><span>Pom</span><span className='nav-logo-text-bold'>Tracker</span></h1>
       </div>
-          <a className={`nav-link ${activeLink === 'TIMER' ? 'active-link' : ''}`}
+        <div className="nav-link-wrapper">
+          <a className={`nav-link timer-link ${activeLink === 'TIMER' ? 'active-link' : ''}`}
             onClick={handleTimerLinkClick}
-          >
-            Timer
+            >
+              <span className="nav-link-name">
+                Timer
+              </span>
           </a>
+        </div>
+          
+        <div className="nav-link-wrapper">
           <a className={`nav-link ${activeLink  === 'PROJECTS' ? 'active-link' : ''}`}
             onClick={handleProjectsLinkClck}
-          >
-            Projects
+            >
+            <span className="nav-link-name">
+              Projects
+            </span>
           </a>
+        </div>
     </nav>
   );
 }

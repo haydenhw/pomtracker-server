@@ -11,18 +11,24 @@ const updateTaskAndCloseModal = (updateTaskParams, updateTask, closeModal) => ()
   closeModal();
 }
 
+const getDangerMessage = (oldTime, newTime) => { 
+  return (
+    <span> 
+      Are you sure you want to change the logged time from
+      <span className="confirm-time"> {oldTime} </span>
+       to  
+      <span className="confirm-time"> {newTime} </span>
+       ?
+    </span>
+  ); 
+}
+
 function ConfirmEditTask(props) {
   const { closeModal, oldTime, newTime, payload, updateTask, taskName, toggleEditTaskForm } = props;
   return(
     <Confirm 
       onDangerClick={updateTaskAndCloseModal(payload, updateTask, closeModal)}
-      onDangerText={[
-        "Are you sure you want to change the logged time from ",
-        <span className="confirm-time">{oldTime}</span>,
-        " to ", 
-        <span className="confirm-time">{newTime}</span>,
-        " ?"
-      ]}
+      onDangerText={getDangerMessage(oldTime, newTime)}
       onCancel={closeModal}
       title={<h2 className="form-title">Confirm time change for task <span className="grey-title-text">{taskName}</span></h2>}
     />
