@@ -133,9 +133,13 @@ export default class TimeTracker extends Component {
   }
 
   handleTaskDelete = (selectedProject, task) => () => {
-    const { deleteTask } = this.props;
-      
-    deleteTask(selectedProject, task, true);  
+    const { confrimDeleteTask, deleteTask } = this.props;
+    console.log(deleteTask)
+    confrimDeleteTask({
+      payload: [selectedProject, task, true],
+      taskName: task.taskName
+    });
+    // deleteTask(selectedProject, task, true);
   }
 
   handleTaskItemClick = (taskId) => () => {

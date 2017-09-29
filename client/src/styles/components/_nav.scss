@@ -4,7 +4,6 @@ nav {
   background-color: $primary-color;
   background-color: white;
   width: 100%;
-  // color: white;
   font-weight: normal;
   border-bottom: solid 1px $medium-grey;
   
@@ -13,22 +12,16 @@ nav {
     padding: 0 15px;
     
     .nav-link {
-      // color: white;
-      // height: 100%;
       display: inline-block;
       font-weight: 300;
       line-height: 52px;
       padding: 1px 10px;
-      // padding-left: 4px;
       position: relative;
       text-decoration: none;
       
       &.active-link {
-        // border-bottom: solid 1px $primary-color;
         color: $primary-color;
         font-weight: normal;
-        // background-color: #5C6BC0;
-        // background-color: $secondary-color;
         &:after {
           background-color: $primary-color;
           position: absolute;

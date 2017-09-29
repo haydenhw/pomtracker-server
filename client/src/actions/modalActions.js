@@ -57,6 +57,18 @@ export const confirmEditTask = (modalProps) => ({
   modalProps
 });
 
+export const CONFIRM_DELETE_TASK = 'CONFIRM_DELETE_TASK';
+export const confrimDeleteTask= (modalProps) => ({
+  type: 'CONFIRM_DELETE_TASK',
+  modalProps
+});
+
+export const CONFIRM_DELETE_PROJECT = 'CONFIRM_DELETE_PROJECT';
+export const confrimDeleteProject = modalProps => ({
+  type: 'CONFIRM_DELETE_PROJECT',
+  modalProps,
+  modalType: 'CONFIRM',
+});
 
 export const CHANGE_MODAL_TYPE = 'CHANGE_MODAL_TYPE';
 export const changeModalType = modalType => ({
@@ -68,11 +80,4 @@ export const UPDATE_MODAL_PROPS = 'UPDATE_MODAL_PROPS';
 export const updateModalProps = modalProps => ({
   type: 'UPDATE_MODAL_PROPS',
   modalProps,
-});
-
-export const CONFIRM_PROJECT_DELETE = 'CONFIRM_PROJECT_DELETE';
-export const confirmProjectDelete = modalProps => ({
-  type: 'CONFIRM_PROJECT_DELETE',
-  modalProps,
-  modalType: 'CONFIRM',
 });

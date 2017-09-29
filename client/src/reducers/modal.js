@@ -12,6 +12,13 @@ const defaultState = {
 
 export const modal = (state = defaultState, action) => {
   switch (action.type) {
+    // case actions.DELETE_TASK_REQUEST:
+    //   return {
+    //     ...state,
+    //     isModalActive: !state.isModalActive,
+    //     isModalClosing: false, 
+    //     isOnboardingActive: false
+    //   };
     case actions.TOGGLE_MODAL:
       return {
         ...state,
@@ -68,11 +75,18 @@ export const modal = (state = defaultState, action) => {
         ...state,
         modalProps: action.modalProps,
       };
-    case actions.CONFIRM_PROJECT_DELETE:
+    case actions.CONFIRM_DELETE_PROJECT:
       return {
         ...state,
-        shouldRenderModal: true,
-        modalType: 'CONFIRM',
+        isModalActive: true,
+        modalType: 'CONFIRM_DELETE_PROJECT',
+        modalProps: action.modalProps,
+      }    
+    case actions.CONFIRM_DELETE_TASK:
+      return {
+        ...state,
+        isModalActive: true,
+        modalType: 'CONFIRM_DELETE_TASK',
         modalProps: action.modalProps,
       }    
     case actions.ADD_MODAL_CLOSING_CLASS:
