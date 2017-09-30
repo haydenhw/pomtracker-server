@@ -75,7 +75,20 @@ const onTargetUpdate = props => {
 export default AddTasksForm = callOnTargetUpdate(targetInfo, onTargetUpdate)(AddTasksForm);
  
 AddTasksForm.propTypes = {
+  childContainerClass: PropTypes.string,
+  fieldAnimationName: PropTypes.string,
+  formTasks: PropTypes.array.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func,
-  tasks: PropTypes.array
+  handleSubmit: PropTypes.func.isRequired,
+  handleTaskSubmit: PropTypes.func.isRequired,
+  isOnboardingActive: PropTypes.bool,
+  parentContainerClass: PropTypes.string,
+  renderFormTask: PropTypes.func.isRequired,
+  shouldAutoFocus: PropTypes.bool,
+  shouldRenderSubmitButton: PropTypes.bool,
+  submitButtonText: PropTypes.string, 
+  tasks: PropTypes.array,
+  title: PropTypes.string,
+  titleAnimationName: PropTypes.string,
+  titleName: PropTypes.string
 }
