@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
-import store from '../redux-files/store';
 
 const renderField = (props) => {
   const { input, type, meta: { touched, error }} = props;
