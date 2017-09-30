@@ -41,13 +41,12 @@ export default class TimeTracker extends Component {
     const { isOnboardingActive, projects, selectedProject, setSelectedProject, toggleOnboardMode } = this.props;
     
     if (isDevOnboardingActive) {
-      console.log('asdf')
       !isOnboardingActive && toggleOnboardMode();
       return null;
     }  
     
     if (
-      (sessionStorage.isFirstSessionVisit === undefined) ||
+      (sessionStorage.isFirstSessionVisit === undefined && isDevOnboardingActive) ||
       ((projects.length === 0) && isOnboardingActive)
     ) {
       sessionStorage.isFirstSessionVisit = false;
@@ -103,8 +102,6 @@ export default class TimeTracker extends Component {
   } 
 
   handleTaskChange(taskId, callback){
-    const { isTimerActive } = this.props;
-    const { selectedTaskId } = this.props;
     
     if (localStorage.prevSelectedTaskId !== taskId) {
       localStorage.setItem("prevSelectedTaskId", taskId);
@@ -133,13 +130,12 @@ export default class TimeTracker extends Component {
   }
 
   handleTaskDelete = (selectedProject, task) => () => {
-    const { confrimDeleteTask, deleteTask } = this.props;
-    console.log(deleteTask)
-    confrimDeleteTask({
+    const { confirmDeleteTask } = this.props;
+    
+    confirmDeleteTask({
       payload: [selectedProject, task, true],
       taskName: task.taskName
     });
-    // deleteTask(selectedProject, task, true);
   }
 
   handleTaskItemClick = (taskId) => () => {

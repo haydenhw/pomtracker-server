@@ -9,6 +9,7 @@ import AddProjectModal from './AddProjectModal';
 import AddTasksModal from './AddTasksModal';
 import ConfigModal from './ConfigModal';
 import ConfirmEditTask from './ConfirmEditTask';
+import ConfirmDeleteProject from './ConfirmDeleteProject';
 import ConfirmDeleteTask from './ConfirmDeleteTask';
 import EditTaskModal from './EditTaskModal';
 import ProjectNagModal from './ProjectNagModal';
@@ -20,6 +21,7 @@ function Modal(props) {
     ADD_TASKS: AddTasksModal,
     CONFIG: ConfigModal,
     CONFIRM_EDIT_TASK: ConfirmEditTask,
+    CONFIRM_DELETE_PROJECT: ConfirmDeleteProject,
     CONFIRM_DELETE_TASK: ConfirmDeleteTask,
     EDIT_TASK: EditTaskModal,
     PROJECT_NAG: ProjectNagModal,

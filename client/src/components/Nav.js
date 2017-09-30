@@ -11,10 +11,10 @@ export default function Nav(props) {
         <h1 className="nav-logo-text"><span>Pom</span><span className='nav-logo-text-bold'>Tracker</span></h1>
       </div>
         <div className="nav-link-wrapper">
-          <a className={`nav-link timer-link ${activeLink === 'TIMER' ? 'active-link' : ''}`}
+          <a className={`nav-link ${activeLink === 'TIMER' ? 'active-link' : ''}`}
             onClick={handleTimerLinkClick}
             >
-              <span className="nav-link-name">
+              <span className="nav-link-name nav-timer-link-name">
                 Timer
               </span>
           </a>

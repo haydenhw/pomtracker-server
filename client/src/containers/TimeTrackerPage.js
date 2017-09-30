@@ -7,7 +7,7 @@ import {
   deleteTask,
   decrementTimer,
   changeActiveContextMenu,
-  confrimDeleteTask,
+  confirmDeleteTask,
   fetchProjects,
   setSelectedProject,
   setTempTasks,
@@ -76,7 +76,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   changeActiveContextMenu,
-  confrimDeleteTask,
+  confirmDeleteTask,
   decrementTimer,
   deleteTask,
   fetchProjects,

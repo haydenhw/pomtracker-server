@@ -11,6 +11,7 @@ import { routeToTimerPage } from '../helpers/route';
 import {
   addProject,
   changeActiveContextMenu,
+  confirmDeleteProject,
   deleteProject,
   setSelectedProject,
   setTempTasks,
@@ -65,9 +66,9 @@ class ProjectsPage extends Component {
   handleDeleteOptionClick = (project) => (evt) => {
     evt.stopPropagation();
     
-    const { deleteProject } = this.props;
+    const { confirmDeleteProject } = this.props;
     
-    deleteProject(project);
+    confirmDeleteProject({ payload: project });
   }
   
   handleEditOptionClick = (project) => (evt) => {
@@ -187,11 +188,11 @@ class ProjectsPage extends Component {
                 nagMessage="Please create a project to continue."
                 onActionButtonClick={this.handleAddButtonClick.bind(this)}
               /> 
-              <Modal modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-                rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
-              />
           </div>
         }
+        <Modal modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
+          rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
+        />
       </div>
     );
   }
@@ -215,6 +216,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { 
   addProject,
+  confirmDeleteProject,
   changeActiveContextMenu,
   deleteProject,
   setSelectedProject,

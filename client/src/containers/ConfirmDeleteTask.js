@@ -17,7 +17,7 @@ const getDangerText = (taskName) => {
 }
 
 function ConfirmDeleteTask(props) {
-  const { closeModal, deleteTask, payload, taskName } = props;
+  const { closeModal, deleteTask, payload, taskName, toggleModal } = props;
   
   return(
     <Confirm 
