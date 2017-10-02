@@ -7,10 +7,10 @@ import { secondsToHMMSS, timeStringToSeconds } from '../helpers/time';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import { closeModal, confirmEditTask, updateTask } from '../actions/indexActions';
 
-import Input from './Input'; 
+import Input from './Input';
 
 let EditTaskForm = class extends Component {
-  handleEditTaskSubmit ({ taskName, newTime }) {
+  handleEditTaskSubmit({ taskName, newTime }) {
     const {
       clickedTaskId,
       closeModal,
@@ -21,39 +21,39 @@ let EditTaskForm = class extends Component {
       selectedTask,
       taskNames,
       updateTask,
-    } = this.props
+    } = this.props;
     const newTimeString = timeStringToSeconds(newTime);
-    
-    if (taskName !== initialValues.taskName && isDuplicate(taskName, taskNames)){
+
+    if (taskName !== initialValues.taskName && isDuplicate(taskName, taskNames)) {
       throw new SubmissionError({
-        taskName: `A task with the name ${taskName} already exits`
-      });      
-    }
-    
-    if (!hasAnyValue(taskName)){
-      throw new SubmissionError({
-        taskName: `This field cannot be left blank`
-      });      
-    }
-    
-    if (isNaN(newTimeString)) {
-      throw new SubmissionError({
-        newTime: 'Please enter a numberic time'
+        taskName: `A task with the name ${taskName} already exits`,
       });
     }
-    
+
+    if (!hasAnyValue(taskName)) {
+      throw new SubmissionError({
+        taskName: 'This field cannot be left blank',
+      });
+    }
+
+    if (isNaN(newTimeString)) {
+      throw new SubmissionError({
+        newTime: 'Please enter a numberic time',
+      });
+    }
+
     const toUpdate = {
       taskName,
-      recordedTime: newTimeString
-    } 
-    
-    if (secondsToHMMSS(newTimeString)  !== initialValues.newTime)  {
+      recordedTime: newTimeString,
+    };
+
+    if (secondsToHMMSS(newTimeString) !== initialValues.newTime) {
       confirmEditTask({
         taskName,
-        payload:  [selectedProject, selectedTask, toUpdate],
+        payload: [selectedProject, selectedTask, toUpdate],
         oldTime: initialValues.newTime,
-        newTime: secondsToHMMSS(newTimeString) 
-      })
+        newTime: secondsToHMMSS(newTimeString),
+      });
     } else if (taskName !== initialValues.taskName) {
       updateTask(selectedProject, selectedTask, toUpdate);
       closeModal();
@@ -61,12 +61,12 @@ let EditTaskForm = class extends Component {
       closeModal();
     }
   }
-    
+
   render() {
     const { closeModal, containerClass, handleSubmit, initialValues } = this.props;
-    
+
     return (
-      <div className={`${false ? '' : 'bounceInDown' }`}>
+      <div className={`${false ? '' : 'bounceInDown'}`}>
         <div className={`form-container ${containerClass || ''}`}>
           <h2 className="form-title">Edit Task</h2>
           <form className="form" onSubmit={handleSubmit(this.handleEditTaskSubmit.bind(this))}>
@@ -89,7 +89,7 @@ let EditTaskForm = class extends Component {
             </div>
           </form>
         </div>
-          <button className="fade-in-medium-delay outline-button modal-button-bottom-right"  onClick={handleSubmit(this.handleEditTaskSubmit.bind(this))} type="submit">Submit</button>
+        <button className="fade-in-medium-delay outline-button modal-button-bottom-right" onClick={handleSubmit(this.handleEditTaskSubmit.bind(this))} type="submit">Submit</button>
       </div>
     );
   }
@@ -101,28 +101,28 @@ EditTaskForm = reduxForm({
 
 const mapStateToProps = (state, ownProps) => {
   const { clickedTaskId, selectedProjectId, projects } = state;
-  
-  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);  
-  const selectedTask = projects.items.concatMap((project) => project.tasks).find((task) => clickedTaskId === task.shortId) 
-  const taskNames = selectedProject.tasks.map((task) => task.taskName);
-  
+
+  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
+  const selectedTask = projects.items.concatMap((project) => { return project.tasks; }).find((task) => { return clickedTaskId === task.shortId; });
+  const taskNames = selectedProject.tasks.map((task) => { return task.taskName; });
+
   return ({
-    clickedTaskId, 
+    clickedTaskId,
     selectedProjectId,
     selectedProject,
     selectedTask,
-    taskNames, 
+    taskNames,
     initialValues: {
       taskName: selectedTask.taskName,
-      newTime: secondsToHMMSS(selectedTask.recordedTime)
+      newTime: secondsToHMMSS(selectedTask.recordedTime),
     },
-  })
-}
+  });
+};
 
-EditTaskForm = connect( mapStateToProps, { 
+EditTaskForm = connect(mapStateToProps, {
   closeModal,
   confirmEditTask,
-  updateTask
- })(EditTaskForm);
+  updateTask,
+})(EditTaskForm);
 
 export default EditTaskForm;

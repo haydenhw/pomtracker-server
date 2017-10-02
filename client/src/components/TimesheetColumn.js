@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function TimesheetColumn({ children, colNumber }) {
-  
-  return(
+  return (
     <div className={`timesheet-col${colNumber} timesheet-col`}>
       {children}
     </div>
@@ -11,4 +10,4 @@ export default function TimesheetColumn({ children, colNumber }) {
 }
 
 TimesheetColumn.propTypes = {
-}
+};

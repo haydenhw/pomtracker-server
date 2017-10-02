@@ -12,16 +12,16 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
         // console.log(this.props.form)
         return true;
       }
-      
+
       componentDidUpdate(prevProps) {
         // console.log(prevProps.remoteSubmitForm, this.props.remoteSubmitForm);
         // console.log(this.props.onTargetUpdate);
-        
-        
+
+
         // console.log(this.props.remoteSubmitForm)
-        const { targetPropKey, targetValue } = getTargetInfo(this.props); 
+        const { targetPropKey, targetValue } = getTargetInfo(this.props);
         // console.log(this.props.form, this.props.remoteSubmitForm, 
-          // (prevProps[targetPropKey] !== targetValue) && (this.props[targetPropKey] === targetValue));
+        // (prevProps[targetPropKey] !== targetValue) && (this.props[targetPropKey] === targetValue));
         // console.log(this.props.remoteSubmitForm)
         // console.log( this.props.remoteSubmitForm, targetValue, prevProps[targetPropKey], this.props[targetPropKey])
         if ((prevProps[targetPropKey] !== targetValue) && (this.props[targetPropKey] === targetValue)) {
@@ -29,13 +29,13 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
           onTargetUpdate(this.props);
         }
       }
-      
+
       render() {
-        return <WrappedComponent {...this.props} /> 
+        return <WrappedComponent {...this.props} />;
       }
     }
-    const mapStateToProps = state => ({ remoteSubmitForm: state.customForm.remoteSubmitForm});
+    const mapStateToProps = (state) => { return { remoteSubmitForm: state.customForm.remoteSubmitForm }; };
     return connect(mapStateToProps)(BaseComponent);
-  }
-}  
+  };
+}
 

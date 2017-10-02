@@ -7,15 +7,15 @@ import Modal from './Modal';
 
 export default function ProjectNagModal(props) {
   return (
-        <Nag 
-          actionButtonText="ADD PROJECT"
-          nagMessage="Please add a project before continuing."
-          onActionButtonClick={() => hashHistory.push("/projects/new")}
-          title="No projects added yet"
-        />
-    );
-  }
+    <Nag
+      actionButtonText="ADD PROJECT"
+      nagMessage="Please add a project before continuing."
+      onActionButtonClick={() => { return hashHistory.push('/projects/new'); }}
+      title="No projects added yet"
+    />
+  );
+}
 
 ProjectNagModal.propTypes = {
-  
-}
+
+};

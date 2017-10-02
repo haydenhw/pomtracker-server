@@ -12,14 +12,14 @@ import { selectedProjectId } from './selectedProjectId';
 import { timer } from './timer';
 
 export default combineReducers({
-    clickedTaskId,
-    config,
-    customForm,
-    editMenu,
-    modal,
-    // nav, not currently in use!
-    projects,
-    selectedProjectId,
-    timer,
-    form: formReducer
+  clickedTaskId,
+  config,
+  customForm,
+  editMenu,
+  modal,
+  // nav, not currently in use!
+  projects,
+  selectedProjectId,
+  timer,
+  form: formReducer,
 });

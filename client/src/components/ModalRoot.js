@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
 import store from '../redux-files/store';
 
@@ -24,17 +24,17 @@ export default class ModalRoot extends Component {
   }
 
   _render() {
-    const { children, className} = this.props;
-    
+    const { children, className } = this.props;
+
     ReactDOM.render(
-    <Provider store={store}>
-      <div className={` ${className} modal-container`}>
-        <div className="modal-background">
-          {children}
+      <Provider store={store}>
+        <div className={` ${className} modal-container`}>
+          <div className="modal-background">
+            {children}
+          </div>
         </div>
-      </div>
-    </Provider>,
-    this.modalTarget
+      </Provider>,
+      this.modalTarget,
     );
   }
 
@@ -44,5 +44,5 @@ export default class ModalRoot extends Component {
 }
 
 ModalRoot.propTypes = {
-  children: PropTypes.object.isRequired, 
-}
+  children: PropTypes.object.isRequired,
+};

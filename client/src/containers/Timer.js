@@ -1,6 +1,6 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import store from '../redux-files/store';
 
@@ -21,45 +21,44 @@ class Timer extends Component {
     super(props);
     this.state = {
       currentCount: props.startCount,
-      intervalId: null
+      intervalId: null,
     };
   }
-  
+
   componentWillMount() {
     const { intervalId, isTimerActive } = this.props;
-      
+
     if (isTimerActive === false) {
-      clearInterval(intervalId)
+      clearInterval(intervalId);
     }
-    
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if ((this.props.isTimerActive !== nextProps.isTimerActive) && nextProps.isTimerActive) {
       const { selectedTaskId, setActiveTask, setIntervalId } = this.props;
       const intervalId = setInterval(this.timer.bind(this), 1000);
-      
+
       setIntervalId(intervalId);
-      
+
       setActiveTask(selectedTaskId);
     }
-    
+
     if ((this.props.isTimerActive !== nextProps.isTimerActive) && !nextProps.isTimerActive) {
       const { intervalId } = this.props;
-      
+
       clearInterval(intervalId);
     }
   }
-  
+
   doesSelectedTaskExist() {
     const { selectedTaskId, tasks } = this.props;
-    const taskIds = tasks.map(task => task.shortId);
-    
-    return taskIds.includes(selectedTaskId); 
+    const taskIds = tasks.map((task) => { return task.shortId; });
+
+    return taskIds.includes(selectedTaskId);
   }
-  
-  timer () {
-    const { 
+
+  timer() {
+    const {
       alarmSoundSrc,
       decrementTimer,
       handleTimerComplete,
@@ -67,34 +66,36 @@ class Timer extends Component {
       remainingTime,
       resetTimer,
       selectedProject,
-      selectedTaskId, 
+      selectedTaskId,
       setActiveTask,
-      toggleTimer
+      toggleTimer,
     } = this.props;
-    
-    const { intervalId } = this.props; 
-    const activeTask = selectedProject.tasks.find(task => task.shortId === selectedTaskId);
-    
+
+    const { intervalId } = this.props;
+    const activeTask = selectedProject.tasks.find((task) => { return task.shortId === selectedTaskId; });
+
     incrementTaskTime(selectedProject, activeTask);
     decrementTimer();
-    
+
     if (remainingTime < 1) {
       const audio = new Audio(alarmSoundSrc);
       audio.play();
-      
+
       clearInterval(intervalId);
       handleTimerComplete();
       setActiveTask(null);
     }
   }
-  
-  handleSetStartTime = (selectedTaskId) => (newTime) => {
-    const { selectedTaskId, setStartTime } = this.props;
-    const shouldToggleTimer = Boolean(selectedTaskId);
-    
-    setStartTime(newTime, shouldToggleTimer);  
+
+  handleSetStartTime = (selectedTaskId) => {
+    return (newTime) => {
+      const { selectedTaskId, setStartTime } = this.props;
+      const shouldToggleTimer = Boolean(selectedTaskId);
+
+      setStartTime(newTime, shouldToggleTimer);
+    };
   }
-  
+
   render() {
     const {
       isTimerActive,
@@ -105,7 +106,7 @@ class Timer extends Component {
       setStartTime,
       task,
     } = this.props;
-    
+
     return (
       <div>
         <TimeDisplay
@@ -122,11 +123,11 @@ class Timer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { config, selectedProjectId, projects, timer } = state;
   const { alarmSoundSrc } = config;
   const { intervalId, isTimerActive, remainingTime, startTime } = timer;
-  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
+  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
 
   return {
     alarmSoundSrc,
@@ -135,9 +136,9 @@ const mapStateToProps = state => {
     remainingTime,
     selectedProject,
     startTime,
-    projects: projects.items
-  }
-}
+    projects: projects.items,
+  };
+};
 
 export default connect(mapStateToProps, {
   decrementTimer,
@@ -146,5 +147,5 @@ export default connect(mapStateToProps, {
   resetTimer,
   setIntervalId,
   setStartTime,
-  toggleTimer
+  toggleTimer,
 })(Timer);

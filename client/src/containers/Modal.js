@@ -25,50 +25,50 @@ function Modal(props) {
     CONFIRM_DELETE_TASK: ConfirmDeleteTask,
     EDIT_TASK: EditTaskModal,
     PROJECT_NAG: ProjectNagModal,
-    WELCOME: WelcomeModalContainer
-  }
-  
+    WELCOME: WelcomeModalContainer,
+  };
+
   const {
-    isModalActive, 
+    isModalActive,
     isCloseButtonActive,
     modalClass,
     modalProps,
-    modalType, 
+    modalType,
     rootModalClass,
     style,
-    closeModal
+    closeModal,
   } = props;
-  
+
   if (!isModalActive) {
     return null;
   }
-  
+
   const SpecificModal = MODAL_COMPONENTS[modalType];
   return (
     <RootModal className={rootModalClass}>
       <div className={`modal ${modalClass}`} style={style}>
         {isCloseButtonActive !== false &&
-            <span className="modal-close" onClick={closeModal} role="button">&times;</span>
+        <span className="modal-close" onClick={closeModal} role="button">&times;</span>
         }
-        <SpecificModal {...modalProps} />   
+        <SpecificModal {...modalProps} />
       </div>
     </RootModal>
-  );  
+  );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { modal } = state;
   const { isModalActive, modalProps, modalType } = modal;
-  
+
   return {
     isModalActive,
     modalProps,
-    modalType
-  }
-}
+    modalType,
+  };
+};
 
-export default connect(mapStateToProps, { closeModal })(Modal)
+export default connect(mapStateToProps, { closeModal })(Modal);
 
 Modal.propTypes = {
-  
+
 };

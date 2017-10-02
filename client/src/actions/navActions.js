@@ -1,7 +1,7 @@
-export const CHANGE_ACTIVE_LINK = "CHANGE_ACTIVE_LINK";
+export const CHANGE_ACTIVE_LINK = 'CHANGE_ACTIVE_LINK';
 export function changeActiveLink(activeLink) {
   return {
-    type: "CHANGE_ACTIVE_LINK",
+    type: 'CHANGE_ACTIVE_LINK',
     activeLink,
-  }
+  };
 }

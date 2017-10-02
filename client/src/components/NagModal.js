@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Nag({ onCancel, onAccept, nagMessage, title }) {
-
-  return(
+  return (
     <div className="nag">
       <h2>{title}</h2>
       <p className="danger-text">{nagMessage}</p>
@@ -13,4 +12,4 @@ export default function Nag({ onCancel, onAccept, nagMessage, title }) {
 }
 
 Nag.propTypes = {
-}
+};

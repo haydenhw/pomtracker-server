@@ -6,10 +6,10 @@ import callOnTargetUpdate from '../hocs/callOnTargetUpdate';
 
 import Input from './Input';
 
-const dummySubmit = (evt) => { 
-  evt.preventDefault(); 
-  return false; 
-}
+const dummySubmit = (evt) => {
+  evt.preventDefault();
+  return false;
+};
 
 let SingleInputForm = function SingleInputForm(props) {
   const {
@@ -24,53 +24,53 @@ let SingleInputForm = function SingleInputForm(props) {
     shouldRenderSubmitButton,
     title,
     titleAnimationName,
-    titleName
+    titleName,
   } = props;
-  
+
   return (
     <div className={parentContainerClass}>
       <div className={childContainerClass}>
         <form onSubmit={isOnlyInput ? handleSubmit(handleFormSubmit) : dummySubmit}>
-          {title && 
-            <h2 className={`form-title ${titleAnimationName || ""}`}>
-              {title}  
-              {titleName && <span className='grey-title-text'>{titleName}</span>}
+          {title &&
+            <h2 className={`form-title ${titleAnimationName || ''}`}>
+              {title}
+              {titleName && <span className="grey-title-text">{titleName}</span>}
             </h2>
           }
           {/* <div className="fieldAnimationName"> */}
-          <div className={fieldAnimationName || ""}>
+          <div className={fieldAnimationName || ''}>
             <Field
               component={Input}
               name="singleInput"
               placeholder="Project Name"
               type="text"
-              shouldAutoFocus={true}
+              shouldAutoFocus
             />
           </div>
         </form>
       </div>
-      {shouldRenderSubmitButton && 
+      {shouldRenderSubmitButton &&
         <button className="fade-in-medium-delay outline-button modal-button-bottom-right" onClick={handleSubmit(handleFormSubmit)}>Continue</button>
       }
     </div>
   );
-}
+};
 
-const targetInfo = props => {
+const targetInfo = (props) => {
   return {
-    targetValue: "ADD_PROJECT",
-    targetPropKey: "remoteSubmitForm" 
-  } 
-}
+    targetValue: 'ADD_PROJECT',
+    targetPropKey: 'remoteSubmitForm',
+  };
+};
 
-const onTargetUpdate = props => {
+const onTargetUpdate = (props) => {
   const { handleSubmit, onTargetUpdate } = props;
-    handleSubmit(onTargetUpdate)();
-}
+  handleSubmit(onTargetUpdate)();
+};
 
 SingleInputForm = callOnTargetUpdate(targetInfo, onTargetUpdate)(SingleInputForm);
 
 export default reduxForm({
-  form: 'singleInput', 
-})(SingleInputForm)
+  form: 'singleInput',
+})(SingleInputForm);
 

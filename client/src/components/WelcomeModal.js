@@ -5,8 +5,8 @@ import BounceInAnimationWrapper from '../containers/BounceInAnimationWrapper';
 
 export default function WelcomeModal(props) {
   const { handleGetStartedClick } = props;
-  
-  return(
+
+  return (
     <div className="welcome fullscreen-container">
       <h2 className="modal-title bounceInDown-welcome">Welcome to PomTracker!</h2>
       <div className="bounceInDown-welcome-second">
@@ -18,5 +18,5 @@ export default function WelcomeModal(props) {
 }
 
 WelcomeModal.propTypes = {
-  handleGetStartedClick: PropTypes.func.isRequired
-}
+  handleGetStartedClick: PropTypes.func.isRequired,
+};

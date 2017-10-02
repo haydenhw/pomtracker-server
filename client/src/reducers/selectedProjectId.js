@@ -1,7 +1,7 @@
 import * as actions from '../actions/indexActions';
 
-export function selectedProjectId(state=null, action) {
-  switch(action.type) {
+export function selectedProjectId(state = null, action) {
+  switch (action.type) {
     case actions.SET_SELECTED_PROJECT:
       return action.projectId;
     case actions.POST_PROJECT_REQUEST:

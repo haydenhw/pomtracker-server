@@ -15,8 +15,8 @@ import {
   deleteProject,
   setSelectedProject,
   setTempTasks,
-  toggleTimer, 
-  updateProjectName
+  toggleTimer,
+  updateProjectName,
 } from '../actions/indexActions';
 
 import Modal from './Modal';
@@ -30,82 +30,88 @@ import Timesheet from '../components/Timesheet';
 import TotalTime from '../components/TotalTime';
 
 class ProjectsPage extends Component {
-  constructor(){
+  constructor() {
     super();
-    
+
     this.state = {
       isProjectSelectTipActive: sessionStorage.isProjectSelectTipActive !== undefined
-        ? JSON.parse(sessionStorage.isProjectSelectTipActive) 
-        : true
-    }
+        ? JSON.parse(sessionStorage.isProjectSelectTipActive)
+        : true,
+    };
   }
-  
+
   static defaultProps = {
-    projects: ['filler']
+    projects: ['filler'],
   }
-  
+
   componentWillMount() {
     const { isOnboardingActive } = this.props;
-    
+
     if (isOnboardingActive) {
       routeToTimerPage();
-    } 
+    }
   }
-  
+
   componentWillMount() {
-    
-  }   
+
+  }
 
   handleAddButtonClick() {
     const { setTempTasks } = this.props;
-    
+
     setTempTasks([]);
     hashHistory.push('/projects/new');
   }
-  
-  handleDeleteOptionClick = (project) => (evt) => {
-    evt.stopPropagation();
-    
-    const { confirmDeleteProject } = this.props;
-    
-    confirmDeleteProject({ payload: project });
+
+  handleDeleteOptionClick = (project) => {
+    return (evt) => {
+      evt.stopPropagation();
+
+      const { confirmDeleteProject } = this.props;
+
+      confirmDeleteProject({ payload: project });
+    };
   }
-  
-  handleEditOptionClick = (project) => (evt) => {
-    evt.stopPropagation()
-    const { setSelectedProject } = this.props;
-    
-    setSelectedProject(project.shortId);
-    hashHistory.push(`/projects/${project.shortId}`)
-  }  
-  
-  handleListItemClick = (projectId) => () => {
-    const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
-    if (isTimerActive) {
-     toggleTimer();
-    }
-      
-    setSelectedProject(projectId);
-    routeToTimerPage();
-  }  
-  
+
+  handleEditOptionClick = (project) => {
+    return (evt) => {
+      evt.stopPropagation();
+      const { setSelectedProject } = this.props;
+
+      setSelectedProject(project.shortId);
+      hashHistory.push(`/projects/${project.shortId}`);
+    };
+  }
+
+  handleListItemClick = (projectId) => {
+    return () => {
+      const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
+      if (isTimerActive) {
+        toggleTimer();
+      }
+
+      setSelectedProject(projectId);
+      routeToTimerPage();
+    };
+  }
+
   toggleProjectSelectTip() {
     sessionStorage.setItem('isProjectSelectTipActive', false);
-    
+
     this.setState({ isProjectSelectTipActive: false });
   }
-  
-  renderProject (project){
+
+  renderProject(project) {
     const { changeActiveContextMenu, projects, selectedProjectId } = this.props;
     const { projectName, shortId } = project;
-    
-    const totalTime = 
+
+    const totalTime =
       project.tasks.length > 0
-        ? project.tasks.map(task => task.recordedTime).reduce((a,b) => a + b)
+        ? project.tasks.map((task) => { return task.recordedTime; }).reduce((a, b) => { return a + b; })
         : 0;
-    
+
     return (
-      <TimesheetListItem 
+      <TimesheetListItem
         actionIconClass="arrow-right"
         key={shortid.generate()}
         handleItemClick={this.handleListItemClick(shortId)}
@@ -114,51 +120,51 @@ class ProjectsPage extends Component {
         title={projectName}
         time={totalTime}
       >
-        <ContextMenu 
-          className='list-item-context-menu'
-          onMenuClick={changeActiveContextMenu}    
+        <ContextMenu
+          className="list-item-context-menu"
+          onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
           <li className="popup-menu-item" onClick={this.handleEditOptionClick(project)}>
-            <i className="context-menu-icon icon-edit"></i>
+            <i className="context-menu-icon icon-edit" />
             <a>Edit</a>
           </li>
           <li className="popup-menu-item" onClick={this.handleDeleteOptionClick(project)}>
-            <i className="context-menu-icon icon-delete"></i>
+            <i className="context-menu-icon icon-delete" />
             <a>Delete</a>
           </li>
-        </ContextMenu>  
+        </ContextMenu>
       </TimesheetListItem>
     );
-  } 
-  
+  }
+
   getTotalTime() {
     const { projects } = this.props;
-    
-    if(!projects.length) {
-      return 0; 
+
+    if (!projects.length) {
+      return 0;
     }
-    
-    return projects.map(project => {
+
+    return projects.map((project) => {
       if (!project.tasks.length) {
         return 0;
       }
-          
-      return project.tasks.map(task => Number(task.recordedTime)).reduce((a,b) => a + b);
+
+      return project.tasks.map((task) => { return Number(task.recordedTime); }).reduce((a, b) => { return a + b; });
     })
-    .reduce((a,b) => a + b);
+      .reduce((a, b) => { return a + b; });
   }
-  
+
   render() {
     const { hasFetched, isModalClosing, isOnboardingActive, projects } = this.props;
     const { isProjectSelectTipActive } = this.state;
     const reverseProjects = projects.slice().reverse();
     const totalTime = this.getTotalTime();
-    
-    if (!hasFetched){
+
+    if (!hasFetched) {
       return <div className="loader">Loading...</div>;
     }
-    
+
     return (
       // <div className='projects-page-container pt-page-moveFromBottomFade'>
       <div>
@@ -173,48 +179,49 @@ class ProjectsPage extends Component {
             </div>
           </div>  
         } */}
-        { projects.length 
+        { projects.length
           ? <Timesheet
-              buttonText="NEW PROJECT"
-              handleButtonClick={this.handleAddButtonClick.bind(this)}
-              titleText={"Projects"} 
-            >
-              <List className="timesheet-list list" items={projects} renderItem={this.renderProject.bind(this)}/>
-              <TotalTime time={secondsToHMMSS(totalTime)} />
-            </Timesheet>
+            buttonText="NEW PROJECT"
+            handleButtonClick={this.handleAddButtonClick.bind(this)}
+            titleText={'Projects'}
+          >
+            <List className="timesheet-list list" items={projects} renderItem={this.renderProject.bind(this)} />
+            <TotalTime time={secondsToHMMSS(totalTime)} />
+          </Timesheet>
           : <div>
-              <Nag
-                actionButtonText="ADD PROJECT"
-                nagMessage="Please create a project to continue."
-                onActionButtonClick={this.handleAddButtonClick.bind(this)}
-              /> 
+            <Nag
+              actionButtonText="ADD PROJECT"
+              nagMessage="Please create a project to continue."
+              onActionButtonClick={this.handleAddButtonClick.bind(this)}
+            />
           </div>
         }
-        <Modal modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-          rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
+        <Modal
+          modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
+          rootModalClass={`${isOnboardingActive ? 'unfold' : 'roadrunner'} ${isModalClosing ? 'out' : ''}`}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const {  projects, modal, selectedProjectId, timer } = state; 
+const mapStateToProps = (state) => {
+  const { projects, modal, selectedProjectId, timer } = state;
   const { isOnboardingActive, isModalClosing } = modal;
   const { hasFetched } = projects;
   const { isTimerActive } = timer;
-  
+
   return {
-    hasFetched, 
+    hasFetched,
     isModalClosing,
     isOnboardingActive,
     isTimerActive,
     selectedProjectId,
     projects: projects.items,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { 
+export default connect(mapStateToProps, {
   addProject,
   confirmDeleteProject,
   changeActiveContextMenu,
@@ -222,9 +229,9 @@ export default connect(mapStateToProps, {
   setSelectedProject,
   setTempTasks,
   toggleTimer,
-  updateProjectName
+  updateProjectName,
 })(ProjectsPage);
 
 ProjectsPage.propTypes = {
-  projects: PropTypes.array.isRequired
-}
+  projects: PropTypes.array.isRequired,
+};

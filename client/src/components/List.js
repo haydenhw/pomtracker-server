@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 export default function List(props) {
   const { children, className, items, renderItem } = props;
-  
+
   const list = items && items.map(renderItem);
-  
-  return(
+
+  return (
     <div className={className || ''} >
       {children}
       {list}
@@ -17,5 +17,5 @@ export default function List(props) {
 List.propTypes = {
   items: PropTypes.array,
   wrapperClass: PropTypes.string,
-  renderItem: PropTypes.func.isRequired
-}
+  renderItem: PropTypes.func.isRequired,
+};

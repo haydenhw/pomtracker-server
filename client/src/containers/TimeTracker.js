@@ -21,30 +21,30 @@ import { isDevOnboardingActive } from '../srcConfig/devSettings';
 export default class TimeTracker extends Component {
   constructor(props) {
     super(props);
-    
+
     const { tasks } = this.props;
-    
+
     this.state = {
       activeTaskId: null,
-      activeContextMenuParentId: null, 
+      activeContextMenuParentId: null,
       clickedTaskId: null,
-      selectedTaskId: null, 
-      tasks: tasks,
-    }
+      selectedTaskId: null,
+      tasks,
+    };
   }
 
   static defaultProps = {
-    tasks: []
+    tasks: [],
   }
-  
+
   componentWillMount() {
     const { isOnboardingActive, projects, selectedProject, setSelectedProject, toggleOnboardMode } = this.props;
-    
+
     if (isDevOnboardingActive) {
       !isOnboardingActive && toggleOnboardMode();
       return null;
-    }  
-    
+    }
+
     if (
       (sessionStorage.isFirstSessionVisit === undefined && isDevOnboardingActive) ||
       ((projects.length === 0) && isOnboardingActive)
@@ -53,27 +53,27 @@ export default class TimeTracker extends Component {
       toggleOnboardMode();
       return null;
     }
-    
+
     if ((projects.length === 0) && !isOnboardingActive) {
-      hashHistory.push('/projects')
+      hashHistory.push('/projects');
       return null;
     }
-    
+
     if (
-      localStorage.selectedProjectId && 
-      projects.find(project => project.shortId === localStorage.selectedProjectId)
+      localStorage.selectedProjectId &&
+      projects.find((project) => { return project.shortId === localStorage.selectedProjectId; })
     ) {
       setSelectedProject(localStorage.selectedProjectId);
     } else {
-      setSelectedProject(projects[projects.length-1].shortId);
+      setSelectedProject(projects[projects.length - 1].shortId);
     }
-    
+
     this.setState({ selectedTaskId: localStorage.prevSelectedTaskId });
   }
-  
+
   componentDidUpdate(prevProps, prevState) {
     const { tasks } = this.props;
-    
+
     if ((prevProps.tasks.length !== tasks.length) && (tasks.length === 0)) {
       localStorage.setItem('prevSelectedTaskId', null);
       this.setState({ selectedTaskId: null });
@@ -81,80 +81,89 @@ export default class TimeTracker extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      /*  if(nextProps.tasks !== this.props.tasks) {
+    /*  if(nextProps.tasks !== this.props.tasks) {
       this.setState({
       tasks: nextProps.tasks,
       activeTaskId: nextProps.tasks.length > 0 ? nextProps.tasks[0].id : null
     })
-    }*/
+    } */
   }
-  
+
   handleAddTasks() {
     const { toggleAddTasksForm } = this.props;
-    
+
     toggleAddTasksForm();
   }
-  
-  handleEditTask = (taskId) => () => {
-    const { toggleEditTaskForm } = this.props;
-    
-    toggleEditTaskForm(taskId);
-  } 
 
-  handleTaskChange(taskId, callback){
-    
+  handleEditTask = (taskId) => {
+    return () => {
+      const { toggleEditTaskForm } = this.props;
+
+      toggleEditTaskForm(taskId);
+    };
+  }
+
+  handleTaskChange(taskId, callback) {
     if (localStorage.prevSelectedTaskId !== taskId) {
-      localStorage.setItem("prevSelectedTaskId", taskId);
+      localStorage.setItem('prevSelectedTaskId', taskId);
     }
-    
+
     this.setState({ selectedTaskId: taskId });
   }
-  
-  handlePlayClick = (taskId) => () => {
-    const { isTimerActive, toggleTimer } = this.props;
-    const { selectedTaskId } = this.state;
-    
-    if (isTimerActive && (selectedTaskId === taskId)) {
-      toggleTimer();
-      return null; 
-    }
-    
-    if (isTimerActive && !(selectedTaskId === taskId)) {
-      this.setState({ activeTaskId: taskId })
+
+  handlePlayClick = (taskId) => {
+    return () => {
+      const { isTimerActive, toggleTimer } = this.props;
+      const { selectedTaskId } = this.state;
+
+      if (isTimerActive && (selectedTaskId === taskId)) {
+        toggleTimer();
+        return null;
+      }
+
+      if (isTimerActive && !(selectedTaskId === taskId)) {
+        this.setState({ activeTaskId: taskId });
+        this.handleTaskChange(taskId);
+        return null;
+      }
+
+      this.setState({ activeTaskId: taskId }, toggleTimer);
       this.handleTaskChange(taskId);
-      return null;
-    }
-    
-    this.setState({ activeTaskId: taskId }, toggleTimer)
-    this.handleTaskChange(taskId);
+    };
   }
 
-  handleTaskDelete = (selectedProject, task) => () => {
-    const { confirmDeleteTask } = this.props;
-    
-    confirmDeleteTask({
-      payload: [selectedProject, task, true],
-      taskName: task.taskName
-    });
+  handleTaskDelete = (selectedProject, task) => {
+    return () => {
+      const { confirmDeleteTask } = this.props;
+
+      confirmDeleteTask({
+        payload: [selectedProject, task, true],
+        taskName: task.taskName,
+      });
+    };
   }
 
-  handleTaskItemClick = (taskId) => () => {
-    this.handleTaskChange(taskId);
+  handleTaskItemClick = (taskId) => {
+    return () => {
+      this.handleTaskChange(taskId);
+    };
   }
-  
+
   setActiveTask(selectedTaskId) {
     this.setState({ activeTaskId: selectedTaskId });
   }
-  
-  setActiveContextMenu = (activeContextMenuParentId) => () => {
-    this.setState({ activeContextMenuParentId });  
+
+  setActiveContextMenu = (activeContextMenuParentId) => {
+    return () => {
+      this.setState({ activeContextMenuParentId });
+    };
   }
-  
-  renderTask (task){
+
+  renderTask(task) {
     const { changeActiveContextMenu, isTimerActive, selectedProject, tasks, toggleTimer } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
     const { shortId, taskName, recordedTime } = task;
-    
+
     return (
       <TimesheetListItem
         actionIconClass="play"
@@ -166,51 +175,53 @@ export default class TimeTracker extends Component {
         isSelected={selectedTaskId === shortId}
         title={taskName}
         time={recordedTime}
-        
+
       >
         <ContextMenu
-          className='list-item-context-menu'
+          className="list-item-context-menu"
           onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
           <li className="popup-menu-item" onClick={this.handleEditTask(shortId)}>
-            <i className="context-menu-icon icon-edit"></i>
+            <i className="context-menu-icon icon-edit" />
             <a>Edit</a>
           </li>
           <li className="popup-menu-item" onClick={this.handleTaskDelete(selectedProject, task)}>
-            <i className="context-menu-icon icon-delete"></i>
+            <i className="context-menu-icon icon-delete" />
             <a>Delete</a>
           </li>
-        </ContextMenu>          
+        </ContextMenu>
       </TimesheetListItem>
-    ); 
-  } 
+    );
+  }
 
   renderTaskSelect() {
     const { tasks } = this.props;
-    const { selectedTaskId } = this.state; 
-    
-    const simplifiedTasks = tasks.map(task => ({
-      name: task.taskName,
-      id: task.shortId
-    }));
-    
-    const selectedTask = tasks.find(task => task.shortId === selectedTaskId);
+    const { selectedTaskId } = this.state;
+
+    const simplifiedTasks = tasks.map((task) => {
+      return {
+        name: task.taskName,
+        id: task.shortId,
+      };
+    });
+
+    const selectedTask = tasks.find((task) => { return task.shortId === selectedTaskId; });
     const selectedTaskName = selectedTask && selectedTask.taskName;
-    const taskSelectHeading = selectedTaskName || "Click to select a task...";
-    const headingClass = selectedTaskName ? "" : "grey"; 
-    
+    const taskSelectHeading = selectedTaskName || 'Click to select a task...';
+    const headingClass = selectedTaskName ? '' : 'grey';
+
     return (
-      <Select 
-        className={"task-select"} 
+      <Select
+        className={'task-select'}
         handleOptionClick={this.handleTaskChange.bind(this)}
         items={simplifiedTasks}
-        >
-          <span className={headingClass}>{taskSelectHeading}</span>
-        </Select>
-      );
-    }
-  
+      >
+        <span className={headingClass}>{taskSelectHeading}</span>
+      </Select>
+    );
+  }
+
   // renderProjectSelect() {
   //   const { projects, selectedProject, setSelectedProject } = this.props;
   //   
@@ -229,51 +240,51 @@ export default class TimeTracker extends Component {
   //     </div>
   //   );
   // }
-  
+
   render() {
     const { isModalClosing, isOnboardingActive, selectedProject, tasks, toggleConfig } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
-    const totalTime = tasks.length ? tasks.map((task) => Number(task.recordedTime)).reduce((a,b) => a + b) : 0;
-    const selectedProjectName = selectedProject ?  selectedProject.projectName : '';
-    
+    const totalTime = tasks.length ? tasks.map((task) => { return Number(task.recordedTime); }).reduce((a, b) => { return a + b; }) : 0;
+    const selectedProjectName = selectedProject ? selectedProject.projectName : '';
+
     return (
       // <div className="time-tracker">
       <div>
         <section className="timer-section">
           <div className="timer-settings-wrapper" onClick={toggleConfig}>
-            <FontAwesome className="timer-settings-icon" name='gear'></FontAwesome>  
-          </div>  
+            <FontAwesome className="timer-settings-icon" name="gear" />
+          </div>
           <div className="timer-container">
             {tasks.length > 0 && this.renderTaskSelect()}
-           <Timer
-             activeTaskId={activeTaskId}
-             tasks={tasks}
-             selectedTaskId={selectedTaskId}
-             setActiveTask={this.setActiveTask.bind(this)}
-           />
+            <Timer
+              activeTaskId={activeTaskId}
+              tasks={tasks}
+              selectedTaskId={selectedTaskId}
+              setActiveTask={this.setActiveTask.bind(this)}
+            />
           </div>
         </section>
         {tasks.length > 0
           ? <section className="timesheet-section">
-             <Timesheet
-                buttonText="NEW TASKS"
-                handleButtonClick={this.handleAddTasks.bind(this)}
-                titleText={["Tasks for project ", <span className={"grey-title-text"} key={shortid.generate()}>{selectedProject.projectName}</span>]} 
-                >
-                  <List className="timesheet-list list" items={tasks} renderItem={this.renderTask.bind(this)} />
-                  <TotalTime time={secondsToHMMSS(totalTime)} />
-              </Timesheet>
-            </section>
-            : <Nag
-                actionButtonText="ADD TASKS"
-                nagMessage={<span>Add tasks to project <span className="grey-title-text">{selectedProjectName}</span> to start tracking time.</span>}
-                onActionButtonClick={this.handleAddTasks.bind(this)}
-              />
+            <Timesheet
+              buttonText="NEW TASKS"
+              handleButtonClick={this.handleAddTasks.bind(this)}
+              titleText={['Tasks for project ', <span className={'grey-title-text'} key={shortid.generate()}>{selectedProject.projectName}</span>]}
+            >
+              <List className="timesheet-list list" items={tasks} renderItem={this.renderTask.bind(this)} />
+              <TotalTime time={secondsToHMMSS(totalTime)} />
+            </Timesheet>
+          </section>
+          : <Nag
+            actionButtonText="ADD TASKS"
+            nagMessage={<span>Add tasks to project <span className="grey-title-text">{selectedProjectName}</span> to start tracking time.</span>}
+            onActionButtonClick={this.handleAddTasks.bind(this)}
+          />
         }
         <Modal
           isCloseButtonActive={isDevOnboardingActive || !isOnboardingActive}
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-          rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
+          rootModalClass={`${isOnboardingActive ? 'unfold' : 'roadrunner'} ${isModalClosing ? 'out' : ''}`}
         />
       </div>
     );
@@ -281,5 +292,5 @@ export default class TimeTracker extends Component {
 }
 
 TimeTracker.propTypes = {
-  tasks: PropTypes.array
-}
+  tasks: PropTypes.array,
+};

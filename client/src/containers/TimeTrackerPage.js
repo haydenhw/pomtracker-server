@@ -15,7 +15,7 @@ import {
   toggleConfig,
   toggleEditTaskForm,
   toggleOnboardMode,
-  toggleTimer
+  toggleTimer,
 } from '../actions/indexActions';
 
 import TimeTracker from './TimeTracker';
@@ -23,56 +23,55 @@ import TimeTracker from './TimeTracker';
 class TimeTrackerPage extends Component {
   shouldComponentUpdate(nextProps) {
     const { isModalActive, selectedProjectId } = this.props;
-    
+
     if (this.props.selectedProjectId && (nextProps.selectedProjectId !== this.props.selectedProjectId) && isModalActive) {
-      
       return false;
-    } 
-    
+    }
+
     return true;
   }
 
   render() {
-    const { 
+    const {
       hasFetched,
       selectedProject,
       selectedTasks,
     } = this.props;
-  
+
     if (!hasFetched) {
-      return <div className="loader">Loading...</div>
+      return <div className="loader">Loading...</div>;
     }
     return (
-        <TimeTracker
-          selectedProject={selectedProject || null}
-          tasks={selectedTasks || []}
-          {...this.props}
-        />
+      <TimeTracker
+        selectedProject={selectedProject || null}
+        tasks={selectedTasks || []}
+        {...this.props}
+      />
     );
   }
 }
 
-const mapStateToProps = state => {
-  const {  modal, projects, timer, selectedProjectId } = state;
+const mapStateToProps = (state) => {
+  const { modal, projects, timer, selectedProjectId } = state;
   const { hasFetched, isFetching } = projects;
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
-  
-  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
+
+  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
   const selectedTasks = selectedProject && selectedProject.tasks;
-  
+
   return {
-    hasFetched, 
+    hasFetched,
     isFetching,
     isModalActive,
     isModalClosing,
     isOnboardingActive,
-    isTimerActive, 
+    isTimerActive,
     selectedProject,
     selectedTasks,
-    projects: projects.items
-  }
-}
+    projects: projects.items,
+  };
+};
 
 export default connect(mapStateToProps, {
   changeActiveContextMenu,
@@ -84,11 +83,11 @@ export default connect(mapStateToProps, {
   setTempTasks,
   toggleAddTasksForm,
   toggleConfig,
-  toggleEditTaskForm, 
+  toggleEditTaskForm,
   toggleOnboardMode,
-  toggleTimer
+  toggleTimer,
 })(TimeTrackerPage);
 
 TimeTrackerPage.propTypes = {
-  projects: PropTypes.array
-}
+  projects: PropTypes.array,
+};

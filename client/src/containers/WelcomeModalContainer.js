@@ -9,14 +9,14 @@ import WelcomeModal from '../components/WelcomeModal';
 
 function WelcomeModalContainer(props) {
   const { changeModalType } = props;
-  
+
   return (
-        <WelcomeModal handleGetStartedClick={() => changeModalType('ADD_PROJECT')} />
-    );
-  }
+    <WelcomeModal handleGetStartedClick={() => { return changeModalType('ADD_PROJECT'); }} />
+  );
+}
 
 export default connect(null, { changeModalType })(WelcomeModalContainer);
 
 WelcomeModalContainer.propTypes = {
-  
-}
+
+};

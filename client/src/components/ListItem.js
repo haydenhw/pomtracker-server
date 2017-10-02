@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 export default function ListItem({ children, handleClick, isActive, isSelected }) {
-  return(
+  return (
     <div className={`list-item ${isActive ? 'active' : ''} ${isSelected ? 'selected' : ''}`} onClick={handleClick}>
       {children}
     </div>
@@ -12,5 +12,5 @@ export default function ListItem({ children, handleClick, isActive, isSelected }
 
 ListItem.propTypes = {
   col1Text: PropTypes.string,
-  col2Text: PropTypes.string
-}
+  col2Text: PropTypes.string,
+};
