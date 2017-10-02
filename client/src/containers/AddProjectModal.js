@@ -5,7 +5,6 @@ import { SubmissionError } from 'redux-form';
 import { changeModalType, postProject } from '../actions/indexActions';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
 
-import FormModal from '../components/FormModal';
 import SingleInputForm from '../components/SingleInputForm';
 
 class AddProjectModal extends Component {

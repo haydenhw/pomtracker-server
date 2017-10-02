@@ -1,5 +1,6 @@
 // refactor to fucntional/presentational Component. Pass submit handler from modal
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
@@ -126,3 +127,17 @@ EditTaskForm = connect(mapStateToProps, {
 })(EditTaskForm);
 
 export default EditTaskForm;
+
+Confirm.propTypes = {
+  clickedTaskId: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  confirmEditTask: PropTypes.func.isRequired,
+  containerClass: PropTypes.string,
+  handleSubmit: PropTypes.string,
+  initialValues: PropTypes.string.isRequired,
+  selectedProject: PropTypes.object.isRequired,
+  selectedProjectId: PropTypes.string.isRequired,
+  selectedTask: PropTypes.object.isRequired,
+  taskNames: PropTypes.array.isRequired,
+  updateTask: PropTypes.string.isRequired,
+} 

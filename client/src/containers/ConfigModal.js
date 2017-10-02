@@ -6,7 +6,6 @@ import { SubmissionError } from 'redux-form';
 import { closeModal, updateConfig } from '../actions/indexActions';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
 
-import FormModal from '../components/FormModal';
 import ConfigForm from '../components/ConfigForm';
 
 class ConfigModal extends Component {
