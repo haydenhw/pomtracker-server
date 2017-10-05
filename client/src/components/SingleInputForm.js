@@ -19,7 +19,6 @@ let SingleInputForm = function SingleInputForm(props) {
     fieldAnimationName,
     parentContainerClass,
     placeholder,
-    isModalActive,
     isOnlyInput,
     shouldRenderSubmitButton,
     title,
@@ -74,3 +73,16 @@ export default reduxForm({
   form: 'singleInput',
 })(SingleInputForm);
 
+SingleInputForm.propTypes = {
+  childContainerClass: PropTypes.string,
+  handleFormSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  fieldAnimationName: PropTypes.string,
+  parentContainerClass: PropTypes.string,
+  placeholder: PropTypes.string,
+  isOnlyInput: PropTypes.bool,
+  shouldRenderSubmitButton: PropTypes.bool,
+  title: PropTypes.string,
+  titleAnimationName: PropTypes.string,
+  titleName: PropTypes.string,
+}

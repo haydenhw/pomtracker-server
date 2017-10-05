@@ -128,7 +128,7 @@ EditTaskForm = connect(mapStateToProps, {
 
 export default EditTaskForm;
 
-Confirm.propTypes = {
+EditTaskForm.propTypes = {
   clickedTaskId: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
   confirmEditTask: PropTypes.func.isRequired,

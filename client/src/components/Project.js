@@ -23,4 +23,5 @@ export default function Project(props) {
 Project.propTypes = {
   handleMenuClick: PropTypes.func.isRequired,
   projectData: PropTypes.object.isRequired,
+  totalTime: PropTypes.string.isRequired,
 };

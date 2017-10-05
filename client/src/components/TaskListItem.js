@@ -23,6 +23,9 @@ export default function TaskListItem(props) {
 }
 
 TaskListItem.propTypes = {
-  col1Text: PropTypes.string,
-  col2Text: PropTypes.string,
-};
+  handleClick: PropTypes.func.isRequired,
+  isActive: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  taskName: PropTypes.string.isRequired,
+  taskTime: PropTypes.string.isRequired
+}

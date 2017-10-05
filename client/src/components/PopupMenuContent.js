@@ -33,5 +33,6 @@ export default function PopupMenuContent(props) {
 }
 
 PopupMenuContent.propTypes = {
-  isActive: PropTypes.bool.isRequired,
+  children: PropTypes.array.isRequired,
+  isActive: PropTypes.bool.isRequired
 };

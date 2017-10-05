@@ -28,7 +28,14 @@ export default function Input(props) {
 }
 
 Input.propTypes = {
-  // items: PropTypes.array,
-  // wrapperClass: PropTypes.string,
-  // renderItem: PropTypes.func.isRequired
+  className: PropTypes.string,
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  shouldAutoFocus: PropTypes.bool,
+  type: PropTypes.string,
 };
+
+
+

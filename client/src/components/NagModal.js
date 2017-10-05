@@ -12,4 +12,8 @@ export default function Nag({ onCancel, onAccept, nagMessage, title }) {
 }
 
 Nag.propTypes = {
-};
+  onCancel: PropTypes.func.isRequired,
+  onAccept: PropTypes.func.isRequired,
+  nagMessage: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+} 

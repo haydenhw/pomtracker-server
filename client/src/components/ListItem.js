@@ -11,6 +11,8 @@ export default function ListItem({ children, handleClick, isActive, isSelected }
 }
 
 ListItem.propTypes = {
-  col1Text: PropTypes.string,
-  col2Text: PropTypes.string,
+  children:PropTypes.array.isRequired,
+  handleClick:PropTypes.func,
+  isActive:PropTypes.bool,
+  isSelected:PropTypes.bool
 };

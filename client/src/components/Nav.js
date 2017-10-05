@@ -36,4 +36,7 @@ export default function Nav(props) {
 }
 
 Nav.propTypes = {
+  activeLink: PropTypes.string.isRequired,
+  handleTimerLinkClick: PropTypes.func.isRequired,
+  handleProjectsLinkClck: PropTypes.func.isRequired
 };
