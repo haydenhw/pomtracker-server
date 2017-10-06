@@ -28,5 +28,5 @@ TaskListItem.propTypes = {
   isActive: PropTypes.bool,
   isSelected: PropTypes.bool,
   taskName: PropTypes.string.isRequired,
-  taskTime: PropTypes.string.isRequired
-}
+  taskTime: PropTypes.string.isRequired,
+};

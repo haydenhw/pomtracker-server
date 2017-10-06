@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { closeModal, deleteTask} from '../actions/indexActions';
+import { closeModal, deleteTask } from '../actions/indexActions';
 import Confirm from '../components/Confirm';
 
 const deleteTaskAndCloseModal = (deleteTaskParams, deleteTask, closeModal) => {

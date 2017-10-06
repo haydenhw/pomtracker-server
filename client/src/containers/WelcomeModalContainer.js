@@ -18,5 +18,5 @@ function WelcomeModalContainer(props) {
 export default connect(null, { changeModalType })(WelcomeModalContainer);
 
 WelcomeModalContainer.propTypes = {
-  changeModalType: PropTypes.func.isRequired
+  changeModalType: PropTypes.func.isRequired,
 };

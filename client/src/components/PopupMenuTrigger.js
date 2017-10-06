@@ -15,5 +15,5 @@ export default function PopupMenuTrigger(props) {
 
 PopupMenuTrigger.propTypes = {
   children: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
 };

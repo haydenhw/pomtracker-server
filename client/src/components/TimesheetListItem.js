@@ -13,7 +13,7 @@ import TimesheetColumn from './TimesheetColumn';
 
 export default function TimesheetListItem(props) {
   const { actionIconClass, children, isActive, isSelected, handleItemClick, handlePlayClick, time, title } = props;
-  
+
   const letterIconColor = randomColor({
     // luminosity: 'light',
     hue: 'purple',
@@ -61,5 +61,5 @@ TimesheetListItem.propTypes = {
   handleItemClick: PropTypes.func,
   handlePlayClick: PropTypes.func.isRequired,
   time: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };

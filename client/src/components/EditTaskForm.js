@@ -13,12 +13,10 @@ import Input from './Input';
 let EditTaskForm = class extends Component {
   handleEditTaskSubmit({ taskName, newTime }) {
     const {
-      clickedTaskId,
       closeModal,
       confirmEditTask,
       initialValues,
       selectedProject,
-      selectedProjectId,
       selectedTask,
       taskNames,
       updateTask,
@@ -64,15 +62,16 @@ let EditTaskForm = class extends Component {
   }
 
   render() {
-    const { closeModal, containerClass, handleSubmit, initialValues } = this.props;
+    const { containerClass, handleSubmit, initialValues } = this.props;
 
     return (
-      <div className={`${false ? '' : 'bounceInDown'}`}>
+      // <div className={`${false ? '' : 'bounceInDown'}`}>
+      <div className="bounceInDown">
         <div className={`form-container ${containerClass || ''}`}>
           <h2 className="form-title">Edit Task</h2>
           <form className="form" onSubmit={handleSubmit(this.handleEditTaskSubmit.bind(this))}>
             <div className="form-field-wrapper">
-              <label>Task Name</label>
+              <label htmlFor="task name">Task Name</label>
               <Field
                 name="taskName"
                 component={Input}
@@ -81,7 +80,7 @@ let EditTaskForm = class extends Component {
               />
             </div>
             <div className="form-field-wrapper">
-              <label>Logged Time: {initialValues.recordedTime}</label>
+              <label htmlFor="loged time">Logged Time: {initialValues.recordedTime}</label>
               <Field
                 name="newTime"
                 component={Input}
@@ -100,12 +99,15 @@ EditTaskForm = reduxForm({
   form: 'EditTaskForm', // a unique identifier for this form
 })(EditTaskForm);
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   const { clickedTaskId, selectedProjectId, projects } = state;
 
-  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
-  const selectedTask = projects.items.concatMap((project) => { return project.tasks; }).find((task) => { return clickedTaskId === task.shortId; });
-  const taskNames = selectedProject.tasks.map((task) => { return task.taskName; });
+  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
+
+  const selectedTask = projects.items.concatMap(project => project.tasks)
+    .find(task => clickedTaskId === task.shortId);
+
+  const taskNames = selectedProject.tasks.map(task => task.taskName);
 
   return ({
     clickedTaskId,
@@ -129,15 +131,13 @@ EditTaskForm = connect(mapStateToProps, {
 export default EditTaskForm;
 
 EditTaskForm.propTypes = {
-  clickedTaskId: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
   confirmEditTask: PropTypes.func.isRequired,
   containerClass: PropTypes.string,
   handleSubmit: PropTypes.string,
   initialValues: PropTypes.string.isRequired,
   selectedProject: PropTypes.object.isRequired,
-  selectedProjectId: PropTypes.string.isRequired,
   selectedTask: PropTypes.object.isRequired,
   taskNames: PropTypes.array.isRequired,
   updateTask: PropTypes.string.isRequired,
-} 
+};

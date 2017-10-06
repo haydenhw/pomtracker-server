@@ -28,5 +28,5 @@ Timesheet.propTypes = {
   buttonText: PropTypes.string.isRequired,
   children: PropTypes.array.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
-  titleText: PropTypes.array.isRequired
+  titleText: PropTypes.string.isRequired,
 };

@@ -17,5 +17,5 @@ Nag.propTypes = {
   actionButtonText: PropTypes.string.isRequired,
   nagMessage: PropTypes.object.isRequired,
   onActionButtonClick: PropTypes.func.isRequired,
-  title: PropTypes.string
-}
+  title: PropTypes.string,
+};

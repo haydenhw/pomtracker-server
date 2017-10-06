@@ -45,11 +45,11 @@ export default class ProjectTaskForm extends Component {
 }
 
 ProjectTaskForm.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node,
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   label: PropTypes.string,
-  selectedProjectName: PropTypes.string.isRequired,
+  selectedProjectName: PropTypes.string,
   shouldDisableTaskFormFocus: PropTypes.bool,
   showTasksForSelectedProject: PropTypes.bool,
   title: PropTypes.string.isRequired,

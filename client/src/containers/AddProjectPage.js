@@ -82,5 +82,5 @@ AddProjectPage.propTypes = {
   postProject: PropTypes.func,
   projects: PropTypes.array,
   remoteSubmit: PropTypes.func,
-  remoteSubmitForm: PropTypes.func
+  remoteSubmitForm: PropTypes.func,
 };

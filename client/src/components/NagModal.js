@@ -15,5 +15,5 @@ Nag.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onAccept: PropTypes.func.isRequired,
   nagMessage: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
-} 
+  title: PropTypes.string.isRequired,
+};

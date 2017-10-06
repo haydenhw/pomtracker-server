@@ -18,5 +18,5 @@ Confirm.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onDangerClick: PropTypes.func.isRequired,
   dangerText: PropTypes.func.isRequired,
-  title: PropTypes.string
-} 
+  title: PropTypes.string,
+};

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export default function Input(props) {
   const {
-    className,
     input,
     meta: { error, pristine, touched },
     name,
@@ -36,6 +35,4 @@ Input.propTypes = {
   shouldAutoFocus: PropTypes.bool,
   type: PropTypes.string,
 };
-
-
 

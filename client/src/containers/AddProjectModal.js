@@ -70,5 +70,5 @@ AddProjectModal.propTypes = {
   changeModalType: PropTypes.func.isRequired,
   lastSavedProjectName: PropTypes.string.isRequired,
   postProject: PropTypes.func.isRequired,
-  projects: PropTypes.array.isRequired
+  projects: PropTypes.array.isRequired,
 };

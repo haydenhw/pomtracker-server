@@ -75,5 +75,5 @@ Modal.propTypes = {
   modalProps: PropTypes.object,
   modalType: PropTypes.string.isRequired,
   rootModalClass: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };

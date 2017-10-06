@@ -11,8 +11,8 @@ export default function ListItem({ children, handleClick, isActive, isSelected }
 }
 
 ListItem.propTypes = {
-  children:PropTypes.array.isRequired,
-  handleClick:PropTypes.func,
-  isActive:PropTypes.bool,
-  isSelected:PropTypes.bool
+  children: PropTypes.array.isRequired,
+  handleClick: PropTypes.func,
+  isActive: PropTypes.bool,
+  isSelected: PropTypes.bool,
 };

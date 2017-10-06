@@ -38,5 +38,5 @@ ConfirmDeleteProject.propTypes = {
 
   closeModal: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
-  payload: PropTypes.object.isRequired
+  payload: PropTypes.object.isRequired,
 };

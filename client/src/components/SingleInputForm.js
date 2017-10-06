@@ -75,7 +75,7 @@ export default reduxForm({
 
 SingleInputForm.propTypes = {
   childContainerClass: PropTypes.string,
-  handleFormSubmit: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func,
   handleSubmit: PropTypes.func.isRequired,
   fieldAnimationName: PropTypes.string,
   parentContainerClass: PropTypes.string,
@@ -85,4 +85,4 @@ SingleInputForm.propTypes = {
   title: PropTypes.string,
   titleAnimationName: PropTypes.string,
   titleName: PropTypes.string,
-}
+};

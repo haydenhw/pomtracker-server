@@ -163,10 +163,10 @@ Timer.propTypes = {
   selectedTaskId: PropTypes.string.isRequired,
   setActiveTask: PropTypes.func.isRequired,
   setIntervalId: PropTypes.func.isRequired,
-  setStartTime: PropTypes.func.isRequired, 
-  startCount: PropTypes.number, 
+  setStartTime: PropTypes.func.isRequired,
+  startCount: PropTypes.number,
   startTime: PropTypes.number.isRequired,
   task: PropTypes.object,
   tasks: PropTypes.array.isRequired,
-  toggleTimer: PropTypes.func.isRequired
+  toggleTimer: PropTypes.func.isRequired,
 };

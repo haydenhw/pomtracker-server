@@ -93,5 +93,5 @@ ContextMenu.propTypes = {
   children: PropTypes.array.isRequired,
   className: PropTypes.string,
   onMenuClick: PropTypes.func.isRequired,
-  parentId: PropTypes.string.isRequired
+  parentId: PropTypes.string.isRequired,
 };

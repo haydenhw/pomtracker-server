@@ -1,4 +1,4 @@
- 
+
 // extract nav presentational component
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';

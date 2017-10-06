@@ -97,7 +97,7 @@ TimeTrackerPage.propTypes = {
   hasFetched: PropTypes.bool,
   isFetching: PropTypes.bool,
   isModalActive: PropTypes.bool,
-  isModalActive: PropTypes.bool, 
+  isModalActive: PropTypes.bool,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   isTimerActive: PropTypes.bool,
@@ -111,6 +111,6 @@ TimeTrackerPage.propTypes = {
   toggleConfig: PropTypes.func.isRequired,
   toggleEditTaskForm: PropTypes.func.isRequired,
   toggleOnboardMode: PropTypes.func.isRequired,
-  toggleTimer: PropTypes.func.isRequired
+  toggleTimer: PropTypes.func.isRequired,
 };
 

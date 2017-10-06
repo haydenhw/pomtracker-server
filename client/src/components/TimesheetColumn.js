@@ -11,5 +11,5 @@ export default function TimesheetColumn({ children, colNumber }) {
 
 TimesheetColumn.propTypes = {
   children: PropTypes.node,
-  colNumber: PropTypes.string.isRequired
+  colNumber: PropTypes.string.isRequired,
 };

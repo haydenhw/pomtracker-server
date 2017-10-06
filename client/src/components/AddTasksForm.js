@@ -1,6 +1,5 @@
-// refactor to presentaional Component
 // assign button classes from container
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
@@ -45,7 +44,7 @@ let AddTasksForm = (props) => {
               component={Input}
               name="taskName"
               placeholder="Add Tasks"
-              inputRef={this.inputRef}
+              // inputRef={this.inputRef}
               shouldAutoFocus={shouldAutoFocus}
             />
           </form>
