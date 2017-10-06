@@ -120,7 +120,7 @@ let AddTasksFormContainer = class extends Component {
         <div className="button-wrapper" >
           <button
             className={`${shouldDelete ? 'task-restore' : 'task-delete'} circular-delete`}
-            ref={(el) => { return this.deleteButtonRefs[shortId] = el; }}
+            ref={(el) => { this.deleteButtonRefs[shortId] = el; }}
             onClick={this.handleDeleteButtonClick(shortId)}
             onMouseOver={this.handleDeleteButtonMouseOver(shortId)}
             onMouseOut={this.handleDeleteButtonMouseOut(shortId)}
@@ -146,12 +146,11 @@ let AddTasksFormContainer = class extends Component {
           handleTaskSubmit={this.handleAddTask.bind(this)}
           renderFormTask={this.renderFormTask.bind(this)}
           shouldAutoFocus={isModalActive}
-          titleAnimationName="bounceInDown"
-          titleAnimationName={isOnboardingActive ?  "bounceInDown" : ""}
+          titleAnimationName={isOnboardingActive ? 'bounceInDown' : ''}
           childContainerClass={isModalActive ? 'form-container onboarding-form' : ''}
-          parentContainerClass={isOnboardingActive ? 'fullscreen-container' : 'formAnimationName'}
-          fieldAnimationName="bounceInDown-second"
-          formAnimationName="bounceInDown"
+          parentContainerClass={isOnboardingActive ? 'fullscreen-container' : 'bounceInDown'}
+          fieldAnimationName={isOnboardingActive ? 'bounceInDown-second' : ''}
+          formAnimationName={isOnboardingActive ? '' : 'bounceInDown'}
           handleFormSubmit={this.handleFormSubmit.bind(this)}
         />
       </RemoteSubmitForm>

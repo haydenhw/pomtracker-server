@@ -38,20 +38,20 @@ class EditProjectPage extends Component {
 
   handleEditProjectSubmit = project => ({ singleInput: projectName }) => {
     const { updateProjectName, remoteSubmit, updateTasks, tasks } = this.props;
-    
+
     if (!hasAnyValue(projectName)) {
       remoteSubmit(null);
-      
+
       throw new SubmissionError({
-        singleInput: 'Project name is required' 
-      })
+        singleInput: 'Project name is required',
+      });
     }
-    
+
     updateProjectName(project, projectName);
     updateTasks(project, tasks);
     remoteSubmit(null);
     routeToProjectsPage();
-  } 
+  }
 
   handleRemoteSubmit() {
     const { remoteSubmit } = this.props;

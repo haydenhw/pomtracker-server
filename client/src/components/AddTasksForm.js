@@ -31,12 +31,12 @@ let AddTasksForm = (props) => {
     <div className={parentContainerClass}>
       <div className={childContainerClass}>
         {title &&
-          <h2 className={`form-title ${isOnboardingActive ? (titleAnimationName || '') : ''}`}>
+          <h2 className={`form-title ${titleAnimationName}`}>
             {title}
             {titleName && <span className="grey-title-text">{titleName}</span>}
           </h2>
         }
-        <div className={`form-field-wrapper ${isOnboardingActive ? (fieldAnimationName || '') : ''}`}>
+        <div className={`form-field-wrapper ${fieldAnimationName}`}>
           <label htmlFor="taskName">Tasks</label>
           <List className="form-task-list" items={formTasks} renderItem={renderFormTask} />
           <form className="add-tasks-form" autoComplete="off" onSubmit={handleSubmit(handleTaskSubmit)}>
