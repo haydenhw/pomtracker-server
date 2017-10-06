@@ -37,5 +37,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { changeModalType })(AddTasksModal);
 
 AddTasksModal.propTypes = {
-  selectedProjectName: PropTypes.string.isRequred 
+  selectedProjectName: PropTypes.string.isRequired,
 };

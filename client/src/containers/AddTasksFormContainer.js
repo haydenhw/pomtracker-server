@@ -198,11 +198,11 @@ export default AddTasksFormContainer = connect(mapStateToProps, {
 })(AddTasksFormContainer);
 
 AddTasksFormContainer.propTypes = {
-  addTempTask: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
+  addTempTask: PropTypes.func,
+  closeModal: PropTypes.func,
   formAnimationName: PropTypes.string,
   formTasks: PropTypes.array,
-  handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
   isModalActive: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   reset: PropTypes.func.isRequired,
@@ -212,6 +212,6 @@ AddTasksFormContainer.propTypes = {
   tasks: PropTypes.array.isRequired,
   toggleModal: PropTypes.func.isRequired,
   toggleOnboardMode: PropTypes.func.isRequired,
-  toggleShouldDelete: PropTypes.func.isRequired, 
+  toggleShouldDelete: PropTypes.func.isRequired,
   updateTasks: PropTypes.func.isRequired,
 };
