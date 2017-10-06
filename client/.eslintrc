@@ -16,6 +16,7 @@
         "react/jsx-indent": [2, 2],
         "react/require-default-props": "off",
         "import/no-mutable-exports": "off",
+        "jsx-quotes": ["error", "prefer-double"], 
         # "func-names": "off"
         # "import/prefer-default-export": "off",
         # "indent": ["error", 2],

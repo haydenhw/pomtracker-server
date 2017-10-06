@@ -143,12 +143,16 @@ let AddTasksFormContainer = class extends Component {
       >
         <AddTasksForm
           {...this.props}
-          childContainerClass={isModalActive ? 'form-container onboarding-form' : ''}
-          handleFormSubmit={/* handleFormSubmit ? handleFormSubmit(formTasks) : */ this.handleFormSubmit.bind(this)}
           handleTaskSubmit={this.handleAddTask.bind(this)}
-          parentContainerClass={isOnboardingActive ? 'fullscreen-container' : (formAnimationName || '')}
           renderFormTask={this.renderFormTask.bind(this)}
           shouldAutoFocus={isModalActive}
+          titleAnimationName="bounceInDown"
+          titleAnimationName={isOnboardingActive ?  "bounceInDown" : ""}
+          childContainerClass={isModalActive ? 'form-container onboarding-form' : ''}
+          parentContainerClass={isOnboardingActive ? 'fullscreen-container' : 'formAnimationName'}
+          fieldAnimationName="bounceInDown-second"
+          formAnimationName="bounceInDown"
+          handleFormSubmit={this.handleFormSubmit.bind(this)}
         />
       </RemoteSubmitForm>
     );

@@ -44,7 +44,6 @@ let AddTasksForm = (props) => {
               component={Input}
               name="taskName"
               placeholder="Add Tasks"
-              // inputRef={this.inputRef}
               shouldAutoFocus={shouldAutoFocus}
             />
           </form>
