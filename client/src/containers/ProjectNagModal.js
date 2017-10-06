@@ -5,7 +5,7 @@ import { hashHistory } from 'react-router';
 import Nag from '../components/Nag';
 import Modal from './Modal';
 
-export default function ProjectNagModal(props) {
+export default function ProjectNagModal() {
   return (
     <Nag
       actionButtonText="ADD PROJECT"
@@ -15,7 +15,3 @@ export default function ProjectNagModal(props) {
     />
   );
 }
-
-ProjectNagModal.propTypes = {
-
-};

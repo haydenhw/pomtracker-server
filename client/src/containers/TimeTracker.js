@@ -292,5 +292,18 @@ export default class TimeTracker extends Component {
 }
 
 TimeTracker.propTypes = {
+  changeActiveContextMenu: PropTypes.func.isRequired,
+  confirmDeleteTask: PropTypes.func.isRequired,
+  isModalClosing: PropTypes.bool,
+  isOnboardingActive: PropTypes.bool,
+  isTimerActive: PropTypes.bool,
+  projects: PropTypes.array.isRequired,
+  selectedProject: PropTypes.object.isRequired,
+  setSelectedProject: PropTypes.func.isRequired,
   tasks: PropTypes.array,
+  toggleAddTasksForm: PropTypes.func.isRequired,
+  toggleConfig: PropTypes.func.isRequired,
+  toggleEditTaskForm: PropTypes.func.isRequired,
+  toggleOnboardMode: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired,
 };

@@ -8,22 +8,8 @@ import { changeModalType } from '../actions/indexActions';
 import FormModal from '../components/FormModal';
 import EditTaskForm from '../components/EditTaskForm';
 
-export default function EditTaskModal(props) {
+export default function EditTaskModal() {
   return (
     <EditTaskForm containerClass="normal-modal-form-container" />
   );
 }
-// 
-// const mapStateToProps = state => {
-//   const { clickedTaskId } = state;
-//   
-//   return {
-//     clickedTaskId
-//   }  
-// } 
-
-// export default connect(mapStateToProps)(EditTaskModal);
-
-EditTaskModal.propTypes = {
-
-};

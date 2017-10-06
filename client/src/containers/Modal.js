@@ -7,7 +7,6 @@ import { closeModal } from '../actions/indexActions';
 import RootModal from '../components/ModalRoot';
 import AddProjectModal from './AddProjectModal';
 import AddTasksModal from './AddTasksModal';
-import ConfigModal from './ConfigModal';
 import ConfirmEditTask from './ConfirmEditTask';
 import ConfirmDeleteProject from './ConfirmDeleteProject';
 import ConfirmDeleteTask from './ConfirmDeleteTask';
@@ -19,7 +18,6 @@ function Modal(props) {
   const MODAL_COMPONENTS = {
     ADD_PROJECT: AddProjectModal,
     ADD_TASKS: AddTasksModal,
-    CONFIG: ConfigModal,
     CONFIRM_EDIT_TASK: ConfirmEditTask,
     CONFIRM_DELETE_PROJECT: ConfirmDeleteProject,
     CONFIRM_DELETE_TASK: ConfirmDeleteTask,
@@ -70,5 +68,12 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { closeModal })(Modal);
 
 Modal.propTypes = {
-
+  closeModal: PropTypes.func.isRequired,
+  isCloseButtonActive: PropTypes.bool,
+  isModalActive: PropTypes.bool,
+  modalClass: PropTypes.string,
+  modalProps: PropTypes.object,
+  modalType: PropTypes.string.isRequired,
+  rootModalClass: PropTypes.string,
+  style: PropTypes.object
 };

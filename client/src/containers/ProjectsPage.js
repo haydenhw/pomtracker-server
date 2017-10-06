@@ -222,16 +222,23 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  addProject,
   confirmDeleteProject,
   changeActiveContextMenu,
-  deleteProject,
   setSelectedProject,
   setTempTasks,
   toggleTimer,
-  updateProjectName,
 })(ProjectsPage);
 
 ProjectsPage.propTypes = {
+  changeActiveContextMenu: PropTypes.func.isRequired,
+  confirmDeleteProject: PropTypes.func.isRequired,
+  hasFetched: PropTypes.bool,
+  isModalClosing: PropTypes.bool,
+  isOnboardingActive: PropTypes.bool,
+  isTimerActive: PropTypes.bool,
   projects: PropTypes.array.isRequired,
+  selectedProjectId: PropTypes.string,
+  setSelectedProject: PropTypes.func.isRequired,
+  setTempTasks: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired,
 };

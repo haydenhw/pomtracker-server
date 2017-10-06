@@ -87,7 +87,6 @@ AddTasksForm.propTypes = {
   shouldAutoFocus: PropTypes.bool,
   shouldRenderSubmitButton: PropTypes.bool,
   submitButtonText: PropTypes.string,
-  tasks: PropTypes.array,
   title: PropTypes.string,
   titleAnimationName: PropTypes.string,
   titleName: PropTypes.string,

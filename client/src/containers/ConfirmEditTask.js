@@ -17,9 +17,9 @@ const getDangerMessage = (oldTime, newTime) => {
   return (
     <span>
       Are you sure you want to change the logged time from
-      <span className="confirm-time"> {oldTime} </span>
+      <span className="confirm-time">{oldTime}</span>
        to
-      <span className="confirm-time"> {newTime} </span>
+      <span className="confirm-time">{newTime}</span>
        ?
     </span>
   );
@@ -40,5 +40,11 @@ function ConfirmEditTask(props) {
 export default connect(null, { closeModal, updateTask, toggleEditTaskForm })(ConfirmEditTask);
 
 ConfirmEditTask.propTypes = {
-
+  closeModal: PropTypes.func.isRequired,
+  oldTime: PropTypes.number.isRequired,
+  newTime: PropTypes.number.isRequired,
+  payload: PropTypes.object.isRequired,
+  updateTask: PropTypes.func.isRequired,
+  taskName: PropTypes.string.isRequired,
+  toggleEditTaskForm: PropTypes.func.isRequired
 };

@@ -149,3 +149,24 @@ export default connect(mapStateToProps, {
   setStartTime,
   toggleTimer,
 })(Timer);
+
+Timer.propTypes = {
+  alarmSoundSrc: PropTypes.string.isRequired,
+  decrementTimer: PropTypes.func.isRequired,
+  handleTimerComplete: PropTypes.func.isRequired,
+  incrementTaskTime: PropTypes.func.isRequired,
+  intervalId: PropTypes.string,
+  isTimerActive: PropTypes.bool,
+  remainingTime: PropTypes.number,
+  resetTimer: PropTypes.func.isRequired,
+  selectedProject: PropTypes.object.isRequired,
+  selectedTaskId: PropTypes.string.isRequired,
+  setActiveTask: PropTypes.func.isRequired,
+  setIntervalId: PropTypes.func.isRequired,
+  setStartTime: PropTypes.func.isRequired, 
+  startCount: PropTypes.number, 
+  startTime: PropTypes.number.isRequired,
+  task: PropTypes.object,
+  tasks: PropTypes.array.isRequired,
+  toggleTimer: PropTypes.func.isRequired
+};

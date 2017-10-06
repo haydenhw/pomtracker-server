@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BounceInAnimationWrapper from '../containers/BounceInAnimationWrapper';
-
 export default function WelcomeModal(props) {
   const { handleGetStartedClick } = props;
 

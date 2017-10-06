@@ -6,7 +6,9 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
   return (WrappedComponent) => {
     class BaseComponent extends Component {
       shouldComponentUpdate(nextProps) {
-        if (this.props.targetValue === 'ADD_PROJECT') {
+        const { targetValue } = this.props;
+        
+        if (targetValue === 'ADD_PROJECT') {
           // console.log(this.props.remoteSubmitForm, nextProps.remoteSubmitForm);
         }
         // console.log(this.props.form)
@@ -39,3 +41,6 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
   };
 }
 
+callOnTargetUpdate.propTypes = {
+  targetValue: PropTypes.string.isRequired
+};

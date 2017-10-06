@@ -57,7 +57,6 @@ class ContextMenu extends Component {
     }
   }
 
-
   render() {
     const { activeContextMenuParentId, children, className, parentId } = this.props;
     const { isActive } = this.state;
@@ -88,3 +87,11 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { changeActiveContextMenu })(ContextMenu);
+
+ContextMenu.propTypes = {
+  activeContextMenuParentId: PropTypes.string,
+  children: PropTypes.array.isRequired,
+  className: PropTypes.string,
+  onMenuClick: PropTypes.func.isRequired,
+  parentId: PropTypes.string.isRequired
+};

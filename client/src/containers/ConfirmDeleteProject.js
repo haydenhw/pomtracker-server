@@ -7,7 +7,6 @@ import Confirm from '../components/Confirm';
 
 const deleteProjectAndCloseModal = (deleteProjectParams, deleteProject, closeModal) => {
   return () => {
-    console.log('fdsafd');
     deleteProject(deleteProjectParams);
     closeModal();
   };
@@ -37,4 +36,7 @@ export default connect(null, { closeModal, deleteProject, toggleModal })(Confirm
 
 ConfirmDeleteProject.propTypes = {
 
+  closeModal: PropTypes.func.isRequired,
+  deleteProject: PropTypes.func.isRequired,
+  payload: PropTypes.object.isRequired
 };

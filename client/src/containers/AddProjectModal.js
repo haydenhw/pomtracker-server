@@ -67,5 +67,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { changeModalType, postProject })(AddProjectModal);
 
 AddProjectModal.propTypes = {
-
+  changeModalType: PropTypes.func.isRequired,
+  lastSavedProjectName: PropTypes.string.isRequired,
+  postProject: PropTypes.func.isRequired,
+  projects: PropTypes.array.isRequired
 };

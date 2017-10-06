@@ -8,7 +8,6 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
 
 import ProjectTaskForm from './ProjectTaskForm';
-import RemoteSubmitForm from './RemoteSubmitForm';
 import SingleInputForm from '../components/SingleInputForm';
 
 let AddProjectPage = class extends Component {
@@ -79,5 +78,9 @@ const mapStateToProps = (state) => {
 export default AddProjectPage = connect(mapStateToProps, { postProject, remoteSubmit })(AddProjectPage);
 
 AddProjectPage.propTypes = {
-  queuedProject: PropTypes.string,
+  newTasks: PropTypes.array,
+  postProject: PropTypes.func,
+  projects: PropTypes.array,
+  remoteSubmit: PropTypes.func,
+  remoteSubmitForm: PropTypes.func
 };

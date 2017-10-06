@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { closeModal, deleteTask, toggleModal } from '../actions/indexActions';
+import { closeModal, deleteTask} from '../actions/indexActions';
 import Confirm from '../components/Confirm';
 
 const deleteTaskAndCloseModal = (deleteTaskParams, deleteTask, closeModal) => {
@@ -19,20 +19,23 @@ const getDangerText = (taskName) => {
 };
 
 function ConfirmDeleteTask(props) {
-  const { closeModal, deleteTask, payload, taskName, toggleModal } = props;
+  const { closeModal, deleteTask, payload, taskName } = props;
 
   return (
     <Confirm
       onDangerClick={deleteTaskAndCloseModal(payload, deleteTask, closeModal)}
       dangerText={getDangerText(taskName)}
-      onCancel={toggleModal}
+      onCancel={closeModal}
       title={<h2>Confirm Delete</h2>}
     />
   );
 }
 
-export default connect(null, { closeModal, deleteTask, toggleModal })(ConfirmDeleteTask);
+export default connect(null, { closeModal, deleteTask })(ConfirmDeleteTask);
 
 ConfirmDeleteTask.propTypes = {
-
+  closeModal: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  payload: PropTypes.object.isRequired,
+  taskName: PropTypes.string.isRequired,
 };

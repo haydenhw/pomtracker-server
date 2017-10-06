@@ -93,7 +93,9 @@ export default class Select extends Component {
 }
 
 Select.propTypes = {
+  children: PropTypes.object,
   className: PropTypes.string,
+  handleOptionClick: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
 };
 

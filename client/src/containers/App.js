@@ -1,5 +1,8 @@
+ 
 // extract nav presentational component
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import Notification from 'react-web-notification';
@@ -18,23 +21,12 @@ class App extends Component {
     };
   }
 
-  componentWillReceiveProps() {
-    const { location } = this.props;
-    const pathName = location.pathname;
-
-    if ((pathName === '/' || pathName === '/projects')) {
-      // document.body.style.backgroundColor = "#f0f4f7";
-    } else {
-      document.body.style.backgroundColor = 'white';
-    }
-  }
-
   componentDidMount() {
     const { fetchProjects } = this.props;
 
     fetchProjects();
-    const { location } = this.props;
-    const pathName = location.pathname;
+    // const { location } = this.props;
+    // const pathName = location.pathname;
   }
 
   handleTimerLinkClick() {
@@ -85,3 +77,12 @@ export default connect(mapStateToProps, {
   toggleProjectNagModal,
 },
 )(App);
+
+// App.propTypes = {
+//   children: propTypes.array.isRequired,
+//   projects: propTypes.array.isRequired,
+//   toggleProjectNagModal: propTypes.func.isRequired,
+//   fetchProjects: propTypes.func.isRequired, 
+//   isDesktopNotificationActive: propTypes.bool,
+//   location: propTypes.object.isRequired,
+// };

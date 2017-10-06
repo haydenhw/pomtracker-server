@@ -48,4 +48,9 @@ ProjectTaskForm.propTypes = {
   children: PropTypes.object,
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  selectedProjectName: PropTypes.string.isRequired,
+  shouldDisableTaskFormFocus: PropTypes.bool,
+  showTasksForSelectedProject: PropTypes.bool,
+  title: PropTypes.string.isRequired,
 };

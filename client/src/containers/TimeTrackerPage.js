@@ -89,5 +89,28 @@ export default connect(mapStateToProps, {
 })(TimeTrackerPage);
 
 TimeTrackerPage.propTypes = {
+  changeActiveContextMenu: PropTypes.func.isRequired,
+  confirmDeleteTask: PropTypes.func.isRequired,
+  decrementTimer: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  fetchProjects: PropTypes.func.isRequired,
+  hasFetched: PropTypes.bool,
+  isFetching: PropTypes.bool,
+  isModalActive: PropTypes.bool,
+  isModalActive: PropTypes.bool, 
+  isModalClosing: PropTypes.bool,
+  isOnboardingActive: PropTypes.bool,
+  isTimerActive: PropTypes.bool,
   projects: PropTypes.array,
+  selectedProject: PropTypes.object,
+  selectedProjectId: PropTypes.string,
+  selectedTasks: PropTypes.array,
+  setSelectedProject: PropTypes.func.isRequired,
+  setTempTasks: PropTypes.func.isRequired,
+  toggleAddTasksForm: PropTypes.func.isRequired,
+  toggleConfig: PropTypes.func.isRequired,
+  toggleEditTaskForm: PropTypes.func.isRequired,
+  toggleOnboardMode: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired
 };
+

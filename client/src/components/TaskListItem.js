@@ -23,6 +23,7 @@ export default function TaskListItem(props) {
 }
 
 TaskListItem.propTypes = {
+  children: PropTypes.node.isRequired,
   handleClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   isSelected: PropTypes.bool,

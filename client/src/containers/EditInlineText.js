@@ -4,7 +4,7 @@ import InlineEdit from 'react-edit-inline';
 
 import { timeStringToSeconds } from '../helpers/time';
 
-export default class TopNavbarEditableText extends Component {
+export default class EditInlineText extends Component {
   constructor() {
     super();
 
@@ -56,7 +56,7 @@ export default class TopNavbarEditableText extends Component {
   }
 }
 
-TopNavbarEditableText.propTypes = {
+EditInlineText.propTypes = {
   className: PropTypes.string,
   handleChange: PropTypes.func,
   text: PropTypes.string,

@@ -18,3 +18,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(RemoteSubmitForm);
+
+RemoteSubmitForm.propTypes = {
+  children: PropTypes.func.isRequired,
+  remoteSubmitForm: PropTypes.func.isRequired
+};

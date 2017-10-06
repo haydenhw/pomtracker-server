@@ -13,6 +13,7 @@ import TimesheetColumn from './TimesheetColumn';
 
 export default function TimesheetListItem(props) {
   const { actionIconClass, children, isActive, isSelected, handleItemClick, handlePlayClick, time, title } = props;
+  
   const letterIconColor = randomColor({
     // luminosity: 'light',
     hue: 'purple',
@@ -26,11 +27,9 @@ export default function TimesheetListItem(props) {
       handleClick={handleItemClick}
     >
       <TimesheetColumn colNumber="1">
-        {/* <div className="list-item-button" style={{ "backgroundColor": letterIconColor ,  "borderColor": letterIconColor }}> */}
         <div className="list-item-button">
           <span className="list-item-letter-icon"> {title[0].toUpperCase()}</span>
         </div>
-        {/* <FontAwesome className="list-item-icon list-item-task-icon" name='check-circle'></FontAwesome>   */}
       </TimesheetColumn>
       <TimesheetColumn colNumber="2">
         <div>
@@ -53,3 +52,14 @@ export default function TimesheetListItem(props) {
     </ListItem>
   );
 }
+
+TimesheetListItem.propTypes = {
+  actionIconClass: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  isActive: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  handleItemClick: PropTypes.func,
+  handlePlayClick: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired
+};

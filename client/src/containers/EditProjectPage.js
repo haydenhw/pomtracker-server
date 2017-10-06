@@ -25,7 +25,9 @@ class EditProjectPage extends Component {
   }
   
   componentWillMount() {
-    this.props.remoteSubmit(null);    
+    const { remoteSubmit } = this.props;
+    
+    remoteSubmit(null);    
   }  
   
   componentDidUpdate(prevProps){ 
@@ -55,37 +57,7 @@ class EditProjectPage extends Component {
     const { remoteSubmit } = this.props;
     
     remoteSubmit('ADD_PROJECT');
-    
-    
-    // setTimeout(() => remoteSubmit('ADD_TASKS'), 100)
-    
   }  
-  // handleEditProjectName = (project, updateProjectName) => ({ projectName }) => { 
-  //   const { updateProjectName } = this.props;
-  //     
-  //     if (!hasAnyValue(projectName)) {
-  //       throw new SubmissionError({
-  //         projectName: 'Project name is required' 
-  //       })
-  //     }
-  //     
-  //   updateProjectName(project, projectName);  
-  // }
-    
-  // handleNewChangesSubmit() {
-  //   const { remoteSubmit } = this.props;
-  //   console.log('asdf')
-  //   
-  //   this.handleEditProjectName();
-  //   this.handleTasksSubmit();
-  //   remoteSubmit(null);
-  // 
-  // handleTasksSubmit({ tasks }) {
-  //   const { updateTasks, selectedProjectId } = this.props;
-  //   updateTasks(selectedProjectId, tasks);
-  
-  
-  // }
 
   render() {
     const { remoteSubmitForm, selectedProject } = this.props;
@@ -145,5 +117,11 @@ export default connect(mapStateToProps, {
 })(EditProjectPage);  
 
 EditProjectPage.propTypes = {
-  projects: PropTypes.object
+  projects: PropTypes.array.isRequired,
+  remoteSubmit: PropTypes.func.isRequired,
+  remoteSubmitForm: PropTypes.func.isRequired,
+  selectedProject: PropTypes.object.isRequired, 
+  tasks: PropTypes.array.isRequired,
+  updateProjectName: PropTypes.func.isRequired,
+  updateTasks: PropTypes.func.isRequired
 }
