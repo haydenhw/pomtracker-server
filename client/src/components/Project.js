@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 
 import ContextMenu from '../containers/ContextMenu';
 
 export default function Project(props) {
-  const { handleMenuClick, projectData, totalTime } = props;
+  const { projectData, totalTime } = props;
   const { projectName } = projectData;
 
   return (
@@ -21,7 +20,6 @@ export default function Project(props) {
 }
 
 Project.propTypes = {
-  handleMenuClick: PropTypes.func.isRequired,
   projectData: PropTypes.object.isRequired,
   totalTime: PropTypes.string.isRequired,
 };

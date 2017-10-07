@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 import callOnTargetUpdate from '../hocs/callOnTargetUpdate';
 
@@ -14,12 +14,11 @@ const dummySubmit = (evt) => {
 let SingleInputForm = function SingleInputForm(props) {
   const {
     childContainerClass,
+    fieldAnimationName,
     handleFormSubmit,
     handleSubmit,
-    fieldAnimationName,
-    parentContainerClass,
-    placeholder,
     isOnlyInput,
+    parentContainerClass,
     shouldRenderSubmitButton,
     title,
     titleAnimationName,
@@ -36,7 +35,6 @@ let SingleInputForm = function SingleInputForm(props) {
               {titleName && <span className="grey-title-text">{titleName}</span>}
             </h2>
           }
-          {/* <div className="fieldAnimationName"> */}
           <div className={fieldAnimationName || ''}>
             <Field
               component={Input}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default function PopupMenuContent(props) {
-  const { children, isActive } = props;
+  const { children } = props;
 
   const renderContent = () => {
     const { isActive } = props;

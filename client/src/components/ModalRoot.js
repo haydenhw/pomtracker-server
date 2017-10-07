@@ -9,11 +9,11 @@ import store from '../redux-files/store';
 export default class ModalRoot extends Component {
   componentDidMount() {
     this.modalTarget = document.createElement('div');
-    // this.modalTarget.className = 'modal';
     document.body.appendChild(this.modalTarget);
     this._render();
   }
-  // componentWillUpdate if using redux
+  
+  // use componentWillUpdate if not using redux
   componentDidUpdate() {
     this._render();
   }

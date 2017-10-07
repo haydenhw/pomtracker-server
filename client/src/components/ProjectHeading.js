@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProjectHeading(props) {
-  const { text, iconClass, handleClick } = props;
+  const { handleClick, iconClass, text } = props;
 
   return (
     <div className="project-heading-wrapper" onClick={handleClick}>

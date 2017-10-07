@@ -12,6 +12,6 @@ export default function PopupMenu(props) {
 }
 
 PopupMenu.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
