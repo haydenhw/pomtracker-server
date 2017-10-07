@@ -22,7 +22,6 @@ import {
 import Modal from './Modal';
 import ContextMenu from './ContextMenu';
 import List from '../components/List';
-import ListHeader from '../components/ListHeader';
 import ListItem from '../components/ListItem';
 import Nag from '../components/Nag';
 import TimesheetListItem from '../components/TimesheetListItem';

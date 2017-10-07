@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Input(props) {
   const {
     input,
-    meta: { error, pristine, touched },
+    meta: { error, touched },
     name,
     placeholder,
     shouldAutoFocus,
@@ -16,7 +16,7 @@ export default function Input(props) {
         {...input}
         autoFocus={shouldAutoFocus || false}
         autoComplete="off"
-        className="form-input fullscreen-input add-project-input"
+        className="form-input"
         name={name}
         placeholder={placeholder}
         type={type}
@@ -27,7 +27,6 @@ export default function Input(props) {
 }
 
 Input.propTypes = {
-  className: PropTypes.string,
   input: PropTypes.object,
   meta: PropTypes.object,
   name: PropTypes.string,

@@ -1,4 +1,3 @@
-// assign button classes from container
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
@@ -13,14 +12,13 @@ let AddTasksForm = (props) => {
     childContainerClass,
     fieldAnimationName,
     formTasks,
-    handleFormSubmit,
     handleSubmit,
     handleTaskSubmit,
-    isOnboardingActive,
     parentContainerClass,
     renderFormTask,
     shouldRenderSubmitButton,
     shouldAutoFocus,
+    submitButtonClass,
     submitButtonText,
     title,
     titleAnimationName,
@@ -50,7 +48,8 @@ let AddTasksForm = (props) => {
         </div>
       </div>
       {!(shouldRenderSubmitButton === false) &&
-        <button className={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
+        // <button className={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
+        <button className={submitButtonClass}>{submitButtonText || 'Finish'}</button>
       }
     </div>
   );
@@ -77,7 +76,6 @@ AddTasksForm.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleTaskSubmit: PropTypes.func.isRequired,
-  isOnboardingActive: PropTypes.bool,
   parentContainerClass: PropTypes.string,
   renderFormTask: PropTypes.func.isRequired,
   shouldAutoFocus: PropTypes.bool,

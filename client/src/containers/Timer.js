@@ -160,7 +160,7 @@ Timer.propTypes = {
   remainingTime: PropTypes.number,
   resetTimer: PropTypes.func.isRequired,
   selectedProject: PropTypes.object.isRequired,
-  selectedTaskId: PropTypes.string.isRequired,
+  selectedTaskId: PropTypes.string,
   setActiveTask: PropTypes.func.isRequired,
   setIntervalId: PropTypes.func.isRequired,
   setStartTime: PropTypes.func.isRequired,

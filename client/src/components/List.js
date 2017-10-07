@@ -15,7 +15,7 @@ export default function List(props) {
 }
 
 List.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node,
   className: PropTypes.string,
   items: PropTypes.array.isRequired,
   renderItem: PropTypes.func.isRequired,

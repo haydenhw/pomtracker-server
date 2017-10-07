@@ -1,7 +1,16 @@
+**Goals for this Week**:
+  ☐ refactor all componenents
+  ☐ test all prop-types
+  ☐ lint all components
+  ☐ add moz webkit animation feed back
+  ☐ lint all scss
+  
+**Goals for Today**:
+  
+ 
 **Styles**:
   ☐ find icons for PCBf landing
   ☐ center x icon in button
-  
   
 **Forms**:
   ProjectTaskForms:
@@ -31,7 +40,7 @@ Questions for Kyle:
 Kyle Notes:
   ☐ Projects
     ☐ Make timer visible from projects screen 
-  ☐ negative space 
+    ☐ negative space 
     ☐ 600px   
     ☐ monochromatic theme
     ☐ switch submit and cancel button
