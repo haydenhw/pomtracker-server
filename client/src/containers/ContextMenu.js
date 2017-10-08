@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
 import { changeActiveContextMenu } from '../actions/indexActions';

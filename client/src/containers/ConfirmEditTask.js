@@ -26,12 +26,12 @@ const getDangerMessage = (oldTime, newTime) => {
 };
 
 function ConfirmEditTask(props) {
-  const { closeModal, oldTime, newTime, payload, updateTask, taskName, toggleEditTaskForm } = props;
+  const { closeModal, oldTime, newTime, payload, updateTask, taskName } = props;
   return (
     <Confirm
+      onCancel={closeModal}
       onDangerClick={updateTaskAndCloseModal(payload, updateTask, closeModal)}
       dangerText={getDangerMessage(oldTime, newTime)}
-      onCancel={closeModal}
       title={<h2 className="form-title">Confirm time change for task <span className="grey-title-text">{taskName}</span></h2>}
     />
   );

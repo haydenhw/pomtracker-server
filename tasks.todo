@@ -1,6 +1,7 @@
 **Goals for this Week**:
-  ☐ test all prop-types
+  ☐ check components for refactor (left off on EditInlineText)
   ☐ lint all components
+  ☐ merge time tracker page and timetracker
   ☐ add moz webkit animation feed back
   ☐ lint all scss
   ☐ thoroughly test all functionality

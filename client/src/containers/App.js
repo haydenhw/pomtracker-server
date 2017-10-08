@@ -1,10 +1,7 @@
-
-// extract nav presentational component
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
 import Notification from 'react-web-notification';
 
 import { routeToProjectsPage, routeToTimerPage } from 'helpers/route';
@@ -25,8 +22,6 @@ class App extends Component {
     const { fetchProjects } = this.props;
 
     fetchProjects();
-    // const { location } = this.props;
-    // const pathName = location.pathname;
   }
 
   handleTimerLinkClick() {
@@ -41,7 +36,6 @@ class App extends Component {
     const isProjectRoute = /projects/.test(pathName);
 
     return (
-      // <div className={`${(pathName === '/' || pathName === '/projects') ? 'main-page' : '' }`}>
       <div>
         <Nav
           activeLink={isProjectRoute ? 'PROJECTS' : 'TIMER'}
