@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import shortid from 'shortid';
+
+import {
+  deleteTask,
+  decrementTimer,
+  changeActiveContextMenu,
+  confirmDeleteTask,
+  fetchProjects,
+  setSelectedProject,
+  setTempTasks,
+  toggleAddTasksForm,
+  toggleConfig,
+  toggleEditTaskForm,
+  toggleOnboardMode,
+  toggleTimer,
+} from '../actions/indexActions';
 
 import { secondsToHMMSS } from 'helpers/time';
 
@@ -18,7 +33,7 @@ import Timer from './Timer';
 
 import { isDevOnboardingActive } from '../srcConfig/devSettings';
 
-export default class TimeTracker extends Component {
+let TimerPage = class extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +52,16 @@ export default class TimeTracker extends Component {
     tasks: []
   }
 
+  shouldComponentUpdate(nextProps) {
+    const { isModalActive } = this.props;
+
+    if (this.props.selectedProjectId && (nextProps.selectedProjectId !== this.props.selectedProjectId) && isModalActive) {
+      return false;
+    }
+
+    return true;
+  }
+  
   componentWillMount() {
     const { isOnboardingActive, projects, setSelectedProject, toggleOnboardMode } = this.props;
 
@@ -213,18 +238,19 @@ export default class TimeTracker extends Component {
   }
 
   render() {
-    const { isModalClosing, isOnboardingActive, selectedProject, tasks, toggleConfig } = this.props;
+    const { hasFetched, isModalClosing, isOnboardingActive, selectedProject, tasks } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
     
     const totalTime = tasks.length ? tasks.map((task) => { return Number(task.recordedTime); }).reduce((a, b) => { return a + b; }) : 0;
     const selectedProjectName = selectedProject ? selectedProject.projectName : '';
-
+    
+    if (!hasFetched) {
+      return <div className="loader">Loading...</div>;
+    }
+    
     return (
       <div>
         <section className="timer-section">
-          <div className="timer-settings-wrapper" onClick={toggleConfig}>
-            <FontAwesome className="timer-settings-icon" name="gear" />
-          </div>
           <div className="timer-container">
             {tasks.length > 0 && this.renderTaskSelect()}
             <Timer
@@ -262,15 +288,63 @@ export default class TimeTracker extends Component {
   }
 }
 
-TimeTracker.propTypes = {
+const mapStateToProps = (state) => {
+  const { modal, projects, timer, selectedProjectId } = state;
+  const { hasFetched, items, isFetching } = projects;
+  const { isModalActive, isModalClosing, isOnboardingActive } = modal;
+  const { isTimerActive } = timer;
+
+  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
+  const selectedTasks = selectedProject && selectedProject.tasks;
+
+  return {
+    hasFetched,
+    isFetching,
+    isModalActive,
+    isModalClosing,
+    isOnboardingActive,
+    isTimerActive,
+    selectedProject,
+    selectedTasks,
+    projects: projects.items,
+    tasks: selectedProject.tasks
+  };
+};
+
+export default connect(mapStateToProps, {
+  changeActiveContextMenu,
+  confirmDeleteTask,
+  decrementTimer,
+  deleteTask,
+  fetchProjects,
+  setSelectedProject,
+  setTempTasks,
+  toggleAddTasksForm,
+  toggleConfig,
+  toggleEditTaskForm,
+  toggleOnboardMode,
+  toggleTimer,
+})(TimerPage);
+
+TimerPage.propTypes = {
   changeActiveContextMenu: PropTypes.func.isRequired,
   confirmDeleteTask: PropTypes.func.isRequired,
+  confirmDeleteTask: PropTypes.func.isRequired,
+  decrementTimer: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  fetchProjects: PropTypes.func.isRequired,
+  hasFetched: PropTypes.bool,
+  isFetching: PropTypes.bool,
+  isModalActive: PropTypes.bool,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   isTimerActive: PropTypes.bool,
-  projects: PropTypes.array.isRequired,
-  selectedProject: PropTypes.object.isRequired,
+  projects: PropTypes.array,
+  selectedProject: PropTypes.object,
+  selectedProjectId: PropTypes.string,
+  selectedTasks: PropTypes.array,
   setSelectedProject: PropTypes.func.isRequired,
+  setTempTasks: PropTypes.func.isRequired,
   tasks: PropTypes.array,
   toggleAddTasksForm: PropTypes.func.isRequired,
   toggleConfig: PropTypes.func.isRequired,

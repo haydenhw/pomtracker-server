@@ -21,6 +21,8 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import AddTasksForm from '../components/AddTasksForm';
 import RemoteSubmitForm from './RemoteSubmitForm';
 
+
+
 let AddTasksFormContainer = class extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ let AddTasksFormContainer = class extends Component {
       setTempTasks(tasks);
     }
   }
-
+  
   handleAddTask({ taskName }) {
     const { addTempTask, reset, formTasks: tasks } = this.props;
     const taskNames = tasks.map(task => task.taskName);
@@ -145,7 +147,7 @@ let AddTasksFormContainer = class extends Component {
           formAnimationName={isOnboardingActive ? '' : 'bounceInDown'}
           handleFormSubmit={this.handleFormSubmit.bind(this)}
           handleTaskSubmit={this.handleAddTask.bind(this)}
-          parentContainerClass={isOnboardingActive ? 'fullscreen-container' : 'bounceInDown'}
+          parentContainerClass={true && (isOnboardingActive || !isModalActive) ? 'fullscreen-container' : 'bounceInDown'}
           renderFormTask={this.renderFormTask.bind(this)}
           shouldAutoFocus={isModalActive}
           submitButtonClass={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`}

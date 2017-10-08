@@ -96,6 +96,7 @@ TimeTrackerPage.propTypes = {
   hasFetched: PropTypes.bool,
   isFetching: PropTypes.bool,
   isModalActive: PropTypes.bool,
+  isModalActive: PropTypes.bool,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   isTimerActive: PropTypes.bool,

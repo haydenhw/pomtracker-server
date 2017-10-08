@@ -25,7 +25,7 @@ let AddTasksForm = (props) => {
     titleAnimationName,
     titleName,
   } = props;
-
+  
   return (
     <div className={parentContainerClass}>
       <div className={childContainerClass}>

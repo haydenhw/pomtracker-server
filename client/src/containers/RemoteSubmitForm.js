@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 const RemoteSubmitForm = function (props) {
   const { children, remoteSubmitForm } = props;
-  // const childProps = Object.assign({}, props, remoteSubmitForm );
 
   return React.cloneElement(children, { ...props }, { remoteSubmitForm });
 };

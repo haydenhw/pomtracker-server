@@ -9,7 +9,7 @@ import App from './containers/App';
 import AddProjectPage from './containers/AddProjectPage';
 import EditProjectPage from './containers/EditProjectPage';
 import ProjectsPage from './containers/ProjectsPage';
-import TimeTrackerPage from './containers/TimeTrackerPage';
+import TimerPage from './containers/TimerPage';
 
 import './helpers/polyfill.js';
 import './styles/index.scss';
@@ -20,7 +20,7 @@ render((
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={TimeTrackerPage} />
+        <IndexRoute component={TimerPage} />
         <Route path="/projects" component={ProjectsPage} />
         <Route path="/projects/new" component={AddProjectPage} />
         <Route path="/projects/:projectId" component={EditProjectPage} />

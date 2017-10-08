@@ -155,7 +155,7 @@ Timer.propTypes = {
   decrementTimer: PropTypes.func.isRequired,
   handleTimerComplete: PropTypes.func.isRequired,
   incrementTaskTime: PropTypes.func.isRequired,
-  intervalId: PropTypes.string,
+  intervalId: PropTypes.number,
   isTimerActive: PropTypes.bool,
   remainingTime: PropTypes.number,
   resetTimer: PropTypes.func.isRequired,
