@@ -7,7 +7,7 @@ import { addTask, deleteTask, setSelectedProject, remoteSubmit, updateProjectNam
 import { hasAnyValue } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
 
-import SingleInputForm from '../components/SingleInputForm';
+import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
 import ProjectTaskForm from './ProjectTaskForm';
 
 class EditProjectPage extends Component {
@@ -75,7 +75,7 @@ class EditProjectPage extends Component {
         showTasksForSelectedProject
         title="Edit Project"
       >
-        <SingleInputForm
+        <AddOrEditProjectForm
           formName={'projectName'}
           initialValues={{ singleInput: selectedProject.projectName }}
           placeholder={'Project Name'}

@@ -168,7 +168,6 @@ export default class TimeTracker extends Component {
       <TimesheetListItem
         actionIconClass="play"
         key={shortid.generate()}
-        // className="task"
         handleItemClick={this.handleTaskItemClick(shortId)}
         handlePlayClick={this.handlePlayClick(shortId)}
         isActive={(activeTaskId === shortId) && isTimerActive}
@@ -222,25 +221,6 @@ export default class TimeTracker extends Component {
     );
   }
 
-  // renderProjectSelect() {
-  //   const { projects, selectedProject, setSelectedProject } = this.props;
-  //   
-  //   const simplifiedProjects = projects.map(project => ({
-  //     name: project.projectName,
-  //     id: project.shortId
-  //   }));
-  //   
-  //   return (
-  //     <div className="project-select-wrapper">
-  //       <span>Timesheet for project <span>{selectedProject.projectName}</span></span>
-  //       <ProjectHeading 
-  //         text={selectedProject ? selectedProject.projectName : "No projects added yet"}
-  //         iconClass={"icon icon-dots-menu"} 
-  //       />
-  //     </div>
-  //   );
-  // }
-
   render() {
     const { isModalClosing, isOnboardingActive, selectedProject, tasks, toggleConfig } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
@@ -269,7 +249,7 @@ export default class TimeTracker extends Component {
             <Timesheet
               buttonText="NEW TASKS"
               handleButtonClick={this.handleAddTasks.bind(this)}
-              titleText={['Tasks for project ', <span className={'grey-title-text'} key={shortid.generate()}>{selectedProject.projectName}</span>]}
+              titleText={<span>Tasks for project <span className={'grey-title-text'} key={shortid.generate()}>{selectedProject.projectName}</span></span>}
             >
               <List className="timesheet-list list" items={tasks} renderItem={this.renderTask.bind(this)} />
               <TotalTime time={secondsToHMMSS(totalTime)} />

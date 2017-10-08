@@ -11,7 +11,7 @@ function AddTasksModal(props) {
 
   return (
     <AddTasksFormContainer
-      title={'Add tasks for project '}
+      title='Add tasks for project'
       titleName={selectedProjectName}
     />
   );

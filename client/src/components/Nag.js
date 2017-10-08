@@ -15,7 +15,7 @@ export default function Nag({ actionButtonText, nagMessage, onActionButtonClick,
 
 Nag.propTypes = {
   actionButtonText: PropTypes.string.isRequired,
-  nagMessage: PropTypes.string.isRequired,
+  nagMessage: PropTypes.node.isRequired,
   onActionButtonClick: PropTypes.func.isRequired,
   title: PropTypes.string,
 };

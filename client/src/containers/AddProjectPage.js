@@ -8,7 +8,7 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
 
 import ProjectTaskForm from './ProjectTaskForm';
-import SingleInputForm from '../components/SingleInputForm';
+import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
 
 let AddProjectPage = class extends Component {
   handleNewProjectSubmit({ singleInput: projectName }) {
@@ -50,7 +50,7 @@ let AddProjectPage = class extends Component {
         label="Project Name"
         title="New Project"
       >
-        <SingleInputForm
+        <AddOrEditProjectForm
           formName={'projectName'}
           placeholder={'Project Name'}
           remoteSubmitForm={remoteSubmitForm}

@@ -26,7 +26,7 @@ export default function Timesheet({ buttonText, children, handleButtonClick, tit
 
 Timesheet.propTypes = {
   buttonText: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.node.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
-  titleText: PropTypes.string.isRequired,
+  titleText: PropTypes.node.isRequired,
 };

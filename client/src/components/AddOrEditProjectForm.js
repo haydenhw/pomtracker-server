@@ -11,7 +11,7 @@ const dummySubmit = (evt) => {
   return false;
 };
 
-let SingleInputForm = function SingleInputForm(props) {
+let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
   const {
     childContainerClass,
     fieldAnimationName,
@@ -65,13 +65,13 @@ const onTargetUpdate = (props) => {
   handleSubmit(onTargetUpdate)();
 };
 
-SingleInputForm = callOnTargetUpdate(targetInfo, onTargetUpdate)(SingleInputForm);
+AddOrEditProjectForm = callOnTargetUpdate(targetInfo, onTargetUpdate)(AddOrEditProjectForm);
 
 export default reduxForm({
   form: 'singleInput',
-})(SingleInputForm);
+})(AddOrEditProjectForm);
 
-SingleInputForm.propTypes = {
+AddOrEditProjectForm.propTypes = {
   childContainerClass: PropTypes.string,
   handleFormSubmit: PropTypes.func,
   handleSubmit: PropTypes.func.isRequired,

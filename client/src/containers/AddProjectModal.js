@@ -5,13 +5,13 @@ import { SubmissionError } from 'redux-form';
 import { changeModalType, postProject } from '../actions/indexActions';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
 
-import SingleInputForm from '../components/SingleInputForm';
+import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
 
 class AddProjectModal extends Component {
   handleAddProject({ singleInput: projectName }) {
     const { changeModalType, postProject, projects } = this.props;
 
-    const projectNames = projects.map((project) => { return project.projectName; });
+    const projectNames = projects.map(project => project.projectName);
 
     if (!hasAnyValue(projectName)) {
       throw new SubmissionError({
@@ -25,7 +25,6 @@ class AddProjectModal extends Component {
       });
     }
 
-    // this.toggleIsContentWaiting();
     postProject(projectName);
     changeModalType('ADD_TASKS');
   }
@@ -34,7 +33,7 @@ class AddProjectModal extends Component {
     const { lastSavedProjectName } = this.props;
 
     return (
-      <SingleInputForm
+      <AddOrEditProjectForm
         childContainerClass="form-container onboarding-form"
         fieldAnimationName="bounceInDown-second"
         formName="projectName"

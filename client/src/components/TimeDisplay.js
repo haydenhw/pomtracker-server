@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgressbar from 'react-circular-progressbar';
-import FontAwesome from 'react-fontawesome';
 
 import { secondsToMSS } from '../helpers/time';
 import { showProgressBar, devStyle } from '../srcConfig/devSettings';
@@ -21,8 +20,6 @@ export default function TimeDisplay(props) {
 
   const progressPercentage = Math.round((1 - (time / startCount)) * 100);
   const displayTime = time || startCount;
-
-  const flippedClass = isTimerActive ? 'flip-button flipped' : 'flip-button';
 
   return (
     <div className="timer">

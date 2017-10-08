@@ -1,23 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import randomColor from 'randomcolor';
 import shortid from 'shortid';
 
 import { secondsToHMMSS } from 'helpers/time';
-import { closeModal, updateTask, toggleEditTaskForm } from '../actions/indexActions';
 
-import ContextMenu from '../containers/ContextMenu';
 import ListItem from './ListItem';
 import TimesheetColumn from './TimesheetColumn';
 
 export default function TimesheetListItem(props) {
   const { actionIconClass, children, isActive, isSelected, handleItemClick, handlePlayClick, time, title } = props;
-
-  const letterIconColor = randomColor({
-    // luminosity: 'light',
-    hue: 'purple',
-  });
 
   return (
     <ListItem

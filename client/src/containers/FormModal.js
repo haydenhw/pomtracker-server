@@ -20,7 +20,7 @@
 // } from '../actions/indexActions';
 // 
 // import Modal from './Modal';
-// import SingleInputForm from '../components/SingleInputForm';
+// import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
 // import EditTaskForm from '../components/EditTaskForm';
 // import ConfirmEditTask from './ConfirmEditTask';
 // import AddTasksFormContainer from './AddTasksFormContainer';
@@ -119,7 +119,7 @@
 // 
 //       case (modalType === 'ADD_PROJECT') && (elementType === 'CONTENT'):
 //         return (
-//           <SingleInputForm
+//           <AddOrEditProjectForm
 //             formName="projectName"
 //             handleFormSubmit={this.handleAddProject.bind(this)}
 //             placeholder={'Project Name'}

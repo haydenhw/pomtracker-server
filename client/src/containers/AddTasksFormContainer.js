@@ -70,6 +70,7 @@ let AddTasksFormContainer = class extends Component {
   }
 
   handleFormSubmit() {
+    console.log('fdsa')
     const {
       closeModal,
       isOnboardingActive,
