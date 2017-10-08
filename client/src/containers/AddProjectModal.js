@@ -30,7 +30,6 @@ class AddProjectModal extends Component {
   }
 
   render() {
-    const { lastSavedProjectName } = this.props;
 
     return (
       <AddOrEditProjectForm
@@ -53,12 +52,7 @@ class AddProjectModal extends Component {
 const mapStateToProps = (state) => {
   const { projects } = state;
 
-  const lastSavedProjectName = projects.length > 0
-    ? projects.items[projects.items.length - 1].projectName
-    : null;
-
   return {
-    lastSavedProjectName,
     projects: projects.items,
   };
 };
@@ -67,7 +61,6 @@ export default connect(mapStateToProps, { changeModalType, postProject })(AddPro
 
 AddProjectModal.propTypes = {
   changeModalType: PropTypes.func.isRequired,
-  lastSavedProjectName: PropTypes.string,
   postProject: PropTypes.func.isRequired,
   projects: PropTypes.array.isRequired,
 };

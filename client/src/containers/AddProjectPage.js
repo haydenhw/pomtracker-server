@@ -7,13 +7,13 @@ import { postProject, remoteSubmit } from '../actions/indexActions';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
 
-import ProjectTaskForm from './ProjectTaskForm';
 import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
+import ProjectTaskForm from './ProjectTaskForm';
 
 let AddProjectPage = class extends Component {
   handleNewProjectSubmit({ singleInput: projectName }) {
     const { newTasks, postProject, projects, remoteSubmit } = this.props;
-    const projectNames = projects.items.map((project) => { return project.projectName; });
+    const projectNames = projects.items.map(project => project.projectName);
 
     if (!hasAnyValue(projectName)) {
       remoteSubmit(null);
@@ -41,8 +41,6 @@ let AddProjectPage = class extends Component {
   }
 
   render() {
-    const { remoteSubmitForm } = this.props;
-
     return (
       <ProjectTaskForm
         handleSubmit={this.handleRemoteSubmit.bind(this)}
@@ -51,9 +49,8 @@ let AddProjectPage = class extends Component {
         title="New Project"
       >
         <AddOrEditProjectForm
-          formName={'projectName'}
-          placeholder={'Project Name'}
-          remoteSubmitForm={remoteSubmitForm}
+          formName='projectName'
+          placeholder='Project Name'
           shouldRenderSubmitButton={false}
           onTargetUpdate={this.handleNewProjectSubmit.bind(this)}
           targetValue="ADD_PROJECT"
@@ -66,7 +63,7 @@ let AddProjectPage = class extends Component {
 
 const mapStateToProps = (state) => {
   const { customForm, projects } = state;
-  const { remoteSubmitForm, taskForm } = customForm;
+  const { taskForm } = customForm;
   const { tasks: newTasks } = taskForm;
 
   return {

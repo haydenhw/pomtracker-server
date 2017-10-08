@@ -17,6 +17,7 @@ import {
 } from '../actions/indexActions';
 
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
+
 import AddTasksForm from '../components/AddTasksForm';
 import RemoteSubmitForm from './RemoteSubmitForm';
 
@@ -24,10 +25,7 @@ let AddTasksFormContainer = class extends Component {
   constructor(props) {
     super(props);
     this.deleteButtonRefs = {};
-    // this.getInputRef = this.getInputRef.bind(this);  
   }
-
-  // getInputRef(el) { return this.inputRef= el } 
 
   componentDidMount() {
     const {
@@ -44,9 +42,9 @@ let AddTasksFormContainer = class extends Component {
   }
 
   handleAddTask({ taskName }) {
-    const { addTempTask, formTasks: tasks, reset } = this.props;
-    const taskNames = tasks.map((task) => { return task.taskName; });
-
+    const { addTempTask, reset, formTasks: tasks } = this.props;
+    const taskNames = tasks.map(task => task.taskName);
+    
     if (!hasAnyValue(taskName)) {
       return null;
     }
@@ -70,18 +68,16 @@ let AddTasksFormContainer = class extends Component {
   }
 
   handleFormSubmit() {
-    console.log('fdsa')
     const {
       closeModal,
       isOnboardingActive,
       updateTasks,
       selectedProject,
-      toggleModal,
       toggleOnboardMode,
       formTasks: tasks,
     } = this.props;
 
-    const tasksToSubmit = tasks.filter((task) => { return !task.shouldDelete; });
+    const tasksToSubmit = tasks.filter(task => !task.shouldDelete );
 
     if (!tasksToSubmit.length) {
       throw new SubmissionError({
@@ -114,7 +110,7 @@ let AddTasksFormContainer = class extends Component {
   }
 
   renderFormTask(task) {
-    const { shouldDelete, taskName, shortId } = task;
+    const { shouldDelete, shortId, taskName } = task;
 
     return (
       <div className="task-form-list-item" key={shortid.generate()}>
@@ -167,12 +163,11 @@ const mapStateToProps = (state, ownProps) => {
 
   const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
-  // console.log(formTasks)
+  
   const tasks = selectedProject && (ownProps.showTasksForSelectedProject !== false)
     ? selectedProject.tasks.map((task) => { return Object.assign(task, { shouldDelete: false }); })
     : [];
-    // console.log(selectedProject && ownProps.showTasksForSelectedProject !== false)
-    // console.log(tasks)
+    
   return {
     selectedProject,
     selectedProjectId,
@@ -183,7 +178,6 @@ const mapStateToProps = (state, ownProps) => {
     formTasks,
   };
 };
-
 
 AddTasksFormContainer = reduxForm({
   form: 'addTasks',

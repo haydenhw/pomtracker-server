@@ -13,6 +13,7 @@ let AddTasksForm = (props) => {
     fieldAnimationName,
     formTasks,
     handleSubmit,
+    handleFormSubmit,
     handleTaskSubmit,
     parentContainerClass,
     renderFormTask,
@@ -49,7 +50,7 @@ let AddTasksForm = (props) => {
       </div>
       {!(shouldRenderSubmitButton === false) &&
         // <button className={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
-        <button className={submitButtonClass} onClick={handleSubmit(handleTaskSubmit)}>{submitButtonText || 'Finish'}</button>
+        <button className={submitButtonClass} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
       }
     </div>
   );
