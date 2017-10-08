@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {
   deleteTask,
@@ -22,7 +21,7 @@ import TimeTracker from './TimeTracker';
 
 class TimeTrackerPage extends Component {
   shouldComponentUpdate(nextProps) {
-    const { isModalActive, selectedProjectId } = this.props;
+    const { isModalActive } = this.props;
 
     if (this.props.selectedProjectId && (nextProps.selectedProjectId !== this.props.selectedProjectId) && isModalActive) {
       return false;
@@ -96,7 +95,6 @@ TimeTrackerPage.propTypes = {
   fetchProjects: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool,
   isFetching: PropTypes.bool,
-  isModalActive: PropTypes.bool,
   isModalActive: PropTypes.bool,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
