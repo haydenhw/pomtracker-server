@@ -6,6 +6,14 @@ export function addTempTask(newTask) {
   };
 }
 
+export const REMOTE_SUBMIT = 'REMOTE_SUBMIT';
+export function remoteSubmit(formSelector) {
+  return {
+    type: 'REMOTE_SUBMIT',
+    formSelector,
+  };
+}
+
 export const SET_TEMP_TASKS = 'SET_TEMP_TASKS';
 export function setTempTasks(newTasks) {
   return {
@@ -21,12 +29,3 @@ export function toggleShouldDelete(taskId) {
     taskId,
   };
 }
-
-export const REMOTE_SUBMIT = 'REMOTE_SUBMIT';
-export function remoteSubmit(formSelector) {
-  return {
-    type: 'REMOTE_SUBMIT',
-    formSelector,
-  };
-}
-

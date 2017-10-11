@@ -119,14 +119,6 @@ let TimerPage = class extends Component {
     };
   }
 
-  handleTaskChange(taskId, callback) {
-    if (localStorage.prevSelectedTaskId !== taskId) {
-      localStorage.setItem('prevSelectedTaskId', taskId);
-    }
-
-    this.setState({ selectedTaskId: taskId });
-  }
-
   handlePlayClick = (taskId) => {
     return () => {
       const { isTimerActive, toggleTimer } = this.props;
@@ -146,6 +138,14 @@ let TimerPage = class extends Component {
       this.setState({ activeTaskId: taskId }, toggleTimer);
       this.handleTaskChange(taskId);
     };
+  }
+  
+  handleTaskChange(taskId, callback) {
+    if (localStorage.prevSelectedTaskId !== taskId) {
+      localStorage.setItem('prevSelectedTaskId', taskId);
+    }
+
+    this.setState({ selectedTaskId: taskId });
   }
 
   handleTaskDelete = (selectedProject, task) => {

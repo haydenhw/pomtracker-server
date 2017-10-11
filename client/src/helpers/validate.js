@@ -1,4 +1,3 @@
-
 function isUndefined(value) {
   if (typeof value === 'undefined' || value === undefined) {
     return true;
@@ -18,17 +17,4 @@ export function isDuplicate(value, array) {
     return false;
   }
   return true;
-}
-
-export default function validate(projects) {
-  return ({ singleInput }) => {
-    const projectNames = projects.map((project) => { return project.projectName; });
-    const error = {};
-
-    if (isDuplicate(singleInput, projectNames)) {
-      error.singleInput = `A project with the name '${singleInput}' already exists`;
-    }
-
-    return error;
-  };
 }

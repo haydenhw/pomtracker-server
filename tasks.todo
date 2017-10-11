@@ -6,6 +6,7 @@
   ☐ lint all scss
   ☐ thoroughly test all functionality
   ☐ eliminate unncessary fonts 
+  ☐ refactor redux store
    
 **Goals for Today**:
   ☐ refactor all componenents

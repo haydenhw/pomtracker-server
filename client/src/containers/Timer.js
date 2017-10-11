@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import store from '../redux-files/store';
-
 import {
   decrementTimer,
   handleTimerComplete,
@@ -64,11 +62,9 @@ class Timer extends Component {
       handleTimerComplete,
       incrementTaskTime,
       remainingTime,
-      resetTimer,
       selectedProject,
       selectedTaskId,
       setActiveTask,
-      toggleTimer,
     } = this.props;
 
     const { intervalId } = this.props;
@@ -103,7 +99,6 @@ class Timer extends Component {
       startTime,
       toggleTimer,
       selectedTaskId,
-      setStartTime,
       task,
     } = this.props;
 

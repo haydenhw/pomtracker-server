@@ -12,17 +12,10 @@ const defaultState = {
 
 export const modal = (state = defaultState, action) => {
   switch (action.type) {
-    // case actions.DELETE_TASK_REQUEST:
-    //   return {
-    //     ...state,
-    //     isModalActive: !state.isModalActive,
-    //     isModalClosing: false, 
-    //     isOnboardingActive: false
-    //   };
-    case actions.TOGGLE_MODAL:
+    case actions.CLOSE_MODAL:
       return {
         ...state,
-        isModalActive: !state.isModalActive,
+        isModalActive: false,
         isModalClosing: false,
         isOnboardingActive: false,
       };
