@@ -20,5 +20,5 @@ export default connect(mapStateToProps)(RemoteSubmitForm);
 
 RemoteSubmitForm.propTypes = {
   children: PropTypes.node.isRequired,
-  remoteSubmitForm: PropTypes.object,
+  remoteSubmitForm: PropTypes.string,
 };

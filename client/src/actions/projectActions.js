@@ -1,7 +1,5 @@
 import shortid from 'shortid';
 
-import { submit } from 'redux-form';
-
 export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
   const newProject = {
@@ -16,19 +14,20 @@ export function addProject(projectName) {
   };
 }
 
+export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
+export function deleteTaskRequest(projectId, taskId) {
+  return {
+    type: 'DELETE_TASK_REQUEST',
+    projectId,
+    taskId,
+  };
+}
+
 export const EDIT_PROJECT_NAME_REQUEST = 'EDIT_PROJECT_NAME_REQUEST';
 export function updateProjectNameRequest(projectId, projectName) {
   return {
     type: 'EDIT_PROJECT_NAME_REQUEST',
     projectId,
-    projectName,
-  };
-}
-
-export const QUEUE_NEW_PROJECT = 'QUEUE_NEW_PROJECT';
-export function queueNewProject(projectName) {
-  return {
-    type: 'QUEUE_NEW_PROJECT',
     projectName,
   };
 }
@@ -43,52 +42,13 @@ export function editTask(projectId, taskId, toUpdate) {
   };
 }
 
-export const UPDATE_TASKS = 'UPDATE_TASKS';
-export function updateTasksInState(projectId, newTasks) {
+export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
+export const fetchProjectsSuccess = (projects) => {
   return {
-    type: 'UPDATE_TASKS',
-    projectId,
-    newTasks,
+    type: 'FETCH_PROJECTS_SUCCESS',
+    projects,
   };
-}
-
-export const SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT';
-export function setSelectedProject(projectId) {
-  return (dispatch) => {
-    dispatch({
-      type: 'SET_SELECTED_PROJECT',
-      projectId,
-    });
-
-    localStorage.selectedProjectId = projectId;
-  };
-}
-
-export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
-export function deleteTaskRequest(projectId, taskId) {
-  return {
-    type: 'DELETE_TASK_REQUEST',
-    projectId,
-    taskId,
-  };
-}
-
-export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
-export function postProjectRequest(project) {
-  return {
-    type: 'POST_PROJECT_REQUEST',
-    project,
-  };
-}
-
-export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
-export function postProjectSuccess(projectId, databaseId) {
-  return {
-    type: 'POST_PROJECT_SUCCESS',
-    projectId,
-    databaseId,
-  };
-}
+};
 
 export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
 export function postTaskSuccess(projectId, taskId, databaseId) {
@@ -100,29 +60,8 @@ export function postTaskSuccess(projectId, taskId, databaseId) {
   };
 }
 
-export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
-export const fetchProjectsSuccess = (projects) => {
-  return {
-    type: 'FETCH_PROJECTS_SUCCESS',
-    projects,
-  };
-};
-
-export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-export function fetchProjects() {
-  return (dispatch) => {
-    dispatch({ type: 'TOGGLE_FETCHING' });
-
-    fetch('projects')
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        dispatch(fetchProjectsSuccess(data.projects));
-      });
-  };
-}
-
+export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
+export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
 export function postProject(projectName, tasks) {
   return (dispatch) => {
     const newProject = {
@@ -131,8 +70,13 @@ export function postProject(projectName, tasks) {
       tasks: tasks || [],
     };
 
-    dispatch(postProjectRequest(newProject));
+    dispatch({
+      type: 'POST_PROJECT_REQUEST',
+      project: newProject
+    }
+);
 
+  
     fetch(
       'projects',
       {
@@ -150,7 +94,12 @@ export function postProject(projectName, tasks) {
         const projectId = data.shortId;
         const databaseId = data._id;
 
-        dispatch(postProjectSuccess(projectId, databaseId));
+        dispatch({
+          type: 'POST_PROJECT_SUCCESS',
+          projectId,
+          databaseId,
+        });
+        
         localStorage.selectedProjectId = projectId;
       });
   };
@@ -295,6 +244,50 @@ export function deleteTask(project, task, shouldUpdateLocalState) {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         }),
+      });
+  };
+}
+
+export const QUEUE_NEW_PROJECT = 'QUEUE_NEW_PROJECT';
+export function queueNewProject(projectName) {
+  return {
+    type: 'QUEUE_NEW_PROJECT',
+    projectName,
+  };
+}
+
+export const SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT';
+export function setSelectedProject(projectId) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_SELECTED_PROJECT',
+      projectId,
+    });
+    
+    localStorage.selectedProjectId = projectId;
+  };
+}
+
+export const UPDATE_TASKS = 'UPDATE_TASKS';
+export function updateTasksInState(projectId, newTasks) {
+  return {
+    type: 'UPDATE_TASKS',
+    projectId,
+    newTasks,
+  };
+}
+
+export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+export function fetchProjects() {
+  return (dispatch) => {
+    dispatch({ type: 'TOGGLE_FETCHING' });
+
+    fetch('projects')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        dispatch(fetchProjectsSuccess(data.projects));
       });
   };
 }
