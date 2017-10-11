@@ -7,10 +7,6 @@ import { submit, SubmissionError } from 'redux-form';
 import AddTasksFormContainer from '../containers/AddTasksFormContainer';
 
 export default class ProjectTaskForm extends Component {
-  // constructor() {
-  //   super() 
-  // }
-
   render() {
     const {
       children,
@@ -18,11 +14,10 @@ export default class ProjectTaskForm extends Component {
       handleCancel,
       label,
       selectedProjectName,
-      shouldDisableTaskFormFocus,
       showTasksForSelectedProject,
       title,
     } = this.props;
-
+    
     return (
       <div className="form-page fullscreen-container">
         <div className="form-container">

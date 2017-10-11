@@ -290,7 +290,7 @@ let TimerPage = class extends Component {
 
 const mapStateToProps = (state) => {
   const { modal, projects, timer, selectedProjectId } = state;
-  const { hasFetched, items, isFetching } = projects;
+  const { hasFetched, isFetching } = projects;
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
@@ -307,7 +307,7 @@ const mapStateToProps = (state) => {
     selectedProject,
     selectedTasks,
     projects: projects.items,
-    tasks: selectedProject.tasks
+    tasks:  selectedTasks
   };
 };
 
@@ -328,7 +328,6 @@ export default connect(mapStateToProps, {
 
 TimerPage.propTypes = {
   changeActiveContextMenu: PropTypes.func.isRequired,
-  confirmDeleteTask: PropTypes.func.isRequired,
   confirmDeleteTask: PropTypes.func.isRequired,
   decrementTimer: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,

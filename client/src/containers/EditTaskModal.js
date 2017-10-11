@@ -21,6 +21,7 @@ let EditTaskModal = class extends Component {
       taskNames,
       updateTask,
     } = this.props;
+    
     const newTimeString = timeStringToSeconds(newTime);
 
     if (taskName !== initialValues.taskName && isDuplicate(taskName, taskNames)) {

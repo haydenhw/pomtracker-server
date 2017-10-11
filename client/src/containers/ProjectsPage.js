@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
 import { hashHistory } from 'react-router';
 import shortid from 'shortid';
 
@@ -9,24 +8,20 @@ import { secondsToHMMSS } from '../helpers/time';
 import { routeToTimerPage } from '../helpers/route';
 
 import {
-  addProject,
   changeActiveContextMenu,
   confirmDeleteProject,
-  deleteProject,
   setSelectedProject,
   setTempTasks,
   toggleTimer,
-  updateProjectName,
 } from '../actions/indexActions';
 
-import Modal from './Modal';
-import ContextMenu from './ContextMenu';
 import List from '../components/List';
-import ListItem from '../components/ListItem';
 import Nag from '../components/Nag';
-import TimesheetListItem from '../components/TimesheetListItem';
 import Timesheet from '../components/Timesheet';
+import TimesheetListItem from '../components/TimesheetListItem';
 import TotalTime from '../components/TotalTime';
+import ContextMenu from './ContextMenu';
+import Modal from './Modal';
 
 class ProjectsPage extends Component {
   constructor() {
@@ -49,10 +44,6 @@ class ProjectsPage extends Component {
     if (isOnboardingActive) {
       routeToTimerPage();
     }
-  }
-
-  componentWillMount() {
-
   }
 
   handleAddButtonClick() {
@@ -117,7 +108,7 @@ class ProjectsPage extends Component {
         handlePlayClick={this.handleListItemClick(shortId)}
         isSelected={(selectedProjectId === shortId) && (projects.length > 1)}
         title={projectName}
-        time={totalTime}
+          time={totalTime}
       >
         <ContextMenu
           className="list-item-context-menu"
@@ -156,7 +147,6 @@ class ProjectsPage extends Component {
 
   render() {
     const { hasFetched, isModalClosing, isOnboardingActive, projects } = this.props;
-    const { isProjectSelectTipActive } = this.state;
     const reverseProjects = projects.slice().reverse();
     const totalTime = this.getTotalTime();
 
@@ -165,20 +155,8 @@ class ProjectsPage extends Component {
     }
 
     return (
-      // <div className='projects-page-container pt-page-moveFromBottomFade'>
       <div>
-        {/* { (isProjectSelectTipActive && projects.length > 1) && 
-          <div className="project-select-tip-wrapper">
-            <div className="project-select-tip">
-              <FontAwesome className="info-icon" name='info-circle'></FontAwesome>  
-              <span>To track time for a different project, simply select it from the list below.</span>
-              <button onClick={this.toggleProjectSelectTip.bind(this)}>
-                <i className="icon-close"></i>   
-              </button>
-            </div>
-          </div>  
-        } */}
-        { projects.length
+        {projects.length
           ? <Timesheet
             buttonText="NEW PROJECT"
             handleButtonClick={this.handleAddButtonClick.bind(this)}

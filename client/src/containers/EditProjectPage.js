@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
-import { addTask, deleteTask, setSelectedProject, remoteSubmit, updateProjectName, updateTasks } from '../actions/indexActions';
+
+import {
+  addTask,
+  deleteTask,
+  setSelectedProject,
+  remoteSubmit,
+  updateProjectName,
+  updateTasks
+} from '../actions/indexActions';
 
 import { hasAnyValue } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
@@ -60,7 +68,7 @@ class EditProjectPage extends Component {
   }
 
   render() {
-    const { remoteSubmitForm, selectedProject } = this.props;
+    const { selectedProject } = this.props;
 
     if (!selectedProject) {
       return null;
@@ -120,7 +128,6 @@ EditProjectPage.propTypes = {
   projects: PropTypes.object.isRequired,
   remoteSubmit: PropTypes.func.isRequired,
   remoteSubmitForm: PropTypes.func,
-  selectedProject: PropTypes.object.isRequired,
   tasks: PropTypes.array.isRequired,
   updateProjectName: PropTypes.func.isRequired,
   updateTasks: PropTypes.func.isRequired,

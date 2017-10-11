@@ -18,9 +18,9 @@ function Modal(props) {
   const MODAL_COMPONENTS = {
     ADD_PROJECT: AddProjectModal,
     ADD_TASKS: AddTasksModal,
-    CONFIRM_EDIT_TASK: ConfirmEditTask,
     CONFIRM_DELETE_PROJECT: ConfirmDeleteProject,
     CONFIRM_DELETE_TASK: ConfirmDeleteTask,
+    CONFIRM_EDIT_TASK: ConfirmEditTask,
     EDIT_TASK: EditTaskModal,
     PROJECT_NAG: ProjectNagModal,
     WELCOME: WelcomeModalContainer,
