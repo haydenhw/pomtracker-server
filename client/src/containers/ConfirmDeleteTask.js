@@ -36,6 +36,6 @@ export default connect(null, { closeModal, deleteTask })(ConfirmDeleteTask);
 ConfirmDeleteTask.propTypes = {
   closeModal: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  payload: PropTypes.object.isRequired,
+  payload: PropTypes.array.isRequired,
   taskName: PropTypes.string.isRequired,
 };

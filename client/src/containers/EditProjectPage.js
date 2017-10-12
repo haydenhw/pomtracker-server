@@ -127,7 +127,7 @@ export default connect(mapStateToProps, {
 EditProjectPage.propTypes = {
   projects: PropTypes.object.isRequired,
   remoteSubmit: PropTypes.func.isRequired,
-  remoteSubmitForm: PropTypes.func,
+  remoteSubmitForm: PropTypes.string,
   tasks: PropTypes.array.isRequired,
   updateProjectName: PropTypes.func.isRequired,
   updateTasks: PropTypes.func.isRequired,

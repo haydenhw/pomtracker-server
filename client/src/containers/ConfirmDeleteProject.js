@@ -26,7 +26,7 @@ function ConfirmDeleteProject(props) {
     <Confirm
       onDangerClick={deleteProjectAndCloseModal(payload, deleteProject, closeModal)}
       dangerText={getDangerText(projectName)}
-      onCancel={toggleModal}
+      onCancel={closeModal}
       title={<h2>Confirm Delete</h2>}
     />
   );

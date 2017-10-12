@@ -31,10 +31,10 @@ class App extends Component {
   }
 
   render() {
-    const { isDesktopNotificationActive, location } = this.props;
+    const { hasFetched, isDesktopNotificationActive, location } = this.props;
     const pathName = location.pathname;
     const isProjectRoute = /projects/.test(pathName);
-
+    
     return (
       <div>
         <Nav
@@ -43,13 +43,17 @@ class App extends Component {
           handleProjectsLinkClck={routeToProjectsPage}
           isProjectRoute={isProjectRoute}
         />
-        {this.props.children}
+        {hasFetched 
+            ? this.props.children
+            : <div className="loader">Loading...</div>
+        }  
         {isDesktopNotificationActive
           && <Notification
             title="Time's Up!"
             ignore={false}
             options={{ icon: 'images/tomato-timer.png' }}
-          />}
+          />
+        }
       </div>
     );
   }
@@ -57,9 +61,11 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   const { projects, timer } = state;
+  const { hasFetched } = projects;
   const { isDesktopNotificationActive } = timer;
 
   return {
+    hasFetched,
     isDesktopNotificationActive,
     projects: projects.items,
   };

@@ -64,7 +64,7 @@ let TimerPage = class extends Component {
   
   componentWillMount() {
     const { isOnboardingActive, projects, setSelectedProject, toggleOnboardMode } = this.props;
-
+    
     if (isDevOnboardingActive) {
       !isOnboardingActive && toggleOnboardMode();
       return null;
@@ -83,7 +83,7 @@ let TimerPage = class extends Component {
       hashHistory.push('/projects');
       return null;
     }
-
+    
     if (
       localStorage.selectedProjectId &&
       projects.find(project => project.shortId === localStorage.selectedProjectId)
@@ -296,7 +296,7 @@ const mapStateToProps = (state) => {
 
   const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
   const selectedTasks = selectedProject && selectedProject.tasks;
-
+  
   return {
     hasFetched,
     isFetching,

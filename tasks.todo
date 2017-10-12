@@ -1,4 +1,5 @@
 **Goals for this Week**:
+  ☐ try adding a task to project HOla. it doesn't work  
   ☐ check components for refactor (left off on EditInlineText)
   ☐ lint all components
   ☐ merge time tracker page and timetracker
@@ -7,6 +8,8 @@
   ☐ thoroughly test all functionality
   ☐ eliminate unncessary fonts 
   ☐ refactor redux store
+  ☐ try adding tasks to a new project from the new project page. the task font is too large
+  
    
 **Goals for Today**:
   ☐ refactor all componenents

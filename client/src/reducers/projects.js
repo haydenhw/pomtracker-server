@@ -102,11 +102,11 @@ export function projects(state = defaultState, action) {
         ...state,
         queue: action.projectName,
       };
-    case actions.UPDATE_TASKS:
-    case actions.POST_TASK_SUCCESS:
-    case actions.EDIT_TASK_REQUEST:
     case actions.DELETE_TASK_REQUEST:
     case actions.INCREMENT_TASK_TIME:
+    case actions.POST_TASK_SUCCESS:
+    case actions.UPDATE_TASK_REQUEST:
+    case actions.UPDATE_TASKS:
       return {
         ...state,
         items: tasks(state.items, action),

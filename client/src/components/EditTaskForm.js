@@ -5,8 +5,8 @@ import { Field, reduxForm } from 'redux-form';
 
 import Input from './Input';
 
-let EditTaskForm = function (props) {
-  const { containerClass, handleEditTaskSubmit, handleSubmit, initialValues } = this.props;
+let EditTaskForm = function(props) {
+  const { containerClass, handleEditTaskSubmit, handleSubmit, initialValues } = props;
   
   return (
     <div className="bounceInDown">
