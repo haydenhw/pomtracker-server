@@ -29,7 +29,6 @@ class EditProjectPage extends Component {
     const { selectedProject } = props;
 
     this.handleEditProjectSubmit = this.handleEditProjectSubmit(selectedProject);
-    this.handleRemoteSubmit = this.handleRemoteSubmit.bind(this);
   }
 
   componentWillMount() {

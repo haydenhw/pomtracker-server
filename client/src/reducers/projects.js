@@ -30,7 +30,7 @@ function tasks(state, action) {
         return Object.assign({}, project, { tasks: newTasks });
       });
 
-    case actions.EDIT_TASK_REQUEST:
+    case actions.UPDATE_TASK_REQUEST:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
         const newTasks = project.tasks.mapAndFindById('shortId', action.taskId, (task) => {
           return Object.assign({}, task, action.toUpdate);

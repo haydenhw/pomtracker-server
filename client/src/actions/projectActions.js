@@ -157,16 +157,8 @@ export function queueNewProject(projectName) {
     projectName,
   };
 }
-export const UPDATE_TASK_REQUEST = 'UPDATE_TASK_REQUEST';
-export function editTask(projectId, taskId, toUpdate) {
-  return {
-    type: 'UPDATE_TASK_REQUEST',
-    projectId,
-    taskId,
-    toUpdate,
-  };
-}
 
+export const UPDATE_TASK_REQUEST = 'UPDATE_TASK_REQUEST';
 export function updateTask(project, task, toUpdate) {
   return (dispatch) => {
     dispatch({
@@ -219,6 +211,23 @@ export function fetchProjects() {
   };
 }
 
+export function updateProjectName(project, newName) {
+  return (dispatch) => {
+    dispatch(updateProjectNameRequest(project.shortId, newName));
+
+    fetch(
+      `projects/${project._id}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({ projectName: newName }),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      });
+  };
+}
+
 const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
   // delete tasks that do not already exist in the database
   // we assume that taks without the database created id '_id' do not yet exist in the database  
@@ -252,22 +261,5 @@ export function updateTasks(selectedProject, tasks) {
 
     postUnsavedTasks(dispatch, selectedProject._id, tasksToSubmit);
     deleteSavedTasks(dispatch, selectedProject, tasks);
-  };
-}
-
-export function updateProjectName(project, newName) {
-  return (dispatch) => {
-    dispatch(updateProjectNameRequest(project.shortId, newName));
-
-    fetch(
-      `projects/${project._id}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify({ projectName: newName }),
-        headers: new Headers({
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }),
-      });
   };
 }

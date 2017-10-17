@@ -27,14 +27,14 @@ function Modal(props) {
   };
 
   const {
-    isModalActive,
+    closeModal,
     isCloseButtonActive,
+    isModalActive,
     modalClass,
     modalProps,
     modalType,
     rootModalClass,
     style,
-    closeModal,
   } = props;
 
   if (!isModalActive) {
