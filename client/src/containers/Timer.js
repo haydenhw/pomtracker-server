@@ -119,7 +119,8 @@ class Timer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { config, selectedProjectId, projects, timer } = state;
+  const { config, projects, timer } = state;
+  const { selectedProjectId } = projects;
   const { alarmSoundSrc } = config;
   const { intervalId, isTimerActive, remainingTime, startTime } = timer;
   const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
@@ -154,7 +155,7 @@ Timer.propTypes = {
   isTimerActive: PropTypes.bool,
   remainingTime: PropTypes.number,
   resetTimer: PropTypes.func.isRequired,
-  selectedProject: PropTypes.object.isRequired,
+  selectedProject: PropTypes.object,
   selectedTaskId: PropTypes.string,
   setActiveTask: PropTypes.func.isRequired,
   setIntervalId: PropTypes.func.isRequired,

@@ -289,12 +289,12 @@ let TimerPage = class extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { modal, projects, timer, selectedProjectId } = state;
-  const { hasFetched, isFetching } = projects;
+  const { modal, projects, timer } = state;
+  const { hasFetched, isFetching, selectedProjectId } = projects;
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
-  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
+  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
   const selectedTasks = selectedProject && selectedProject.tasks;
   
   return {

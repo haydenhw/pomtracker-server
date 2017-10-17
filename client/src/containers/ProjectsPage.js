@@ -183,7 +183,8 @@ class ProjectsPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { projects, modal, selectedProjectId, timer } = state;
+  const { projects, modal, timer } = state;
+  const { selectedProjectId } = projects;
   const { isOnboardingActive, isModalClosing } = modal;
   const { hasFetched } = projects;
   const { isTimerActive } = timer;

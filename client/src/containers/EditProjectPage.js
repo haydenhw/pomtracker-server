@@ -97,8 +97,9 @@ class EditProjectPage extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  const { customForm, selectedProjectId, projects } = state;
+  const { customForm, projects } = state;
   const { remoteSubmitForm, taskForm } = customForm;
+  const { selectedProjectId } = projects;
   const { tasks } = taskForm;
 
   const selectedProject = state.projects.items.length > 0 && selectedProjectId

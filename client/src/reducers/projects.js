@@ -43,23 +43,22 @@ function tasks(state, action) {
 }
 
 const defaultState = {
+  clickedTaskId: null,
   hasFetched: false,
   isFetching: false,
   items: [],
+  selectedProjectId: null,
   queue: null,
 };
 
 export function projects(state = defaultState, action) {
   switch (action.type) {
-    case 'CHANGE_ACTIVE_EDIT_MENU':
+    case actions.DELETE_PROJECT_REQUEST:
+      const projectIndex = state.items.findIndex((project) => { return project.shortId === action.project.shortId; });
+      
       return {
         ...state,
-        activeContextMenuId: action.activeMenuId,
-      };
-    case actions.TOGGLE_FETCHING:
-      return {
-        ...state,
-        isFetching: !state.isFetching,
+        items: state.items.sliceDelete(projectIndex),
       };
     case actions.FETCH_PROJECTS_SUCCESS:
       return {
@@ -67,10 +66,12 @@ export function projects(state = defaultState, action) {
         items: action.projects,
         hasFetched: true,
         isFetching: false,
+        selectedProjectId: !action.projects.length ? state : action.projects[0].shortId
       };
     case actions.POST_PROJECT_REQUEST:
       return {
         ...state,
+        selectedProjectId: action.project.shortId,
         items: [
           ...state.items,
           action.project,
@@ -83,24 +84,27 @@ export function projects(state = defaultState, action) {
           return Object.assign({}, project, { _id: action.databaseId });
         }),
       };
+    case actions.QUEUE_NEW_PROJECT:
+      return {
+        ...state,
+        queue: action.projectName,
+      };
+    case actions.SET_SELECTED_PROJECT:
+      return { 
+        ...state,
+        selectedProjectId: action.projectId
+      }
+    case actions.TOGGLE_FETCHING:
+      return {
+        ...state,
+        isFetching: !state.isFetching,
+      };
     case actions.UPDATE_PROJECT_NAME_REQUEST :
       return {
         ...state,
         items: state.items.mapAndFindById('shortId', action.projectId, (project) => {
           return Object.assign({}, project, { projectName: action.projectName });
         }),
-      };
-    case actions.DELETE_PROJECT_REQUEST:
-      const projectIndex = state.items.findIndex((project) => { return project.shortId === action.project.shortId; });
-
-      return {
-        ...state,
-        items: state.items.sliceDelete(projectIndex),
-      };
-    case actions.QUEUE_NEW_PROJECT:
-      return {
-        ...state,
-        queue: action.projectName,
       };
     case actions.DELETE_TASK_REQUEST:
     case actions.INCREMENT_TASK_TIME:
@@ -115,3 +119,7 @@ export function projects(state = defaultState, action) {
       return state;
   }
 }
+
+
+
+

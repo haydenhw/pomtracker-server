@@ -159,8 +159,9 @@ let AddTasksFormContainer = class extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { customForm, selectedProjectId, modal, projects } = state;
+  const { customForm, modal, projects } = state;
   const { isModalActive, isOnboardingActive } = modal;
+  const { selectedProjectId } = projects;
   const formTasks = customForm.taskForm.tasks;
 
   const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });

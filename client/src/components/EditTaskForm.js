@@ -51,7 +51,7 @@ EditTaskForm.propTypes = {
   closeModal: PropTypes.func,
   confirmEditTask: PropTypes.func,
   containerClass: PropTypes.string,
-  initialValues: PropTypes.string,
+  initialValues: PropTypes.object,
   selectedProject: PropTypes.object,
   selectedTask: PropTypes.object,
   taskNames: PropTypes.array,

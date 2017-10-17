@@ -75,7 +75,8 @@ let EditTaskModal = class extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { clickedTaskId, selectedProjectId, projects } = state;
+  const { clickedTaskId, projects } = state;
+  const { selectedProjectId } = projects;
   
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   

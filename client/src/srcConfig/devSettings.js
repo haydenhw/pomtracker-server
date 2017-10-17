@@ -1,5 +1,5 @@
 export const productionMode = false;
-export const isOnboardingActive = false;
+export const isOnboardingActive = true;
 export const modalType = productionMode ? 'WELCOME' : 'WELCOME';
 const renderModal = false;
 export const renderFormModal = productionMode ? false : (isOnboardingActive || renderModal);
