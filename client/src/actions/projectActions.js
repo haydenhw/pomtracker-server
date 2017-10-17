@@ -57,23 +57,6 @@ export function deleteTask(project, task, shouldUpdateLocalState) {
   };
 }
 
-export const EDIT_PROJECT_NAME_REQUEST = 'EDIT_PROJECT_NAME_REQUEST';
-export function updateProjectNameRequest(projectId, projectName) {
-  return {
-    type: 'EDIT_PROJECT_NAME_REQUEST',
-    projectId,
-    projectName,
-  };
-}
-
-export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
-export const fetchProjectsSuccess = (projects) => {
-  return {
-    type: 'FETCH_PROJECTS_SUCCESS',
-    projects,
-  };
-};
-
 export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
 export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
 export function postProject(projectName, tasks) {
@@ -196,6 +179,7 @@ export function setSelectedProject(projectId) {
   };
 }
 
+export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
 export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 export function fetchProjects() {
   return (dispatch) => {
@@ -206,14 +190,23 @@ export function fetchProjects() {
         return res.json();
       })
       .then((data) => {
-        dispatch(fetchProjectsSuccess(data.projects));
+        
+        return dispatch({
+          type: 'FETCH_PROJECTS_SUCCESS',
+          projects: data.projects,
+        });
       });
   };
 }
 
+export const UPDATE_PROJECT_NAME_REQUEST  = 'UPDATE_PROJECT_NAME_REQUEST ';
 export function updateProjectName(project, newName) {
   return (dispatch) => {
-    dispatch(updateProjectNameRequest(project.shortId, newName));
+    dispatch({
+    type: 'UPDATE_PROJECT_NAME_REQUEST ',
+    projectId: project.shortId,
+    projectName: newName,
+  });
 
     fetch(
       `projects/${project._id}`,

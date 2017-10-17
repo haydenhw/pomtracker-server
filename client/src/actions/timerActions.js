@@ -7,6 +7,24 @@ export function decrementTimer() {
   };
 }
 
+export const HANDLE_TIMER_COMPLETE = 'HANDLE_TIMER_COMPLETE';
+export function handleTimerComplete() {
+  return (dispatch) => {
+    dispatch({
+      type: 'HANDLE_TIMER_COMPLETE',
+    });
+    
+    setTimeout(() => { return dispatch(toggleDesktopNotification()); }, 1500);
+  };
+}
+
+export const RESET_TIMER = 'RESET_TIMER';
+export function resetTimer() {
+  return {
+    type: 'RESET_TIMER',
+  };
+}
+
 export const TOGGLE_DESKTOP_NOTIFICATION = 'TOGGLE_DESKTOP_NOTIFICATION';
 export function toggleDesktopNotification() {
   return {
@@ -14,14 +32,10 @@ export function toggleDesktopNotification() {
   };
 }
 
-export const HANDLE_TIMER_COMPLETE = 'HANDLE_TIMER_COMPLETE';
-export function handleTimerComplete() {
-  return (dispatch) => {
-    dispatch({
-      type: 'HANDLE_TIMER_COMPLETE',
-    });
-
-    setTimeout(() => { return dispatch(toggleDesktopNotification()); }, 1500);
+export const TOGGLE_TIMER = 'TOGGLE_TIMER';
+export function toggleTimer(startTime, shouldStartTimer) {
+  return {
+    type: 'TOGGLE_TIMER',
   };
 }
 
@@ -30,20 +44,6 @@ export function setIntervalId(intervalId) {
   return {
     type: 'SET_INTERVAL_ID',
     intervalId,
-  };
-}
-
-// export const TOGGLE_IS_TIMER_ACTIVE = "TOGGLE_IS_TIMER_ACTIVE";
-// export function toggleTimer() {
-//   return {
-//     type: "TOGGLE_IS_TIMER_ACTIVE"
-//   }
-// }
-
-export const TOGGLE_TIMER = 'TOGGLE_TIMER';
-export function toggleTimer(startTime, shouldStartTimer) {
-  return {
-    type: 'TOGGLE_TIMER',
   };
 }
 
@@ -61,19 +61,6 @@ export function setStartTime(startTime, shouldToggleTimer) {
   };
 }
 
-// export const START_TIMER = "START_TIMER";
-// export function startTimer() {
-//   return {
-//     type: "START_TIMER",
-//   }
-// }
-
-export const RESET_TIMER = 'RESET_TIMER';
-export function resetTimer() {
-  return {
-    type: 'RESET_TIMER',
-  };
-}
 
 export const INCREMENT_TASK_TIME = 'INCREMENT_TASK_TIME';
 export function incrementTaskTime(project, task) {

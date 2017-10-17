@@ -60,7 +60,7 @@ class EditProjectPage extends Component {
     routeToProjectsPage();
   }
 
-  handleRemoteSubmit() {
+  handleRemoteSubmit = () => {
     const { remoteSubmit } = this.props;
 
     remoteSubmit('ADD_PROJECT');

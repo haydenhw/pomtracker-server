@@ -83,7 +83,7 @@ export function projects(state = defaultState, action) {
           return Object.assign({}, project, { _id: action.databaseId });
         }),
       };
-    case actions.EDIT_PROJECT_NAME_REQUEST:
+    case actions.UPDATE_PROJECT_NAME_REQUEST :
       return {
         ...state,
         items: state.items.mapAndFindById('shortId', action.projectId, (project) => {
