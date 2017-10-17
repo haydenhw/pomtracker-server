@@ -14,7 +14,30 @@ export function handleTimerComplete() {
       type: 'HANDLE_TIMER_COMPLETE',
     });
     
-    setTimeout(() => { return dispatch(toggleDesktopNotification()); }, 1500);
+    setTimeout(() => dispatch(toggleDesktopNotification()), 1500);
+  };
+}
+
+export const INCREMENT_TASK_TIME = 'INCREMENT_TASK_TIME';
+export function incrementTaskTime(project, task) {
+  return (dispatch) => {
+    const updatedTask = Object.assign({}, task, { recordedTime: task.recordedTime + 1 });
+
+    dispatch({
+      type: 'INCREMENT_TASK_TIME',
+      projectId: project.shortId,
+      taskId: task.shortId,
+    });
+
+
+    fetch(`projects/${project._id}/tasks/${task._id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedTask),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   };
 }
 
@@ -22,20 +45,6 @@ export const RESET_TIMER = 'RESET_TIMER';
 export function resetTimer() {
   return {
     type: 'RESET_TIMER',
-  };
-}
-
-export const TOGGLE_DESKTOP_NOTIFICATION = 'TOGGLE_DESKTOP_NOTIFICATION';
-export function toggleDesktopNotification() {
-  return {
-    type: 'TOGGLE_DESKTOP_NOTIFICATION',
-  };
-}
-
-export const TOGGLE_TIMER = 'TOGGLE_TIMER';
-export function toggleTimer(startTime, shouldStartTimer) {
-  return {
-    type: 'TOGGLE_TIMER',
   };
 }
 
@@ -61,26 +70,16 @@ export function setStartTime(startTime, shouldToggleTimer) {
   };
 }
 
+export const TOGGLE_DESKTOP_NOTIFICATION = 'TOGGLE_DESKTOP_NOTIFICATION';
+export function toggleDesktopNotification() {
+  return {
+    type: 'TOGGLE_DESKTOP_NOTIFICATION',
+  };
+}
 
-export const INCREMENT_TASK_TIME = 'INCREMENT_TASK_TIME';
-export function incrementTaskTime(project, task) {
-  return (dispatch) => {
-    const updatedTask = Object.assign({}, task, { recordedTime: task.recordedTime + 1 });
-
-    dispatch({
-      type: 'INCREMENT_TASK_TIME',
-      projectId: project.shortId,
-      taskId: task.shortId,
-    });
-
-
-    fetch(`projects/${project._id}/tasks/${task._id}`, {
-      method: 'PUT',
-      body: JSON.stringify(updatedTask),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+export const TOGGLE_TIMER = 'TOGGLE_TIMER';
+export function toggleTimer() {
+  return {
+    type: 'TOGGLE_TIMER',
   };
 }
