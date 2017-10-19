@@ -50,7 +50,7 @@ class Timer extends Component {
 
   doesSelectedTaskExist() {
     const { selectedTaskId, tasks } = this.props;
-    const taskIds = tasks.map((task) => { return task.shortId; });
+    const taskIds = tasks.map((task) => task.shortId);
 
     return taskIds.includes(selectedTaskId);
   }
@@ -68,7 +68,7 @@ class Timer extends Component {
     } = this.props;
 
     const { intervalId } = this.props;
-    const activeTask = selectedProject.tasks.find((task) => { return task.shortId === selectedTaskId; });
+    const activeTask = selectedProject.tasks.find((task) => task.shortId === selectedTaskId);
 
     incrementTaskTime(selectedProject, activeTask);
     decrementTimer();
@@ -123,7 +123,7 @@ const mapStateToProps = (state) => {
   const { selectedProjectId } = projects;
   const { alarmSoundSrc } = config;
   const { intervalId, isTimerActive, remainingTime, startTime } = timer;
-  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
+  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
 
   return {
     alarmSoundSrc,
