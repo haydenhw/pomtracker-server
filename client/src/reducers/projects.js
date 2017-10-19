@@ -16,7 +16,7 @@ function tasks(state, action) {
       });
     case actions.DELETE_TASK_REQUEST:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
-        const deleteIndex = project.tasks.findIndex((task) => { return task.shortId === action.taskId; });
+        const deleteIndex = project.tasks.findIndex((task) => task.shortId === action.taskId);
         const newTasks = project.tasks.sliceDelete(deleteIndex);
 
         return Object.assign({}, project, { tasks: newTasks });
@@ -54,7 +54,7 @@ const defaultState = {
 export function projects(state = defaultState, action) {
   switch (action.type) {
     case actions.DELETE_PROJECT_REQUEST:
-      const projectIndex = state.items.findIndex((project) => { return project.shortId === action.project.shortId; });
+      const projectIndex = state.items.findIndex((project) => project.shortId === action.project.shortId);
       
       return {
         ...state,
