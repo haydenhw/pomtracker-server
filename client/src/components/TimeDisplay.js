@@ -28,7 +28,7 @@ export default function TimeDisplay(props) {
         initialAnimation
         percentage={progressPercentage}
         strokeWidth={4}
-        textForPercentage={(pct) => { return ''; }}
+        textForPercentage={(pct) => ''}
       />}
       <div>{title}</div>
       <div style={devStyle || null} className="timer-content">
