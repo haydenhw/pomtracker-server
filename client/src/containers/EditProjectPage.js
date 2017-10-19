@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
   const { tasks } = taskForm;
 
   const selectedProject = state.projects.items.length > 0 && selectedProjectId
-    ? projects.items.find((project) => { return project.shortId === selectedProjectId; })
+    ? projects.items.find((project) => project.shortId === selectedProjectId)
     : null;
 
   return {
