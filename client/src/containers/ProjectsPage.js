@@ -97,7 +97,7 @@ class ProjectsPage extends Component {
 
     const totalTime =
       project.tasks.length > 0
-        ? project.tasks.map((task) => { return task.recordedTime; }).reduce((a, b) => { return a + b; })
+        ? project.tasks.map((task) => task.recordedTime).reduce((a, b) => a + b)
         : 0;
 
     return (
@@ -140,9 +140,9 @@ class ProjectsPage extends Component {
         return 0;
       }
 
-      return project.tasks.map((task) => { return Number(task.recordedTime); }).reduce((a, b) => { return a + b; });
+      return project.tasks.map((task) => Number(task.recordedTime)).reduce((a, b) => a + b);
     })
-      .reduce((a, b) => { return a + b; });
+      .reduce((a, b) => a + b);
   }
 
   render() {
