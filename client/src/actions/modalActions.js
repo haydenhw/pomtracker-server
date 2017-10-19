@@ -77,7 +77,7 @@ export const toggleOnboardMode = () => {
 
     dispatch(addModalClosingClass());
 
-    setTimeout(() => { return dispatch({ type: 'TOGGLE_ONBOARD_MODE' }); }, 1500);
+    setTimeout(() => dispatch({ type: 'TOGGLE_ONBOARD_MODE' }), 1500);
   };
 };
 

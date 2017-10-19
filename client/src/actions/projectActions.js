@@ -225,15 +225,15 @@ const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
   // delete tasks that do not already exist in the database
   // we assume that taks without the database created id '_id' do not yet exist in the database  
 
-  tasks.filter((task) => { return task.shouldDelete && task._id; })
-    .forEach((task) => { return dispatch(deleteTask(selectedProject, task)); });
+  tasks.filter((task) => task.shouldDelete && task._id)
+    .forEach((task) => dispatch(deleteTask(selectedProject, task)));
 };
 
 const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
   // post tasks that do not already exist in the database
   // we assume that taks without the database created id '_id' do not yet exist in the database  
   
-  tasks.filter((task) => { return !task._id; })
+  tasks.filter((task) => !task._id)
     .forEach((task) => {
       selectedProjectDatabaseId
         ? dispatch(postTask(selectedProjectDatabaseId, task))
@@ -244,7 +244,7 @@ const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
 export const UPDATE_TASKS = 'UPDATE_TASKS';
 export function updateTasks(selectedProject, tasks) {
   return (dispatch, getState) => {
-    const tasksToSubmit = tasks.filter((task) => { return !task.shouldDelete; });
+    const tasksToSubmit = tasks.filter((task) => !task.shouldDelete);
 
     dispatch({
       type: 'UPDATE_TASKS',
