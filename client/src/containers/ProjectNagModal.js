@@ -8,7 +8,7 @@ export default function ProjectNagModal() {
     <Nag
       actionButtonText="ADD PROJECT"
       nagMessage="Please add a project before continuing."
-      onActionButtonClick={() => { return hashHistory.push('/projects/new'); }}
+      onActionButtonClick={() => hashHistory.push('/projects/new')}
       title="No projects added yet"
     />
   );

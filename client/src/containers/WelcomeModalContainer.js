@@ -10,7 +10,7 @@ function WelcomeModalContainer(props) {
   const { changeModalType } = props;
 
   return (
-    <WelcomeModal handleGetStartedClick={() => { return changeModalType('ADD_PROJECT'); }} />
+    <WelcomeModal handleGetStartedClick={() => changeModalType('ADD_PROJECT')} />
   );
 }
 

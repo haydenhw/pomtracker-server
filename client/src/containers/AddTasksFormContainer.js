@@ -164,11 +164,11 @@ const mapStateToProps = (state, ownProps) => {
   const { selectedProjectId } = projects;
   const formTasks = customForm.taskForm.tasks;
 
-  const selectedProject = projects.items.find((project) => { return project.shortId === selectedProjectId; });
+  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
   
   const tasks = selectedProject && (ownProps.showTasksForSelectedProject !== false)
-    ? selectedProject.tasks.map((task) => { return Object.assign(task, { shouldDelete: false }); })
+    ? selectedProject.tasks.map((task) => Object.assign(task, { shouldDelete: false }))
     : [];
     
   return {

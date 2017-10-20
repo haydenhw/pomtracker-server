@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
   const { selectedProjectId } = projects;
 
   const selectedProjectName = projects.items.length > 0
-    ? projects.items.find((project) => { return project.shortId === selectedProjectId; }).projectName
+    ? projects.items.find((project) => project.shortId === selectedProjectId).projectName
     : null;
 
   return {

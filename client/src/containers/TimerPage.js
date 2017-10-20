@@ -221,7 +221,7 @@ let TimerPage = class extends Component {
       };
     });
 
-    const selectedTask = tasks.find((task) => { return task.shortId === selectedTaskId; });
+    const selectedTask = tasks.find((task) => task.shortId === selectedTaskId);
     const selectedTaskName = selectedTask && selectedTask.taskName;
     const taskSelectHeading = selectedTaskName || 'Click to select a task...';
     const headingClass = selectedTaskName ? '' : 'grey';
@@ -241,7 +241,7 @@ let TimerPage = class extends Component {
     const { hasFetched, isModalClosing, isOnboardingActive, selectedProject, tasks } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
     
-    const totalTime = tasks.length ? tasks.map((task) => { return Number(task.recordedTime); }).reduce((a, b) => { return a + b; }) : 0;
+    const totalTime = tasks.length ? tasks.map((task) => Number(task.recordedTime)).reduce((a, b) => a + b ) : 0;
     const selectedProjectName = selectedProject ? selectedProject.projectName : '';
     
     if (!hasFetched) {
