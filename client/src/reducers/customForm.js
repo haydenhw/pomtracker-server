@@ -7,15 +7,15 @@ const defaultState = {
 
 export function customForm(state = defaultState, action) {
   switch (action.type) {
+    case actions.ADD_TEMP_TASK:
+    return {
+      ...state,
+      taskForm: { tasks: [...state.taskForm.tasks, action.newTask] },
+    };
     case actions.REMOTE_SUBMIT:
       return {
         ...state,
         remoteSubmitForm: state.remoteSubmitForm === action.formSelector ? null : action.formSelector,
-      };
-    case actions.ADD_TEMP_TASK:
-      return {
-        ...state,
-        taskForm: { tasks: [...state.taskForm.tasks, action.newTask] },
       };
     case actions.SET_TEMP_TASKS:
       return {
