@@ -27,6 +27,14 @@
 }
 
 // vendor prefixes
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
 @mixin keyframes($anmiation-name) {
     @-webkit-keyframes #{$anmiation-name} {
         @content;
