@@ -19,48 +19,49 @@ methods = [
   ☐ add moz webkit animation feed back
   ☐ lint all scss
   ☐ lint all server side code
-  ☐ eliminate unncessary fonts 
+  ☐ eliminate unncessary fonts
+  ☐ remove blue outline from play/stop timer button
   ☐ try adding tasks to a new project from the new project page. the task font is too large
   ☐ thoroughly test all functionality
-   
+
 **Goals for Today**:
   ☐ refactor all componenents
- 
+
 **Styles**:
   ☐ center list item menu button
-  
+
 **Forms**:
   ProjectTaskForms:
-    
+
 **Bugs**:
 
 ########################
 **Cleanup/Refactor**:
   ☐ extract presentaional components from containers
   ☐ extract input components to separate file
-  ☐ notice that forms like SingleInputForm form have container classes defined by ternary operators. Change this so that these classes are supplied by props; 
+  ☐ notice that forms like SingleInputForm form have container classes defined by ternary operators. Change this so that these classes are supplied by props;
   ☐ review all scss files. make sure all files are using scss nesting and not just regular css. (especially for _popup-menu);
 
 **Later**:
   ☐ change all icons to icomoon
   ☐ move fonts from html file to sass files
-  
+
 Questions for Derek:
 ☐ should I add a 'press enter key to add task' message on add tasks form?
-    
+
 Questions for Kyle:
   ☐ How do you like the layout i.e that the timer is directly above the timesheet and timesheet is small?
     ☐ any alternatives?
-    ☐ Should modals and forms all have same fonts as main page? 
+    ☐ Should modals and forms all have same fonts as main page?
     ☐ try changing time while timer is runnning. Not ideal right? ask about how to handle this user action.
-    
+
 Kyle Notes:
   ☐ Projects
-    ☐ Make timer visible from projects screen 
-    ☐ negative space 
-    ☐ 600px   
+    ☐ Make timer visible from projects screen
+    ☐ negative space
+    ☐ 600px
     ☐ monochromatic theme
     ☐ switch submit and cancel button
     ☐ number font is good. play with different title fonts
-    
-Hey Derek! Sorry I've been MIA lately. Life got really hectic for awhile shortly after I started PGP. Anyway I've finally made some decent progress with the redesign of my Node capstone. Could I trouble you for some feedback on it?  
+
+Hey Derek! Sorry I've been MIA lately. Life got really hectic for awhile shortly after I started PGP. Anyway I've finally made some decent progress with the redesign of my Node capstone. Could I trouble you for some feedback on it?

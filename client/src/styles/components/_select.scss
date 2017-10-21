@@ -30,7 +30,7 @@
   }
 }
 
-@keyframes scaleTranslate{
+@include keyframes(scaleTranslate){
   from { opacity:0; }
 }
 

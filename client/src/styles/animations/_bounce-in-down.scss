@@ -1,4 +1,4 @@
-@keyframes bounceInDown {
+@include keyframes(bounceInDown) {
   from, 60%, 75%, 90%, to {
     animation-timing-function: cubic-bezier(.215, .610, .355, 1);
   }
