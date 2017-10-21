@@ -141,7 +141,7 @@
       border-top: 0.75px solid white;
       /*   border-right: 2px solid transparent; */
       // border: 2px solid yellow; 
-      animation: spinner 1s linear infinite;
+      @include animation(spinner 1s linear infinite);
     }
 
     .list-item-letter-icon {
