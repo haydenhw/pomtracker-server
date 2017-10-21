@@ -1,32 +1,6 @@
-// delete unused fade out stuff
-
-@keyframes fade-in{
-    0% { opacity:0; }
-    100% { opacity:1; }
-}
-
-@keyframes fade-out{
-    0% { opacity:1; }
-    // 99% { opacity:0; }
-    100% {
-      color: red;
-      // display: none;
-      opacity: 1;
-      position: absolute !important;
-      top: -99px !important;
-      left: -99px !important;;
-     }
-}
-
-@-webkit-keyframes fade-in{
-    0% { opacity:0; }
-    100% { opacity:1; }
-}
-
-.fade-out {
-  // opacity: 0;
-  // animation: fade-out .2s ease-in forwards;
-  visibility: hidden;
+@include keyframes(fade-in) {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @mixin fade-in-delay($seconds) {
