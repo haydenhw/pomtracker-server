@@ -9,27 +9,30 @@ $timer-color: #3949ab;
 $timer-color: #009cb8;
 $timer-color: $primary-color;
 
+$transparent-clear: rgba(0, 0, 0, .0);
+$transparent-dark: rgba(0, 0, 0, .7);
+
 $aqua: #1dd7b9;
 $blue-grey: #f0f4f7;
-$light-blue: #f2faff;  
-$light-teal: #4DB6AC;
+$light-blue: #f2faff;
+$light-teal: #4db6ac;
 $steel-blue: #607d8b;
 $steel-blue-hover: #4c636e;
-$error-red: #eb7e7f; 
+$error-red: #eb7e7f;
 $faded-black: #424242;
 
-$super-light-grey: #FAFAFA;
+$super-light-grey: #fafafa;
 $light-grey: #f7f8f8;
-$medium-light-grey: #F5F5F5;
-$medium-grey: #E5E5E5;
+$medium-light-grey: #f5f5f5;
+$medium-grey: #e5e5e5;
 $medium-dark-grey: #d9d9d9;
 $dark-grey: #808080;
 
-// typography 
-$main-font: 'Roboto', sans-serif; 
+// typography
+$main-font: 'Roboto', sans-serif;
 // $main-heading;
 $form-font: 'Raleway', sans-serif;
-$modal-font: $form-font; 
+$modal-font: $form-font;
 $placeholder-font-weight: bold;
 $placeholder-font-size: 1em;
 
@@ -41,4 +44,3 @@ $onboard-screen-top-margin: 15vh;
 $break-small: 480px;
 $break-medium: 768px;
 $break-large: 1024px;
-
