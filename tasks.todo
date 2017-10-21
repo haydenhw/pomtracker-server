@@ -1,22 +1,18 @@
-handleAddButtonClick
-handleAddProject
-handleAddTask
-handleFormSubmit
-handleNewProjectSubmit
-handleRemoteSubmit
-renderFormTask
-renderProject
-handleTimerLinkClick
-handleEditTaskSubmit
-handleTaskChange
-setActiveTask
-handleAddTasks
-
-**Questions**:
-Did Brittany work while she was out of town.
-Why are Brittany's atm deposits from MD?
-
-We need to add in $1200 rent payment to make math work
+methods = [
+  "handleAddButtonClick",
+  "handleAddProject",
+  "handleAddTask",
+  "handleFormSubmit",
+  "handleNewProjectSubmit",
+  "handleRemoteSubmit",
+  "renderFormTask",
+  "renderProject",
+  "handleTimerLinkClick",
+  "handleEditTaskSubmit",
+  "handleTaskChange",
+  "setActiveTask",
+  "handleAddTasks"
+]
 
 **Goals for this Week**:
   ☐ lint all components

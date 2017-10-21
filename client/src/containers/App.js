@@ -79,7 +79,7 @@ export default connect(mapStateToProps, {
 )(App);
 
 App.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.node.isRequired,
   fetchProjects: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool.isRequired,
   isDesktopNotificationActive: PropTypes.bool,

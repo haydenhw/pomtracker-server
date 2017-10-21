@@ -33,7 +33,7 @@ class AddProjectModal extends Component {
     return (
       <AddOrEditProjectForm
         childContainerClass="form-container onboarding-form"
-        fieldAnimationName="bounceInDown-second"
+        fieldAnimationName="bounce-in-down-second"
         formName="projectName"
         handleFormSubmit={this.handleAddProject.bind(this)}
         isModalActive
@@ -42,7 +42,7 @@ class AddProjectModal extends Component {
         placeholder="Project Name"
         shouldRenderSubmitButton
         title="Add a project name"
-        titleAnimationName="bounceInDown"
+        titleAnimationName="bounce-in-down"
       />
     );
   }

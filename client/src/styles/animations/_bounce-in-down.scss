@@ -1,7 +1,6 @@
-
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
-    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(.215, .610, .355, 1);
   }
 
   0% {
@@ -23,30 +22,32 @@
   }
 
   to {
+    opacity: 1;
     transform: none;
-    opacity: 1; 
   }
 }
 
-.bounceInDown {
-    animation: bounceInDown 1s linear; 
+.bounce-in-down {
+  animation: bounceInDown 1s linear;
 }
 
-@mixin bounceInDownDelay($delay) {
+@mixin bounce-in-down-delay($delay) {
+  animation: bounceInDown 1s linear $delay forwards;
   opacity: 0;
-  animation: bounceInDown 1s linear $delay forwards;   
 }
 
-$second-element-delay: 0.4;
-.bounceInDown-second {
-  @include bounceInDownDelay($second-element-delay + 0s);  
+$second-element-delay: .4;
+
+.bounce-in-down-second {
+  @include bounce-in-down-delay($second-element-delay + 0s);
 }
 
 $welcome-delay: 1;
-.bounceInDown-welcome {
-  @include bounceInDownDelay($welcome-delay + 0s);  
+
+.bounce-in-down-welcome {
+  @include bounce-in-down-delay($welcome-delay + 0s);
 }
 
-.bounceInDown-welcome-second {
-  @include bounceInDownDelay($welcome-delay + $second-element-delay + 0s);  
+.bounce-in-down-welcome-second {
+  @include bounce-in-down-delay($welcome-delay + $second-element-delay + 0s);
 }

@@ -8,7 +8,7 @@ let EditTaskForm = function(props) {
   const { containerClass, handleEditTaskSubmit, handleSubmit, initialValues } = props;
 
   return (
-    <div className="bounceInDown">
+    <div className="bounce-in-down">
       <div className={`form-container ${containerClass || ''}`}>
         <h2 className="form-title">Edit Task</h2>
         <form className="form" onSubmit={handleSubmit(handleEditTaskSubmit)}>
