@@ -30,7 +30,6 @@ class AddProjectModal extends Component {
   }
 
   render() {
-
     return (
       <AddOrEditProjectForm
         childContainerClass="form-container onboarding-form"

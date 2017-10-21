@@ -21,8 +21,6 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import AddTasksForm from '../components/AddTasksForm';
 import RemoteSubmitForm from './RemoteSubmitForm';
 
-
-
 let AddTasksFormContainer = class extends Component {
   constructor(props) {
     super(props);
@@ -42,11 +40,11 @@ let AddTasksFormContainer = class extends Component {
       setTempTasks(tasks);
     }
   }
-  
+
   handleAddTask({ taskName }) {
     const { addTempTask, reset, formTasks: tasks } = this.props;
     const taskNames = tasks.map(task => task.taskName);
-    
+
     if (!hasAnyValue(taskName)) {
       return null;
     }
@@ -79,7 +77,7 @@ let AddTasksFormContainer = class extends Component {
       formTasks: tasks,
     } = this.props;
 
-    const tasksToSubmit = tasks.filter(task => !task.shouldDelete );
+    const tasksToSubmit = tasks.filter(task => !task.shouldDelete);
 
     if (!tasksToSubmit.length) {
       throw new SubmissionError({
@@ -135,7 +133,7 @@ let AddTasksFormContainer = class extends Component {
   }
 
   render() {
-    const { formAnimationName, isModalActive, isOnboardingActive } = this.props;
+    const { isModalActive, isOnboardingActive } = this.props;
     return (
       <RemoteSubmitForm
         onTargetUpdate={this.handleFormSubmit.bind(this)}
@@ -164,13 +162,13 @@ const mapStateToProps = (state, ownProps) => {
   const { selectedProjectId } = projects;
   const formTasks = customForm.taskForm.tasks;
 
-  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
+  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
-  
+
   const tasks = selectedProject && (ownProps.showTasksForSelectedProject !== false)
-    ? selectedProject.tasks.map((task) => Object.assign(task, { shouldDelete: false }))
+    ? selectedProject.tasks.map(task => Object.assign(task, { shouldDelete: false }))
     : [];
-    
+
   return {
     selectedProject,
     selectedProjectId,

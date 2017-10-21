@@ -19,13 +19,13 @@ let AddTasksForm = (props) => {
     renderFormTask,
     shouldRenderSubmitButton,
     shouldAutoFocus,
-    submitButtonClass,
     submitButtonText,
+    submitButtonClass,
     title,
     titleAnimationName,
     titleName,
   } = props;
-  
+
   return (
     <div className={parentContainerClass}>
       <div className={childContainerClass}>
@@ -49,7 +49,6 @@ let AddTasksForm = (props) => {
         </div>
       </div>
       {!(shouldRenderSubmitButton === false) &&
-        // <button className={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
         <button className={submitButtonClass} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
       }
     </div>
@@ -81,6 +80,7 @@ AddTasksForm.propTypes = {
   renderFormTask: PropTypes.func.isRequired,
   shouldAutoFocus: PropTypes.bool,
   shouldRenderSubmitButton: PropTypes.bool,
+  submitButtonClass: PropTypes.string,
   submitButtonText: PropTypes.string,
   title: PropTypes.string,
   titleAnimationName: PropTypes.string,

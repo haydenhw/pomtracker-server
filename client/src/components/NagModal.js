@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Nag({ onCancel, onAccept, nagMessage, title }) {
+export default function Nag({ onAccept, nagMessage, title }) {
   return (
     <div className="nag">
       <h2>{title}</h2>
@@ -12,7 +12,6 @@ export default function Nag({ onCancel, onAccept, nagMessage, title }) {
 }
 
 Nag.propTypes = {
-  onCancel: PropTypes.func.isRequired,
   onAccept: PropTypes.func.isRequired,
   nagMessage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

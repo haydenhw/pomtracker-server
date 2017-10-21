@@ -24,6 +24,10 @@ import ContextMenu from './ContextMenu';
 import Modal from './Modal';
 
 class ProjectsPage extends Component {
+  static defaultProps = {
+    projects: ['dummyString'],
+  }
+
   constructor() {
     super();
 
@@ -34,9 +38,6 @@ class ProjectsPage extends Component {
     };
   }
 
-  static defaultProps = {
-    projects: ['filler'],
-  }
 
   componentWillMount() {
     const { isOnboardingActive } = this.props;
@@ -44,6 +45,23 @@ class ProjectsPage extends Component {
     if (isOnboardingActive) {
       routeToTimerPage();
     }
+  }
+
+  getTotalTime() {
+    const { projects } = this.props;
+
+    if (!projects.length) {
+      return 0;
+    }
+
+    return projects.map((project) => {
+      if (!project.tasks.length) {
+        return 0;
+      }
+
+      return project.tasks.map(task => Number(task.recordedTime)).reduce((a, b) => a + b);
+    })
+      .reduce((a, b) => a + b);
   }
 
   handleAddButtonClick() {
@@ -97,7 +115,7 @@ class ProjectsPage extends Component {
 
     const totalTime =
       project.tasks.length > 0
-        ? project.tasks.map((task) => task.recordedTime).reduce((a, b) => a + b)
+        ? project.tasks.map(task => task.recordedTime).reduce((a, b) => a + b)
         : 0;
 
     return (
@@ -108,18 +126,18 @@ class ProjectsPage extends Component {
         handlePlayClick={this.handleListItemClick(shortId)}
         isSelected={(selectedProjectId === shortId) && (projects.length > 1)}
         title={projectName}
-          time={totalTime}
+        time={totalTime}
       >
         <ContextMenu
           className="list-item-context-menu"
           onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
-          <li className="popup-menu-item" onClick={this.handleEditOptionClick(project)}>
+          <li className="popup-menu-item" onClick={this.handleEditOptionClick(project)} role="menuitem">
             <i className="context-menu-icon icon-edit" />
             <a>Edit</a>
           </li>
-          <li className="popup-menu-item" onClick={this.handleDeleteOptionClick(project)}>
+          <li className="popup-menu-item" onClick={this.handleDeleteOptionClick(project)} role="menuitem">
             <i className="context-menu-icon icon-delete" />
             <a>Delete</a>
           </li>
@@ -128,26 +146,8 @@ class ProjectsPage extends Component {
     );
   }
 
-  getTotalTime() {
-    const { projects } = this.props;
-
-    if (!projects.length) {
-      return 0;
-    }
-
-    return projects.map((project) => {
-      if (!project.tasks.length) {
-        return 0;
-      }
-
-      return project.tasks.map((task) => Number(task.recordedTime)).reduce((a, b) => a + b);
-    })
-      .reduce((a, b) => a + b);
-  }
-
   render() {
     const { hasFetched, isModalClosing, isOnboardingActive, projects } = this.props;
-    const reverseProjects = projects.slice().reverse();
     const totalTime = this.getTotalTime();
 
     if (!hasFetched) {

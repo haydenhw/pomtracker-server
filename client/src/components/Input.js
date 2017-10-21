@@ -10,6 +10,7 @@ export default function Input(props) {
     shouldAutoFocus,
     type,
   } = props;
+
   return (
     <div>
       <input

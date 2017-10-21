@@ -1,4 +1,3 @@
-// refactor to fucntional/presentational Component. Pass submit handler from modal
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
@@ -7,7 +6,7 @@ import Input from './Input';
 
 let EditTaskForm = function(props) {
   const { containerClass, handleEditTaskSubmit, handleSubmit, initialValues } = props;
-  
+
   return (
     <div className="bounceInDown">
       <div className={`form-container ${containerClass || ''}`}>
@@ -32,28 +31,27 @@ let EditTaskForm = function(props) {
           </div>
         </form>
       </div>
-      
+
       <button
         className="fade-in-medium-delay outline-button modal-button-bottom-right"
         onClick={handleSubmit(handleEditTaskSubmit)}
-        type="submit">Submit</button>
-      </div>
+        type="submit"
+      >
+          Submit
+      </button>
+    </div>
   );
 };
 
 EditTaskForm = reduxForm({
-  form: 'EditTaskForm', 
+  form: 'EditTaskForm',
 })(EditTaskForm);
 
 export default EditTaskForm;
 
 EditTaskForm.propTypes = {
-  closeModal: PropTypes.func,
-  confirmEditTask: PropTypes.func,
   containerClass: PropTypes.string,
+  handleEditTaskSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func,
   initialValues: PropTypes.object,
-  selectedProject: PropTypes.object,
-  selectedTask: PropTypes.object,
-  taskNames: PropTypes.array,
-  updateTask: PropTypes.string,
 };

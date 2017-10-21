@@ -38,7 +38,6 @@
     "path-exists": "2.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
-    "react-addons-css-transition-group": "^15.6.2",
     "react-dev-utils": "^0.4.2",
     "recursive-readdir": "2.1.0",
     "redux-logger": "^2.8.2",
@@ -56,6 +55,7 @@
     "prop-types": "^15.6.0",
     "randomcolor": "^0.5.3",
     "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-circular-progressbar": "^0.1.4",
     "react-dom": "^15.4.2",
     "react-edit-inline": "^1.0.8",
@@ -75,8 +75,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "mocha",
-    "lint": "eslint --ext .js --ext .jsx src/ || exit 0",
-    "lint:fix": "eslint --fix --ext .js --ext .jsx client/src/|| exit 0"
+    "lint": "eslint --ext .js --ext .jsx $path || exit 0",
+    "lint:fix": "eslint --fix --ext .js --ext .jsx $path || exit 0"
   },
   "jest": {
     "collectCoverageFrom": [

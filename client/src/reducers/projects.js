@@ -1,10 +1,30 @@
 import * as actions from '../actions/indexActions';
 
+const defaultState = {
+  clickedTaskId: null,
+  hasFetched: false,
+  isFetching: false,
+  items: [],
+  queue: null,
+  selectedProjectId: null,
+};
+
 function tasks(state, action) {
   switch (action.type) {
-    case actions.UPDATE_TASKS:
+    case actions.DELETE_TASK_REQUEST:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
-        return Object.assign({}, project, { tasks: action.newTasks });
+        const deleteIndex = project.tasks.findIndex((task) => task.shortId === action.taskId);
+        const newTasks = project.tasks.sliceDelete(deleteIndex);
+
+      return Object.assign({}, project, { tasks: newTasks });
+    });
+    case actions.INCREMENT_TASK_TIME:
+      return state.mapAndFindById('shortId', action.projectId, (project) => {
+        const newTasks = project.tasks.mapAndFindById('shortId', action.taskId, (task) => {
+          return Object.assign({}, task, { recordedTime: task.recordedTime + 1 });
+        });
+
+        return Object.assign({}, project, { tasks: newTasks });
       });
     case actions.POST_TASK_SUCCESS:
       return state.mapAndFindById('_id', action.projectId, (project) => {
@@ -14,20 +34,9 @@ function tasks(state, action) {
 
         return Object.assign({}, project, { tasks: newTasks });
       });
-    case actions.DELETE_TASK_REQUEST:
+    case actions.UPDATE_TASKS:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
-        const deleteIndex = project.tasks.findIndex((task) => task.shortId === action.taskId);
-        const newTasks = project.tasks.sliceDelete(deleteIndex);
-
-        return Object.assign({}, project, { tasks: newTasks });
-      });
-    case actions.INCREMENT_TASK_TIME:
-      return state.mapAndFindById('shortId', action.projectId, (project) => {
-        const newTasks = project.tasks.mapAndFindById('shortId', action.taskId, (task) => {
-          return Object.assign({}, task, { recordedTime: task.recordedTime + 1 });
-        });
-
-        return Object.assign({}, project, { tasks: newTasks });
+        return Object.assign({}, project, { tasks: action.newTasks });
       });
 
     case actions.UPDATE_TASK_REQUEST:
@@ -41,15 +50,6 @@ function tasks(state, action) {
       return state;
   }
 }
-
-const defaultState = {
-  clickedTaskId: null,
-  hasFetched: false,
-  isFetching: false,
-  items: [],
-  selectedProjectId: null,
-  queue: null,
-};
 
 export function projects(state = defaultState, action) {
   switch (action.type) {

@@ -14,6 +14,8 @@ export default function Nav(props) {
         <a
           className={`nav-link ${activeLink === 'TIMER' ? 'active-link' : ''}`}
           onClick={handleTimerLinkClick}
+          role="link"
+          tabIndex={0}
         >
           <span className="nav-link-name nav-timer-link-name">
                 Timer
@@ -25,6 +27,8 @@ export default function Nav(props) {
         <a
           className={`nav-link ${activeLink === 'PROJECTS' ? 'active-link' : ''}`}
           onClick={handleProjectsLinkClck}
+          role="link"
+          tabIndex={0}
         >
           <span className="nav-link-name">
               Projects

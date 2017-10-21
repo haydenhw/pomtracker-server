@@ -68,7 +68,9 @@ class ContextMenu extends Component {
               <span className="icon-dots" />
             </div>
           </PopupMenuTrigger>
-          <PopupMenuContent isActive={activeContextMenuParentId ? activeContextMenuParentId === parentId : isActive}>
+          <PopupMenuContent
+            isActive={activeContextMenuParentId ? activeContextMenuParentId === parentId : isActive}
+          >
             {children}
           </PopupMenuContent>
         </div>

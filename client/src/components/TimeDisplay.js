@@ -7,6 +7,8 @@ import { showProgressBar, devStyle } from '../srcConfig/devSettings';
 
 import EditInlineText from '../containers/EditInlineText';
 
+const getPercentage = () => '';
+
 export default function TimeDisplay(props) {
   const {
     handleButtonClick,
@@ -28,7 +30,7 @@ export default function TimeDisplay(props) {
         initialAnimation
         percentage={progressPercentage}
         strokeWidth={4}
-        textForPercentage={(pct) => ''}
+        textForPercentage={getPercentage}
       />}
       <div>{title}</div>
       <div style={devStyle || null} className="timer-content">
@@ -36,6 +38,8 @@ export default function TimeDisplay(props) {
         <div
           className={`timer-control ${isTimerControlActive ? '' : 'disabled'} `}
           onClick={isTimerControlActive && handleButtonClick}
+          role="button"
+          tabIndex={0}
         >
           <div className={`${isTimerActive ? 'icon-stop-rounded' : 'icon-play-rounded'}`} />
         </div>

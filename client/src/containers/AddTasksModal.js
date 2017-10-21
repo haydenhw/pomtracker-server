@@ -11,7 +11,7 @@ function AddTasksModal(props) {
 
   return (
     <AddTasksFormContainer
-      title='Add tasks for project '
+      title="Add tasks for project "
       titleName={selectedProjectName}
     />
   );
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
   const { selectedProjectId } = projects;
 
   const selectedProjectName = projects.items.length > 0
-    ? projects.items.find((project) => project.shortId === selectedProjectId).projectName
+    ? projects.items.find(project => project.shortId === selectedProjectId).projectName
     : null;
 
   return {

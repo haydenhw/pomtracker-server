@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Notification from 'react-web-notification';
 
-import { routeToProjectsPage, routeToTimerPage } from 'helpers/route';
+import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
 import { changeActiveLink, fetchProjects, toggleProjectNagModal } from '../actions/indexActions';
 
 import Nav from '../components/Nav';
@@ -34,7 +34,7 @@ class App extends Component {
     const { hasFetched, isDesktopNotificationActive, location } = this.props;
     const pathName = location.pathname;
     const isProjectRoute = /projects/.test(pathName);
-    
+
     return (
       <div>
         <Nav
@@ -43,10 +43,10 @@ class App extends Component {
           handleProjectsLinkClck={routeToProjectsPage}
           isProjectRoute={isProjectRoute}
         />
-        {hasFetched 
-            ? this.props.children
-            : <div className="loader">Loading...</div>
-        }  
+        {hasFetched
+          ? this.props.children
+          : <div className="loader">Loading...</div>
+        }
         {isDesktopNotificationActive
           && <Notification
             title="Time's Up!"
@@ -78,11 +78,12 @@ export default connect(mapStateToProps, {
 },
 )(App);
 
-// App.propTypes = {
-//   children: propTypes.array.isRequired,
-//   projects: propTypes.array.isRequired,
-//   toggleProjectNagModal: propTypes.func.isRequired,
-//   fetchProjects: propTypes.func.isRequired, 
-//   isDesktopNotificationActive: propTypes.bool,
-//   location: propTypes.object.isRequired,
-// };
+App.propTypes = {
+  children: PropTypes.array.isRequired,
+  fetchProjects: PropTypes.func.isRequired,
+  hasFetched: PropTypes.bool.isRequired,
+  isDesktopNotificationActive: PropTypes.bool,
+  location: PropTypes.object.isRequired,
+  projects: PropTypes.array.isRequired,
+  toggleProjectNagModal: PropTypes.func.isRequired,
+};

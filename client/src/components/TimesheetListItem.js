@@ -2,13 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-import { secondsToHMMSS } from 'helpers/time';
+import { secondsToHMMSS } from '../helpers/time';
 
 import ListItem from './ListItem';
 import TimesheetColumn from './TimesheetColumn';
 
 export default function TimesheetListItem(props) {
-  const { actionIconClass, children, isActive, isSelected, handleItemClick, handlePlayClick, time, title } = props;
+  const {
+    actionIconClass,
+    children,
+    isActive,
+    isSelected,
+    handleItemClick,
+    handlePlayClick,
+    time,
+    title,
+  } = props;
 
   return (
     <ListItem
@@ -34,6 +43,8 @@ export default function TimesheetListItem(props) {
           className={`list-item-button list-item-${isActive ? 'stop' : 'play'} 
           ${isActive ? 'active' : ''}`}
           onClick={handlePlayClick}
+          role="button"
+          tabIndex={0}
         >
           <span className={`icon-${isActive ? 'stop' : actionIconClass}`} />
         </div>

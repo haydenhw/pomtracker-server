@@ -46,5 +46,4 @@ ConfirmEditTask.propTypes = {
   payload: PropTypes.object.isRequired,
   updateTask: PropTypes.func.isRequired,
   taskName: PropTypes.string.isRequired,
-  toggleEditTaskForm: PropTypes.func.isRequired,
 };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import AddTasksFormContainer from '../containers/AddTasksFormContainer';
@@ -13,12 +13,12 @@ export default function ProjectTaskForm(props) {
     showTasksForSelectedProject,
     title,
   } = props;
-  
+
   return (
     <div className="form-page fullscreen-container">
       <div className="form-container">
         <h2 className="form-title">{title}<span className="grey-title-text">{selectedProjectName}</span></h2>
-        {label && <label>{label}</label>}
+        {label && <label htmlFor={label}>{label}</label>}
         {children}
         <AddTasksFormContainer
           shouldDisableFocusOnMount
@@ -40,7 +40,6 @@ ProjectTaskForm.propTypes = {
   handleCancel: PropTypes.func.isRequired,
   label: PropTypes.string,
   selectedProjectName: PropTypes.string,
-  shouldDisableTaskFormFocus: PropTypes.bool,
   showTasksForSelectedProject: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };

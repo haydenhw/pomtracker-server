@@ -9,7 +9,7 @@ import {
   setSelectedProject,
   remoteSubmit,
   updateProjectName,
-  updateTasks
+  updateTasks,
 } from '../actions/indexActions';
 
 import { hasAnyValue } from '../helpers/validate';
@@ -83,9 +83,9 @@ class EditProjectPage extends Component {
         title="Edit Project"
       >
         <AddOrEditProjectForm
-          formName='projectName'
+          formName="projectName"
           initialValues={{ singleInput: selectedProject.projectName }}
-          placeholder='Project Name'
+          placeholder="Project Name"
           shouldRenderSubmitButton={false}
           onTargetUpdate={this.handleEditProjectSubmit}
           targetPropKey="remoteSubmitForm"
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
   const { tasks } = taskForm;
 
   const selectedProject = state.projects.items.length > 0 && selectedProjectId
-    ? projects.items.find((project) => project.shortId === selectedProjectId)
+    ? projects.items.find(project => project.shortId === selectedProjectId)
     : null;
 
   return {
@@ -125,10 +125,10 @@ export default connect(mapStateToProps, {
 })(EditProjectPage);
 
 EditProjectPage.propTypes = {
-  projects: PropTypes.object.isRequired,
   remoteSubmit: PropTypes.func.isRequired,
   remoteSubmitForm: PropTypes.string,
   tasks: PropTypes.array.isRequired,
+  selectedProject: PropTypes.object.isRequired,
   updateProjectName: PropTypes.func.isRequired,
   updateTasks: PropTypes.func.isRequired,
 };

@@ -1,3 +1,17 @@
+handleAddButtonClick
+handleAddProject
+handleAddTask
+handleFormSubmit
+handleNewProjectSubmit
+handleRemoteSubmit
+renderFormTask
+renderProject
+handleTimerLinkClick
+handleEditTaskSubmit
+handleTaskChange
+setActiveTask
+handleAddTasks
+
 **Questions**:
 Did Brittany work while she was out of town.
 Why are Brittany's atm deposits from MD?
@@ -5,14 +19,13 @@ Why are Brittany's atm deposits from MD?
 We need to add in $1200 rent payment to make math work
 
 **Goals for this Week**:
-  ☐ refactor redux store
   ☐ lint all components
   ☐ add moz webkit animation feed back
   ☐ lint all scss
+  ☐ lint all server side code
   ☐ eliminate unncessary fonts 
   ☐ try adding tasks to a new project from the new project page. the task font is too large
   ☐ thoroughly test all functionality
-  
    
 **Goals for Today**:
   ☐ refactor all componenents

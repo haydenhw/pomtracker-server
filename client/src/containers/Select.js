@@ -58,7 +58,12 @@ export default class Select extends Component {
 
     return items.map((item) => {
       return (
-        <li key={shortid.generate()} className={`${className || ''} option`} onClick={this.handleOptionClick(item.id)}>
+        <li
+          className={`${className || ''} option`}
+          key={shortid.generate()}
+          onClick={this.handleOptionClick(item.id)}
+          role="option"
+        >
           <span className={`${className || ''} option-item`}>{item.name}</span>
         </li>
       );

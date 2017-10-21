@@ -6,7 +6,12 @@ export default function PopupMenuTrigger(props) {
 
   return (
     <div className="popup-menu-trigger-wrapper">
-      <div className="popup-menu-trigger" onClick={handleClick}>
+      <div
+        className="popup-menu-trigger"
+        onClick={handleClick}
+        role="menu"
+        tabIndex={0}
+      >
         {children}
       </div>
     </div>

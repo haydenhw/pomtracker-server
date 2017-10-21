@@ -53,7 +53,7 @@ let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
   );
 };
 
-const targetInfo = (props) => {
+const targetInfo = () => {
   return {
     targetValue: 'ADD_PROJECT',
     targetPropKey: 'remoteSubmitForm',
@@ -77,7 +77,6 @@ AddOrEditProjectForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   fieldAnimationName: PropTypes.string,
   parentContainerClass: PropTypes.string,
-  placeholder: PropTypes.string,
   isOnlyInput: PropTypes.bool,
   shouldRenderSubmitButton: PropTypes.bool,
   title: PropTypes.string,

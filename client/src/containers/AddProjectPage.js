@@ -49,8 +49,8 @@ let AddProjectPage = class extends Component {
         title="New Project"
       >
         <AddOrEditProjectForm
-          formName='projectName'
-          placeholder='Project Name'
+          formName="projectName"
+          placeholder="Project Name"
           shouldRenderSubmitButton={false}
           onTargetUpdate={this.handleNewProjectSubmit.bind(this)}
           targetValue="ADD_PROJECT"
@@ -72,12 +72,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default AddProjectPage = connect(mapStateToProps, { postProject, remoteSubmit })(AddProjectPage);
+export default AddProjectPage = connect(mapStateToProps, {
+  postProject,
+  remoteSubmit,
+})(AddProjectPage);
 
 AddProjectPage.propTypes = {
   newTasks: PropTypes.array,
   postProject: PropTypes.func,
   projects: PropTypes.array,
   remoteSubmit: PropTypes.func,
-  remoteSubmitForm: PropTypes.func,
 };

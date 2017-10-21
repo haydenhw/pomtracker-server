@@ -19,7 +19,7 @@ import {
   toggleTimer,
 } from '../actions/indexActions';
 
-import { secondsToHMMSS } from 'helpers/time';
+import { secondsToHMMSS } from '../helpers/time';
 
 import List from '../components/List';
 import Nag from '../components/Nag';
@@ -33,7 +33,11 @@ import Timer from './Timer';
 
 import { isDevOnboardingActive } from '../srcConfig/devSettings';
 
-let TimerPage = class extends Component {
+const TimerPage = class extends Component {
+  static defaultProps = {
+    tasks: [],
+  }
+
   constructor(props) {
     super(props);
 
@@ -44,27 +48,13 @@ let TimerPage = class extends Component {
       activeTaskId: null,
       activeContextMenuParentId: null,
       clickedTaskId: null,
-      selectedTaskId: null
+      selectedTaskId: null,
     };
   }
 
-  static defaultProps = {
-    tasks: []
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const { isModalActive } = this.props;
-
-    if (this.props.selectedProjectId && (nextProps.selectedProjectId !== this.props.selectedProjectId) && isModalActive) {
-      return false;
-    }
-
-    return true;
-  }
-  
   componentWillMount() {
     const { isOnboardingActive, projects, setSelectedProject, toggleOnboardMode } = this.props;
-    
+
     if (isDevOnboardingActive) {
       !isOnboardingActive && toggleOnboardMode();
       return null;
@@ -83,7 +73,7 @@ let TimerPage = class extends Component {
       hashHistory.push('/projects');
       return null;
     }
-    
+
     if (
       localStorage.selectedProjectId &&
       projects.find(project => project.shortId === localStorage.selectedProjectId)
@@ -96,13 +86,37 @@ let TimerPage = class extends Component {
     this.setState({ selectedTaskId: localStorage.prevSelectedTaskId });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  shouldComponentUpdate(nextProps) {
+    const { isModalActive } = this.props;
+
+    if (
+      this.props.selectedProjectId &&
+      (nextProps.selectedProjectId !== this.props.selectedProjectId) &&
+      isModalActive
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  componentDidUpdate(prevProps) {
     const { tasks } = this.props;
 
     if ((prevProps.tasks.length !== tasks.length) && (tasks.length === 0)) {
       localStorage.setItem('prevSelectedTaskId', null);
       this.setState({ selectedTaskId: null });
     }
+  }
+
+  setActiveTask(selectedTaskId) {
+    this.setState({ activeTaskId: selectedTaskId });
+  }
+
+  setActiveContextMenu = (activeContextMenuParentId) => {
+    return () => {
+      this.setState({ activeContextMenuParentId });
+    };
   }
 
   handleAddTasks() {
@@ -139,8 +153,8 @@ let TimerPage = class extends Component {
       this.handleTaskChange(taskId);
     };
   }
-  
-  handleTaskChange(taskId, callback) {
+
+  handleTaskChange(taskId) {
     if (localStorage.prevSelectedTaskId !== taskId) {
       localStorage.setItem('prevSelectedTaskId', taskId);
     }
@@ -162,16 +176,6 @@ let TimerPage = class extends Component {
   handleTaskItemClick = (taskId) => {
     return () => {
       this.handleTaskChange(taskId);
-    };
-  }
-
-  setActiveTask(selectedTaskId) {
-    this.setState({ activeTaskId: selectedTaskId });
-  }
-
-  setActiveContextMenu = (activeContextMenuParentId) => {
-    return () => {
-      this.setState({ activeContextMenuParentId });
     };
   }
 
@@ -197,11 +201,11 @@ let TimerPage = class extends Component {
           onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
-          <li className="popup-menu-item" onClick={this.handleEditTask(shortId)}>
+          <li className="popup-menu-item" onClick={this.handleEditTask(shortId)} role="menuitem">
             <i className="context-menu-icon icon-edit" />
             <a>Edit</a>
           </li>
-          <li className="popup-menu-item" onClick={this.handleTaskDelete(selectedProject, task)}>
+          <li className="popup-menu-item" onClick={this.handleTaskDelete(selectedProject, task)} role="menuitem">
             <i className="context-menu-icon icon-delete" />
             <a>Delete</a>
           </li>
@@ -221,7 +225,7 @@ let TimerPage = class extends Component {
       };
     });
 
-    const selectedTask = tasks.find((task) => task.shortId === selectedTaskId);
+    const selectedTask = tasks.find(task => task.shortId === selectedTaskId);
     const selectedTaskName = selectedTask && selectedTask.taskName;
     const taskSelectHeading = selectedTaskName || 'Click to select a task...';
     const headingClass = selectedTaskName ? '' : 'grey';
@@ -240,14 +244,16 @@ let TimerPage = class extends Component {
   render() {
     const { hasFetched, isModalClosing, isOnboardingActive, selectedProject, tasks } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
-    
-    const totalTime = tasks.length ? tasks.map((task) => Number(task.recordedTime)).reduce((a, b) => a + b ) : 0;
+
+    const totalTime = tasks.length
+      ? tasks.map(task => Number(task.recordedTime)).reduce((a, b) => a + b)
+      : 0;
     const selectedProjectName = selectedProject ? selectedProject.projectName : '';
-    
+
     if (!hasFetched) {
       return <div className="loader">Loading...</div>;
     }
-    
+
     return (
       <div>
         <section className="timer-section">
@@ -286,7 +292,7 @@ let TimerPage = class extends Component {
       </div>
     );
   }
-}
+};
 
 const mapStateToProps = (state) => {
   const { modal, projects, timer } = state;
@@ -294,9 +300,9 @@ const mapStateToProps = (state) => {
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
-  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
+  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   const selectedTasks = selectedProject && selectedProject.tasks;
-  
+
   return {
     hasFetched,
     isFetching,
@@ -307,7 +313,7 @@ const mapStateToProps = (state) => {
     selectedProject,
     selectedTasks,
     projects: projects.items,
-    tasks:  selectedTasks
+    tasks: selectedTasks,
   };
 };
 
@@ -329,11 +335,7 @@ export default connect(mapStateToProps, {
 TimerPage.propTypes = {
   changeActiveContextMenu: PropTypes.func.isRequired,
   confirmDeleteTask: PropTypes.func.isRequired,
-  decrementTimer: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  fetchProjects: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool,
-  isFetching: PropTypes.bool,
   isModalActive: PropTypes.bool,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
@@ -341,12 +343,9 @@ TimerPage.propTypes = {
   projects: PropTypes.array,
   selectedProject: PropTypes.object,
   selectedProjectId: PropTypes.string,
-  selectedTasks: PropTypes.array,
   setSelectedProject: PropTypes.func.isRequired,
-  setTempTasks: PropTypes.func.isRequired,
   tasks: PropTypes.array,
   toggleAddTasksForm: PropTypes.func.isRequired,
-  toggleConfig: PropTypes.func.isRequired,
   toggleEditTaskForm: PropTypes.func.isRequired,
   toggleOnboardMode: PropTypes.func.isRequired,
   toggleTimer: PropTypes.func.isRequired,

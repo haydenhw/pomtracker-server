@@ -10,17 +10,6 @@ const defaultState = {
 
 export const timer = (state = defaultState, action) => {
   switch (action.type) {
-    // case actions.START_TIMER:
-    // return {
-    //   ...state,
-    //   remainingTime: state.startTime,
-    //   isTimerActive: !state.isTimerActive,
-    // }
-    // case actions.TOGGLE_IS_TIMER_ACTIVE:
-    //   return {
-    //     ...state,
-    //     isTimerActive: !state.isTimerActive,
-    //   }
     case actions.DECREMENT_TIMER:
       return {
         ...state,

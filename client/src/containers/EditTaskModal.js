@@ -21,7 +21,7 @@ let EditTaskModal = class extends Component {
       taskNames,
       updateTask,
     } = this.props;
-    
+
     const newTimeString = timeStringToSeconds(newTime);
 
     if (taskName !== initialValues.taskName && isDuplicate(taskName, taskNames)) {
@@ -61,30 +61,30 @@ let EditTaskModal = class extends Component {
       closeModal();
     }
   }
-  render() { 
+  render() {
     const { initialValues } = this.props;
-    
+
     return (
-     <EditTaskForm
+      <EditTaskForm
         containerClass="normal-modal-form-container"
         handleEditTaskSubmit={this.handleEditTaskSubmit.bind(this)}
         initialValues={initialValues}
-     />
+      />
     );
   }
-}
+};
 
 const mapStateToProps = (state) => {
   const { clickedTaskId, projects } = state;
   const { selectedProjectId } = projects;
-  
+
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
-  
+
   const selectedTask = projects.items.concatMap(project => project.tasks)
     .find(task => clickedTaskId === task.shortId);
-  
+
   const taskNames = selectedProject.tasks.map(task => task.taskName);
-  
+
   return ({
     clickedTaskId,
     selectedProjectId,
@@ -109,7 +109,6 @@ export default EditTaskModal;
 EditTaskModal.propTypes = {
   closeModal: PropTypes.func,
   confirmEditTask: PropTypes.func,
-  containerClass: PropTypes.string,
   initialValues: PropTypes.object,
   selectedProject: PropTypes.object,
   selectedTask: PropTypes.object,
