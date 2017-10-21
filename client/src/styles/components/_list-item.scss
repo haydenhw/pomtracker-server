@@ -43,7 +43,7 @@
       }
 
       .icon-dots {
-        opacity: 0.7 !important;
+        opacity: .7 !important;
       }
     }
 
@@ -65,7 +65,7 @@
     cursor: pointer;
 
     .icon-dots {
-      opacity: 0.7;
+      opacity: .7;
     }
   }
 
@@ -138,7 +138,7 @@
       width: $spinner-radius * 2px;
       height: $spinner-radius * 2px;
       border-radius: 50%;
-      border-top: 0.75px solid white;
+      border-top: .75px solid white;
       /*   border-right: 2px solid transparent; */
       // border: 2px solid yellow; 
       @include animation(spinner 1s linear infinite);
@@ -197,7 +197,7 @@
       }
 
       .context-menu-icon {
-        opacity: 0.6;
+        opacity: .6;
       }
     }
   }

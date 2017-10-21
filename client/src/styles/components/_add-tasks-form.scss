@@ -1,12 +1,12 @@
 // @import 'form';
-// @import '_variables'; 
+// @import '_variables';
 // @import '_circularDeleteButton';
 
 $form-width: 300px;
 $form-margin-left: 30%;
 
 .add-tasks-form-title {
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
 .form-task-list {
@@ -15,7 +15,7 @@ $form-margin-left: 30%;
   width: $form-width;
   font-size: 14px;
   font-family: 'Roboto';
-  
+
   .button-wrapper {
     // border: 1px solid #000;
     position: relative;
@@ -24,8 +24,8 @@ $form-margin-left: 30%;
     vertical-align: top;
     text-align: center;
     line-height: 50px;
-    height: 50px;  
-    
+    height: 50px;
+
     .task-restore {
       color: #555;
       height: auto;
@@ -35,13 +35,13 @@ $form-margin-left: 30%;
       margin-bottom: 5px;
       @include centerVertHoriz();
     }
-    
+
     .icon-close {
-      opacity: 0.6; 
+      opacity: .6;
       font-size: 16px;
     }
   }
-  
+
   .name-wrapper {
     // border: 1px solid #000;
     height: 50px;
@@ -52,17 +52,17 @@ $form-margin-left: 30%;
     font-size: 1.5em;
     padding-left: 20px;
   }
-  
+
   span {
     position: relative;
     // top: 3px;
-  }  
-  
+  }
+
   button {
     margin: 0;
   }
-    
-  @include respond-to(handhelds) { 
+
+  @include respond-to(handhelds) {
     width: auto;
     max-height: 125px;
   }
@@ -78,9 +78,9 @@ $form-margin-left: 30%;
   .form-task-list {
     max-height: 22vh;
     overflow-y: auto;
-    @include respond-to(handhelds) { 
+    @include respond-to(handhelds) {
       max-height: 15vh;
-      
+
       .form-error {
         display: none;
       }
@@ -91,7 +91,7 @@ $form-margin-left: 30%;
 .normal-modal {
   .form-task-list {
     max-height: 265px;
-    @include respond-to(handhelds) { 
+    @include respond-to(handhelds) {
       max-height: 15vh;
     }
   }

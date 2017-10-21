@@ -115,7 +115,7 @@
 
   &.unfold {
     transform:scaleY(.01) scaleX(0);
-    @include animation(unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+    @include animation(unfoldIn 1s cubic-bezier(.165, .840, .440, 1) forwards);
     .modal-background {
       .modal {
         &.fullscreen-modal {
@@ -124,16 +124,16 @@
         }
 
         transform:scale(0);
-        @include animation(zoomIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+        @include animation(zoomIn .5s .8s cubic-bezier(.165, .840, .440, 1) forwards);
       }
     }
 
     &.out {
       transform:scale(1);
-      @include animation(unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+      @include animation(unfoldOut 1s .3s cubic-bezier(.165, .840, .440, 1) forwards);
       .modal-background {
         .modal {
-          @include animation(zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+          @include animation(zoomOut .5s cubic-bezier(.165, .840, .440, 1) forwards);
         }
       }
     }
@@ -147,19 +147,19 @@
       text-align:center;
       vertical-align:middle;
       background:rgba(0,0,0,.0);
-      @include animation(fade-inBackground .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+      @include animation(fade-inBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
       .modal {
         transform:translateX(-1500px);
-        @include animation(roadRunnerIn .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+        @include animation(roadRunnerIn .3s cubic-bezier(.165, .840, .440, 1) forwards);
       }
     }
 
     &.out {
       @include animation(quickScaleDown 0s .5s linear forwards);
       .modal-background {
-        @include animation(fadeOutBackground .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+        @include animation(fadeOutBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
         .modal {
-          @include animation(roadRunnerOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+          @include animation(roadRunnerOut .5s cubic-bezier(.165, .840, .440, 1) forwards);
         }
       }
     }
