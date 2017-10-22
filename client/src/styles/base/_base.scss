@@ -69,26 +69,8 @@ label {
   font-weight: normal;
 }
 
-input::-webkit-input-placeholder {
-  font-weight: $placeholder-font-weight;
-  font-size: $placeholder-font-size;
+@include placeholder() {
   font-family: $font-form;
-}
-
-input::-moz-placeholder { /* Firefox 18- */
-  font-weight: $placeholder-font-weight;
   font-size: $placeholder-font-size;
-  font-family: $font-form;
-}
-
-input::-moz-placeholder {  /* Firefox 19+ */
   font-weight: $placeholder-font-weight;
-  font-size: $placeholder-font-size;
-  font-family: $font-form;
-}
-
-input::-ms-input-placeholder {
-  font-weight: $placeholder-font-weight;
-  font-size: $placeholder-font-size;
-  font-family: $font-form;
 }

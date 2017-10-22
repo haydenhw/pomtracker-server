@@ -1,6 +1,6 @@
 // 1. Configuration and helpers
 @import
-  'helpers/variables', 
+  'helpers/variables',
   'helpers/functions',
   'helpers/mixins',
   'helpers/helpers';
@@ -22,13 +22,12 @@
 @import
   'pages/home';
 
-@import 
+@import
   'animations/fade-in',
   'animations/modal-transitions',
-  'animations/page-transitions',
   'animations/slide-in-left',
   'animations/bounce-in-down';
-  
+
 @import
   'components/add-tasks-form',
   'components/button-flip',

@@ -1,10 +1,7 @@
-methods = [
-handleAddButtonClick|handleAddProject|handleAddTask|handleFormSubmit|handleNewProjectSubmit|handleRemoteSubmit|renderFormTask|renderProject|handleTimerLinkClick|handleEditTaskSubmit|handleTaskChange|setActiveTask|"handleAddTask"]
-
-(handleAddButtonClick|handleAddProject|handleAddTask|handleFormSubmit|handleNewProjectSubmit|handleRemoteSubmit|renderFormTask|renderProject|handleTimerLinkClick|handleEditTaskSubmit|handleTaskChange|setActiveTask|"handleAddTask"]
-)\((.*)\) {
-$1 = ($2) => {
-
+animation-fill-mode
+transform
+animation-delay
+boder radius
 **Goals for this Week**:
   ☐ serach for vendor prefixes and replace with mixins
   ☐ add moz webkit animation feed back

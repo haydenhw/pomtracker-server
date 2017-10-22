@@ -1,4 +1,4 @@
-// bounceInDown 
+// bounceInDown
 
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
@@ -25,42 +25,36 @@
 
   to {
     transform: none;
-    opacity: 1; 
+    opacity: 1;
   }
 }
 
 .bounceInDown {
-    animation: bounceInDown 1s linear; 
+    animation: bounceInDown 1s linear;
 }
 
 @mixin bounceInDownDelay($delay) {
   opacity: 0;
-  animation: bounceInDown 1s linear $delay forwards;   
+  animation: bounceInDown 1s linear $delay forwards;
 }
 
 $second-element-delay: 0.4;
 .bounceInDown-second {
-  @include bounceInDownDelay($second-element-delay + 0s);  
+  @include bounceInDownDelay($second-element-delay + 0s);
 }
 
 $welcome-delay: 1;
 .bounceInDown-welcome {
-  @include bounceInDownDelay($welcome-delay + 0s);  
+  @include bounceInDownDelay($welcome-delay + 0s);
 }
 
 .bounceInDown-welcome-second {
-  @include bounceInDownDelay($welcome-delay + $second-element-delay + 0s);  
+  @include bounceInDownDelay($welcome-delay + $second-element-delay + 0s);
 }
 
-// fade-in 
+// fade-in
 
 @keyframes fade-in{
-    0% { opacity:0; }
-    // 66% { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-webkit-keyframes fade-in{
     0% { opacity:0; }
     // 66% { opacity:0; }
     100% { opacity:1; }
@@ -75,4 +69,3 @@ $welcome-delay: 1;
   opacity: 0;
   animation: fade-in 1s ease-in 1.2s forwards;
 }
-
