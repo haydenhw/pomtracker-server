@@ -3,7 +3,7 @@ import * as actions from '../actions/indexActions';
 import { modalType, isOnboardingActive, renderFormModal } from '../srcConfig/devSettings';
 
 const defaultState = {
-  isOnboardingActive,
+  isOnboardingActive: false,
   isModalActive: renderFormModal,
   isModalClosing: false,
   modalType,

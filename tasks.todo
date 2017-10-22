@@ -1,5 +1,4 @@
 **Goals for this Week**:
-  ☐ serach for vendor prefixes and replace with mixins
   ☐ lint all scss
   ☐ lint all server side code
   ☐ eliminate unncessary fonts

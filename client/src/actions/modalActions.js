@@ -7,10 +7,14 @@ export function addModalClosingClass() {
 
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export function closeModal() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const delay = getState().modal.isOnboardingActive
+      ? 1500
+      : 500;
+
     dispatch(addModalClosingClass());
 
-    setTimeout(() => dispatch({ type: 'CLOSE_MODAL' }), 500);
+    setTimeout(() => dispatch({ type: 'CLOSE_MODAL' }), delay);
   };
 }
 

@@ -23,10 +23,9 @@
   'pages/home';
 
 @import
+  'animations/bounce-in-down',
   'animations/fade-in',
-  'animations/modal-transitions',
-  'animations/slide-in-left',
-  'animations/bounce-in-down';
+  'animations/modal-transitions';
 
 @import
   'components/add-tasks-form',

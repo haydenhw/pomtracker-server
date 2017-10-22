@@ -55,8 +55,12 @@ const TimerPage = class extends Component {
   componentWillMount() {
     const { isOnboardingActive, projects, setSelectedProject, toggleOnboardMode } = this.props;
 
-    if (isDevOnboardingActive) {
-      !isOnboardingActive && toggleOnboardMode();
+    // if (isDevOnboardingActive) {
+    //   !isOnboardingActive && toggleOnboardMode();
+    //   return null;
+    // }
+    if (isDevOnboardingActive && !isOnboardingActive) {
+      toggleOnboardMode();
       return null;
     }
 
@@ -244,7 +248,7 @@ const TimerPage = class extends Component {
   render() {
     const { hasFetched, isModalClosing, isOnboardingActive, selectedProject, tasks } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
-
+    console.log(isOnboardingActive)
     const totalTime = tasks.length
       ? tasks.map(task => Number(task.recordedTime)).reduce((a, b) => a + b)
       : 0;
