@@ -4,10 +4,10 @@
   
   &.popup-menu  {
     .popup-menu-trigger {
-      color: $dark-grey;
+      color: $grey-dark;
       padding: 5px;
       &:hover {
-        background-color: $light-grey;
+        background-color: $grey-light;
       }
     }
   }
@@ -21,12 +21,12 @@
   }
   
   .option:hover {
-    background-color: $super-light-grey;
+    background-color: $grey-super-light;
     cursor: pointer;
   }
   
   .grey {
-    color: $dark-grey;
+    color: $grey-dark;
   }
 }
 

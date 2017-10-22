@@ -1,8 +1,8 @@
 .list-item {
   width: 100%;
-  // border-top: 1px solid $medium-dark-grey;
-  // border-left: 1px solid $medium-dark-grey;
-  // border-right: 1px solid $medium-dark-grey;
+  // border-top: 1px solid $grey-medium-dark;
+  // border-left: 1px solid $grey-medium-dark;
+  // border-right: 1px solid $grey-medium-dark;
   // position: relative;
   padding: 25px 25px 25px 20px;
   line-height: 6px;
@@ -13,11 +13,11 @@
   }
 
   &.selected {
-    background-color: $light-blue;
+    background-color: $blue-light;
   }
 
   &.selected:hover {
-    background-color: $light-blue;
+    background-color: $blue-light;
   }
   // &.active, 
   &.active {
@@ -53,7 +53,7 @@
   }
 
   &:first-child:last-child {
-    // border-bottom: 1px solid $medium-dark-grey;
+    // border-bottom: 1px solid $grey-medium-dark;
     &.total-time {
       padding-top: 50px;
       border: none;
@@ -61,7 +61,7 @@
   }
 
   &:not(.list-item-header):not(.total-time):hover {
-    background-color: $light-blue;
+    background-color: $blue-light;
     cursor: pointer;
 
     .icon-dots {
@@ -86,8 +86,8 @@
     box-sizing: content-box;
     display: inline-block;
     padding: $icon-padding * 1px;
-    background-color: $steel-blue;
-    border: 1px solid $steel-blue;
+    background-color: $blue-steel;
+    border: 1px solid $blue-steel;
     color: white;
     text-align: center;
     border-radius: 50%;
@@ -100,13 +100,13 @@
     &.list-item-play,
     &.list-item-stop {
       &:hover {
-        background-color: $steel-blue-hover;
+        background-color: $blue-steel-hover;
       }
     }
 
     &.list-item-outline-button {
       background-color: transparent;
-      color: $steel-blue;
+      color: $blue-steel;
       font-size: 15px;
       margin-left: 20px;
       width: $icon-size - 0 * 1px;
@@ -183,17 +183,17 @@
     }
 
     .popup-menu-item {
-      border: 1px solid $medium-light-grey;
+      border: 1px solid $grey-medium-light;
       border-bottom: none;
       padding: 8px 10px;
       text-transform: uppercase;
 
       &:last-child {
-        border-bottom: 1px solid $medium-light-grey;
+        border-bottom: 1px solid $grey-medium-light;
       }
 
       &:hover {
-        background-color: $super-light-grey;
+        background-color: $grey-super-light;
       }
 
       .context-menu-icon {

@@ -34,7 +34,7 @@ class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     if ((this.props.isTimerActive !== nextProps.isTimerActive) && nextProps.isTimerActive) {
       const { selectedTaskId, setActiveTask, setIntervalId } = this.props;
-      const intervalId = setInterval(this.timer.bind(this), 1000);
+      const intervalId = setInterval(this.timer, 1000);
 
       setIntervalId(intervalId);
 

@@ -12,7 +12,7 @@ export default class EditInlineText extends Component {
       message: 'Click to Edit',
     };
 
-    this.dataChanged = this.dataChanged.bind(this);
+    this.dataChanged = this.dataChanged;
   }
 
   dataChanged(data) {

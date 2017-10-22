@@ -15,7 +15,7 @@ class ContextMenu extends Component {
       isActive: false,
     };
 
-    this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.handleBodyClick = this.handleBodyClick;
   }
 
   componentDidUpdate(prevProps, prevState) {

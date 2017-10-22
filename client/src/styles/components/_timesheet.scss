@@ -1,7 +1,7 @@
 .timesheet {
   background-color: white;
   box-shadow: 2px 4px 14px -1px rgba(0, 0, 0, .22);
-  // border: 1px solid $medium-grey;
+  // border: 1px solid $grey-medium;
   font-size: 14px;
   margin: 40px auto;
   margin-bottom: 0;
@@ -34,7 +34,7 @@
   }    
   
   .timesheet-add-button {
-    background-color: $primary-color;
+    background-color: $color-primary;
     white-space: nowrap;
     
     @include respond-to(handhelds) { 

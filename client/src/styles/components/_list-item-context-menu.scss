@@ -26,17 +26,17 @@
     }
     
     .popup-menu-item {
-      border: 1px solid $medium-light-grey;
+      border: 1px solid $grey-medium-light;
       border-bottom: none;
       padding: 8px 10px;
       text-transform: uppercase;
       
       &:last-child {
-        border-bottom: 1px solid $medium-light-grey;
+        border-bottom: 1px solid $grey-medium-light;
       }
       
       &:hover {
-        background-color: $super-light-grey; 
+        background-color: $grey-super-light; 
       }
       
       .context-menu-icon {

@@ -51,7 +51,7 @@
   position: relative;
   margin: 0 auto;
   text-align: left;
-  font-family: $form-font; 
+  font-family: $font-form; 
   
   &.form-container-nested {
     margin: 0; 
@@ -70,7 +70,7 @@
   }
   
   .form-error {
-    color: $error-red;
+    color: $red-error;
     
     @include respond-to(handhelds) { 
       font-size: 16px;
@@ -89,7 +89,7 @@
     width: 100%;
     display: inline-block;
     font-size: $placeholder-font-size;
-    font-family: $form-font; 
+    font-family: $font-form; 
   }
   
   .form-title {

@@ -8,7 +8,7 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
 
 class AddProjectModal extends Component {
-  handleAddProject({ singleInput: projectName }) {
+  handleAddProject = ({ singleInput: projectName }) => {
     const { changeModalType, postProject, projects } = this.props;
 
     const projectNames = projects.map(project => project.projectName);
@@ -35,7 +35,7 @@ class AddProjectModal extends Component {
         childContainerClass="form-container onboarding-form"
         fieldAnimationName="bounce-in-down-second"
         formName="projectName"
-        handleFormSubmit={this.handleAddProject.bind(this)}
+        handleFormSubmit={this.handleAddProject}
         isModalActive
         isOnlyInput
         parentContainerClass="fullscreen-container"

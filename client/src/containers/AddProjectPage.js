@@ -11,7 +11,7 @@ import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
 import ProjectTaskForm from './ProjectTaskForm';
 
 let AddProjectPage = class extends Component {
-  handleNewProjectSubmit({ singleInput: projectName }) {
+  handleNewProjectSubmit = ({ singleInput: projectName }) => {
     const { newTasks, postProject, projects, remoteSubmit } = this.props;
     const projectNames = projects.items.map(project => project.projectName);
 
@@ -34,7 +34,7 @@ let AddProjectPage = class extends Component {
     routeToProjectsPage();
   }
 
-  handleRemoteSubmit() {
+  handleRemoteSubmit = () => {
     const { remoteSubmit } = this.props;
 
     remoteSubmit('ADD_PROJECT');
@@ -43,7 +43,7 @@ let AddProjectPage = class extends Component {
   render() {
     return (
       <ProjectTaskForm
-        handleSubmit={this.handleRemoteSubmit.bind(this)}
+        handleSubmit={this.handleRemoteSubmit}
         handleCancel={routeToProjectsPage}
         label="Project Name"
         title="New Project"
@@ -52,7 +52,7 @@ let AddProjectPage = class extends Component {
           formName="projectName"
           placeholder="Project Name"
           shouldRenderSubmitButton={false}
-          onTargetUpdate={this.handleNewProjectSubmit.bind(this)}
+          onTargetUpdate={this.handleNewProjectSubmit}
           targetValue="ADD_PROJECT"
           targetPropKey="remoteSubmitForm"
         />

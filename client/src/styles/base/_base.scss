@@ -5,7 +5,7 @@
 html, body {
   // background-color: $blue-grey; 
   color: $faded-black;
-  font-family: $main-font;
+  font-family: $font-main;
   font-size: 16px;
   height: 100%;
   min-height: 100%;
@@ -68,23 +68,23 @@ label {
 input::-webkit-input-placeholder {
   font-weight: $placeholder-font-weight;
   font-size: $placeholder-font-size;
-  font-family: $form-font;
+  font-family: $font-form;
 }
   
 input::-moz-placeholder { /* Firefox 18- */
   font-weight: $placeholder-font-weight;
   font-size: $placeholder-font-size;
-  font-family: $form-font;
+  font-family: $font-form;
 }
   
 input::-moz-placeholder {  /* Firefox 19+ */
   font-weight: $placeholder-font-weight;
   font-size: $placeholder-font-size;
-  font-family: $form-font;
+  font-family: $font-form;
 }
   
 input::-ms-input-placeholder {  
   font-weight: $placeholder-font-weight;
   font-size: $placeholder-font-size;
-  font-family: $form-font;
+  font-family: $font-form;
 }

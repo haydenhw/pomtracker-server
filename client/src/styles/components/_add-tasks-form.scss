@@ -2,7 +2,7 @@
 // @import '_variables';
 // @import '_circularDeleteButton';
 
-$form-width: 300px;
+$width-form: 300px;
 $form-margin-left: 30%;
 
 .add-tasks-form-title {
@@ -12,7 +12,7 @@ $form-margin-left: 30%;
 .form-task-list {
   // border: 1px solid #000;
   margin: 25px auto;
-  width: $form-width;
+  width: $width-form;
   font-size: 14px;
   font-family: 'Roboto';
 

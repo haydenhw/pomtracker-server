@@ -1,18 +1,9 @@
 methods = [
-  "handleAddButtonClick",
-  "handleAddProject",
-  "handleAddTask",
-  "handleFormSubmit",
-  "handleNewProjectSubmit",
-  "handleRemoteSubmit",
-  "renderFormTask",
-  "renderProject",
-  "handleTimerLinkClick",
-  "handleEditTaskSubmit",
-  "handleTaskChange",
-  "setActiveTask",
-  "handleAddTasks"
-]
+handleAddButtonClick|handleAddProject|handleAddTask|handleFormSubmit|handleNewProjectSubmit|handleRemoteSubmit|renderFormTask|renderProject|handleTimerLinkClick|handleEditTaskSubmit|handleTaskChange|setActiveTask|"handleAddTask"]
+
+(handleAddButtonClick|handleAddProject|handleAddTask|handleFormSubmit|handleNewProjectSubmit|handleRemoteSubmit|renderFormTask|renderProject|handleTimerLinkClick|handleEditTaskSubmit|handleTaskChange|setActiveTask|"handleAddTask"]
+)\((.*)\) {
+$1 = ($2) => {
 
 **Goals for this Week**:
   ☐ lint all components

@@ -64,7 +64,7 @@ class ProjectsPage extends Component {
       .reduce((a, b) => a + b);
   }
 
-  handleAddButtonClick() {
+  handleAddButtonClick = () => {
     const { setTempTasks } = this.props;
 
     setTempTasks([]);
@@ -109,7 +109,7 @@ class ProjectsPage extends Component {
     this.setState({ isProjectSelectTipActive: false });
   }
 
-  renderProject(project) {
+  renderProject = (project) => {
     const { changeActiveContextMenu, projects, selectedProjectId } = this.props;
     const { projectName, shortId } = project;
 
@@ -159,17 +159,17 @@ class ProjectsPage extends Component {
         {projects.length
           ? <Timesheet
             buttonText="NEW PROJECT"
-            handleButtonClick={this.handleAddButtonClick.bind(this)}
+            handleButtonClick={this.handleAddButtonClick}
             titleText={'Projects'}
           >
-            <List className="timesheet-list list" items={projects} renderItem={this.renderProject.bind(this)} />
+            <List className="timesheet-list list" items={projects} renderItem={this.renderProject} />
             <TotalTime time={secondsToHMMSS(totalTime)} />
           </Timesheet>
           : <div>
             <Nag
               actionButtonText="ADD PROJECT"
               nagMessage="Please create a project to continue."
-              onActionButtonClick={this.handleAddButtonClick.bind(this)}
+              onActionButtonClick={this.handleAddButtonClick}
             />
           </div>
         }

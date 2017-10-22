@@ -11,7 +11,7 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import EditTaskForm from '../components/EditTaskForm';
 
 let EditTaskModal = class extends Component {
-  handleEditTaskSubmit({ taskName, newTime }) {
+  handleEditTaskSubmit = ({ taskName, newTime }) => {
     const {
       closeModal,
       confirmEditTask,
@@ -67,7 +67,7 @@ let EditTaskModal = class extends Component {
     return (
       <EditTaskForm
         containerClass="normal-modal-form-container"
-        handleEditTaskSubmit={this.handleEditTaskSubmit.bind(this)}
+        handleEditTaskSubmit={this.handleEditTaskSubmit}
         initialValues={initialValues}
       />
     );

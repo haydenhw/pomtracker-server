@@ -15,7 +15,7 @@
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-  stroke: $timer-color;
+  stroke: $color-timer;
   stroke-linecap: round;
   transition: stroke-dashoffset .5s ease 0s;
 }

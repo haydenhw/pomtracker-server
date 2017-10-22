@@ -1,30 +1,30 @@
 // @import '_variables';
 
 nav {
-  background-color: $primary-color;
+  background-color: $color-primary;
   background-color: white;
   width: 100%;
   font-weight: normal;
-  border-bottom: solid 1px $medium-grey;
-  
+  border-bottom: solid 1px $grey-medium;
+
   .nav-link-wrapper {
     display: inline-block;
     padding: 0 5px;
-    
+
     .nav-link {
-      color: $dark-grey;
+      color: $grey-dark;
       display: inline-block;
       font-weight: 300;
       line-height: 52px;
       padding: 1px 10px;
       position: relative;
       text-decoration: none;
-      
+
       &.active-link {
-        color: $primary-color;
+        color: $color-primary;
         font-weight: normal;
         &:after {
-          background-color: $light-teal; 
+          background-color: $teal-light;
           position: absolute;
           width: 100%;
           height: 1px;
@@ -33,10 +33,10 @@ nav {
           bottom: -1px;
         }
       }
-      
+
       &:hover:not(.active-link) {
         // font-weight: 400;
-        
+
         &:after {
           background-color: #BDBDBD;
           position: absolute;
@@ -47,17 +47,17 @@ nav {
           bottom: -1px;
         }
       }
-      
+
       .nav-timer-link-name {
         position: relative;
         right: 1.8px;
       }
-      
-      @include respond-to(handhelds) { 
+
+      @include respond-to(handhelds) {
         padding: 1px 10px;
       }
     }
-  }  
+  }
 }
 
 .nav-logo-wrapper {
@@ -67,18 +67,18 @@ nav {
   // margin-left: 10%;
   margin-right: 50px;
   position: relative;
-  
+
   .nav-logo-text {
     display: inline-block;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
     margin-left: 5px;
-    
+
     .nav-logo-text-bold {
       font-weight: 400;
-    }     
+    }
   }
-  
+
   .nav-logo-image {
     position: relative;
     vertical-align: middle;
@@ -86,18 +86,18 @@ nav {
     bottom: 7px;
     display: none;
   }
-  
-  
-  @include respond-to(handhelds) { 
+
+
+  @include respond-to(handhelds) {
     margin-left: 5%;
     margin-right: 25px;
   }
-  
+
   @include respond-to(small-screens) {
      margin-left: 10%;
   }
-   
-  @include respond-to(medium-screens) { 
+
+  @include respond-to(medium-screens) {
     margin-left: 10%;
   }
 }
@@ -105,7 +105,7 @@ nav {
 
 nav a:hover {
   // background-color: #5C6BC0;
-  // background-color: $super-light-grey;
+  // background-color: $grey-super-light;
   font-weight: normal;
   cursor: pointer;
 }
@@ -114,9 +114,8 @@ nav a:hover {
 .nav-link {
   // display: inline-block;
   // margin-right: 25px;
-  
+
   &.active-link {
     // background-color: grey;
   }
 }
-

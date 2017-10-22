@@ -109,7 +109,7 @@ const TimerPage = class extends Component {
     }
   }
 
-  setActiveTask(selectedTaskId) {
+  setActiveTask = (selectedTaskId) => {
     this.setState({ activeTaskId: selectedTaskId });
   }
 
@@ -154,7 +154,7 @@ const TimerPage = class extends Component {
     };
   }
 
-  handleTaskChange(taskId) {
+  handleTaskChange = (taskId) => {
     if (localStorage.prevSelectedTaskId !== taskId) {
       localStorage.setItem('prevSelectedTaskId', taskId);
     }
@@ -179,7 +179,7 @@ const TimerPage = class extends Component {
     };
   }
 
-  renderTask(task) {
+  renderTask = (task) => {
     const { changeActiveContextMenu, isTimerActive, selectedProject } = this.props;
     const { activeTaskId, selectedTaskId } = this.state;
     const { shortId, taskName, recordedTime } = task;
@@ -233,7 +233,7 @@ const TimerPage = class extends Component {
     return (
       <Select
         className={'task-select'}
-        handleOptionClick={this.handleTaskChange.bind(this)}
+        handleOptionClick={this.handleTaskChange}
         items={simplifiedTasks}
       >
         <span className={headingClass}>{taskSelectHeading}</span>
@@ -263,7 +263,7 @@ const TimerPage = class extends Component {
               activeTaskId={activeTaskId}
               tasks={tasks}
               selectedTaskId={selectedTaskId}
-              setActiveTask={this.setActiveTask.bind(this)}
+              setActiveTask={this.setActiveTask}
             />
           </div>
         </section>
@@ -271,17 +271,17 @@ const TimerPage = class extends Component {
           ? <section className="timesheet-section">
             <Timesheet
               buttonText="NEW TASKS"
-              handleButtonClick={this.handleAddTasks.bind(this)}
+              handleButtonClick={this.handleAddTasks}
               titleText={<span>Tasks for project <span className={'grey-title-text'} key={shortid.generate()}>{selectedProject.projectName}</span></span>}
             >
-              <List className="timesheet-list list" items={tasks} renderItem={this.renderTask.bind(this)} />
+              <List className="timesheet-list list" items={tasks} renderItem={this.renderTask} />
               <TotalTime time={secondsToHMMSS(totalTime)} />
             </Timesheet>
           </section>
           : <Nag
             actionButtonText="ADD TASKS"
             nagMessage={<span>Add tasks to project <span className="grey-title-text">{selectedProjectName}</span> to start tracking time.</span>}
-            onActionButtonClick={this.handleAddTasks.bind(this)}
+            onActionButtonClick={this.handleAddTasks}
           />
         }
         <Modal

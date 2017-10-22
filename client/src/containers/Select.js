@@ -14,8 +14,8 @@ export default class Select extends Component {
       isActive: false,
     };
 
-    this.handleBodyClick = this.handleBodyClick.bind(this);
-    this.toggleIsActive = this.toggleIsActive.bind(this);
+    this.handleBodyClick = this.handleBodyClick;
+    this.toggleIsActive = this.toggleIsActive;
   }
 
   componentDidUpdate(prevProps, prevState) {

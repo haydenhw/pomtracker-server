@@ -41,7 +41,7 @@ let AddTasksFormContainer = class extends Component {
     }
   }
 
-  handleAddTask({ taskName }) {
+  handleAddTask = ({ taskName }) => {
     const { addTempTask, reset, formTasks: tasks } = this.props;
     const taskNames = tasks.map(task => task.taskName);
 
@@ -67,7 +67,7 @@ let AddTasksFormContainer = class extends Component {
     reset('taskName');
   }
 
-  handleFormSubmit() {
+  handleFormSubmit = () => {
     const {
       closeModal,
       isOnboardingActive,
@@ -109,7 +109,7 @@ let AddTasksFormContainer = class extends Component {
     };
   }
 
-  renderFormTask(task) {
+  renderFormTask = (task) => {
     const { shouldDelete, shortId, taskName } = task;
 
     return (
@@ -136,17 +136,17 @@ let AddTasksFormContainer = class extends Component {
     const { isModalActive, isOnboardingActive } = this.props;
     return (
       <RemoteSubmitForm
-        onTargetUpdate={this.handleFormSubmit.bind(this)}
+        onTargetUpdate={this.handleFormSubmit}
       >
         <AddTasksForm
           {...this.props}
           childContainerClass={isModalActive ? 'form-container onboarding-form' : ''}
           fieldAnimationName={isOnboardingActive ? 'bounce-in-down-second' : ''}
           formAnimationName={isOnboardingActive ? '' : 'bounce-in-down'}
-          handleFormSubmit={this.handleFormSubmit.bind(this)}
-          handleTaskSubmit={this.handleAddTask.bind(this)}
+          handleFormSubmit={this.handleFormSubmit}
+          handleTaskSubmit={this.handleAddTask}
           parentContainerClass={true && (isOnboardingActive || !isModalActive) ? 'fullscreen-container' : 'bounce-in-down'}
-          renderFormTask={this.renderFormTask.bind(this)}
+          renderFormTask={this.renderFormTask}
           shouldAutoFocus={isModalActive}
           submitButtonClass={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`}
           titleAnimationName={isOnboardingActive ? 'bounce-in-down' : ''}
