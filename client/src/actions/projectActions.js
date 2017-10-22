@@ -69,9 +69,9 @@ export function postProject(projectName, tasks) {
 
     dispatch({
       type: 'POST_PROJECT_REQUEST',
-      project: newProject
+      project: newProject,
     });
-  
+
     fetch(
       'projects',
       {
@@ -94,7 +94,7 @@ export function postProject(projectName, tasks) {
           projectId,
           databaseId,
         });
-        
+
         localStorage.selectedProjectId = projectId;
       });
   };
@@ -160,9 +160,6 @@ export function updateTask(project, task, toUpdate) {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         }),
-      })
-      .then((res) => {
-        'console log update success';
       });
   };
 }
@@ -174,7 +171,7 @@ export function setSelectedProject(projectId) {
       type: 'SET_SELECTED_PROJECT',
       projectId,
     });
-    
+
     localStorage.selectedProjectId = projectId;
   };
 }
@@ -190,7 +187,6 @@ export function fetchProjects() {
         return res.json();
       })
       .then((data) => {
-        
         return dispatch({
           type: 'FETCH_PROJECTS_SUCCESS',
           projects: data.projects,
@@ -199,14 +195,14 @@ export function fetchProjects() {
   };
 }
 
-export const UPDATE_PROJECT_NAME_REQUEST  = 'UPDATE_PROJECT_NAME_REQUEST ';
+export const UPDATE_PROJECT_NAME_REQUEST = 'UPDATE_PROJECT_NAME_REQUEST ';
 export function updateProjectName(project, newName) {
   return (dispatch) => {
     dispatch({
-    type: 'UPDATE_PROJECT_NAME_REQUEST ',
-    projectId: project.shortId,
-    projectName: newName,
-  });
+      type: 'UPDATE_PROJECT_NAME_REQUEST ',
+      projectId: project.shortId,
+      projectName: newName,
+    });
 
     fetch(
       `projects/${project._id}`,
@@ -223,33 +219,29 @@ export function updateProjectName(project, newName) {
 
 const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
   // delete tasks that do not already exist in the database
-  // we assume that taks without the database created id '_id' do not yet exist in the database  
+  // we assume that taks without the database created id '_id' do not yet exist in the database
 
-  tasks.filter((task) => task.shouldDelete && task._id)
-    .forEach((task) => dispatch(deleteTask(selectedProject, task)));
+  tasks.filter(task => task.shouldDelete && task._id)
+    .forEach(task => dispatch(deleteTask(selectedProject, task)));
 };
 
 const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
   // post tasks that do not already exist in the database
-  // we assume that taks without the database created id '_id' do not yet exist in the database  
-  
-  tasks.filter((task) => !task._id)
-    .forEach((task) => {
-      selectedProjectDatabaseId
-        ? dispatch(postTask(selectedProjectDatabaseId, task))
-        : console.error('database id has not yet updated');
-    });
+  // we assume that taks without the database created id '_id' do not yet exist in the database
+
+  tasks.filter(task => !task._id)
+    .forEach(task => dispatch(postTask(selectedProjectDatabaseId, task)));
 };
 
 export const UPDATE_TASKS = 'UPDATE_TASKS';
 export function updateTasks(selectedProject, tasks) {
-  return (dispatch, getState) => {
-    const tasksToSubmit = tasks.filter((task) => !task.shouldDelete);
+  return (dispatch) => {
+    const tasksToSubmit = tasks.filter(task => !task.shouldDelete);
 
     dispatch({
       type: 'UPDATE_TASKS',
-      projectId: selectedProject.shortId, 
-      newTasks: tasksToSubmit
+      projectId: selectedProject.shortId,
+      newTasks: tasksToSubmit,
     });
 
     postUnsavedTasks(dispatch, selectedProject._id, tasksToSubmit);

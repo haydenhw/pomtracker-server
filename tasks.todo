@@ -6,13 +6,16 @@ handleAddButtonClick|handleAddProject|handleAddTask|handleFormSubmit|handleNewPr
 $1 = ($2) => {
 
 **Goals for this Week**:
-  ☐ lint all components
+  ☐ finish linting src js
+  ☐ serach for vendor prefixes and replace with mixins
   ☐ add moz webkit animation feed back
   ☐ lint all scss
   ☐ lint all server side code
   ☐ eliminate unncessary fonts
   ☐ remove blue outline from play/stop timer button
   ☐ try adding tasks to a new project from the new project page. the task font is too large
+  ☐ center all icons (esp list item menu dots and stop button)
+  ☐ make loader teal
   ☐ thoroughly test all functionality
 
 **Goals for Today**:
@@ -54,5 +57,3 @@ Kyle Notes:
     ☐ monochromatic theme
     ☐ switch submit and cancel button
     ☐ number font is good. play with different title fonts
-
-Hey Derek! Sorry I've been MIA lately. Life got really hectic for awhile shortly after I started PGP. Anyway I've finally made some decent progress with the redesign of my Node capstone. Could I trouble you for some feedback on it?
