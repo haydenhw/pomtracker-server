@@ -55,7 +55,7 @@ class Timer extends Component {
     return taskIds.includes(selectedTaskId);
   }
 
-  timer() {
+  timer = () => {
     const {
       alarmSoundSrc,
       decrementTimer,

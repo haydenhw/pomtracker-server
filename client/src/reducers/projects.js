@@ -13,11 +13,11 @@ function tasks(state, action) {
   switch (action.type) {
     case actions.DELETE_TASK_REQUEST:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
-        const deleteIndex = project.tasks.findIndex((task) => task.shortId === action.taskId);
+        const deleteIndex = project.tasks.findIndex(task => task.shortId === action.taskId);
         const newTasks = project.tasks.sliceDelete(deleteIndex);
 
-      return Object.assign({}, project, { tasks: newTasks });
-    });
+        return Object.assign({}, project, { tasks: newTasks });
+      });
     case actions.INCREMENT_TASK_TIME:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
         const newTasks = project.tasks.mapAndFindById('shortId', action.taskId, (task) => {
@@ -51,11 +51,13 @@ function tasks(state, action) {
   }
 }
 
-export function projects(state = defaultState, action) {
+export default function projects(state = defaultState, action) {
   switch (action.type) {
     case actions.DELETE_PROJECT_REQUEST:
-      const projectIndex = state.items.findIndex((project) => project.shortId === action.project.shortId);
-      
+      const projectIndex = state.items.findIndex((project) => {
+        return project.shortId === action.project.shortId;
+      });
+
       return {
         ...state,
         items: state.items.sliceDelete(projectIndex),
@@ -66,7 +68,7 @@ export function projects(state = defaultState, action) {
         items: action.projects,
         hasFetched: true,
         isFetching: false,
-        selectedProjectId: !action.projects.length ? state : action.projects[0].shortId
+        selectedProjectId: !action.projects.length ? state : action.projects[0].shortId,
       };
     case actions.POST_PROJECT_REQUEST:
       return {
@@ -90,10 +92,10 @@ export function projects(state = defaultState, action) {
         queue: action.projectName,
       };
     case actions.SET_SELECTED_PROJECT:
-      return { 
+      return {
         ...state,
-        selectedProjectId: action.projectId
-      }
+        selectedProjectId: action.projectId,
+      };
     case actions.TOGGLE_FETCHING:
       return {
         ...state,
@@ -119,7 +121,3 @@ export function projects(state = defaultState, action) {
       return state;
   }
 }
-
-
-
-

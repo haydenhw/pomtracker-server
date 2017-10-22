@@ -14,8 +14,8 @@ export default class Select extends Component {
       isActive: false,
     };
 
-    this.handleBodyClick = this.handleBodyClick;
-    this.toggleIsActive = this.toggleIsActive;
+    // this.handleBodyClick = this.handleBodyClick;
+    // this.toggleIsActive = this.toggleIsActive;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,14 +24,14 @@ export default class Select extends Component {
     }
   }
 
-  toggleIsActive() {
+  toggleIsActive = () => {
     const { isActive } = this.state;
 
     document.body.addEventListener('click', this.handleBodyClick);
     this.setState({ isActive: !isActive });
   }
 
-  handleBodyClick(evt) {
+  handleBodyClick = (evt) => {
     const targetClassNames = evt.target.className.split(' ');
 
     if (
@@ -103,4 +103,3 @@ Select.propTypes = {
   handleOptionClick: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
 };
-

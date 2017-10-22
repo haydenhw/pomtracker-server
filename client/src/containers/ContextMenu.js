@@ -40,7 +40,7 @@ class ContextMenu extends Component {
     this.bindBodyClickHandler();
   }
 
-  handleBodyClick(evt) {
+  handleBodyClick = (evt) => {
     const { onMenuClick } = this.props;
     const targetClassName = evt.target.className;
 

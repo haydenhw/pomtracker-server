@@ -5,7 +5,7 @@ const defaultState = {
   clickedTaskId: null,
 };
 
-export function editMenu(state = defaultState, action) {
+export default function editMenu(state = defaultState, action) {
   switch (action.type) {
     case actions.CHANGE_ACTIVE_EDIT_MENU:
       return {
@@ -15,8 +15,8 @@ export function editMenu(state = defaultState, action) {
     case actions.TOGGLE_EDIT_TASK_FORM:
       return {
         ...state,
-       clickedTaskId: action.taskId,
-      }
+        clickedTaskId: action.taskId,
+      };
     default:
       return state;
   }

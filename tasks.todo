@@ -6,7 +6,6 @@ handleAddButtonClick|handleAddProject|handleAddTask|handleFormSubmit|handleNewPr
 $1 = ($2) => {
 
 **Goals for this Week**:
-  ☐ finish linting src js
   ☐ serach for vendor prefixes and replace with mixins
   ☐ add moz webkit animation feed back
   ☐ lint all scss
@@ -15,7 +14,9 @@ $1 = ($2) => {
   ☐ remove blue outline from play/stop timer button
   ☐ try adding tasks to a new project from the new project page. the task font is too large
   ☐ center all icons (esp list item menu dots and stop button)
+  ☐ try hovering over an active list item menu while the timer is running then over over the dots menu. white background doesn't look great
   ☐ make loader teal
+  ☐ clean up fonts folder
   ☐ thoroughly test all functionality
 
 **Goals for Today**:

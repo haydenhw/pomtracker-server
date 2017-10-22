@@ -7,8 +7,10 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
     class BaseComponent extends Component {
       componentDidUpdate(prevProps) {
         const { targetPropKey, targetValue } = getTargetInfo(this.props);
-        
-        if ((prevProps[targetPropKey] !== targetValue) && (this.props[targetPropKey] === targetValue)) {
+
+        if (
+          (prevProps[targetPropKey] !== targetValue) &&
+          (this.props[targetPropKey] === targetValue)) {
           onTargetUpdate(this.props);
         }
       }
@@ -17,7 +19,7 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
         return <WrappedComponent {...this.props} />;
       }
     }
-    const mapStateToProps = (state) => { return { remoteSubmitForm: state.customForm.remoteSubmitForm }; };
+    const mapStateToProps = state => ({ remoteSubmitForm: state.customForm.remoteSubmitForm });
     return connect(mapStateToProps)(BaseComponent);
   };
 }

@@ -5,17 +5,20 @@ const defaultState = {
   remoteSubmitForm: null,
 };
 
-export function customForm(state = defaultState, action) {
+export default function customForm(state = defaultState, action) {
   switch (action.type) {
     case actions.ADD_TEMP_TASK:
-    return {
-      ...state,
-      taskForm: { tasks: [...state.taskForm.tasks, action.newTask] },
-    };
-    case actions.REMOTE_SUBMIT:
       return {
         ...state,
-        remoteSubmitForm: state.remoteSubmitForm === action.formSelector ? null : action.formSelector,
+        taskForm: { tasks: [...state.taskForm.tasks, action.newTask] },
+      };
+    case actions.REMOTE_SUBMIT:
+      const remoteSubmitForm = state.remoteSubmitForm === action.formSelector
+        ? null
+        : action.formSelector;
+      return {
+        remoteSubmitForm,
+        ...state,
       };
     case actions.SET_TEMP_TASKS:
       return {

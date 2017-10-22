@@ -1,12 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 
-import rootReducer from 'reducers/indexReducer';
-import * as actions from 'actions/indexActions';
+import rootReducer from '../reducers/indexReducer';
 
 export default createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk /* logger() */),
+  applyMiddleware(thunk),
 );

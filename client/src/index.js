@@ -11,9 +11,8 @@ import EditProjectPage from './containers/EditProjectPage';
 import ProjectsPage from './containers/ProjectsPage';
 import TimerPage from './containers/TimerPage';
 
-import './helpers/polyfill.js';
+import './helpers/polyfill';
 import './styles/index.scss';
-// import './styles/icons/fontastic-icons.css';
 import './styles/icons/fonts/style.css';
 
 render((
@@ -28,4 +27,3 @@ render((
     </Router>
   </Provider>
 ), document.getElementById('root'));
-

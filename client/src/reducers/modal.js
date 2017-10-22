@@ -1,4 +1,4 @@
-import * as actions from 'actions/indexActions';
+import * as actions from '../actions/indexActions';
 
 import { modalType, isOnboardingActive, renderFormModal } from '../srcConfig/devSettings';
 
@@ -10,7 +10,7 @@ const defaultState = {
   modalProps: null,
 };
 
-export const modal = (state = defaultState, action) => {
+export default function modal(state = defaultState, action) {
   switch (action.type) {
     case actions.ADD_MODAL_CLOSING_CLASS:
       return {
@@ -90,4 +90,4 @@ export const modal = (state = defaultState, action) => {
     default:
       return state;
   }
-};
+}

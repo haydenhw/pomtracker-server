@@ -8,7 +8,7 @@ const defaultState = {
   startTime: 25 * 60,
 };
 
-export const timer = (state = defaultState, action) => {
+export default function timer(state = defaultState, action) {
   switch (action.type) {
     case actions.DECREMENT_TIMER:
       return {
@@ -54,4 +54,4 @@ export const timer = (state = defaultState, action) => {
     default:
       return state;
   }
-};
+}

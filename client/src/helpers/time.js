@@ -1,18 +1,18 @@
-export function secondsToMSS(d) {
-  d = Number(d);
+export function secondsToMSS(secs) {
+  const seconds = Number(secs);
 
-  const m = Math.floor(d / 60);
-  const s = Math.floor(d % 360 % 60);
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 360 % 60);
 
   return `${m}:${(`0${s}`).slice(-2)}`;
 }
 
-export function secondsToHMMSS(d) {
-  d = Number(d);
+export function secondsToHMMSS(secs) {
+  const seconds = Number(secs);
 
-  const h = Math.floor(d / 3600);
-  const m = Math.floor(d % 3600 / 60);
-  const s = Math.floor(d % 3600 % 60);
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 3600 % 60);
 
   return `${h}:${(`0${m}`).slice(-2)}:${(`0${s}`).slice(-2)}`;
 }
@@ -45,6 +45,5 @@ export function timeStringToSeconds(value, inputFormat) {
   }
 
 
-  return hours * 3600 + minutes * 60 + seconds;
+  return (hours * 3600) + (minutes * 60) + seconds;
 }
-

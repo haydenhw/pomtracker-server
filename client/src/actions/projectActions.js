@@ -126,9 +126,6 @@ export function postTask(projectId, task) {
           taskId,
           databaseId,
         });
-      })
-      .catch((err) => {
-        console.error(err);
       });
   };
 }

@@ -8,13 +8,16 @@ export function decrementTimer() {
 }
 
 export const HANDLE_TIMER_COMPLETE = 'HANDLE_TIMER_COMPLETE';
+export const TOGGLE_DESKTOP_NOTIFICATION = 'TOGGLE_DESKTOP_NOTIFICATION';
 export function handleTimerComplete() {
   return (dispatch) => {
     dispatch({
       type: 'HANDLE_TIMER_COMPLETE',
     });
-    
-    setTimeout(() => dispatch(toggleDesktopNotification()), 1500);
+
+    setTimeout(() => dispatch({
+      type: 'TOGGLE_DESKTOP_NOTIFICATION',
+    }), 1500);
   };
 }
 
@@ -59,21 +62,14 @@ export function setIntervalId(intervalId) {
 export const SET_START_TIME = 'SET_START_TIME';
 export function setStartTime(startTime, shouldToggleTimer) {
   return (dispatch, getState) => {
-    startTime = isNaN(startTime) ? timeStringToSeconds(startTime, 'MMSS') : Math.ceil(Number(startTime) * 60);
-    startTime = startTime === 'NAN_ERROR' ? getState().timer.startTime : startTime;
+    let numericStartTime = isNaN(startTime) ? timeStringToSeconds(startTime, 'MMSS') : Math.ceil(Number(startTime) * 60);
+    numericStartTime = numericStartTime === 'NAN_ERROR' ? getState().timer.startTime : numericStartTime;
 
     return dispatch({
       type: 'SET_START_TIME',
-      startTime,
+      numericStartTime,
       shouldToggleTimer,
     });
-  };
-}
-
-export const TOGGLE_DESKTOP_NOTIFICATION = 'TOGGLE_DESKTOP_NOTIFICATION';
-export function toggleDesktopNotification() {
-  return {
-    type: 'TOGGLE_DESKTOP_NOTIFICATION',
   };
 }
 
