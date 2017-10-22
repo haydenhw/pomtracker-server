@@ -1,10 +1,5 @@
-animation-fill-mode
-transform
-animation-delay
-boder radius
 **Goals for this Week**:
   ☐ serach for vendor prefixes and replace with mixins
-  ☐ add moz webkit animation feed back
   ☐ lint all scss
   ☐ lint all server side code
   ☐ eliminate unncessary fonts
@@ -29,13 +24,8 @@ boder radius
 
 ########################
 **Cleanup/Refactor**:
-  ☐ extract presentaional components from containers
-  ☐ extract input components to separate file
-  ☐ notice that forms like SingleInputForm form have container classes defined by ternary operators. Change this so that these classes are supplied by props;
-  ☐ review all scss files. make sure all files are using scss nesting and not just regular css. (especially for _popup-menu);
 
 **Later**:
-  ☐ change all icons to icomoon
   ☐ move fonts from html file to sass files
 
 Questions for Derek:

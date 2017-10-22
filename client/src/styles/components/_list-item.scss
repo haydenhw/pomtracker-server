@@ -19,7 +19,7 @@
   &.selected:hover {
     background-color: $blue-light;
   }
-  // &.active, 
+  // &.active,
   &.active {
     background-color: $aqua !important;
     // &.active:hover {
@@ -121,8 +121,8 @@
           opacity: 1;
         }
       }
-      
-      @include respond-to(handhelds) { 
+
+      @include respond-to(handhelds) {
         margin-left: 5px;
       }
     }
@@ -140,7 +140,7 @@
       border-radius: 50%;
       border-top: .75px solid white;
       /*   border-right: 2px solid transparent; */
-      // border: 2px solid yellow; 
+      // border: 2px solid yellow;
       @include animation(spinner 1s linear infinite);
     }
 
@@ -201,7 +201,7 @@
       }
     }
   }
-  
+
   @include respond-to(small-screens) {
     padding: 25px 9px;
   }
@@ -209,6 +209,6 @@
 
 @include keyframes(spinner) {
   to {
-    transform: rotate(360deg);
+    @include transform(rotate(360deg));
   }
 }

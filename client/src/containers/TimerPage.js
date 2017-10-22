@@ -119,7 +119,7 @@ const TimerPage = class extends Component {
     };
   }
 
-  handleAddTasks() {
+  handleAddTasks = () => {
     const { toggleAddTasksForm } = this.props;
 
     toggleAddTasksForm();

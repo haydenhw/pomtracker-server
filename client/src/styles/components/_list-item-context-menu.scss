@@ -5,15 +5,15 @@
     position: relative;
     // display: inline-table;
     // vertical-align: middle;
-     
+
     .popup-menu-wrapper {
       height: 0px;
     }
-    
+
     .popup-menu-trigger:hover {
-      background-color: transparent; 
-    }  
-  
+      background-color: transparent;
+    }
+
     .popup-menu-content {
       // padding-left: 0;
       // padding-right: 0;
@@ -24,21 +24,21 @@
       top: 58px;
       min-width: 155px;
     }
-    
+
     .popup-menu-item {
       border: 1px solid $grey-medium-light;
       border-bottom: none;
       padding: 8px 10px;
       text-transform: uppercase;
-      
+
       &:last-child {
         border-bottom: 1px solid $grey-medium-light;
       }
-      
+
       &:hover {
-        background-color: $grey-super-light; 
+        background-color: $grey-super-light;
       }
-      
+
       .context-menu-icon {
         opacity: .6;
       }

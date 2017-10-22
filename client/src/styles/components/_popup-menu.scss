@@ -47,7 +47,7 @@
   position: absolute;
   text-align: left;
   top: 120%;
-  transform: translateY(-50%) scale(1);  
+  @include transform(translateY(-50%) scale(1));  
   z-index: 9999;
 }
 

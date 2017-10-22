@@ -10,7 +10,7 @@ export function closeModal() {
   return (dispatch) => {
     dispatch(addModalClosingClass());
 
-    setTimeout(() => dispatch({ type: 'CLOSE_MODAL' }), 1500);
+    setTimeout(() => dispatch({ type: 'CLOSE_MODAL' }), 500);
   };
 }
 

@@ -1,14 +1,9 @@
-// -----------------------------------------------------------------------------
-// This file contains all application-wide Sass mixins.
-// -----------------------------------------------------------------------------
-
-
 
 @mixin centerVertHoriz(){
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  @include transform(translate(-50%, -50%));
 }
 
 @mixin respond-to($media) {
@@ -27,12 +22,22 @@
 }
 
 // vendor prefixes
-@mixin animation($str) {
-  -webkit-animation: #{$str};
-  -moz-animation: #{$str};
-  -ms-animation: #{$str};
-  -o-animation: #{$str};
-  animation: #{$str};
+@mixin animation($animation-props) {
+  -webkit-animation: #{$animation-props};
+  -moz-animation: #{$animation-props};
+  -ms-animation: #{$animation-props};
+  -o-animation: #{$animation-props};
+  animation: #{$animation-props};
+}
+
+@mixin animation-fill-mode($mode) {
+  animation-fill-mode: #{$mode};
+  -webkit-animation-fill-mode: #{$mode};
+}
+
+@mixin animation-delay($delay) {
+  animation-delay: #{$delay};
+  -webkit-animation-delay: #{$delay};
 }
 
 @mixin keyframes($anmiation-name) {

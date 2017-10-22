@@ -13,7 +13,7 @@ import TimerPage from './containers/TimerPage';
 
 import './helpers/polyfill';
 import './styles/index.scss';
-import './styles/icons/fonts/style.css';
+import './styles/icons/icomoon/style.css';
 
 render((
   <Provider store={store}>

@@ -4,23 +4,20 @@
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+  @include animation-fill-mode(both);
   @include animation(load7 1.8s infinite ease-in-out);
 }
 
 .loader {
-  color: black;
+  color: $color-primary;
   font-size: 10px;
   margin: 80px auto;
   position: relative;
   text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -.16s;
-  animation-delay: -.16s;
+  @include transform(translateZ(0));
+  @include animation-delay(-.16s);
 }
+
 .loader:before,
 .loader:after {
   content: '';
@@ -30,8 +27,7 @@
 
 .loader:before {
   left: -3.5em;
-  -webkit-animation-delay: -.32s;
-  animation-delay: -.32s;
+  @include animation-delay(-.32s);
 }
 
 .loader:after {

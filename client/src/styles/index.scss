@@ -1,8 +1,8 @@
 // 1. Configuration and helpers
 @import
   'helpers/variables',
-  'helpers/functions',
   'helpers/mixins',
+  'helpers/functions',
   'helpers/helpers';
 
 // 3. Base stuff
@@ -51,4 +51,4 @@
   'components/timer',
   'components/timesheet-column',
   'components/timesheet',
-  'components/welcome-modal.scss';
+  'components/welcome-modal';
