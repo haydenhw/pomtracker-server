@@ -1,10 +1,14 @@
 * {
   box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
 }
 
-html, body {
-  // background-color: $blue-grey;
-  color: $faded-black;
+html,
+body {
+  color: $black-faded;
   font-family: $font-main;
   font-size: 16px;
   height: 100%;
@@ -12,65 +16,39 @@ html, body {
   padding-bottom: 40px;
 }
 
-.color-body {
-  // background-color: $blue-grey;
-}
-#root {
+.react-root {
   padding-bottom: 40px;
 }
 
+button {
+  cursor: pointer;
+  font-family: 'Roboto Condensed';
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
+  &:focus {
+    border-width: 3px;
+  }
 }
 
-*:focus {
-  outline: none;
+h1 {
+  font-size: 24px;
+  font-weight: 500;
 }
 
-button:focus {
-  border-width: 3px;
-  // background-color: red;
+h2 {
+  font-size: 28px;
+  font-weight: 600;
 }
 
 label {
   display: block;
   font-size: 20px;
+  font-weight: normal;
   margin-bottom: 10px;
-}
-
-$heading-font: 'Open sans';
-h1 {
-  // font-family: $heading-font;
-  font-size: 24px;
-  font-weight: normal;
-  font-weight: 500;
-}
-
-h2 {
-  // font-family: $heading-font;
-  font-size: 28px;
-  margin-bottom: 40px;
-  font-weight: normal;
-  font-weight: 600;
-}
-
-button {
-  font-family: 'Roboto Condensed';
-}
-
-label {
-  // font-family: 'Roboto Condensed';
-  font-size: 24px;
-
-  font-weight: normal;
 }
 
 @include placeholder() {
   font-family: $font-form;
   font-size: $placeholder-font-size;
+  // font-size: 24px;
   font-weight: $placeholder-font-weight;
 }

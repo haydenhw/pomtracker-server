@@ -1,24 +1,24 @@
 .modal-container {
-  position:fixed;
-  height:100%;
-  width:100%;
-  top:0;
-  left:0;
-  transform:scale(0);
-  z-index:1;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1;
 
   .modal-background {
-    // display:table-cell;
+    // display: table-cell;
     height: 100%;
-    background:rgba(0,0,0,.8);
-    text-align:center;
+    background: rgba(0,0,0,.8);
+    text-align: center;
 
     .modal {
       // padding-bottom: 46px;
-      background:white;
-      display:inline-block;
-      font-family: $modal-font;
-      font-weight:300;
+      background:$white;
+      display: inline-block;
+      font-family: $font-modal;
+      font-weight: 300;
       max-width: 90%;
       min-height: 450px;
       min-width: 650px;
@@ -37,6 +37,16 @@
         }
       }
 
+      &.normal-modal {
+        .task-list {
+          max-height: 265px;
+
+          @include respond-to(handhelds) {
+            max-height: 15vh;
+          }
+        }
+      }
+
       .fullscreen-container {
         margin-top: 28vh;
         min-height: 45vh;
@@ -49,6 +59,19 @@
             margin-top: 28vh;
           }
         }
+
+        .task-list {
+          max-height: 22vh;
+          overflow-y: auto;
+
+          @include respond-to(handhelds) {
+            max-height: 15vh;
+
+            .form-error {
+              display: none;
+            }
+          }
+        }
       }
 
       .modal-button-bottom-right {
@@ -58,7 +81,7 @@
         margin: 0 80px 23px 0;
 
         @include respond-to(handhelds) {
-          @include centerVertHoriz();
+          @include center-vert-horiz();
           top: auto;
           bottom: 0;
           margin-bottom: 0;
@@ -94,6 +117,10 @@
         }
       }
 
+      .task-list {
+        overflow-y: auto;
+      }
+
       @include respond-to(handhelds) {
         // height: 99%;
         width: 95%;
@@ -114,7 +141,7 @@
   }
 
   &.unfold {
-    transform:scaleY(.01) scaleX(0);
+    transform: scaleY(.01) scaleX(0);
     @include animation(unfoldIn 1s cubic-bezier(.165, .840, .440, 1) forwards);
     .modal-background {
       .modal {
@@ -123,13 +150,13 @@
           width: 100%;
         }
 
-        transform:scale(0);
+        transform: scale(0);
         @include animation(zoomIn .5s .8s cubic-bezier(.165, .840, .440, 1) forwards);
       }
     }
 
     &.out {
-      transform:scale(1);
+      transform: scale(1);
       @include animation(unfoldOut 1s .3s cubic-bezier(.165, .840, .440, 1) forwards);
       .modal-background {
         .modal {
@@ -141,15 +168,15 @@
 
   &.roadrunner {
     display: table;
-    transform:scale(1);
+    transform: scale(1);
     .modal-background {
-      display:table-cell;
-      text-align:center;
-      vertical-align:middle;
-      background:rgba(0,0,0,.0);
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      background: rgba(0,0,0,.0);
       @include animation(fade-inBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
       .modal {
-        transform:translateX(-1500px);
+        transform: translateX(-1500px);
         @include animation(roadRunnerIn .3s cubic-bezier(.165, .840, .440, 1) forwards);
       }
     }

@@ -1,35 +1,32 @@
 .circular-delete {
-  // border-radius: 50px;
-  height: 22px;
-  width: 22px;
-  border: 0;
-  box-shadow: inset 0 0 0 1px   rgba(0,0,0,.2);
-  margin-left: 10px;
   background: linear-gradient(#fff, #eee);
-  text-align: center;
-  padding: 0;
-  color: #212121;
+  border: 0;
   border-radius: 50%;
-  
+  box-shadow: inset 0 0 0 1px   rgba(0,0,0,.2);
+  color: #212121;
+  height: 22px;
+  margin-left: 10px;
+  padding: 0;
+  text-align: center;
+  width: 22px;
+
   &:focus {
     box-shadow: inset 0 0 0 1px   rgba(0,0,0,.2);
   }
-  
+
   &:hover {
-    cursor: pointer;
     background: linear-gradient(#f7f7f7, #e6e6e6);
+    cursor: pointer;
   }
-  
-  .icon-cancel  {
+
+  .icon-cancel {
     position: relative;
   }
-  
+
   .icon-cancel::before {
-    opacity: .6;
     font-size: 1.05em;
+    opacity: .6;
     position: relative;
     top: 2px;
   }
 }
-
-

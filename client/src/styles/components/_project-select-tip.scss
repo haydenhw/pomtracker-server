@@ -28,7 +28,7 @@
       top: 3px;
       
       .icon-cancel  {
-        @include centerVertHoriz();
+        @include center-vert-horiz();
         left: 51%;
         top: 57.6%;
         opacity: .6;

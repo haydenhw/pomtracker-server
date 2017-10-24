@@ -1,5 +1,5 @@
 .timesheet {
-  background-color: white;
+  background-color:$white;
   box-shadow: 2px 4px 14px -1px rgba(0, 0, 0, .22);
   // border: 1px solid $grey-medium;
   font-size: 14px;
@@ -35,10 +35,10 @@
   
   .timesheet-add-button {
     background-color: $color-primary;
-    white-space: nowrap;
+   $white-space: nowrap;
     
     @include respond-to(handhelds) { 
-      @include centerVertHoriz();
+      @include center-vert-horiz();
       font-size: 11px;
     }
   }

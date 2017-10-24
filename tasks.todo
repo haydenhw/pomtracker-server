@@ -1,12 +1,14 @@
 **Goals for this Week**:
   ☐ lint all scss
   ☐ lint all server side code
+  ☐ search for logs in server side code
   ☐ eliminate unncessary fonts
   ☐ remove blue outline from play/stop timer button
   ☐ try adding tasks to a new project from the new project page. the task font is too large
   ☐ center all icons (esp list item menu dots and stop button)
   ☐ try hovering over an active list item menu while the timer is running then over over the dots menu. white background doesn't look great
-  ☐ make loader teal
+  ☐ increase the visibility of the shadow on top of tasks list
+  ☐ give black and white buttons some hover state
   ☐ clean up fonts folder
   ☐ thoroughly test all functionality
 
@@ -23,24 +25,3 @@
 
 ########################
 **Cleanup/Refactor**:
-
-**Later**:
-  ☐ move fonts from html file to sass files
-
-Questions for Derek:
-☐ should I add a 'press enter key to add task' message on add tasks form?
-
-Questions for Kyle:
-  ☐ How do you like the layout i.e that the timer is directly above the timesheet and timesheet is small?
-    ☐ any alternatives?
-    ☐ Should modals and forms all have same fonts as main page?
-    ☐ try changing time while timer is runnning. Not ideal right? ask about how to handle this user action.
-
-Kyle Notes:
-  ☐ Projects
-    ☐ Make timer visible from projects screen
-    ☐ negative space
-    ☐ 600px
-    ☐ monochromatic theme
-    ☐ switch submit and cancel button
-    ☐ number font is good. play with different title fonts

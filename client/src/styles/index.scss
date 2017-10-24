@@ -8,9 +8,7 @@
 // 3. Base stuff
 @import
   'base/base',
-  'base/fonts',
-  'base/normalize',
-  'base/typography';
+  'base/normalize';
 
 // 4. Layout-related sections
 @import
@@ -28,12 +26,10 @@
   'animations/modal-transitions';
 
 @import
-  'components/add-tasks-form',
-  'components/button-flip',
+  'components/task-list',
   'components/button-circular-delete',
   'components/button-material',
   'components/button-outline',
-  'components/circular-progressbar',
   'components/confirm',
   'components/edit-inline-text',
   'components/form',
@@ -51,3 +47,6 @@
   'components/timesheet-column',
   'components/timesheet',
   'components/welcome-modal';
+
+@import
+  'vendor/circular-progressbar';

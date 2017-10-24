@@ -70,7 +70,7 @@
   }
   
   .form-error {
-    color: $red-error;
+    color: $red;
     
     @include respond-to(handhelds) { 
       font-size: 16px;
@@ -83,7 +83,7 @@
   
   .form-input {
     border: none;
-    border-bottom: 1px solid $faded-black;
+    border-bottom: 1px solid $black-faded;
     padding-bottom: 10px;
     margin-bottom: 10px; 
     width: 100%;
@@ -94,7 +94,7 @@
   
   .form-title {
     line-height: 1.2;
-    color: $faded-black;
+    color: $black-faded;
     margin-bottom: 40px;
   }
   

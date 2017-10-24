@@ -1,11 +1,11 @@
 .material-button {
-  border: none;
-  border-radius: 2px;
-  padding: 15px 13px;
   background-color: $color-primary;
-  color: white;
-  font-weight: bolder;
+  border: 0;
+  border-radius: 2px;
+  color: $white;
   font-family: Roboto;
   font-size: 13px;
+  font-weight: bolder;
+  padding: 15px 13px;
   text-align: center;
 }

@@ -7,11 +7,11 @@
    
   .timer-content {
     font-size: 33px;
-    @include centerVertHoriz();
+    @include center-vert-horiz();
     // border: 1px solid #000;
     
     .timer-control {
-      color: $color-timer;
+      color: $color-primary;
       cursor: pointer; 
       
       &.disabled {

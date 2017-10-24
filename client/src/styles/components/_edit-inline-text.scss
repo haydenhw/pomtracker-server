@@ -1,20 +1,18 @@
-.editable-text {
-  color: black;
-}
-
-.edit-time:focus{
-  outline: none;
+.edit-time {
+  &:focus {
+    outline: none;
+  }
 }
 
 .editing {
-  background-color: $grey-light; 
-  font-family: sans-serif !important;
-  color: black !important; 
-  width: 125px;
+  color: $black-faded !important;
+  font-family: $font-main !important;
+  font-weight: 100;
   text-align: center;
+  width: 125px;
   z-index: -100;
-}
 
-.editing:focus {
-  outline: 0;
+  &:focus {
+    outline: 0;
+  }
 }

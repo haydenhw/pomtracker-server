@@ -1,6 +1,6 @@
 .timesheet-col {
   $left-right-padding: 3%;
-  // border: 1px solid black;
+  // border: 1px solid$black;
   display: inline-block; 
   text-align: left;
   vertical-align: top;
@@ -50,14 +50,14 @@
   }
   
   .timesheet-col-title {
-    color: $faded-black;
+    color: $black-faded;
     font-weight: normal;
     font-size: 16px;
     line-height: 1;
     margin-top: 2.4px;
     margin-bottom: 20px;
     overflow: hidden;
-    white-space: nowrap;
+   $white-space: nowrap;
     text-overflow: ellipsis;
   }
   

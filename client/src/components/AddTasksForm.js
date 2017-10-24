@@ -37,8 +37,8 @@ let AddTasksForm = (props) => {
         }
         <div className={`form-field-wrapper ${fieldAnimationName}`}>
           <label htmlFor="taskName">Tasks</label>
-          <List className="form-task-list" items={formTasks} renderItem={renderFormTask} />
-          <form className="add-tasks-form" autoComplete="off" onSubmit={handleSubmit(handleTaskSubmit)}>
+          <List className="task-list" items={formTasks} renderItem={renderFormTask} />
+          <form autoComplete="off" onSubmit={handleSubmit(handleTaskSubmit)}>
             <Field
               component={Input}
               name="taskName"
