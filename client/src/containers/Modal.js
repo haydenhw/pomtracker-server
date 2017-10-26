@@ -46,7 +46,7 @@ function Modal(props) {
     <RootModal className={rootModalClass}>
       <div className={`modal ${modalClass}`} style={style}>
         {isCloseButtonActive !== false &&
-        <span className="modal-close" onClick={closeModal} role="button" tabIndex={0}>&times;</span>
+          <span className="modal-close" onClick={closeModal} role="button" tabIndex={0}>&times;</span>
         }
         <SpecificModal {...modalProps} />
       </div>

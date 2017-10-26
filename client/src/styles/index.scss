@@ -23,7 +23,8 @@
 @import
   'animations/bounce-in-down',
   'animations/fade-in',
-  'animations/modal-transitions';
+  'animations/modal-transitions',
+  'animations/spinner';
 
 @import
   'components/task-list',
@@ -35,7 +36,6 @@
   'components/form',
   'components/list-item-context-menu',
   'components/list-item',
-  'components/loader',
   'components/modal',
   'components/nag',
   'components/nav',
@@ -49,4 +49,5 @@
   'components/welcome-modal';
 
 @import
-  'vendor/circular-progressbar';
+  'vendor/circular-progressbar',
+  'vendor/loader';

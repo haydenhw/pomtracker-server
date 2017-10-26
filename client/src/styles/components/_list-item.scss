@@ -81,6 +81,7 @@
     &.list-item-stop {
       &:hover {
         background-color: $blue-steel-hover;
+        cursor: pointer;
       }
     }
 
@@ -179,11 +180,5 @@
         opacity: .6;
       }
     }
-  }
-}
-
-@include keyframes(spinner) {
-  to {
-    @include transform(rotate(360deg));
   }
 }

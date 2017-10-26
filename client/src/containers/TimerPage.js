@@ -64,8 +64,9 @@ const TimerPage = class extends Component {
       return null;
     }
 
+    console.log(sessionStorage.isFirstSessionVisita)
     if (
-      (sessionStorage.isFirstSessionVisit === undefined && isDevOnboardingActive) ||
+      ((sessionStorage.isFirstSessionVisit === undefined)) ||
       ((projects.length === 0) && isOnboardingActive)
     ) {
       sessionStorage.isFirstSessionVisit = false;
