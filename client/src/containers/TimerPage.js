@@ -203,11 +203,11 @@ const TimerPage = class extends Component {
         >
           <li className="popup-menu-item" onClick={this.handleEditTask(shortId)} role="menuitem">
             <i className="context-menu-icon icon-edit" />
-            <a>Edit</a>
+            <a className="popup-menu-item-name">Edit</a>
           </li>
           <li className="popup-menu-item" onClick={this.handleTaskDelete(selectedProject, task)} role="menuitem">
             <i className="context-menu-icon icon-delete" />
-            <a>Delete</a>
+            <a className="popup-menu-item-name">Delete</a>
           </li>
         </ContextMenu>
       </TimesheetListItem>

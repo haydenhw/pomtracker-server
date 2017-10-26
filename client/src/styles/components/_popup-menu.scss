@@ -7,63 +7,46 @@
   padding: 5px;
   position: relative;
   text-align: center;
-}
 
-.popup-menu-item {
-  clear: both;
-}
+  .popup-menu-item {
+    clear: both;
 
-.popup-menu-trigger-wrapper {
-  display: inline-block;
-  width: 100%;
-}
+    &:hover {
+      background-color: $grey-light;
+    }
 
-.popup-menu-trigger {
-  font-size: 22px;
-  width: 100%;
-}
+    .popup-menu-item-name {
+      display: inline-block;
+      padding: 8px 15px;
+    }
+  }
 
-.projects-popup-menu .popup-menu-trigger-wrapper {
-  height: 50px;
-  padding: 14px 18px;
-  display: inline-block;
-}
+  .popup-menu-trigger-wrapper {
+    display: inline-block;
+    width: 100%;
 
-.popup-menu-trigger:hover {
-  cursor: pointer;
-}
+    .popup-menu-trigger {
+      cursor: pointer;
+      font-size: 22px;
+      width: 100%;
+    }
+  }
 
-.popup-menu-content {
-  background-color: #f9f9f9;
-  background-color: $white; 
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
-  list-style-type: none;
-  margin: 0;
-  max-height: 300px;
-  max-width: 250px;
-  min-width: 200px;
-  overflow: auto;
-  padding: 0;
-  position: absolute;
-  text-align: left;
-  top: 120%;
-  @include transform(translateY(-50%) scale(1));  
-  z-index: 9999;
-}
+  .popup-menu-content {
+    @include transform(translateY(-50%) scale(1));
+    background-color: $white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
+    list-style-type: none;
+    margin: 0;
+    max-height: 300px;
+    max-width: 250px;
+    min-width: 200px;
+    overflow: auto;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+    top: 120%;
+    z-index: 9999;
+  }
 
-.projects-popup-menu .popup-menu-content {
-  margin-top: 13px;
-}
-
-.popup-menu a {
-  display: inline-block;
-  padding: 8px 15px;
-  text-decoration: none;
-  color: $black;
-}
-
-
-.popup-menu-item:hover {
-  // width: 100%;
-  background-color: $grey-light;
 }
