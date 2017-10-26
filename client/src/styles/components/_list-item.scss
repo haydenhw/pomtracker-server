@@ -4,6 +4,10 @@
   padding: 25px 25px 25px 20px;
   width: 100%;
 
+  @include respond-to(small-screens) {
+    padding: 25px 9px;
+  }
+
   &.selected {
     background-color: $blue-light;
   }
@@ -12,24 +16,20 @@
     background-color: $aqua;
 
     .list-item-stop {
-      background-color:$black;
-      border-color:$black;
+      background-color: $black;
+      border-color: $black;
     }
 
     .list-item-outline-button {
       background-color: transparent;
 
       &:hover {
-        background-color:$white;
+        background-color: $white;
 
         .icon-dots {
+          color: $black;
           opacity: 1;
-          color:$black;
         }
-      }
-
-      .icon-dots {
-        opacity: .7 !important;
       }
     }
 
@@ -39,49 +39,43 @@
   }
 
   &:first-child:last-child {
-    // border-bottom: 1px solid $grey-medium-dark;
     &.total-time {
+      border: 0;
       padding-top: 50px;
-      border: none;
     }
   }
 
-  &:not(.active):not(.list-item-header):not(.total-time):hover {
+  &:not(.active):not(.total-time):hover {
     background-color: $blue-light;
     cursor: pointer;
 
-      .icon-dots {
-        opacity: .7;
-      }
+    .icon-dots {
+      opacity: .7;
+    }
   }
 
   &.total-time {
-    border: none;
+    border: 0;
     font-size: inherit;
-  }
-
-  .list-item-header {
-    color: grey;
-    padding: 20px;
-    font-weight: bold;
   }
 
   .list-item-button {
     $icon-size: 14;
     $icon-padding: 8;
-    box-sizing: content-box;
-    display: inline-block;
-    padding: $icon-padding * 1px;
+
     background-color: $blue-steel;
     border: 1px solid $blue-steel;
-    color:$white;
-    text-align: center;
     border-radius: 50%;
-    position: relative;
+    box-sizing: content-box;
+    color: $white;
+    display: inline-block;
     font-size: $icon-size * 1px;
-    line-height: $icon-size * 1px;
-    width: $icon-size * 1px;
     height: $icon-size * 1px;
+    line-height: $icon-size * 1px;
+    padding: $icon-padding * 1px;
+    position: relative;
+    text-align: center;
+    width: $icon-size * 1px;
 
     &.list-item-play,
     &.list-item-stop {
@@ -94,12 +88,20 @@
       background-color: transparent;
       color: $blue-steel;
       font-size: 15px;
+      height: $icon-size - 0 * 1px;
       margin-left: 20px;
       width: $icon-size - 0 * 1px;
-      height: $icon-size - 0 * 1px;
+
+      @include respond-to(handhelds) {
+        margin-left: 5px;
+      }
 
       .icon-dots {
         opacity: 0;
+        position: relative;
+        right: 6.6%;
+        top: 8%;
+
       }
 
       &:hover {
@@ -107,27 +109,22 @@
           opacity: 1;
         }
       }
-
-      @include respond-to(handhelds) {
-        margin-left: 5px;
-      }
     }
 
     &.list-item-stop:before {
+      @include animation(spinner 1s linear infinite);
+
       $icon-radius: $icon-size / 2 + $icon-padding;
       $spinner-radius: $icon-radius - 1;
-      content: '';
-      box-sizing: border-box;
-      position: absolute;
-      top: $icon-radius - $spinner-radius * 1px;
-      left: $icon-radius - $spinner-radius * 1px;
-      width: $spinner-radius * 2px;
-      height: $spinner-radius * 2px;
       border-radius: 50%;
       border-top: .75px solid$white;
-      /*   border-right: 2px solid transparent; */
-      // border: 2px solid yellow;
-      @include animation(spinner 1s linear infinite);
+      box-sizing: border-box;
+      content: '';
+      height: $spinner-radius * 2px;
+      left: $icon-radius - $spinner-radius * 1px;
+      position: absolute;
+      top: $icon-radius - $spinner-radius * 1px;
+      width: $spinner-radius * 2px;
     }
 
     .list-item-letter-icon {
@@ -136,19 +133,18 @@
     }
 
     .icon-play {
-      position: relative;
       left: 7.5%;
+      position: relative;
     }
   }
 
   .list-item-context-menu {
+    font-size: 13px;
     min-width: 0;
     padding: 0;
-    text-align: left;
     position: relative;
-    font-size: 13px;
-    // display: inline-table;
-    // vertical-align: middle;
+    text-align: left;
+
     .popup-menu-wrapper {
       height: 0;
     }
@@ -158,19 +154,16 @@
     }
 
     .popup-menu-content {
-      // padding-left: 0;
-      // padding-right: 0;
-      background-color:$white;
-      padding: 0;
+      background-color: $white;
+      min-width: 155px;
       position: absolute;
       right: 0;
       top: 58px;
-      min-width: 155px;
     }
 
     .popup-menu-item {
       border: 1px solid $grey-medium-light;
-      border-bottom: none;
+      border-bottom: 0;
       padding: 8px 10px;
       text-transform: uppercase;
 
@@ -186,10 +179,6 @@
         opacity: .6;
       }
     }
-  }
-
-  @include respond-to(small-screens) {
-    padding: 25px 9px;
   }
 }
 
