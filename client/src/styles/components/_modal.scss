@@ -1,173 +1,105 @@
-.modal-container {
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  transform: scale(0);
-  width: 100%;
-  z-index: 1;
+.modal {
+  background: $white;
+  display: inline-block;
+  font-family: $font-modal;
+  font-weight: 300;
+  max-width: 90%;
+  min-height: 450px;
+  min-width: 650px;
+  overflow: auto;
+  padding: 106px 0;
+  padding-bottom: 58;
+  padding-top: 46px;
+  position: relative;
 
-  .modal-background {
-    background: rgba(0,0,0,.8);
+  @include respond-to(handhelds) {
     height: 100%;
-    text-align: center;
+    min-width: 95%;
+    padding: 20px;
+    width: 95%;
+  }
 
-    .modal {
-      background: $white;
-      display: inline-block;
-      font-family: $font-modal;
-      font-weight: 300;
-      max-width: 90%;
-      min-height: 450px;
-      min-width: 650px;
-      overflow: auto;
-      padding: 106px 0;
-      padding-bottom: 58;
-      padding-top: 46px;
-      position: relative;
+  @include respond-to(small-screens) {
+    height: 90%;
+    min-height: 90%;
+    min-width: 90%;
+    width: 90%;
+  }
+
+  &.fullscreen-modal {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  &.normal-modal {
+    .task-list {
+      max-height: 265px;
 
       @include respond-to(handhelds) {
-        height: 100%;
-        min-width: 95%;
-        padding: 20px;
-        width: 95%;
+        max-height: 15vh;
       }
+    }
+  }
 
-      @include respond-to(small-screens) {
-        height: 90%;
-        min-height: 90%;
-        min-width: 90%;
-        width: 90%;
-      }
+  .fullscreen-container {
+    margin-top: 28vh;
+    min-height: 45vh;
 
-      &.fullscreen-modal {
-        max-height: 100%;
-        max-width: 100%;
-      }
+    @include respond-to(handhelds) {
+      margin-top: 15vh;
+      position: static;
 
-      &.normal-modal {
-        .task-list {
-          max-height: 265px;
-
-          @include respond-to(handhelds) {
-            max-height: 15vh;
-          }
-        }
-      }
-
-      .fullscreen-container {
+      &.welcome {
         margin-top: 28vh;
-        min-height: 45vh;
-
-        @include respond-to(handhelds) {
-          position: static;
-          margin-top: 15vh;
-
-          &.welcome {
-            margin-top: 28vh;
-          }
-        }
-
-        .task-list {
-          max-height: 22vh;
-          overflow-y: auto;
-
-          @include respond-to(handhelds) {
-            max-height: 15vh;
-
-            .form-error {
-              display: none;
-            }
-          }
-        }
-      }
-
-      .modal-button-bottom-right {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        margin: 0 80px 23px 0;
-
-        @include respond-to(handhelds) {
-          @include center-vert-horiz();
-          top: auto;
-          bottom: 0;
-          margin-bottom: 0;
-          padding: 16px 100px;
-        }
-      }
-
-      .modal-close {
-        color: $grey-dark;
-        float: right;
-        font-size: 31px;
-        font-weight: bold;
-        opacity: .6;
-        position: absolute;
-        right: 26px;
-        top: 13px;
-        z-index: 9999;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      .task-list {
-        overflow-y: auto;
-      }
-    }
-  }
-
-  &.unfold {
-    transform: scaleY(.01) scaleX(0);
-    @include animation(unfoldIn 1s cubic-bezier(.165, .840, .440, 1) forwards);
-    .modal-background {
-      .modal {
-        &.fullscreen-modal {
-          height: 100%;
-          width: 100%;
-        }
-
-        transform: scale(0);
-        @include animation(zoomIn .5s .8s cubic-bezier(.165, .840, .440, 1) forwards);
       }
     }
 
-    &.out {
-      transform: scale(1);
-      @include animation(unfoldOut 1s .3s cubic-bezier(.165, .840, .440, 1) forwards);
-      .modal-background {
-        .modal {
-          @include animation(zoomOut .5s cubic-bezier(.165, .840, .440, 1) forwards);
+    .task-list {
+      max-height: 22vh;
+      overflow-y: auto;
+
+      @include respond-to(handhelds) {
+        max-height: 15vh;
+
+        .form-error {
+          display: none;
         }
       }
     }
   }
 
-  &.roadrunner {
-    display: table;
-    transform: scale(1);
-    .modal-background {
-      display: table-cell;
-      text-align: center;
-      vertical-align: middle;
-      background: rgba(0,0,0,.0);
-      @include animation(fade-inBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
-      .modal {
-        transform: translateX(-1500px);
-        @include animation(roadRunnerIn .3s cubic-bezier(.165, .840, .440, 1) forwards);
-      }
-    }
+  .modal-button-bottom-right {
+    bottom: 0;
+    margin: 0 80px 23px 0;
+    position: absolute;
+    right: 0;
 
-    &.out {
-      @include animation(quickScaleDown 0s .5s linear forwards);
-      .modal-background {
-        @include animation(fadeOutBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
-        .modal {
-          @include animation(roadRunnerOut .5s cubic-bezier(.165, .840, .440, 1) forwards);
-        }
-      }
+    @include respond-to(handhelds) {
+      @include center-vert-horiz();
+      bottom: 0;
+      margin-bottom: 0;
+      padding: 16px 100px;
+      top: auto;
     }
+  }
+
+  .modal-close {
+    color: $grey-dark;
+    float: right;
+    font-size: 31px;
+    font-weight: bold;
+    opacity: .6;
+    position: absolute;
+    right: 26px;
+    top: 13px;
+    z-index: 9999;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .task-list {
+    overflow-y: auto;
   }
 }

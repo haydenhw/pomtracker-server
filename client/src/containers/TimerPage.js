@@ -55,16 +55,11 @@ const TimerPage = class extends Component {
   componentWillMount() {
     const { isOnboardingActive, projects, setSelectedProject, toggleOnboardMode } = this.props;
 
-    // if (isDevOnboardingActive) {
-    //   !isOnboardingActive && toggleOnboardMode();
-    //   return null;
-    // }
     if (isDevOnboardingActive && !isOnboardingActive) {
       toggleOnboardMode();
       return null;
     }
 
-    console.log(sessionStorage.isFirstSessionVisita)
     if (
       ((sessionStorage.isFirstSessionVisit === undefined)) ||
       ((projects.length === 0) && isOnboardingActive)

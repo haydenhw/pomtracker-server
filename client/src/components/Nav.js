@@ -5,7 +5,7 @@ export default function Nav(props) {
   const { activeLink, handleTimerLinkClick, handleProjectsLinkClck } = props;
 
   return (
-    <nav>
+    <nav className="nav">
       <div className="nav-logo-wrapper">
         <img className="nav-logo-image" src="images/black-white-tomato-timer.png" alt="tomato timer logo" />
         <h1 className="nav-logo-text"><span>Pom</span><span className="nav-logo-text-bold">Tracker</span></h1>

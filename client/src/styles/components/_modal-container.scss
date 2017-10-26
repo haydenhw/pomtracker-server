@@ -6,3 +6,68 @@
   transform: scale(0);
   width: 100%;
   z-index: 1;
+
+
+  &.unfold {
+    @include animation(unfoldIn 1s cubic-bezier(.165, .840, .440, 1) forwards);
+    transform: scaleY(.01) scaleX(0);
+
+    .modal-background {
+      @include animation(zoomIn .5s .8s cubic-bezier(.165, .840, .440, 1) forwards);
+      transform: scale(0);
+
+      .modal {
+        &.fullscreen-modal {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    &.out {
+      @include animation(unfoldOut 1s .3s cubic-bezier(.165, .840, .440, 1) forwards);
+      transform: scale(1);
+
+      .modal-background {
+        .modal {
+          @include animation(zoomOut .5s cubic-bezier(.165, .840, .440, 1) forwards);
+        }
+      }
+    }
+  }
+
+  &.roadrunner {
+    display: table;
+    transform: scale(1);
+
+    .modal-background {
+      @include animation(fade-inBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
+      background: $transparent-clear;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+
+      .modal {
+        @include animation(roadRunnerIn .3s cubic-bezier(.165, .840, .440, 1) forwards);
+        transform: translateX(-1500px);
+      }
+    }
+
+    &.out {
+      @include animation(quickScaleDown 0s .5s linear forwards);
+
+      .modal-background {
+        @include animation(fadeOutBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
+        .modal {
+          @include animation(roadRunnerOut .5s cubic-bezier(.165, .840, .440, 1) forwards);
+        }
+      }
+    }
+  }
+
+  .modal-background {
+    background: $transparent-dark;
+    height: 100%;
+    text-align: center;
+  }
+}
