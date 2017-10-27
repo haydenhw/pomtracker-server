@@ -9,7 +9,7 @@ projectRouter.route('/')
     Projects
       .find()
       .exec()
-      .then((projects) => { return res.json({ projects }); })
+      .then(projects => res.json({ projects }))
       .catch(
         (err) => {
           console.error(err);
@@ -19,6 +19,7 @@ projectRouter.route('/')
   .post((req, res) => {
     if (!('projectName' in req.body)) {
       const message = 'Missing projectName in request body';
+
       console.error(message);
       return res.status(400).send(message);
     }
@@ -40,7 +41,7 @@ projectRouter.route('/')
             });
         }
       })
-      .then((project) => { return res.status(201).json(project); })
+      .then(project => res.status(201).json(project))
       .catch((err) => {
         console.error(err);
         res.status(500).json({ message: 'Internal server error' });
@@ -52,7 +53,7 @@ projectRouter.route('/:projectId')
     Projects
       .findById(req.params.projectId)
       .exec()
-      .then((projects) => { return res.json({ projects }); })
+      .then(projects => res.json({ projects }))
       .catch((err) => {
         console.error(err);
         res.status(404).json({ message: 'Project Not Found' });
@@ -87,7 +88,7 @@ projectRouter.route('/:projectId')
             .findByIdAndUpdate(req.params.projectId, { $push: toUpdate }, { new: true });
         }
       })
-      .then((project) => { return res.status(201).json(project.tasks[project.tasks.length - 1]); })
+      .then(project => res.status(201).json(project.tasks[project.tasks.length - 1]))
       .catch((err) => {
         console.error(err);
         res.status(404).json({ message: 'Project Not Found' });
@@ -103,18 +104,18 @@ projectRouter.route('/:projectId')
       'position:': req.body.position,
     };
 
-      Projects
-       .findByIdAndUpdate(req.params.projectId, { $set: toUpdate })
-       .exec()
-       .then((project) => { return res.status(204).end(); })
-       .catch((err) => { return res.status(500).json({ message: 'Internal server error' }); });
-   })
-   .delete((req, res) => {
-       Projects
-       .findByIdAndRemove(req.params.projectId)
-       .exec()
-       .then((project) => { return res.status(204).end(); })
-       .catch((err) => { return res.status(404).json({ message: 'Not Found' }); });
-   });
+    Projects
+      .findByIdAndUpdate(req.params.projectId, { $set: toUpdate })
+      .exec()
+      .then(() => res.status(204).end())
+      .catch(() => res.status(500).json({ message: 'Internal server error' }));
+  })
+  .delete((req, res) => {
+    Projects
+      .findByIdAndRemove(req.params.projectId)
+      .exec()
+      .then(() => res.status(204).end())
+      .catch(() => res.status(404).json({ message: 'Not Found' }));
+  });
 
 module.exports = projectRouter;
