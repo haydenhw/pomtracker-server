@@ -1,67 +1,61 @@
 .timesheet-col {
   $left-right-padding: 3%;
-  // border: 1px solid$black;
-  display: inline-block; 
+  display: inline-block;
   text-align: left;
   vertical-align: top;
-  
+
   &.timesheet-col1 {
-    width: 15%;
     padding-left: $left-right-padding;
-    // height: 30px;
-    @include respond-to(handhelds) { 
+    width: 15%;
+
+    @include respond-to(handhelds) {
       width: 23%;
     }
-    
-    @include respond-to(small-screens) { 
+
+    @include respond-to(small-screens) {
       width: 23%;
     }
   }
-  
+
   &.timesheet-col2 {
     width: 65%;
-    // padding-left: 19%;
-    @include respond-to(handhelds) { 
+
+    @include respond-to(handhelds) {
       width: 46%;
     }
-    
-    @include respond-to(small-screens) { 
+
+    @include respond-to(small-screens) {
       width: 46%;
     }
   }
-  
+
   &.timesheet-col3 {
-    width: 20%;
-    text-align: right;
     padding-right: $left-right-padding;
-    // visibility: hidden;rtical-align: middle;
-    @include respond-to(handhelds) { 
+    text-align: right;
+    width: 20%;
+
+    @include respond-to(handhelds) {
       width: 31%;
     }
-    
-    @include respond-to(small-screens) { 
+
+    @include respond-to(small-screens) {
       width: 31%;
     }
   }
-  
-  &.timesheet-col4 {
-    // width: 10%;
-    // vertical-align: middle;
-  }
-  
+
   .timesheet-col-title {
     color: $black-faded;
-    font-weight: normal;
     font-size: 16px;
+    font-weight: normal;
     line-height: 1;
-    margin-top: 2.4px;
     margin-bottom: 20px;
+    margin-top: 2.4px;
     overflow: hidden;
-   $white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  
+
   .timesheet-col-time {
-    font-size: .95em;
+    font-size: 13px;
   }
 }

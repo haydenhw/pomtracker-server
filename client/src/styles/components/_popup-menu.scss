@@ -48,5 +48,31 @@
     top: 120%;
     z-index: 9999;
   }
+}
 
+.popup-menu-enter {
+  opacity: 0;
+  @include transform(  translateY(-40%) scale(.9));
+}
+
+.popup-menu-enter {
+  &.popup-menu-enter-active {
+    @include transform(translateY(-50%) scale(1));
+    opacity: 1;
+    transition-property: transform, opacity, scale;
+    transition-duration: 200ms;
+    transition: opacity .4s, transform .4s;
+  }
+}
+
+
+.popup-menu-leave {
+  @include transform(translateY(-50%) scale(1));
+  opacity: 1;
+
+  &.popup-menu-leave-active  {
+    @include transform(translateY(-40%) scale(.9));
+    opacity: 0;
+    transition: opacity .4s, transform .4s;
+  }
 }

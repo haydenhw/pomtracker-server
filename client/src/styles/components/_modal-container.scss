@@ -42,7 +42,7 @@
 
     .modal-background {
       @include animation(fade-inBackground .5s cubic-bezier(.165, .840, .440, 1) forwards);
-      background: $transparent-clear;
+      background: rgba(0, 0, 0, .0);
       display: table-cell;
       text-align: center;
       vertical-align: middle;
@@ -66,7 +66,7 @@
   }
 
   .modal-background {
-    background: $transparent-dark;
+    background: rgba(0, 0, 0, .8);
     height: 100%;
     text-align: center;
   }

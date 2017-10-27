@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CircularProgressbar from 'react-circular-progressbar';
 
 import { secondsToMSS } from '../helpers/time';
-import { showProgressBar, devStyle } from '../srcConfig/devSettings';
+import { showProgressBar, devStyle } from '../src-config/devSettings';
 
 import EditInlineText from '../containers/EditInlineText';
 

@@ -1,6 +1,6 @@
 // colors
 $aqua: #1dd7b9;
-$black: #000000;
+$black: #000;
 $black-faded: #424242;
 $blue-grey: #f0f4f7;
 $blue-light: #f2faff;
@@ -16,10 +16,7 @@ $red: #eb7e7f;
 $teal: #008080;
 $teal-light: #4db6ac;
 $teal-dark: #bdbdbd;
-$white: #ffffff;
-
-$transparent-clear: rgba(0, 0, 0, .0);
-$transparent-dark: rgba(0, 0, 0, .8);
+$white: #fff;
 
 $color-primary: $teal;
 
@@ -27,6 +24,8 @@ $color-primary: $teal;
 $font-main: 'Roboto', sans-serif;
 $font-form: 'Raleway', sans-serif;
 $font-modal: $font-form;
+$font-title: 'Roboto Condensed', sans-serif;
+
 $placeholder-font-weight: bold;
 $placeholder-font-size: 1em;
 

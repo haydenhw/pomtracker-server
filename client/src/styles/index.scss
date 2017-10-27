@@ -1,25 +1,14 @@
-// 1. Configuration and helpers
-
 @import
   'helpers/variables',
   'helpers/mixins',
-  'helpers/functions',
   'helpers/helpers';
 
-// 3. Base stuff
 @import
   'base/base',
   'base/normalize';
 
-// 4. Layout-related sections
 @import
-  'layout/header',
-  'layout/footer',
   'layout/time-tracker-sections';
-
-// 6. Page-specific styles
-@import
-  'pages/home';
 
 @import
   'animations/bounce-in-down',
@@ -28,7 +17,6 @@
   'animations/spinner';
 
 @import
-  'components/task-list',
   'components/button-circular-delete',
   'components/button-material',
   'components/button-outline',
@@ -45,7 +33,7 @@
   'components/nav',
   'components/popup-menu',
   'components/select',
-  'components/task',
+  'components/task-list',
   'components/timer',
   'components/timesheet-column',
   'components/timesheet',

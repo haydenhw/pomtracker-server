@@ -1,67 +1,63 @@
 .timesheet {
   background-color: $white;
   box-shadow: 2px 4px 14px -1px rgba(0, 0, 0, .22);
-  // border: 1px solid $grey-medium;
   font-size: 14px;
   margin: 40px auto;
   margin-bottom: 0;
-  padding: 30px 0;
-  width: 80%;
+  max-width: 960px;
   min-height: 37vh;
   min-width: 600px;
-  max-width: 960px;
-  
+  padding: 30px 0;
+  width: 80%;
+
   .timesheet-row {
     padding: 25px;
     position: relative;
   }
-  
+
   .timesheet-title {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 25px; 
+    font-family: $font-title;
+    font-size: 25px;
     font-weight: 300;
-    // margin-bottom: 33px;
-    // margin-top: 20px;
     margin: 0;
     text-align: center;
-    
-    @include respond-to(handhelds) { 
-      // font-size: 20px;
+
+    @include respond-to(handhelds) {
       margin-bottom: 20px;
       margin-left: 5%;
       margin-right: 25px;
     }
-  }    
-  
+  }
+
   .timesheet-add-button {
     background-color: $color-primary;
-   $white-space: nowrap;
-    
-    @include respond-to(handhelds) { 
+    white-space: nowrap;
+
+    @include respond-to(handhelds) {
+      box-shadow: 0 0 0;
+      min-width: 100%;
+      width: 100%;
+    }
+
+    @include respond-to(small-screens) {
+      box-shadow: 0 0 0;
+      min-width: 100%;
+      width: 100%;
+    }
+
+    @include respond-to(handhelds) {
       @include center-vert-horiz();
       font-size: 11px;
     }
   }
-  
+
   .total-time {
+    padding-bottom: 0;
     padding-top: 50px;
-    padding-bottom: 0px;
-    
+
     .total-time-time {
+      font-size: 13px;
       font-weight: 500;
-      font-size: .95em;
-    }  
-  }
-  
-  @include respond-to(handhelds) { 
-    box-shadow: 0 0 0;
-    min-width: 100%;
-    width: 100%;
-  }
-  
-  @include respond-to(small-screens) {
-    box-shadow: 0 0 0;
-    min-width: 100%;
-    width: 100%;
+    }
   }
 }

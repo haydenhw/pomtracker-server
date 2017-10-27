@@ -1,41 +1,32 @@
 .timer {
+  font-weight: 100;
+  margin: 0 auto;
   position: relative;
   width: 225px;
-  margin: 0 auto;
-  font-family: 'Roboto', sans-serif; 
-  font-weight: 100;
-   
+
+  @include respond-to(handhelds) {
+    max-width: 225px;
+    width: auto;
+  }
+
   .timer-content {
-    font-size: 33px;
     @include center-vert-horiz();
-    // border: 1px solid #000;
-    
+    font-size: 33px;
+
     .timer-control {
       color: $color-primary;
-      cursor: pointer; 
-      
+      cursor: pointer;
+
       &.disabled {
-        opacity: .3;
         cursor: default;
+        opacity: .3;
       }
-      
+
       .icon-play-rounded {
-        // border: 1px solid #000;
         font-size: 98px;
-        position: relative;
         left: 7%;
+        position: relative;
       }
     }
   }
-  
-  .edit-time, 
-  .editing {
-    font-size: 1.5em;
-  }
-  
-  @include respond-to(handhelds) { 
-    width: auto;
-    max-width: 225px;
-  }
 }
-

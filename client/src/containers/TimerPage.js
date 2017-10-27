@@ -31,7 +31,7 @@ import Modal from './Modal';
 import Select from './Select';
 import Timer from './Timer';
 
-import { isDevOnboardingActive } from '../srcConfig/devSettings';
+import { isDevOnboardingActive } from '../src-config/devSettings';
 
 const TimerPage = class extends Component {
   static defaultProps = {

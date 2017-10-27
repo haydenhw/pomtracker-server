@@ -1,62 +1,28 @@
 .select {
   font-size: 22px;
   margin-bottom: 10px;
-  
+
   &.popup-menu  {
     .popup-menu-trigger {
       color: $grey-dark;
       padding: 5px;
+
       &:hover {
         background-color: $grey-light;
       }
     }
   }
-  
+
   .option {
-    font-size: 18px;
-    padding: 7px 15px;
-    overflow: hidden;
-   $white-space: nowrap;
-    text-overflow: ellipsis;  
-  }
-  
-  .option:hover {
-    background-color: $grey-super-light;
     cursor: pointer;
+    font-size: 18px;
+    overflow: hidden;
+    padding: 7px 15px;
+    text-overflow: ellipsis;
+    $white-space: nowrap;
+
+    &:hover {
+      background-color: $grey-super-light;
+    }
   }
-  
-  .grey {
-    color: $grey-dark;
-  }
 }
-
-@include keyframes(scaleTranslate){
-  from { opacity:0; }
-}
-
-.popup-menu-enter {
-  opacity: 0;
-  @include transform(  translateY(-40%) scale(.9));
-
-}
-.popup-menu-enter.popup-menu-enter-active {
-  opacity: 1;
-  @include transform(  translateY(-50%) scale(1));
-  transition-property: transform, opacity, scale;
-  transition-duration: 200ms;
-  transition: opacity .4s, transform .4s;
-  // transition-timing-function: cubic-bezier(.175, .665, .420, 1), linear;
-}
-
-
-.popup-menu-leave {
-  opacity: 1;
-  @include transform(  translateY(-50%) scale(1));
-}
-
-.popup-menu-leave.popup-menu-leave-active {
-  opacity: 0;
-  @include transform(  translateY(-40%) scale(.9));
-  transition: opacity .4s, transform .4s;
-}
-
