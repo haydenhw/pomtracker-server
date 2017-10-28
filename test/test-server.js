@@ -5,64 +5,58 @@ const mongoose = require('mongoose');
 
 const should = chai.should();
 
-const {Projects} = require('../server-files/models');
-const {app, runServer, closeServer} = require('../server');
+const { Projects } = require('../server-files/models');
+const { app, runServer, closeServer } = require('../server');
 
 chai.use(chaiHttp);
-
-const generateProjectName = () => {
-  const parents = ["Node Capstone", "React Tutorial", "Remodel Kitchen"];
-  return parents[Math.floor(Math.random() * parents.length)];
-}
 
 const generateTime = () => {
   const hours = Math.floor(Math.random() * 24);
   let minutes = Math.floor(Math.random() * 60);
 
   if (minutes.toString().length === 1) {
-    minutes = `0${minutes}`
+    minutes = `0${minutes}`;
   }
 
-  return `${hours}:${minutes}`
-}
+  return `${hours}:${minutes}`;
+};
 
 const generateTaskLogEntry = () => {
   return {
     startTime: generateTime(),
-    endTime: generateTime()
-  }
-}
+    endTime: generateTime(),
+  };
+};
 
 const generateDataArray = (callback, maxLength) => {
-  let arr = [];
+  const arr = [];
 
-  for (let i = 0; i < Math.random() * maxLength + 1; i++) {
-    arr.push(callback())
+  for (let i = 0; i < (Math.random() * maxLength) + 1; i++) {
+    arr.push(callback());
   }
 
   return arr;
-}
+};
 
 const generateTask = () => {
   return {
     taskName: faker.lorem.word(),
-    totalTime: Math.floor(Math.random()*20),
-    log: generateDataArray(generateTaskLogEntry, 3)
-
-  }
-}
+    totalTime: Math.floor(Math.random() * 20),
+    log: generateDataArray(generateTaskLogEntry, 3),
+  };
+};
 
 const generateProject = () => {
   return {
     projectName: faker.lorem.word(),
     tasks: generateDataArray(generateTask, 3),
-  }
-}
+  };
+};
 
 const seedProjectData = () => {
   const seedData = generateDataArray(generateProject, 2);
   return Projects.insertMany(seedData);
-}
+};
 
 function tearDownDb() {
   return new Promise((resolve, reject) => {
@@ -73,8 +67,7 @@ function tearDownDb() {
   });
 }
 
-describe('Projects API resource'(() => {
-
+describe('Projects API resource', () => {
   before(() => {
     return runServer();
   });
@@ -92,25 +85,23 @@ describe('Projects API resource'(() => {
   });
 
 
-  describe('/projects GET endpoint'(() => {
+  describe('/projects GET endpoint', () => {
+    it('should return all existing projects', () => {
+      let res;
+      return chai.request(app)
+        .get('/projects')
+        .then((_res) => {
+          res = _res;
+          res.should.have.status(200);
+          res.body.projects.should.have.length.of.at.least(1);
+          return Projects.count();
+        })
+        .then((count) => {
+          res.body.projects.should.have.length.of(count);
+        });
+    });
 
-    // it('should return all existing projects'(() => {
-    //   let res;
-    //   return chai.request(app)
-    //     .get('/projects')
-    //     .then((_res) => {
-    //       res = _res;
-    //       res.should.have.status(200);
-    //       res.body.projects.should.have.length.of.at.least(1);
-    //       return Projects.count();
-    //     })
-    //     .then((count) => {
-    //       res.body.projects.should.have.length.of(count);
-    //     });
-    // });
-
-    it('should return projects with right fields'(() => {
-
+    it('should return projects with right fields', () => {
       let resProject;
       return chai.request(app)
         .get('/projects')
@@ -141,33 +132,32 @@ describe('Projects API resource'(() => {
           resProject.projectName.should.equal(project.projectName);
 
           resProject.tasks.forEach((resTask, index) => {
-            let task = project.tasks[index];
+            const task = project.tasks[index];
             resTask.taskName.should.equal(task.taskName);
             resTask.totalTime.should.equal(task.totalTime);
 
             resTask.log.forEach((resEntry, index) => {
-              let entry = task.log[index];
+              const entry = task.log[index];
               resEntry.startTime.should.equal(entry.startTime);
               resEntry.endTime.should.equal(entry.endTime);
-
             });
           });
         });
     });
 
-    it('should respond with a Not Found error if a request is made to a non-existant endpoint'(() => {
+    it('should respond with a Not Found error if a request is made to a non-existant endpoint', () => {
       return chai.request(app)
         .get('/notAnEndpoint')
-        .catch((err) =>{
+        .catch((err) => {
           err.should.have.status(404);
-        })
+        });
     });
   });
 
-  describe('/projects POST endpoint'(() => {
-    it('should add a new project'(() => {
-
+  describe('/projects POST endpoint', () => {
+    it('should add a new project', () => {
       const newProject = generateProject();
+
       return chai.request(app)
         .post('/projects')
         .send(newProject)
@@ -185,21 +175,20 @@ describe('Projects API resource'(() => {
           project.projectName.should.equal(newProject.projectName);
 
           newProject.tasks.forEach((newTask, index) => {
-            let task = project.tasks[index];
+            const task = project.tasks[index];
             newTask.taskName.should.equal(task.taskName);
             newTask.totalTime.should.equal(task.totalTime);
 
             newTask.log.forEach((newEntry, index) => {
-              let entry = task.log[index];
+              const entry = task.log[index];
               newEntry.startTime.should.equal(entry.startTime);
               newEntry.endTime.should.equal(entry.endTime);
+            });
           });
         });
-      });
     });
 
-    it('should respond with a Bad Request error if fields are missing'(() => {
-
+    it('should respond with a Bad Request error if fields are missing', () => {
       const newProject = generateProject();
       delete newProject.projectName;
 
@@ -208,36 +197,32 @@ describe('Projects API resource'(() => {
         .send(newProject)
         .catch((err) => {
           err.should.have.status(400);
-        })
+        });
     });
 
-    it('should respond with a Conflict error if an atempt is made to create a project that already exists'(() => {
-
+    it('should respond with a Conflict error if an atempt is made to create a project that already exists', () => {
       let newProject;
-       return Projects
+
+      return Projects
         .findOne()
         .exec()
         .then((project) => {
           newProject = {
-            'projectName': project.projectName,
-            'tasks': []
-          }
+            projectName: project.projectName,
+            tasks: [],
+          };
           return chai.request(app)
             .post('/projects')
-            .send(newProject)
-            })
-            .then((project) => {
-            })
-            .catch((err) => {
-              err.should.have.status(409)
-            })
+            .send(newProject);
         })
+        .catch((err) => {
+          err.should.have.status(409);
+        });
+    });
   });
 
-  describe('/projects/:projectId GET endpoint'(() => {
-
-    it('should return a single project with corrrect fields'(() => {
-
+  describe('/projects/:projectId GET endpoint', () => {
+    it('should return a single project with corrrect fields', () => {
       let resProject;
       return Projects
         .findOne()
@@ -260,87 +245,81 @@ describe('Projects API resource'(() => {
         });
     });
 
-    it('should respond with a Not Found error if a request is made to non-existant endpoint'(() => {
-
+    it('should respond with a Not Found error if a request is made to non-existant endpoint', () => {
       return chai.request(app)
         .get('/notAnEndpoint/45645789')
-        .catch((err) =>{
+        .catch((err) => {
           err.should.have.status(404);
+        });
+    });
+  });
+
+  describe('/projects/:projectId PUT endpoint', () => {
+    it('should update specified fields', () => {
+      const updateData = {
+        projectName: 'Updated Project Name',
+      };
+
+      return Projects
+        .findOne()
+        .exec()
+        .then((project) => {
+          updateData._id = project._id;
+          return chai.request(app)
+            .put(`/projects/${project._id}`)
+            .send(updateData);
         })
+        .then((res) => {
+          res.should.have.status(204);
+
+          return Projects.findById(updateData._id).exec();
+        })
+        .then((projects) => {
+          projects.projectName.should.equal(updateData.projectName);
+        });
     });
 
+    it('should respond with a Bad Request error if fields are missing', () => {
+      const updateData = {
+        projectNameMisspelled: 'Updated Project Name',
+      };
+
+      return Projects
+        .findOne()
+        .exec()
+        .then((project) => {
+          updateData._id = project._id;
+          return chai.request(app)
+            .put(`/projects/${project._id}`)
+            .send(updateData);
+        })
+        .catch((err) => {
+          err.should.have.status(400);
+        });
+    });
+
+    it('should respond with a Bad Request error if body id and parameter id don\'t match', () => {
+      const updateData = {
+        projectName: 'Updated Project Name',
+      };
+
+      return Projects
+        .findOne()
+        .exec()
+        .then((project) => {
+          updateData._id = 123456789;
+          return chai.request(app)
+            .put(`/projects/${project._id}`)
+            .send(updateData);
+        })
+        .catch((err) => {
+          err.should.have.status(400);
+        });
+    });
   });
 
-  describe('/projects/:projectId PUT endpoint'(() => {
-
-    it('should update specified fields'(() => {
-
-        const updateData = {
-          projectName: 'Updated Project Name'
-        }
-
-        return Projects
-          .findOne()
-          .exec()
-          .then((project) => {
-            updateData._id = project._id;
-            return chai.request(app)
-              .put(`/projects/${project._id}`)
-              .send(updateData);
-          })
-          .then((res) => {
-            res.should.have.status(204);
-
-            return Projects.findById(updateData._id).exec();
-          })
-          .then((projects) => {
-            projects.projectName.should.equal(updateData.projectName);
-          });
-        });
-
-        it('should respond with a Bad Request error if fields are missing'(() => {
-          const updateData = {
-            projectNameMisspelled: 'Updated Project Name'
-          }
-          return Projects
-            .findOne()
-            .exec()
-            .then((project) => {
-              updateData._id = project._id;
-              return chai.request(app)
-                .put(`/projects/${project._id}`)
-                .send(updateData);
-            })
-            .catch((err) => {
-              err.should.have.status(400);
-            })
-        });
-
-        it('should respond with a Bad Request error if body id and parameter id don\'t match'(() => {
-
-          const updateData = {
-            projectName: 'Updated Project Name'
-          }
-
-          return Projects
-            .findOne()
-            .exec()
-            .then((project) => {
-              updateData._id = 123456789;
-              return chai.request(app)
-                .put(`/projects/${project._id}`)
-                .send(updateData);
-            })
-            .catch((err) => {
-              err.should.have.status(400);
-            })
-        });
-  });
-
-  describe('/projects/:projectId DELETE endpoint'(() => {
-
-    it('should delete a project by id'(() => {
-
+  describe('/projects/:projectId DELETE endpoint', () => {
+    it('should delete a project by id', () => {
       let project;
       return Projects
         .findOne()
@@ -358,20 +337,17 @@ describe('Projects API resource'(() => {
         });
     });
 
-    it('should respond with a Not Found error if parameter id is missing or incorrect'(() => {
-
+    it('should respond with a Not Found error if parameter id is missing or incorrect', () => {
       return chai.request(app)
         .delete('/projects/123456789')
-        .catch((err) =>{
+        .catch((err) => {
           err.should.have.status(404);
-        })
+        });
     });
   });
 
-  describe('/projects/:projectId/tasks GET endpoint'(() => {
-
-    it('should get tasks with correct fields from a single project'(() => {
-
+  describe('/projects/:projectId/tasks GET endpoint', () => {
+    it('should get tasks with correct fields from a single project', () => {
       return Projects
         .findOne()
         .exec()
@@ -390,110 +366,107 @@ describe('Projects API resource'(() => {
         });
     });
 
-    it('should respond with a Not Found error if a request is made to non-existant endpoint'(() => {
-
+    it('should respond with a Not Found error if a request is made to non-existant endpoint', () => {
       return chai.request(app)
         .get('/notAnEndpoint/1232456/tasks')
-        .catch((err) =>{
+        .catch((err) => {
           err.should.have.status(404);
-        })
+        });
     });
   });
 
-  describe('/projects/:projectId/tasks/:taskId PUT endpoint'(() => {
+  describe('/projects/:projectId/tasks/:taskId PUT endpoint', () => {
+    it('should update specified fields of a task', () => {
+      let taskId;
+      const updateData = {
+        taskName: 'Updated Task',
+        totalTime: 25,
+        log: [],
+      };
 
-    it('should update specified fields of a task'(() => {
+      return Projects
+        .findOne()
+        .exec()
+        .then((project) => {
+          updateData.id = project.id;
+          taskId = project.tasks[0].id;
+          return chai.request(app)
+            .put(`/projects/${project.id}/tasks/${taskId}`)
+            .send(updateData);
+        })
+        .then((res) => {
+          res.should.have.status(204);
 
-        let taskId;
-        const updateData = {
-          'taskName': 'Updated Task',
-          'totalTime': 25,
-          'log': []
-        }
-
-        return Projects
-          .findOne()
-          .exec()
-          .then((project) => {
-            updateData.id = project.id;
-            taskId = project.tasks[0].id;
-            return chai.request(app)
-              .put(`/projects/${project.id}/tasks/${taskId}`)
-              .send(updateData);
-          })
-          .then((res) => {
-            res.should.have.status(204);
-
-            return Projects.findById(updateData.id).exec();
-          })
-          .then((project) => {
-            project.tasks[0].taskName.should.equal(updateData.taskName);
-          });
-        });
-
-        it('should respond with a Bad Request error if fields are missing'(() => {
-
-            let taskId;
-            const updateData = {
-              'taskName': 'Updated Task',
-              'log': []
-            }
-
-            return Projects
-              .findOne()
-              .exec()
-              .then((project) => {
-                updateData.id = project.id;
-                taskId = project.tasks[0].id;
-                return chai.request(app)
-                  .put(`/projects/${project.id}/tasks/${taskId}`)
-                  .send(updateData);
-              })
-              .catch((err) => {
-                err.should.have.status(400);
-              })
+          return Projects.findById(updateData.id).exec();
+        })
+        .then((project) => {
+          project.tasks[0].taskName.should.equal(updateData.taskName);
         });
     });
 
-      describe('/projects/:projectId/tasks/:taskId PUT endpoint'(() => {
+    it('should respond with a Bad Request error if fields are missing', () => {
+      let taskId;
+      const updateData = {
+        taskName: 'Updated Task',
+        log: [],
+      };
 
-        it('should delete a specified task'(() => {
+      return Projects
+        .findOne()
+        .exec()
+        .then((project) => {
+          updateData.id = project.id;
+          taskId = project.tasks[0].id;
+          return chai.request(app)
+            .put(`/projects/${project.id}/tasks/${taskId}`)
+            .send(updateData);
+        })
+        .catch((err) => {
+          err.should.have.status(400);
+        });
+    });
+  });
 
-            let project, taskId;
-            return Projects
-              .findOne()
-              .exec()
-              .then((_project) => {
-                project = _project;
-                taskId = project.tasks[0].id;
-                return chai.request(app)
-                  .delete(`/projects/${project.id}/tasks/${taskId}`);
-              })
-              .then((res) => {
-                res.should.have.status(204);
+  describe('/projects/:projectId/tasks/:taskId PUT endpoint', () => {
+    it('should delete a specified task', () => {
+      let project;
+      let taskId;
 
-                return Projects.findById(project.id);
-              })
-              .then((project) => {
-                should.not.exist(project.tasks.id(taskId));
-                  });
-            });
+      return Projects
+        .findOne()
+        .exec()
+        .then((_project) => {
+          project = _project;
+          taskId = project.tasks[0].id;
+          return chai.request(app)
+            .delete(`/projects/${project.id}/tasks/${taskId}`);
+        })
+        .then((res) => {
+          res.should.have.status(204);
 
-            it('should respond with a Not Found error if parameter id is missing or incorrect'(() => {
+          return Projects.findById(project.id);
+        })
+        .then((project) => {
+          should.not.exist(project.tasks.id(taskId));
+        });
+    });
 
-                let project, taskId;
-                return Projects
-                  .findOne()
-                  .exec()
-                  .then((_project) => {
-                    project = _project;
-                    taskId = project.tasks[0].id;
-                    return chai.request(app)
-                      .delete(`/projects/${project.id}/tasks/${taskId}`);
-                  })
-                  .catch((err) => {
-                    err.should.have.status(404);
-                  })
-            });
-      });
+    it('should respond with a Not Found error if parameter id is missing or incorrect', () => {
+      let project;
+      let taskId;
+
+      return Projects
+        .findOne()
+        .exec()
+        .then((_project) => {
+          project = _project;
+          taskId = project.tasks[0].id;
+          return chai.request(app)
+            .delete(`/projects/${project.id}/tasks/${taskId}`);
+        })
+        .catch((err) => {
+          err.should.have.status(404);
+        });
+    });
+  });
 });
