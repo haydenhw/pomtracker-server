@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
 const mongoose = require('mongoose');
+const shortid = require('shortid');
 
 const should = chai.should();
 
@@ -40,8 +41,9 @@ const generateDataArray = (callback, maxLength) => {
 
 const generateTask = () => {
   return {
+    recordedTime: Math.floor(Math.random() * 20),
+    shortId: shortid.generate(),
     taskName: faker.lorem.word(),
-    totalTime: Math.floor(Math.random() * 20),
     log: generateDataArray(generateTaskLogEntry, 3),
   };
 };
@@ -49,12 +51,14 @@ const generateTask = () => {
 const generateProject = () => {
   return {
     projectName: faker.lorem.word(),
+    shortId: shortid.generate(),
     tasks: generateDataArray(generateTask, 3),
   };
 };
 
 const seedProjectData = () => {
   const seedData = generateDataArray(generateProject, 2);
+
   return Projects.insertMany(seedData);
 };
 
@@ -83,7 +87,6 @@ describe('Projects API resource', () => {
   after(() => {
     return closeServer();
   });
-
 
   describe('/projects GET endpoint', () => {
     it('should return all existing projects', () => {
@@ -121,7 +124,7 @@ describe('Projects API resource', () => {
             project.tasks.forEach((task) => {
               task.should.be.a('object');
               task.should.include.keys(
-                '_id', 'taskName', 'totalTime', 'log');
+                '_id', 'taskName', 'recordedTime', 'log');
             });
           });
           resProject = res.body.projects[0];
@@ -134,7 +137,7 @@ describe('Projects API resource', () => {
           resProject.tasks.forEach((resTask, index) => {
             const task = project.tasks[index];
             resTask.taskName.should.equal(task.taskName);
-            resTask.totalTime.should.equal(task.totalTime);
+            resTask.recordedTime.should.equal(task.recordedTime);
 
             resTask.log.forEach((resEntry, index) => {
               const entry = task.log[index];
@@ -177,7 +180,7 @@ describe('Projects API resource', () => {
           newProject.tasks.forEach((newTask, index) => {
             const task = project.tasks[index];
             newTask.taskName.should.equal(task.taskName);
-            newTask.totalTime.should.equal(task.totalTime);
+            newTask.recordedTime.should.equal(task.recordedTime);
 
             newTask.log.forEach((newEntry, index) => {
               const entry = task.log[index];
@@ -239,7 +242,7 @@ describe('Projects API resource', () => {
               res.body.projects.should.include.keys('_id', 'projectName', 'tasks');
 
               res.body.projects.tasks.forEach((task) => {
-                task.should.include.keys('_id', 'taskName', 'totalTime', 'log');
+                task.should.include.keys('_id', 'taskName', 'recordedTime', 'log');
               });
             });
         });
@@ -360,7 +363,7 @@ describe('Projects API resource', () => {
               res.should.be.json;
               res.body.tasks.should.be.a('array');
               res.body.tasks.forEach((task) => {
-                task.should.include.keys('_id', 'taskName', 'totalTime', 'log');
+                task.should.include.keys('_id', 'taskName', 'recordedTime', 'log');
               });
             });
         });
@@ -380,7 +383,7 @@ describe('Projects API resource', () => {
       let taskId;
       const updateData = {
         taskName: 'Updated Task',
-        totalTime: 25,
+        recordedTime: 25,
         log: [],
       };
 
