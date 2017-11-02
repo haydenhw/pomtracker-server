@@ -68,7 +68,7 @@ export default function projects(state = defaultState, action) {
         items: action.projects,
         hasFetched: true,
         isFetching: false,
-        selectedProjectId: !action.projects.length ? state : action.projects[0].shortId,
+        selectedProjectId: !action.projects.length ? null : action.projects[0].shortId,
       };
     case actions.POST_PROJECT_REQUEST:
       return {

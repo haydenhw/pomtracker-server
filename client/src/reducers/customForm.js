@@ -17,8 +17,8 @@ export default function customForm(state = defaultState, action) {
         ? null
         : action.formSelector;
       return {
-        remoteSubmitForm,
         ...state,
+        remoteSubmitForm,
       };
     case actions.SET_TEMP_TASKS:
       return {

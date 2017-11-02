@@ -14,7 +14,7 @@
         "import/no-mutable-exports": "off",
         "jsx-a11y/no-autofocus": "off",
         "jsx-a11y/role-has-required-aria-props": "off",
-        "jsx-quotes": ["error", "prefer-double"], 
+        "jsx-quotes": ["error", "prefer-double"],
         "no-case-declarations": "off",
         "no-underscore-dangle": "off",
         "no-unused-expressions": ["error", { "allowTernary": true }],
@@ -22,15 +22,8 @@
         "react/forbid-prop-types": "off",
         "react/jsx-filename-extension": "off",
         "react/jsx-indent": [2, 2],
-        # "react/jsx-no-bind": "off",
         "react/require-default-props": "off",
         "space-before-function-paren": "off",
-        # "import/prefer-default-export": "off",
-        # "indent": ["error", 2],
-        # "jsx-a11y/no-static-element-interactions": "off",
-        # "max-len": "off",
-        # "react/no-unused-prop-types": ["error", { "customValidators": [], "skipShapeProps": true }],
   },
-  # "extends": ["eslint:recommended", "plugin:react/recommended"]
-  "extends": "airbnb" 
+  "extends": "airbnb"
 }

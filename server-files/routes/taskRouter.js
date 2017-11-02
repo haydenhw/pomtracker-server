@@ -21,7 +21,6 @@ taskRouter.route('/')
 
 taskRouter.route('/:taskId')
   .put((req, res) => {
-    console.log(req.body);
     const requiredTaskFields = ['taskName', 'recordedTime'];
 
     for (let i = 0; i < requiredTaskFields.length; i++) {

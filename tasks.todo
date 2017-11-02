@@ -1,15 +1,8 @@
 **Goals for this Week**:
-  ☐ lint all server side code
-  ☐ search for logs in server side code
-  ☐ eliminate unncessary fonts
-  ☐ remove blue outline from play/stop timer button
-  ☐ try adding tasks to a new project from the new project page. the task font is too large
-  ☐ center all icons (esp list item menu dots and stop button)
-  ☐ try hovering over an active list item menu while the timer is running then over over the dots menu. white background doesn't look great
-  ☐ increase the visibility of the shadow on top of tasks list
-  ☐ give black and white buttons some hover state
-  ☐ clean up fonts folder
-  ☐ thoroughly test all functionality
+  ☐ thoroughly test all functionality with production mode turned on
+  ☐ deploy new version
+  ☐ slack Michal
+  ☐ write readme
 
 **Goals for Today**:
   ☐ refactor all componenents

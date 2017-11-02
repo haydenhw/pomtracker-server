@@ -28,17 +28,6 @@ class ProjectsPage extends Component {
     projects: ['dummyString'],
   }
 
-  constructor() {
-    super();
-
-    this.state = {
-      isProjectSelectTipActive: sessionStorage.isProjectSelectTipActive !== undefined
-        ? JSON.parse(sessionStorage.isProjectSelectTipActive)
-        : true,
-    };
-  }
-
-
   componentWillMount() {
     const { isOnboardingActive } = this.props;
 
@@ -103,12 +92,6 @@ class ProjectsPage extends Component {
     };
   }
 
-  toggleProjectSelectTip() {
-    sessionStorage.setItem('isProjectSelectTipActive', false);
-
-    this.setState({ isProjectSelectTipActive: false });
-  }
-
   renderProject = (project) => {
     const { changeActiveContextMenu, projects, selectedProjectId } = this.props;
     const { projectName, shortId } = project;
@@ -135,11 +118,11 @@ class ProjectsPage extends Component {
         >
           <li className="popup-menu-item" onClick={this.handleEditOptionClick(project)} role="menuitem">
             <i className="context-menu-icon icon-edit" />
-            <a>Edit</a>
+            <a className="popup-menu-item-name">Edit</a>
           </li>
           <li className="popup-menu-item" onClick={this.handleDeleteOptionClick(project)} role="menuitem">
             <i className="context-menu-icon icon-delete" />
-            <a>Delete</a>
+            <a className="popup-menu-item-name">Delete</a>
           </li>
         </ContextMenu>
       </TimesheetListItem>

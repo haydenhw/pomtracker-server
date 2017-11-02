@@ -19,14 +19,10 @@
     cursor: pointer;
   }
 
-  .icon-cancel {
-    position: relative;
-  }
-
-  .icon-cancel::before {
-    font-size: 1.05em;
+  .icon-close {
+    font-size: 16px;
     opacity: .6;
     position: relative;
-    top: 2px;
+    right: 0.8%;
   }
 }

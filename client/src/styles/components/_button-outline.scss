@@ -6,4 +6,8 @@
   font-size: 20px;
   font-weight: 500;
   padding: 16px 37px;
+
+  &:hover {
+    color: $color-primary;
+  }
 }

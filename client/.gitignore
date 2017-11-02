@@ -1,5 +1,3 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 
@@ -12,6 +10,6 @@
 .DS_Store
 .env
 npm-debug.log*
+tasks.todo
 yarn-debug.log*
 yarn-error.log*
-

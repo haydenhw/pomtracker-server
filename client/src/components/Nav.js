@@ -8,7 +8,7 @@ export default function Nav(props) {
     <nav className="nav">
       <div className="nav-logo-wrapper">
         <img className="nav-logo-image" src="images/black-white-tomato-timer.png" alt="tomato timer logo" />
-        <h1 className="nav-logo-text"><span>Pom</span><span className="nav-logo-text-bold">Tracker</span></h1>
+        <h1 className="nav-logo-text">PomTracker</h1>
       </div>
       <div className="nav-link-wrapper">
         <a

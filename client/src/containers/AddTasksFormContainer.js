@@ -188,7 +188,6 @@ export default AddTasksFormContainer = connect(mapStateToProps, {
   addTempTask,
   closeModal,
   deleteTask,
-  focus,
   postTask,
   setTempTasks,
   toggleModal,
