@@ -6,9 +6,20 @@
   margin-bottom: 0;
   max-width: 960px;
   min-height: 37vh;
-  min-width: 600px;
   padding: 30px 0;
   width: 80%;
+
+  @include respond-to(handhelds) {
+    box-shadow: 0 0 0;
+    min-width: 100%;
+    width: 100%;
+  }
+
+  @include respond-to(small-screens) {
+    box-shadow: 0 0 0;
+    min-width: 100%;
+    width: 100%;
+  }
 
   &.timesheet-projects {
     margin-top: 70px;
@@ -36,18 +47,6 @@
   .timesheet-add-button {
     background-color: $color-primary;
     white-space: nowrap;
-
-    @include respond-to(handhelds) {
-      box-shadow: 0 0 0;
-      min-width: 100%;
-      width: 100%;
-    }
-
-    @include respond-to(small-screens) {
-      box-shadow: 0 0 0;
-      min-width: 100%;
-      width: 100%;
-    }
 
     @include respond-to(handhelds) {
       @include center-vert-horiz();
