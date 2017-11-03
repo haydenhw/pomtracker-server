@@ -112,7 +112,7 @@
       }
     }
 
-    &.list-item-stop:before {
+    &.list-item-stop::before {
       @include animation(spinner 1s linear infinite);
 
       $icon-radius: $icon-size / 2 + $icon-padding;

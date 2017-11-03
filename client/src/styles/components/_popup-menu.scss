@@ -35,7 +35,7 @@
   .popup-menu-content {
     @include transform(translateY(-50%) scale(1));
     background-color: $white;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
     list-style-type: none;
     margin: 0;
     max-height: 300px;
@@ -51,26 +51,23 @@
 }
 
 .popup-menu-enter {
+  @include transform(translateY(-40%) scale(.9));
   opacity: 0;
-  @include transform(  translateY(-40%) scale(.9));
-}
 
-.popup-menu-enter {
   &.popup-menu-enter-active {
     @include transform(translateY(-50%) scale(1));
     opacity: 1;
-    transition-property: transform, opacity, scale;
-    transition-duration: 200ms;
     transition: opacity .4s, transform .4s;
+    transition-duration: 200ms;
+    transition-property: opacity, scale, transform;
   }
 }
-
 
 .popup-menu-leave {
   @include transform(translateY(-50%) scale(1));
   opacity: 1;
 
-  &.popup-menu-leave-active  {
+  &.popup-menu-leave-active {
     @include transform(translateY(-40%) scale(.9));
     opacity: 0;
     transition: opacity .4s, transform .4s;

@@ -1,6 +1,9 @@
 .form-page {
   padding-top: 10vh;
-  // position: relative;
+
+  @include respond-to(handhelds) {
+    padding: 30px 20px;
+  }
 
   .form-container {
     padding-bottom: 100px;
@@ -12,17 +15,21 @@
   }
 
   .form-page-button-group {
-    position: absolute;
     bottom: 0;
+    position: absolute;
     right: 0;
-    // margin-top: 25px;
     text-align: left;
+
+    @include respond-to(handhelds) {
+      position: static;
+      text-align: left;
+    }
 
     .form-page-button {
       display: inline-block;
-      position: static;
       margin-bottom: 0;
       margin-left: 10px;
+      position: static;
 
       @include respond-to(handhelds) {
         font-size: 17px;
@@ -32,26 +39,20 @@
         padding: 14px 32px;
       }
     }
-
-    @include respond-to(handhelds) {
-      position: static;
-      text-align: left;
-    }
-  }
-
-  @include respond-to(handhelds) {
-    padding: 30px 20px;
   }
 }
 
 .form-container {
-  // border: 1px solid #000;
-  width: 70%;
+  font-family: $font-form;
+  margin: 0 auto;
   max-width: 960px;
   position: relative;
-  margin: 0 auto;
   text-align: left;
-  font-family: $font-form;
+  width: 70%;
+
+  @include respond-to(handhelds) {
+    width: 100%;
+  }
 
   &.form-container-nested {
     margin: 0;
@@ -62,11 +63,11 @@
   }
 
   &.onboarding-form {
+    font-size: 25px;
+
     .form-title {
       font-size: 30px;
-      // margin: 60px 0;
     }
-    font-size: 25px;
   }
 
   .form-error {
@@ -84,25 +85,18 @@
   .form-input {
     border: 0;
     border-bottom: 1px solid $black-faded;
-    padding-bottom: 10px;
+    display: inline-block;
+    font-family: $font-form;
+    font-size: $placeholder-font-size;
     margin-bottom: 10px;
     margin-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
-    display: inline-block;
-    font-size: $placeholder-font-size;
-    font-family: $font-form;
   }
 
   .form-title {
-    line-height: 1.2;
     color: $black-faded;
+    line-height: 1.2;
     margin-bottom: 40px;
-  }
-
-  @include respond-to(handhelds) {
-    width: 100%;
-  }
-
-  @include respond-to(small-screens) {
   }
 }

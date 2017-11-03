@@ -12,11 +12,15 @@
     position: relative;
     text-decoration: none;
 
+    @include respond-to(handhelds) {
+      padding: 1px 10px;
+    }
+
     &.active-link {
       color: $color-primary;
       font-weight: normal;
 
-      &:after {
+      &::after {
         background-color: $teal-light;
         bottom: -1px;
         content: '';
@@ -30,24 +34,20 @@
     &:hover:not(.active-link) {
       font-weight: normal;
 
-      &:after {
+      &::after {
         background-color: $teal-dark;
-        position: absolute;
-        width: 100%;
+        bottom: -1px;
+        content: '';
         height: 1px;
         left: 0;
-        content: '';
-        bottom: -1px;
+        position: absiolute;
+        width: 100%;
       }
     }
 
     .nav-timer-link-name {
       position: relative;
       right: 1.8px;
-    }
-
-    @include respond-to(handhelds) {
-      padding: 1px 10px;
     }
   }
 }
