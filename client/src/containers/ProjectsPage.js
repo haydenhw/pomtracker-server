@@ -60,14 +60,12 @@ class ProjectsPage extends Component {
     hashHistory.push('/projects/new');
   }
 
-  handleDeleteOptionClick = (project) => {
-    return (evt) => {
-      evt.stopPropagation();
+  handleDeleteOptionClick = project => () => {
+    evt.stopPropagation();
 
-      const { confirmDeleteProject } = this.props;
+    const { confirmDeleteProject } = this.props;
 
-      confirmDeleteProject({ payload: project });
-    };
+    confirmDeleteProject({ payload: project });
   }
 
   handleEditOptionClick = (project) => {

@@ -89,12 +89,10 @@ let AddTasksFormContainer = class extends Component {
     isOnboardingActive ? toggleOnboardMode() : closeModal();
   }
 
-  handleDeleteButtonClick = (taskId) => {
-    return () => {
-      const { toggleShouldDelete } = this.props;
+  handleDeleteButtonClick = taskId => () => {
+    const { toggleShouldDelete } = this.props;
 
-      toggleShouldDelete(taskId);
-    };
+    toggleShouldDelete(taskId);
   }
 
   handleDeleteButtonMouseOver = (taskId) => {

@@ -43,13 +43,11 @@ export default class Select extends Component {
   }
 
 
-  handleOptionClick = (optionId) => {
-    return () => {
-      const { handleOptionClick } = this.props;
+  handleOptionClick = optionId => () => {
+    const { handleOptionClick } = this.props;
 
-      handleOptionClick(optionId);
-      this.toggleIsActive();
-    };
+    handleOptionClick(optionId);
+    this.toggleIsActive();
   }
 
 
