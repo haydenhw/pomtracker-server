@@ -11,7 +11,6 @@ import {
   confirmDeleteTask,
   fetchProjects,
   setSelectedProject,
-  setActiveTask,
   setTempTasks,
   toggleAddTasksForm,
   toggleConfig,
@@ -111,15 +110,12 @@ const TimerPage = class extends Component {
   }
 
   setActiveTask = (selectedTaskId) => {
-    const { setActiveTask } = this.props;
-
-    setActiveTask(selectedTaskId);
+    this.setState({ activeTaskId: selectedTaskId });
   }
 
-  setActiveContextMenu = (activeContextMenuParentId) => {
-    return () => {
+  setActiveContextMenu = (activeContextMenuParentId) => () =>  {
       this.setState({ activeContextMenuParentId });
-    };
+    
   }
 
   handleAddTasks = () => {
@@ -128,15 +124,14 @@ const TimerPage = class extends Component {
     toggleAddTasksForm();
   }
 
-  handleEditTask = (taskId) => {
-    return () => {
+  handleEditTask = (taskId) => () =>  {
       const { toggleEditTaskForm } = this.props;
 
       toggleEditTaskForm(taskId);
-    };
+    
   }
 
-  handlePlayClick = (taskId) => () => {
+  handlePlayClick = (taskId) => () =>  {
       const { isTimerActive, toggleTimer } = this.props;
       const { selectedTaskId } = this.state;
 
@@ -153,7 +148,7 @@ const TimerPage = class extends Component {
 
       this.setState({ activeTaskId: taskId }, toggleTimer);
       this.handleTaskChange(taskId);
-    };
+    
   }
 
   handleTaskChange = (taskId) => {
@@ -164,26 +159,24 @@ const TimerPage = class extends Component {
     this.setState({ selectedTaskId: taskId });
   }
 
-  handleTaskDelete = (selectedProject, task) => {
-    return () => {
+  handleTaskDelete = (selectedProject, task) => () =>  {
       const { confirmDeleteTask } = this.props;
 
       confirmDeleteTask({
         payload: [selectedProject, task, true],
         taskName: task.taskName,
       });
-    };
+    
   }
 
-  handleTaskItemClick = (taskId) => {
-    return () => {
+  handleTaskItemClick = (taskId) => () =>  {
       this.handleTaskChange(taskId);
-    };
+    
   }
 
   renderTask = (task) => {
-    const { activeTaskId, changeActiveContextMenu, isTimerActive, selectedProject } = this.props;
-    const { selectedTaskId } = this.state;
+    const { changeActiveContextMenu, isTimerActive, selectedProject } = this.props;
+    const { activeTaskId, selectedTaskId } = this.state;
     const { shortId, taskName, recordedTime } = task;
 
     return (
@@ -298,7 +291,7 @@ const TimerPage = class extends Component {
 
 const mapStateToProps = (state) => {
   const { modal, projects, timer } = state;
-  const { activeTaskId, hasFetched, isFetching, selectedProjectId } = projects;
+  const { hasFetched, isFetching, selectedProjectId } = projects;
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
@@ -306,7 +299,6 @@ const mapStateToProps = (state) => {
   const selectedTasks = selectedProject && selectedProject.tasks;
 
   return {
-    activeTaskId,
     hasFetched,
     isFetching,
     isModalActive,
@@ -327,7 +319,6 @@ export default connect(mapStateToProps, {
   deleteTask,
   fetchProjects,
   setSelectedProject,
-  setActiveTask,
   setTempTasks,
   toggleAddTasksForm,
   toggleConfig,
@@ -337,7 +328,6 @@ export default connect(mapStateToProps, {
 })(TimerPage);
 
 TimerPage.propTypes = {
-  activeTaskId: PropTypes.string,
   changeActiveContextMenu: PropTypes.func.isRequired,
   confirmDeleteTask: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool,
@@ -348,7 +338,6 @@ TimerPage.propTypes = {
   projects: PropTypes.array,
   selectedProject: PropTypes.object,
   selectedProjectId: PropTypes.string,
-  setActiveTask: PropTypes.func.isRequired,
   setSelectedProject: PropTypes.func.isRequired,
   tasks: PropTypes.array,
   toggleAddTasksForm: PropTypes.func.isRequired,
