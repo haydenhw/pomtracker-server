@@ -140,6 +140,7 @@ class ProjectsPage extends Component {
         {projects.length
           ? <Timesheet
             buttonText="NEW PROJECT"
+            className="timesheet-projects"
             handleButtonClick={this.handleAddButtonClick}
             titleText={'Projects'}
           >
