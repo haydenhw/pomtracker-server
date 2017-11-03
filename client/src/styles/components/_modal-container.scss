@@ -8,17 +8,18 @@
   z-index: 1;
 
   &.unfold {
-    transform: scaleY(.01) scaleX(0);
     @include animation(unfoldIn 1s cubic-bezier(.165, .840, .440, 1) forwards);
+    transform: scaleY(.01) scaleX(0);
+
     .modal-background {
       .modal {
+        @include animation(zoomIn .5s .8s cubic-bezier(.165, .840, .440, 1) forwards);
+        transform: scale(0);
+
         &.fullscreen-modal {
           height: 100%;
           width: 100%;
         }
-
-        transform: scale(0);
-        @include animation(zoomIn .5s .8s cubic-bezier(.165, .840, .440, 1) forwards);
       }
     }
 
