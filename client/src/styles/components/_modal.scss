@@ -1,105 +1,105 @@
-.modal {
-  background: $white;
-  display: inline-block;
-  font-family: $font-modal;
-  font-weight: 300;
-  max-width: 90%;
-  min-height: 450px;
-  min-width: 650px;
-  overflow: auto;
-  padding: 106px 0;
-  padding-bottom: 58;
-  padding-top: 46px;
-  position: relative;
-
-  @include respond-to(handhelds) {
-    height: 100%;
-    min-width: 95%;
-    padding: 20px;
-    width: 95%;
-  }
-
-  @include respond-to(small-screens) {
-    height: 90%;
-    min-height: 90%;
-    min-width: 90%;
-    width: 90%;
-  }
-
-  &.fullscreen-modal {
-    max-height: 100%;
-    max-width: 100%;
-  }
-
-  &.normal-modal {
-    .task-list {
-      max-height: 265px;
+    .modal {
+      background: $white;
+      display: inline-block;
+      font-family: $font-modal;
+      font-weight: 300;
+      max-width: 90%;
+      min-height: 450px;
+      min-width: 650px;
+      overflow: auto;
+      padding: 106px 0;
+      padding-bottom: 58;
+      padding-top: 46px;
+      position: relative;
 
       @include respond-to(handhelds) {
-        max-height: 15vh;
+        height: 100%;
+        min-width: 95%;
+        padding: 20px;
+        width: 95%;
       }
-    }
-  }
 
-  .fullscreen-container {
-    margin-top: 28vh;
-    min-height: 45vh;
-
-    @include respond-to(handhelds) {
-      margin-top: 15vh;
-      position: static;
-
-      &.welcome {
-        margin-top: 28vh;
+      @include respond-to(small-screens) {
+        height: 90%;
+        min-height: 90%;
+        min-width: 90%;
+        width: 90%;
       }
-    }
 
-    .task-list {
-      max-height: 22vh;
-      overflow-y: auto;
+      &.fullscreen-modal {
+        max-height: 100%;
+        max-width: 100%;
+      }
 
-      @include respond-to(handhelds) {
-        max-height: 15vh;
+      &.normal-modal {
+        .task-list {
+          max-height: 265px;
 
-        .form-error {
-          display: none;
+          @include respond-to(handhelds) {
+            max-height: 15vh;
+          }
         }
       }
+
+      .fullscreen-container {
+        margin-top: 28vh;
+        min-height: 45vh;
+
+        @include respond-to(handhelds) {
+          position: static;
+          margin-top: 15vh;
+
+          &.welcome {
+            margin-top: 28vh;
+          }
+        }
+
+        .task-list {
+          max-height: 22vh;
+          overflow-y: auto;
+
+          @include respond-to(handhelds) {
+            max-height: 15vh;
+
+            .form-error {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .modal-button-bottom-right {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 80px 23px 0;
+
+        @include respond-to(handhelds) {
+          @include center-vert-horiz();
+          top: auto;
+          bottom: 0;
+          margin-bottom: 0;
+          padding: 16px 100px;
+        }
+      }
+
+      .modal-close {
+        color: $grey-dark;
+        float: right;
+        font-size: 31px;
+        font-weight: bold;
+        opacity: .6;
+        position: absolute;
+        right: 26px;
+        top: 13px;
+        z-index: 9999;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .task-list {
+        overflow-y: auto;
+      }
     }
-  }
-
-  .modal-button-bottom-right {
-    bottom: 0;
-    margin: 0 80px 23px 0;
-    position: absolute;
-    right: 0;
-
-    @include respond-to(handhelds) {
-      @include center-vert-horiz();
-      bottom: 0;
-      margin-bottom: 0;
-      padding: 16px 100px;
-      top: auto;
-    }
-  }
-
-  .modal-close {
-    color: $grey-dark;
-    float: right;
-    font-size: 31px;
-    font-weight: bold;
-    opacity: .6;
-    position: absolute;
-    right: 26px;
-    top: 13px;
-    z-index: 9999;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .task-list {
-    overflow-y: auto;
-  }
-}
