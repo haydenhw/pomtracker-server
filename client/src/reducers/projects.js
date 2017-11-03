@@ -1,6 +1,7 @@
 import * as actions from '../actions/indexActions';
 
 const defaultState = {
+  activeTaskId: null,
   clickedTaskId: null,
   hasFetched: false,
   isFetching: false,
@@ -90,6 +91,11 @@ export default function projects(state = defaultState, action) {
       return {
         ...state,
         queue: action.projectName,
+      };
+    case actions.SET_ACTIVE_TASK:
+      return {
+        ...state,
+        activeTaskId: action.taskId,
       };
     case actions.SET_SELECTED_PROJECT:
       return {

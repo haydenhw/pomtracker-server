@@ -161,6 +161,16 @@ export function updateTask(project, task, toUpdate) {
   };
 }
 
+export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK';
+export function setActiveTask(taskId) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_ACTIVE_TASK',
+      taskId,
+    });
+  };
+}
+
 export const SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT';
 export function setSelectedProject(projectId) {
   return (dispatch) => {
