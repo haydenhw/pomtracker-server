@@ -113,9 +113,8 @@ const TimerPage = class extends Component {
     this.setState({ activeTaskId: selectedTaskId });
   }
 
-  setActiveContextMenu = (activeContextMenuParentId) => () =>  {
-      this.setState({ activeContextMenuParentId });
-    
+  setActiveContextMenu = activeContextMenuParentId => () => {
+    this.setState({ activeContextMenuParentId });
   }
 
   handleAddTasks = () => {
@@ -124,31 +123,29 @@ const TimerPage = class extends Component {
     toggleAddTasksForm();
   }
 
-  handleEditTask = (taskId) => () =>  {
-      const { toggleEditTaskForm } = this.props;
+  handleEditTask = taskId => () => {
+    const { toggleEditTaskForm } = this.props;
 
-      toggleEditTaskForm(taskId);
-    
+    toggleEditTaskForm(taskId);
   }
 
-  handlePlayClick = (taskId) => () =>  {
-      const { isTimerActive, toggleTimer } = this.props;
-      const { selectedTaskId } = this.state;
+  handlePlayClick = taskId => () => {
+    const { isTimerActive, toggleTimer } = this.props;
+    const { selectedTaskId } = this.state;
 
-      if (isTimerActive && (selectedTaskId === taskId)) {
-        toggleTimer();
-        return null;
-      }
+    if (isTimerActive && (selectedTaskId === taskId)) {
+      toggleTimer();
+      return null;
+    }
 
-      if (isTimerActive && !(selectedTaskId === taskId)) {
-        this.setState({ activeTaskId: taskId });
-        this.handleTaskChange(taskId);
-        return null;
-      }
-
-      this.setState({ activeTaskId: taskId }, toggleTimer);
+    if (isTimerActive && !(selectedTaskId === taskId)) {
+      this.setState({ activeTaskId: taskId });
       this.handleTaskChange(taskId);
-    
+      return null;
+    }
+
+    this.setState({ activeTaskId: taskId }, toggleTimer);
+    this.handleTaskChange(taskId);
   }
 
   handleTaskChange = (taskId) => {
@@ -159,19 +156,17 @@ const TimerPage = class extends Component {
     this.setState({ selectedTaskId: taskId });
   }
 
-  handleTaskDelete = (selectedProject, task) => () =>  {
-      const { confirmDeleteTask } = this.props;
+  handleTaskDelete = (selectedProject, task) => () => {
+    const { confirmDeleteTask } = this.props;
 
-      confirmDeleteTask({
-        payload: [selectedProject, task, true],
-        taskName: task.taskName,
-      });
-    
+    confirmDeleteTask({
+      payload: [selectedProject, task, true],
+      taskName: task.taskName,
+    });
   }
 
-  handleTaskItemClick = (taskId) => () =>  {
-      this.handleTaskChange(taskId);
-    
+  handleTaskItemClick = taskId => () => {
+    this.handleTaskChange(taskId);
   }
 
   renderTask = (task) => {
