@@ -60,7 +60,7 @@ class ProjectsPage extends Component {
     hashHistory.push('/projects/new');
   }
 
-  handleDeleteOptionClick = project => () => {
+  handleProjectDelete = project => (evt) => {
     evt.stopPropagation();
 
     const { confirmDeleteProject } = this.props;
@@ -68,7 +68,7 @@ class ProjectsPage extends Component {
     confirmDeleteProject({ payload: project });
   }
 
-  handleEditOptionClick = (project) => {
+  handleProjectEdit = (project) => {
     return (evt) => {
       evt.stopPropagation();
       const { setSelectedProject } = this.props;
@@ -114,11 +114,11 @@ class ProjectsPage extends Component {
           onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
-          <li className="popup-menu-item" onClick={this.handleEditOptionClick(project)} role="menuitem">
+          <li className="popup-menu-item" onClick={this.handleProjectEdit(project)} role="menuitem">
             <i className="context-menu-icon icon-edit" />
             <a className="popup-menu-item-name">Edit</a>
           </li>
-          <li className="popup-menu-item" onClick={this.handleDeleteOptionClick(project)} role="menuitem">
+          <li className="popup-menu-item" onClick={this.handleProjectDelete(project)} role="menuitem">
             <i className="context-menu-icon icon-delete" />
             <a className="popup-menu-item-name">Delete</a>
           </li>
