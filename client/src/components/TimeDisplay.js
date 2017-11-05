@@ -34,7 +34,11 @@ export default function TimeDisplay(props) {
       />}
       <div>{title}</div>
       <div style={devStyle || null} className="timer-content">
-        <EditInlineText className={`edit-time ${isTimerActive ? 'fade-in-fast' : 'hide'}`} handleChange={setStartTime} text={secondsToMSS(displayTime)} />
+        <EditInlineText
+          className={`edit-time ${isTimerActive ? 'fade-in-fast' : 'hide'}`}
+          handleChange={setStartTime}
+          text={secondsToMSS(displayTime)}
+        />
         <div
           className={`timer-control ${isTimerControlActive ? '' : 'disabled'} `}
           onClick={isTimerControlActive && handleButtonClick}

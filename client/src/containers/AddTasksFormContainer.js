@@ -194,6 +194,7 @@ export default AddTasksFormContainer = connect(mapStateToProps, {
 AddTasksFormContainer.propTypes = {
   addTempTask: PropTypes.func,
   closeModal: PropTypes.func,
+  currentRoute: PropTypes.string,
   formAnimationName: PropTypes.string,
   formTasks: PropTypes.array,
   handleSubmit: PropTypes.func,

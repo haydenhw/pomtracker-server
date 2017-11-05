@@ -198,7 +198,11 @@ const TimerPage = class extends Component {
             <i className="context-menu-icon icon-edit" />
             <a className="popup-menu-item-name">Edit</a>
           </li>
-          <li className="popup-menu-item" onClick={this.handleTaskDelete(selectedProject, task)} role="menuitem">
+          <li
+            className="popup-menu-item"
+            onClick={this.handleTaskDelete(selectedProject, task)}
+            role="menuitem"
+          >
             <i className="context-menu-icon icon-delete" />
             <a className="popup-menu-item-name">Delete</a>
           </li>
@@ -273,7 +277,12 @@ const TimerPage = class extends Component {
             <Timesheet
               buttonText="NEW TASKS"
               handleButtonClick={this.handleAddTasks}
-              titleText={<span>Tasks for project <span className={'grey-title-text'} key={shortid.generate()}>{selectedProject.projectName}</span></span>}
+              titleText={
+                <span>Tasks for project
+                  <span className={'grey-title-text'} key={shortid.generate()}>
+                    {selectedProject.projectName}</span>
+                </span>
+              }
             >
               <List className="timesheet-list list" items={tasks} renderItem={this.renderTask} />
               <TotalTime time={secondsToHMMSS(totalTime)} />
@@ -281,14 +290,23 @@ const TimerPage = class extends Component {
           </section>
           : <Nag
             actionButtonText="ADD TASKS"
-            nagMessage={<span>Add tasks to project <span className="grey-title-text">{selectedProjectName}</span> to start tracking time.</span>}
+            nagMessage={
+              <span>Add tasks to project
+                <span className="grey-title-text">
+                  {selectedProjectName}
+                </span> to start tracking time.
+              </span>
+            }
             onActionButtonClick={this.handleAddTasks}
           />
         }
         <Modal
           isCloseButtonActive={isDevOnboardingActive || !isOnboardingActive}
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-          rootModalClass={`${isOnboardingActive ? 'unfold' : 'roadrunner'} ${isModalClosing ? 'out' : ''}`}
+          rootModalClass={
+            `${isOnboardingActive ? 'unfold' : 'roadrunner'}
+             ${isModalClosing ? 'out' : ''}`
+          }
         />
       </div>
     );

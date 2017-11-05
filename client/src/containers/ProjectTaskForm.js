@@ -18,7 +18,11 @@ export default function ProjectTaskForm(props) {
   return (
     <div className="form-page fullscreen-container">
       <div className="form-container">
-        <h2 className="form-title">{title}<span className="grey-title-text">{selectedProjectName}</span></h2>
+        <h2
+          className="form-title"
+        >
+          {title} <span className="grey-title-text">{selectedProjectName}</span>
+        </h2>
         {label && <label htmlFor={label}>{label}</label>}
         {children}
         <AddTasksFormContainer

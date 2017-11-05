@@ -62,8 +62,13 @@ export function setIntervalId(intervalId) {
 export const SET_START_TIME = 'SET_START_TIME';
 export function setStartTime(startTime, shouldToggleTimer) {
   return (dispatch, getState) => {
-    let numericStartTime = isNaN(startTime) ? timeStringToSeconds(startTime, 'MMSS') : Math.ceil(Number(startTime) * 60);
-    numericStartTime = numericStartTime === 'NAN_ERROR' ? getState().timer.startTime : numericStartTime;
+    let numericStartTime = isNaN(startTime)
+      ? timeStringToSeconds(startTime, 'MMSS')
+      : Math.ceil(Number(startTime) * 60);
+
+    numericStartTime = numericStartTime === 'NAN_ERROR'
+      ? getState().timer.startTime
+      : numericStartTime;
 
     return dispatch({
       type: 'SET_START_TIME',

@@ -114,7 +114,11 @@ class ProjectsPage extends Component {
             <i className="context-menu-icon icon-edit" />
             <a className="popup-menu-item-name">Edit</a>
           </li>
-          <li className="popup-menu-item" onClick={this.handleProjectDelete(project)} role="menuitem">
+          <li
+            className="popup-menu-item"
+            onClick={this.handleProjectDelete(project)}
+            role="menuitem"
+          >
             <i className="context-menu-icon icon-delete" />
             <a className="popup-menu-item-name">Delete</a>
           </li>
@@ -140,7 +144,11 @@ class ProjectsPage extends Component {
             handleButtonClick={this.handleAddButtonClick}
             titleText={'Projects'}
           >
-            <List className="timesheet-list list" items={projects} renderItem={this.renderProject} />
+            <List
+              className="timesheet-list list"
+              items={projects}
+              renderItem={this.renderProject}
+            />
             <TotalTime time={secondsToHMMSS(totalTime)} />
           </Timesheet>
           : <div>
@@ -154,7 +162,10 @@ class ProjectsPage extends Component {
         }
         <Modal
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-          rootModalClass={`${isOnboardingActive ? 'unfold' : 'roadrunner'} ${isModalClosing ? 'out' : ''}`}
+          rootModalClass={
+            `${isOnboardingActive ? 'unfold' : 'roadrunner'}
+            ${isModalClosing ? 'out' : ''}`
+          }
         />
       </div>
     );

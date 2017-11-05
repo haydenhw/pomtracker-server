@@ -1,5 +1,6 @@
 **Goals for this Week**:
-  ☐ find spot that uses && instead of an if state
+  ☐ add form types props to control form animations
+  ☐ run lint
   ☐ deploy new version
   ☐ test modals with no min height
   ☐ test to see that new tasks modal animations run smoothly

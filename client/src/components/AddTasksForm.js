@@ -49,7 +49,12 @@ let AddTasksForm = (props) => {
         </div>
       </div>
       {!(shouldRenderSubmitButton === false) &&
-        <button className={submitButtonClass} onClick={handleSubmit(handleFormSubmit)}>{submitButtonText || 'Finish'}</button>
+        <button
+          className={submitButtonClass}
+          onClick={handleSubmit(handleFormSubmit)}
+        >
+          {submitButtonText || 'Finish'}
+        </button>
       }
     </div>
   );

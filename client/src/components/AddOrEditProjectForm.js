@@ -47,7 +47,14 @@ let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
         </form>
       </div>
       {shouldRenderSubmitButton &&
-        <button className="fade-in-medium-delay outline-button modal-button-bottom-right" onClick={handleSubmit(handleFormSubmit)}>Continue</button>
+        <button
+          className="fade-in-medium-delay
+          outline-button
+          modal-button-bottom-right"
+          onClick={handleSubmit(handleFormSubmit)}
+        >
+          Continue
+        </button>
       }
     </div>
   );
