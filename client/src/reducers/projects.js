@@ -2,7 +2,6 @@ import * as actions from '../actions/indexActions';
 
 const defaultState = {
   activeTaskId: null,
-  clickedTaskId: null,
   hasFetched: false,
   isFetching: false,
   items: [],

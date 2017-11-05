@@ -68,26 +68,22 @@ class ProjectsPage extends Component {
     confirmDeleteProject({ payload: project });
   }
 
-  handleProjectEdit = (project) => {
-    return (evt) => {
-      evt.stopPropagation();
-      const { setSelectedProject } = this.props;
+  handleProjectEdit = project => (evt) => {
+    evt.stopPropagation();
+    const { setSelectedProject } = this.props;
 
-      setSelectedProject(project.shortId);
-      hashHistory.push(`/projects/${project.shortId}`);
-    };
+    setSelectedProject(project.shortId);
+    hashHistory.push(`/projects/${project.shortId}`);
   }
 
-  handleListItemClick = (projectId) => {
-    return () => {
-      const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
-      if (isTimerActive) {
-        toggleTimer();
-      }
+  handleListItemClick = projectId => () => {
+    const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
+    if (isTimerActive) {
+      toggleTimer();
+    }
 
-      setSelectedProject(projectId);
-      routeToTimerPage();
-    };
+    setSelectedProject(projectId);
+    routeToTimerPage();
   }
 
   renderProject = (project) => {
@@ -150,6 +146,7 @@ class ProjectsPage extends Component {
           : <div>
             <Nag
               actionButtonText="ADD PROJECT"
+              className="nag-projects"
               nagMessage="Please create a project to continue."
               onActionButtonClick={this.handleAddButtonClick}
             />

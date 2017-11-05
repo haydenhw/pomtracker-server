@@ -6,22 +6,28 @@ import { closeModal, updateTask, toggleEditTaskForm } from '../actions/indexActi
 
 import Confirm from '../components/Confirm';
 
-const updateTaskAndCloseModal = (updateTaskParams, updateTask, closeModal) => {
-  return () => {
-    updateTask(...updateTaskParams);
-    closeModal();
-  };
+const updateTaskAndCloseModal = (updateTaskParams, updateTask, closeModal) => () => {
+  updateTask(...updateTaskParams);
+  closeModal();
 };
 
 const getDangerMessage = (oldTime, newTime) => {
   return (
     <span>
       Are you sure you want to change the logged time from
-      <span className="confirm-time">{oldTime}</span>
+      <span className="confirm-time"> {oldTime} </span>
        to
-      <span className="confirm-time">{newTime}</span>
+      <span className="confirm-time"> {newTime} </span>
        ?
     </span>
+  );
+};
+
+const getTitle = (taskName) => {
+  return (
+    <h2 className="form-title">
+      Confirm time change for task <span className="grey-title-text">{taskName}</span>
+    </h2>
   );
 };
 
@@ -32,7 +38,7 @@ function ConfirmEditTask(props) {
       onCancel={closeModal}
       onDangerClick={updateTaskAndCloseModal(payload, updateTask, closeModal)}
       dangerText={getDangerMessage(oldTime, newTime)}
-      title={<h2 className="form-title">Confirm time change for task <span className="grey-title-text">{taskName}</span></h2>}
+      title={getTitle(taskName)}
     />
   );
 }
@@ -41,9 +47,9 @@ export default connect(null, { closeModal, updateTask, toggleEditTaskForm })(Con
 
 ConfirmEditTask.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  oldTime: PropTypes.number.isRequired,
-  newTime: PropTypes.number.isRequired,
-  payload: PropTypes.object.isRequired,
+  oldTime: PropTypes.string.isRequired,
+  newTime: PropTypes.string.isRequired,
+  payload: PropTypes.array.isRequired,
   updateTask: PropTypes.func.isRequired,
   taskName: PropTypes.string.isRequired,
 };

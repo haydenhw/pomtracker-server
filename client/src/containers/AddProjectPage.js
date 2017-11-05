@@ -8,6 +8,7 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
 
 import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
+import Modal from './Modal';
 import ProjectTaskForm from './ProjectTaskForm';
 
 let AddProjectPage = class extends Component {
@@ -41,32 +42,41 @@ let AddProjectPage = class extends Component {
   }
 
   render() {
+    const { isModalClosing, location } = this.props;
+    const { pathname } = location;
+
     return (
-      <ProjectTaskForm
-        handleSubmit={this.handleRemoteSubmit}
-        handleCancel={routeToProjectsPage}
-        label="Project Name"
-        title="New Project"
-      >
-        <AddOrEditProjectForm
-          formName="projectName"
-          placeholder="Project Name"
-          shouldRenderSubmitButton={false}
-          onTargetUpdate={this.handleNewProjectSubmit}
-          targetValue="ADD_PROJECT"
-          targetPropKey="remoteSubmitForm"
-        />
-      </ProjectTaskForm>
+      <div>
+        <ProjectTaskForm
+          currentRoute={pathname}
+          handleCancel={routeToProjectsPage}
+          handleSubmit={this.handleRemoteSubmit}
+          label="Project Name"
+          title="New Project"
+        >
+          <AddOrEditProjectForm
+            formName="projectName"
+            placeholder="Project Name"
+            shouldRenderSubmitButton={false}
+            onTargetUpdate={this.handleNewProjectSubmit}
+            targetValue="ADD_PROJECT"
+            targetPropKey="remoteSubmitForm"
+          />
+        </ProjectTaskForm>
+        <Modal rootModalClass={`roadrunner ${isModalClosing ? 'out' : ''}`} />
+      </div>
     );
   }
 };
 
 const mapStateToProps = (state) => {
-  const { customForm, projects } = state;
+  const { customForm, modal, projects } = state;
+  const { isModalClosing } = modal;
   const { taskForm } = customForm;
   const { tasks: newTasks } = taskForm;
 
   return {
+    isModalClosing,
     newTasks,
     projects,
   };
@@ -78,8 +88,10 @@ export default AddProjectPage = connect(mapStateToProps, {
 })(AddProjectPage);
 
 AddProjectPage.propTypes = {
+  location: PropTypes.object,
   newTasks: PropTypes.array,
   postProject: PropTypes.func,
   projects: PropTypes.array,
+  isModalClosing: PropTypes.bool,
   remoteSubmit: PropTypes.func,
 };

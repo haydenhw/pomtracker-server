@@ -7,8 +7,8 @@ export default function Confirm({ onCancel, onDangerClick, dangerText, title }) 
       {title}
       <p className="confirm-danger-text">{dangerText}</p>
       <div className="confirm-button-group">
-        <button className="confirm-button outline-button cancel" onClick={onCancel}>Cancel</button>
-        <button className="confirm-button outline-button confirm" onClick={onDangerClick}>Confirm</button>
+        <button className="confirm-button outline-button" onClick={onCancel}>Cancel</button>
+        <button className="confirm-button outline-button" onClick={onDangerClick}>Confirm</button>
       </div>
     </div>
   );

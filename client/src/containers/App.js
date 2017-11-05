@@ -32,8 +32,8 @@ class App extends Component {
 
   render() {
     const { hasFetched, isDesktopNotificationActive, location } = this.props;
-    const pathName = location.pathname;
-    const isProjectRoute = /projects/.test(pathName);
+    const { pathname } = location;
+    const isProjectRoute = /projects/.test(pathname);
 
     return (
       <div>

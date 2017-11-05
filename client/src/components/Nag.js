@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Nag({ actionButtonText, nagMessage, onActionButtonClick, title }) {
+export default function Nag({ actionButtonText, className, nagMessage, onActionButtonClick, title }) {
   return (
-    <div className="nag">
+    <div className={`nag ${className || ''}`}>
       {title && <h2>{title}</h2>}
       <span className="nag-message">{nagMessage}</span>
       <div className="nag-button-wrapper">

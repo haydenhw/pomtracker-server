@@ -79,7 +79,7 @@ let AddTasksFormContainer = class extends Component {
 
     const tasksToSubmit = tasks.filter(task => !task.shouldDelete);
 
-    if (!tasksToSubmit.length) {
+    if (!tasksToSubmit.length && isOnboardingActive) {
       throw new SubmissionError({
         taskName: 'Please add at least one task',
       });
@@ -95,16 +95,12 @@ let AddTasksFormContainer = class extends Component {
     toggleShouldDelete(taskId);
   }
 
-  handleDeleteButtonMouseOver = (taskId) => {
-    return () => {
-      this.deleteButtonRefs[taskId].focus();
-    };
+  handleDeleteButtonMouseOver = taskId => () => {
+    this.deleteButtonRefs[taskId].focus();
   }
 
-  handleDeleteButtonMouseOut = (taskId) => {
-    return () => {
-      this.deleteButtonRefs[taskId].blur();
-    };
+  handleDeleteButtonMouseOut = taskId => () => {
+    this.deleteButtonRefs[taskId].blur();
   }
 
   renderFormTask = (task) => {
@@ -131,19 +127,20 @@ let AddTasksFormContainer = class extends Component {
   }
 
   render() {
-    const { isModalActive, isOnboardingActive } = this.props;
+    const { currentRoute, isModalActive, isOnboardingActive } = this.props;
+
     return (
       <RemoteSubmitForm
         onTargetUpdate={this.handleFormSubmit}
       >
         <AddTasksForm
           {...this.props}
-          childContainerClass={isModalActive ? 'form-container onboarding-form' : ''}
+          childContainerClass={(isModalActive && currentRoute !== '/projects/new') ? 'form-container onboarding-form' : ''}
           fieldAnimationName={isOnboardingActive ? 'bounce-in-down-second' : ''}
           formAnimationName={isOnboardingActive ? '' : 'bounce-in-down'}
           handleFormSubmit={this.handleFormSubmit}
           handleTaskSubmit={this.handleAddTask}
-          parentContainerClass={true && (isOnboardingActive || !isModalActive) ? 'fullscreen-container' : 'bounce-in-down'}
+          parentContainerClass={(isOnboardingActive || /projects/.test(currentRoute)) ? 'fullscreen-container' : 'bounce-in-down'}
           renderFormTask={this.renderFormTask}
           shouldAutoFocus={isModalActive}
           submitButtonClass={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`}

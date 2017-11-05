@@ -6,7 +6,7 @@ export function addModalClosingClass() {
 }
 
 export const CLOSE_MODAL = 'CLOSE_MODAL';
-export function closeModal() {
+export function closeModal(callback) {
   return (dispatch, getState) => {
     const delay = getState().modal.isOnboardingActive
       ? 1500
@@ -14,7 +14,13 @@ export function closeModal() {
 
     dispatch(addModalClosingClass());
 
-    setTimeout(() => dispatch({ type: 'CLOSE_MODAL' }), delay);
+    setTimeout(() => {
+      dispatch({ type: 'CLOSE_MODAL' });
+
+      if (callback && (typeof callback === 'function')) {
+        callback();
+      }
+    }, delay);
   };
 }
 

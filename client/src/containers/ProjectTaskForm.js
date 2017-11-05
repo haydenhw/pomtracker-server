@@ -6,6 +6,7 @@ import AddTasksFormContainer from '../containers/AddTasksFormContainer';
 export default function ProjectTaskForm(props) {
   const {
     children,
+    currentRoute,
     handleSubmit,
     handleCancel,
     label,
@@ -21,6 +22,7 @@ export default function ProjectTaskForm(props) {
         {label && <label htmlFor={label}>{label}</label>}
         {children}
         <AddTasksFormContainer
+          currentRoute={currentRoute}
           shouldDisableFocusOnMount
           shouldRenderSubmitButton={false}
           showTasksForSelectedProject={showTasksForSelectedProject}
@@ -35,6 +37,7 @@ export default function ProjectTaskForm(props) {
 }
 
 ProjectTaskForm.propTypes = {
+  currentRoute: PropTypes.string,
   children: PropTypes.node,
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,

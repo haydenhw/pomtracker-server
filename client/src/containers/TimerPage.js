@@ -146,6 +146,12 @@ const TimerPage = class extends Component {
   }
 
   handleTaskChange = (taskId) => {
+    const { isTimerActive, setActiveTask, toggleTimer } = this.props;
+
+    if (isTimerActive) {
+      toggleTimer();
+    }
+
     if (localStorage.prevSelectedTaskId !== taskId) {
       localStorage.setItem('prevSelectedTaskId', taskId);
     }
@@ -229,7 +235,15 @@ const TimerPage = class extends Component {
   }
 
   render() {
-    const { hasFetched, isModalClosing, isOnboardingActive, selectedProject, setActiveTask, tasks } = this.props;
+    const {
+      hasFetched,
+      isModalClosing,
+      isOnboardingActive,
+      selectedProject,
+      setActiveTask,
+      tasks,
+    } = this.props;
+
     const { activeTaskId, selectedTaskId } = this.state;
 
     const totalTime = tasks.length

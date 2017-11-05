@@ -1,10 +1,21 @@
 **Goals for this Week**:
-  ☐ get confirmation on project delete
-  ☐ thoroughly test all functionality with production mode turned on
+  ☐ find spot that uses && instead of an if state
   ☐ deploy new version
+  ☐ test modals with no min height
   ☐ test to see that new tasks modal animations run smoothly
   ☐ slack Michal
   ☐ write readme
+
+***Feature Test List***:
+  ☐ go through onboarding steps
+  ☐ refresh midway through onboarding steps
+  ☐ add tasks to a project
+  ☐ delete tasks via task modal
+  ☐ delete tasks via context menu
+  ☐ edit task name
+  ☐ edit task time
+  ☐ test task items by toggling different play buttons
+  ☐ while on task is playing click another task item
 
 **Goals for Today**:
   ☐ refactor all componenents

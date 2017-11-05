@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 import { closeModal, deleteTask } from '../actions/indexActions';
 import Confirm from '../components/Confirm';
 
-const deleteTaskAndCloseModal = (deleteTaskParams, deleteTask, closeModal) => {
-  return () => {
-    deleteTask(...deleteTaskParams);
-    closeModal();
-  };
+const deleteTaskAndCloseModal = (deleteTaskParams, deleteTask, closeModal) => () => {
+  deleteTask(...deleteTaskParams);
+  closeModal();
 };
 
 const getDangerText = (taskName) => {

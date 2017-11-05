@@ -67,7 +67,8 @@ class EditProjectPage extends Component {
   }
 
   render() {
-    const { selectedProject } = this.props;
+    const { location, selectedProject } = this.props;
+    const { pathname } = location;
 
     if (!selectedProject) {
       return null;
@@ -75,6 +76,7 @@ class EditProjectPage extends Component {
 
     return (
       <ProjectTaskForm
+        currentRoute={pathname}
         handleCancel={routeToProjectsPage}
         handleSubmit={this.handleRemoteSubmit}
         label="Project Name"

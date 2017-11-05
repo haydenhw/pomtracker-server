@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 import { closeModal, deleteProject, toggleModal } from '../actions/indexActions';
 import Confirm from '../components/Confirm';
 
-const deleteProjectAndCloseModal = (deleteProjectParams, deleteProject, closeModal) => {
-  return () => {
-    deleteProject(deleteProjectParams);
-    closeModal();
-  };
+const deleteProjectAndCloseModal = (deleteProjectParams, deleteProject, closeModal) => () => {
+  deleteProject(deleteProjectParams);
+  closeModal();
 };
 
 const getDangerText = (projectName) => {
