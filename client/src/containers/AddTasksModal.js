@@ -7,10 +7,11 @@ import { changeModalType } from '../actions/indexActions';
 import AddTasksFormContainer from './AddTasksFormContainer';
 
 function AddTasksModal(props) {
-  const { selectedProjectName } = props;
+  const { isOnboardingActive, selectedProjectName } = props;
 
   return (
     <AddTasksFormContainer
+      formType={isOnboardingActive ? 'ONBOARDING' : 'MODAL'}
       title="Add tasks for project "
       titleName={selectedProjectName}
     />
@@ -18,7 +19,8 @@ function AddTasksModal(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { projects } = state;
+  const { modal, projects } = state;
+  const { isOnboardingActive } = modal;
   const { selectedProjectId } = projects;
 
   const selectedProjectName = projects.items.length > 0
@@ -26,6 +28,7 @@ const mapStateToProps = (state) => {
     : null;
 
   return {
+    isOnboardingActive,
     selectedProjectName,
   };
 };
@@ -33,5 +36,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { changeModalType })(AddTasksModal);
 
 AddTasksModal.propTypes = {
+  isOnboardingActive: PropTypes.bool.isRequired,
   selectedProjectName: PropTypes.string.isRequired,
 };

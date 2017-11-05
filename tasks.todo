@@ -7,6 +7,9 @@
   ☐ slack Michal
   ☐ write readme
 
+**Forms to Refactor**:
+  ☐ AddTasksForm
+
 ***Feature Test List***:
   ☐ go through onboarding steps
   ☐ refresh midway through onboarding steps
@@ -14,7 +17,6 @@
   ☐ delete tasks via task modal
   ☐ delete tasks via context menu
   ☐ edit task name
-  ☐ edit task time
   ☐ test task items by toggling different play buttons
   ☐ while on task is playing click another task item
 

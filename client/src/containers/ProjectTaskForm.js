@@ -26,6 +26,7 @@ export default function ProjectTaskForm(props) {
         {label && <label htmlFor={label}>{label}</label>}
         {children}
         <AddTasksFormContainer
+          formType="FORM_PAGE"
           currentRoute={currentRoute}
           shouldDisableFocusOnMount
           shouldRenderSubmitButton={false}
