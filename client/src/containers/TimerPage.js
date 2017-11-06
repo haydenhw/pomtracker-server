@@ -12,7 +12,11 @@ import {
   fetchProjects,
   setSelectedProject,
   setActiveTask,
+  setSelectedTask,
   setTempTasks,
+  startRecordingTask,
+  stopRecordingTasks,
+  switchRecordingTask,
   toggleAddTasksForm,
   toggleConfig,
   toggleEditTaskForm,
@@ -42,19 +46,19 @@ const TimerPage = class extends Component {
   constructor(props) {
     super(props);
 
-    const { tasks } = this.props;
-
     this.state = {
-      tasks,
-      activeTaskId: null,
       activeContextMenuParentId: null,
-      clickedTaskId: null,
-      selectedTaskId: null,
     };
   }
 
   componentWillMount() {
-    const { isOnboardingActive, projects, setSelectedProject, toggleOnboardMode } = this.props;
+    const {
+      isOnboardingActive,
+      projects,
+      setSelectedProject,
+      setSelectedTask,
+      toggleOnboardMode,
+    } = this.props;
 
     if (isDevOnboardingActive && !isOnboardingActive) {
       toggleOnboardMode();
@@ -84,7 +88,7 @@ const TimerPage = class extends Component {
       setSelectedProject(projects[projects.length - 1].shortId);
     }
 
-    this.setState({ selectedTaskId: localStorage.prevSelectedTaskId });
+    setSelectedTask(localStorage.prevSelectedTaskId);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -106,7 +110,8 @@ const TimerPage = class extends Component {
 
     if ((prevProps.tasks.length !== tasks.length) && (tasks.length === 0)) {
       localStorage.setItem('prevSelectedTaskId', null);
-      this.setState({ selectedTaskId: null });
+
+      setSelectedTask(null);
     }
   }
 
@@ -126,37 +131,40 @@ const TimerPage = class extends Component {
     toggleEditTaskForm(taskId);
   }
 
-  handlePlayClick = taskId => () => {
-    const { isTimerActive, setActiveTask, toggleTimer } = this.props;
-    const { selectedTaskId } = this.state;
+  handlePlayClick = taskId => (evt) => {
+    console.log('button clicked')
+    const {
+      isTimerActive,
+      activeTaskId,
+      startRecordingTask,
+      stopRecordingTasks,
+      switchRecordingTask,
+    } = this.props;
 
-    if (isTimerActive && (selectedTaskId === taskId)) {
-      toggleTimer();
+    evt.stopPropagation();
+    if (isTimerActive && (activeTaskId === taskId)) {
+      stopRecordingTasks();
       return null;
     }
 
-    if (isTimerActive && !(selectedTaskId === taskId)) {
-      setActiveTask(taskId);
-      this.handleTaskChange(taskId);
+    if (isTimerActive && !(activeTaskId === taskId)) {
+      switchRecordingTask(taskId);
       return null;
     }
 
-    this.setState({ activeTaskId: taskId }, toggleTimer);
-    this.handleTaskChange(taskId);
+    if (!isTimerActive) {
+      startRecordingTask(taskId);
+    }
   }
 
   handleTaskChange = (taskId) => {
-    const { isTimerActive, setActiveTask, toggleTimer } = this.props;
-
-    if (isTimerActive) {
-      toggleTimer();
-    }
+    const { setSelectedTask } = this.props;
 
     if (localStorage.prevSelectedTaskId !== taskId) {
       localStorage.setItem('prevSelectedTaskId', taskId);
     }
 
-    this.setState({ selectedTaskId: taskId });
+    setSelectedTask(taskId);
   }
 
   handleTaskDelete = (selectedProject, task) => () => {
@@ -173,8 +181,14 @@ const TimerPage = class extends Component {
   }
 
   renderTask = (task) => {
-    const { activeTaskId, changeActiveContextMenu, isTimerActive, selectedProject } = this.props;
-    const { selectedTaskId } = this.state;
+    const {
+      activeTaskId,
+      changeActiveContextMenu,
+      isTimerActive,
+      selectedProject,
+      selectedTaskId,
+    } = this.props;
+
     const { shortId, taskName, recordedTime } = task;
 
     return (
@@ -212,8 +226,7 @@ const TimerPage = class extends Component {
   }
 
   renderTaskSelect() {
-    const { tasks } = this.props;
-    const { selectedTaskId } = this.state;
+    const { selectedTaskId, tasks } = this.props;
 
     const simplifiedTasks = tasks.map((task) => {
       return {
@@ -240,15 +253,15 @@ const TimerPage = class extends Component {
 
   render() {
     const {
+      activeTaskId,
       hasFetched,
       isModalClosing,
       isOnboardingActive,
       selectedProject,
-      setActiveTask,
+      selectedTaskId,
       tasks,
     } = this.props;
 
-    const { activeTaskId, selectedTaskId } = this.state;
 
     const totalTime = tasks.length
       ? tasks.map(task => Number(task.recordedTime)).reduce((a, b) => a + b)
@@ -280,7 +293,8 @@ const TimerPage = class extends Component {
               titleText={
                 <span>Tasks for project
                   <span className={'grey-title-text'} key={shortid.generate()}>
-                    {selectedProject.projectName}</span>
+                    {` ${selectedProject.projectName}`}
+                  </span>
                 </span>
               }
             >
@@ -315,7 +329,7 @@ const TimerPage = class extends Component {
 
 const mapStateToProps = (state) => {
   const { modal, projects, timer } = state;
-  const { activeTaskId, hasFetched, isFetching, selectedProjectId } = projects;
+  const { activeTaskId, hasFetched, isFetching, selectedProjectId, selectedTaskId } = projects;
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
@@ -331,6 +345,7 @@ const mapStateToProps = (state) => {
     isOnboardingActive,
     isTimerActive,
     selectedProject,
+    selectedTaskId,
     selectedTasks,
     projects: projects.items,
     tasks: selectedTasks,
@@ -345,7 +360,11 @@ export default connect(mapStateToProps, {
   fetchProjects,
   setSelectedProject,
   setActiveTask,
+  setSelectedTask,
   setTempTasks,
+  startRecordingTask,
+  stopRecordingTasks,
+  switchRecordingTask,
   toggleAddTasksForm,
   toggleConfig,
   toggleEditTaskForm,
@@ -365,11 +384,14 @@ TimerPage.propTypes = {
   projects: PropTypes.array,
   selectedProject: PropTypes.object,
   selectedProjectId: PropTypes.string,
-  setActiveTask: PropTypes.func.isRequired,
+  selectedTaskId: PropTypes.string,
   setSelectedProject: PropTypes.func.isRequired,
+  setSelectedTask: PropTypes.func.isRequired,
+  startRecordingTask: PropTypes.func.isRequired,
+  stopRecordingTasks: PropTypes.func.isRequired,
+  switchRecordingTask: PropTypes.func.isRequired,
   tasks: PropTypes.array,
   toggleAddTasksForm: PropTypes.func.isRequired,
   toggleEditTaskForm: PropTypes.func.isRequired,
   toggleOnboardMode: PropTypes.func.isRequired,
-  toggleTimer: PropTypes.func.isRequired,
 };

@@ -38,7 +38,7 @@ class Timer extends Component {
 
       setIntervalId(intervalId);
 
-      setActiveTask(selectedTaskId);
+      // setActiveTask(selectedTaskId);
     }
 
     if ((this.props.isTimerActive !== nextProps.isTimerActive) && !nextProps.isTimerActive) {

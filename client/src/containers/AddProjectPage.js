@@ -42,13 +42,11 @@ let AddProjectPage = class extends Component {
   }
 
   render() {
-    const { isModalClosing, location } = this.props;
-    const { pathname } = location;
+    const { isModalClosing } = this.props;
 
     return (
       <div>
         <ProjectTaskForm
-          currentRoute={pathname}
           handleCancel={routeToProjectsPage}
           handleSubmit={this.handleRemoteSubmit}
           label="Project Name"
@@ -88,7 +86,6 @@ export default AddProjectPage = connect(mapStateToProps, {
 })(AddProjectPage);
 
 AddProjectPage.propTypes = {
-  location: PropTypes.object,
   newTasks: PropTypes.array,
   postProject: PropTypes.func,
   projects: PropTypes.array,

@@ -21,6 +21,7 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import AddTasksForm from '../components/AddTasksForm';
 import RemoteSubmitForm from './RemoteSubmitForm';
 
+
 let AddTasksFormContainer = class extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +39,28 @@ let AddTasksFormContainer = class extends Component {
 
     if (showTasksForSelectedProject || (!isOnboardingActive && isModalActive)) {
       setTempTasks(tasks);
+    }
+  }
+
+  getContainerClass(containerType, formType) {
+    const childContainerClasses = {
+      MODAL: 'form-container',
+      ONBOARDING: 'form-container onboarding-form',
+      FORM_PAGE: '',
+    };
+
+    const parentContainerClasses = {
+      MODAL: 'bounce-in-down',
+      ONBOARDING: 'fullscreen-container',
+      FORM_PAGE: 'fullscreen-container',
+    };
+
+    if (containerType === 'CHILD') {
+      return childContainerClasses[formType];
+    }
+
+    if (containerType === 'PARENT') {
+      return parentContainerClasses[formType];
     }
   }
 
@@ -127,7 +150,7 @@ let AddTasksFormContainer = class extends Component {
   }
 
   render() {
-    const { currentRoute, isModalActive, isOnboardingActive } = this.props;
+    const { formType, isModalActive, isOnboardingActive } = this.props;
 
     return (
       <RemoteSubmitForm
@@ -135,15 +158,18 @@ let AddTasksFormContainer = class extends Component {
       >
         <AddTasksForm
           {...this.props}
-          childContainerClass={(isModalActive && currentRoute !== '/projects/new') ? 'form-container onboarding-form' : ''}
+          childContainerClass={this.getContainerClass('CHILD', formType)}
           fieldAnimationName={isOnboardingActive ? 'bounce-in-down-second' : ''}
           formAnimationName={isOnboardingActive ? '' : 'bounce-in-down'}
           handleFormSubmit={this.handleFormSubmit}
           handleTaskSubmit={this.handleAddTask}
-          parentContainerClass={(isOnboardingActive || /projects/.test(currentRoute)) ? 'fullscreen-container' : 'bounce-in-down'}
+          parentContainerClass={this.getContainerClass('PARENT', formType)}
           renderFormTask={this.renderFormTask}
           shouldAutoFocus={isModalActive}
-          submitButtonClass={`${isOnboardingActive ? 'fade-in-medium-delay' : 'fade-in-short-delay'} outline-button modal-button-bottom-right`}
+          submitButtonClass={`${isOnboardingActive
+            ? 'fade-in-medium-delay'
+            : 'fade-in-short-delay'} outline-button modal-button-bottom-right`
+          }
           titleAnimationName={isOnboardingActive ? 'bounce-in-down' : ''}
         />
       </RemoteSubmitForm>
@@ -194,9 +220,9 @@ export default AddTasksFormContainer = connect(mapStateToProps, {
 AddTasksFormContainer.propTypes = {
   addTempTask: PropTypes.func,
   closeModal: PropTypes.func,
-  currentRoute: PropTypes.string,
   formAnimationName: PropTypes.string,
   formTasks: PropTypes.array,
+  formType: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func,
   isModalActive: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,

@@ -162,12 +162,9 @@ export function updateTask(project, task, toUpdate) {
 }
 
 export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK';
-export function setActiveTask(taskId) {
-  return (dispatch) => {
-    dispatch({
-      type: 'SET_ACTIVE_TASK',
-      taskId,
-    });
+export function setActiveTask() {
+  return {
+    type: 'SET_ACTIVE_TASK',
   };
 }
 
@@ -180,6 +177,49 @@ export function setSelectedProject(projectId) {
     });
 
     localStorage.selectedProjectId = projectId;
+  };
+}
+
+export const SET_SELECTED_TASK = 'SET_SELECTED_TASK';
+export function setSelectedTask(taskId) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_SELECTED_TASK',
+      taskId,
+    });
+
+    localStorage.selectedTaskId = taskId;
+  };
+}
+
+export const START_RECORDING_TASK = 'START_RECORDING_TASK';
+export function startRecordingTask(taskId) {
+  return (dispatch) => {
+    dispatch({
+      type: 'START_RECORDING_TASK',
+      taskId,
+    });
+
+    localStorage.selectedTaskId = taskId;
+  };
+}
+
+export const STOP_RECORDING_TASKS = 'STOP_RECORDING_TASKS';
+export function stopRecordingTasks() {
+  return {
+    type: 'STOP_RECORDING_TASKS',
+  };
+}
+
+export const SWITCH_RECORDING_TASK = 'SWITCH_RECORDING_TASK';
+export function switchRecordingTask(taskId) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SWITCH_RECORDING_TASK',
+      taskId,
+    });
+
+    localStorage.selectedTaskId = taskId;
   };
 }
 

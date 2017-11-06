@@ -6,6 +6,7 @@ const defaultState = {
   isFetching: false,
   items: [],
   queue: null,
+  selectedTaskId: localStorage.selectedTaskId || null,
   selectedProjectId: null,
 };
 
@@ -100,6 +101,27 @@ export default function projects(state = defaultState, action) {
       return {
         ...state,
         selectedProjectId: action.projectId,
+      };
+    case actions.SET_SELECTED_TASK:
+      return {
+        ...state,
+        selectedTaskId: action.taskId,
+      };
+    case actions.START_RECORDING_TASK:
+      return {
+        ...state,
+        activeTaskId: action.taskId,
+        selectedTaskId: action.taskId,
+      };
+    case actions.STOP_RECORDING_TASKS:
+      return {
+        ...state,
+        activeTaskId: null,
+      };
+    case actions.SWITCH_RECORDING_TASK:
+      return {
+        ...state,
+        activeTaskId: action.taskId,
       };
     case actions.TOGGLE_FETCHING:
       return {

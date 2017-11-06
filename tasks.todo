@@ -1,8 +1,7 @@
 **Goals for this Week**:
-  ☐ add form types props to control form animations
+  ☐ finish feature test list and test each item
   ☐ run lint
   ☐ deploy new version
-  ☐ test modals with no min height
   ☐ test to see that new tasks modal animations run smoothly
   ☐ slack Michal
   ☐ write readme
@@ -18,6 +17,8 @@
   ☐ delete tasks via context menu
   ☐ edit task name
   ☐ test task items by toggling different play buttons
+  ☐ make sure both play and stop works for list items
+
   ☐ while on task is playing click another task item
 
 **Goals for Today**:
