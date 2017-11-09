@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import store from '../redux-files/store';
 
-export default class ModalRoot extends Component {
+export default class RootModal extends Component {
   componentDidMount() {
     this.modalTarget = document.createElement('div');
     document.body.appendChild(this.modalTarget);
@@ -43,7 +43,7 @@ export default class ModalRoot extends Component {
   }
 }
 
-ModalRoot.propTypes = {
+RootModal.propTypes = {
   children: PropTypes.object.isRequired,
   className: PropTypes.string,
 };

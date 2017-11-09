@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function WelcomeModal(props) {
+export default function Welcome(props) {
   const { handleGetStartedClick } = props;
 
   return (
@@ -20,6 +20,6 @@ export default function WelcomeModal(props) {
   );
 }
 
-WelcomeModal.propTypes = {
+Welcome.propTypes = {
   handleGetStartedClick: PropTypes.func.isRequired,
 };

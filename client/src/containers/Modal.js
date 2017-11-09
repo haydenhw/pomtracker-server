@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { closeModal } from '../actions/indexActions';
 
-import RootModal from '../components/ModalRoot';
+import RootModal from '../components/RootModal';
 import AddProjectModal from './AddProjectModal';
 import AddTasksModal from './AddTasksModal';
 import ConfirmEditTask from './ConfirmEditTask';
@@ -12,7 +12,7 @@ import ConfirmDeleteProject from './ConfirmDeleteProject';
 import ConfirmDeleteTask from './ConfirmDeleteTask';
 import EditTaskModal from './EditTaskModal';
 import ProjectNagModal from './ProjectNagModal';
-import WelcomeModalContainer from './WelcomeModalContainer';
+import WelcomeModal from './WelcomeModal';
 
 function Modal(props) {
   const MODAL_COMPONENTS = {
@@ -23,7 +23,7 @@ function Modal(props) {
     CONFIRM_EDIT_TASK: ConfirmEditTask,
     EDIT_TASK: EditTaskModal,
     PROJECT_NAG: ProjectNagModal,
-    WELCOME: WelcomeModalContainer,
+    WELCOME: WelcomeModal,
   };
 
   const {
