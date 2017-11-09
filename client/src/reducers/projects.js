@@ -122,6 +122,7 @@ export default function projects(state = defaultState, action) {
       return {
         ...state,
         activeTaskId: action.taskId,
+        selectedTaskId: action.taskId,
       };
     case actions.TOGGLE_FETCHING:
       return {

@@ -132,7 +132,6 @@ const TimerPage = class extends Component {
   }
 
   handlePlayClick = taskId => (evt) => {
-    console.log('button clicked')
     const {
       isTimerActive,
       activeTaskId,
@@ -142,29 +141,28 @@ const TimerPage = class extends Component {
     } = this.props;
 
     evt.stopPropagation();
+
     if (isTimerActive && (activeTaskId === taskId)) {
       stopRecordingTasks();
-      return null;
-    }
-
-    if (isTimerActive && !(activeTaskId === taskId)) {
+    } else if (isTimerActive && !(activeTaskId === taskId)) {
       switchRecordingTask(taskId);
-      return null;
-    }
-
-    if (!isTimerActive) {
+    } else {
       startRecordingTask(taskId);
     }
   }
 
   handleTaskChange = (taskId) => {
-    const { setSelectedTask } = this.props;
+    const { isTimerActive, setSelectedTask, switchRecordingTask } = this.props;
 
     if (localStorage.prevSelectedTaskId !== taskId) {
       localStorage.setItem('prevSelectedTaskId', taskId);
     }
 
-    setSelectedTask(taskId);
+    if (isTimerActive) {
+      switchRecordingTask(taskId);
+    } else {
+      setSelectedTask(taskId);
+    }
   }
 
   handleTaskDelete = (selectedProject, task) => () => {

@@ -1,5 +1,4 @@
 **Goals for this Week**:
-  ☐ finish feature test list and test each item
   ☐ run lint
   ☐ deploy new version
   ☐ test to see that new tasks modal animations run smoothly
@@ -18,8 +17,16 @@
   ☐ edit task name
   ☐ test task items by toggling different play buttons
   ☐ make sure both play and stop works for list items
-
   ☐ while on task is playing click another task item
+  ☐ test the play button on the timer: start and stop the timer
+  ☐ try selecting different tasks from the timer dropdown task select while timer is and isn't running
+  ☐ try clicking a project list item
+  ☐ Edit a project name and add/delete tasks from the edit project page
+  ☐ Add a new project from the New Project page
+  ☐ Delete a project
+
+
+
 
 **Goals for Today**:
   ☐ refactor all componenents

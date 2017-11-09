@@ -9,6 +9,8 @@ import {
   resetTimer,
   setIntervalId,
   setStartTime,
+  startRecordingTask,
+  stopRecordingTasks,
   toggleTimer,
 } from '../actions/indexActions';
 
@@ -83,6 +85,12 @@ class Timer extends Component {
     }
   }
 
+  handlePlayClick = selectedTaskId => () => {
+    const { startRecordingTask } = this.props;
+
+    startRecordingTask(selectedTaskId);
+  }
+
   handleSetStartTime = selectedTaskId => (newTime) => {
     const { selectedTaskId, setStartTime } = this.props;
     const shouldToggleTimer = Boolean(selectedTaskId);
@@ -95,9 +103,8 @@ class Timer extends Component {
       isTimerActive,
       remainingTime,
       startTime,
-      toggleTimer,
       selectedTaskId,
-      task,
+      stopRecordingTasks,
     } = this.props;
 
     return (
@@ -108,8 +115,8 @@ class Timer extends Component {
           setStartTime={this.handleSetStartTime(selectedTaskId)}
           startCount={startTime}
           time={remainingTime}
-          title={task}
-          handleButtonClick={toggleTimer}
+          handlePlayClick={this.handlePlayClick(selectedTaskId)}
+          handleStopClick={stopRecordingTasks}
         />
       </div>
     );
@@ -139,6 +146,8 @@ export default connect(mapStateToProps, {
   handleTimerComplete,
   incrementTaskTime,
   resetTimer,
+  startRecordingTask,
+  stopRecordingTasks,
   setIntervalId,
   setStartTime,
   toggleTimer,
@@ -158,8 +167,8 @@ Timer.propTypes = {
   setIntervalId: PropTypes.func.isRequired,
   setStartTime: PropTypes.func.isRequired,
   startCount: PropTypes.number,
+  startRecordingTask: PropTypes.func.isRequired,
+  stopRecordingTasks: PropTypes.func.isRequired,
   startTime: PropTypes.number.isRequired,
-  task: PropTypes.object,
   tasks: PropTypes.array.isRequired,
-  toggleTimer: PropTypes.func.isRequired,
 };

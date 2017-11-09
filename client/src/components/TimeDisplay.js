@@ -11,16 +11,16 @@ const getPercentage = () => '';
 
 export default function TimeDisplay(props) {
   const {
-    handleButtonClick,
+    handlePlayClick,
+    handleStopClick,
     isTimerActive,
     isTimerControlActive,
     setStartTime,
     startCount,
-    title,
     time,
   } = props;
 
-  const progressPercentage = Math.round((1 - (time / startCount)) * 100);
+  const progressPercentage = isTimerActive ? (1 - (time / startCount)) * 100 : 100;
   const displayTime = time || startCount;
 
   return (
@@ -32,7 +32,6 @@ export default function TimeDisplay(props) {
         strokeWidth={4}
         textForPercentage={getPercentage}
       />}
-      <div>{title}</div>
       <div style={devStyle || null} className="timer-content">
         <EditInlineText
           className={`edit-time ${isTimerActive ? 'fade-in-fast' : 'hide'}`}
@@ -41,7 +40,7 @@ export default function TimeDisplay(props) {
         />
         <div
           className={`timer-control ${isTimerControlActive ? '' : 'disabled'} `}
-          onClick={isTimerControlActive && handleButtonClick}
+          onClick={isTimerControlActive && (isTimerActive ? handleStopClick : handlePlayClick)}
           role="button"
           tabIndex={0}
         >
@@ -53,11 +52,11 @@ export default function TimeDisplay(props) {
 }
 
 TimeDisplay.propTypes = {
-  handleButtonClick: PropTypes.func.isRequired,
+  handlePlayClick: PropTypes.func.isRequired,
+  handleStopClick: PropTypes.func.isRequired,
   isTimerActive: PropTypes.bool,
   isTimerControlActive: PropTypes.bool,
   setStartTime: PropTypes.func.isRequired,
   startCount: PropTypes.number.isRequired,
-  title: PropTypes.string,
   time: PropTypes.number,
 };
