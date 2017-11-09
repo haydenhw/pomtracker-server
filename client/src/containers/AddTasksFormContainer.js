@@ -166,10 +166,7 @@ let AddTasksFormContainer = class extends Component {
           parentContainerClass={this.getContainerClass('PARENT', formType)}
           renderFormTask={this.renderFormTask}
           shouldAutoFocus={isModalActive}
-          submitButtonClass={`${isOnboardingActive
-            ? 'fade-in-medium-delay'
-            : 'fade-in-short-delay'} outline-button modal-button-bottom-right`
-          }
+          submitButtonClass="fade-in-medium-delay  outline-button modal-button-bottom-right"
           titleAnimationName={isOnboardingActive ? 'bounce-in-down' : ''}
         />
       </RemoteSubmitForm>
