@@ -10,8 +10,7 @@ export default function Nag(props) {
       <span className="nag-message">{nagMessage}</span>
       <div className="nag-button-wrapper">
         <button
-          className="nag-add-button
-          material-button"
+          className="nag-add-button material-button"
           onClick={onActionButtonClick}
         >
           {actionButtonText}

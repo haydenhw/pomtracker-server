@@ -305,7 +305,7 @@ const TimerPage = class extends Component {
             nagMessage={
               <span>Add tasks to project
                 <span className="grey-title-text">
-                  {selectedProjectName}
+                  {` ${selectedProjectName}`}
                 </span> to start tracking time.
               </span>
             }
