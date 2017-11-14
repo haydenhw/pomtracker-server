@@ -267,9 +267,8 @@ export function updateProjectName(project, newName) {
 const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
   // delete tasks that do not already exist in the database
   // we assume that taks without the database created id '_id' do not yet exist in the database
-
   tasks.filter(task => task.shouldDelete && task._id)
-    .forEach(task => dispatch(deleteTask(selectedProject, task)));
+    .forEach(task => dispatch(deleteTask(selectedProject, task, true)));
 };
 
 const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {

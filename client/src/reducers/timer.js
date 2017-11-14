@@ -47,9 +47,11 @@ export default function timer(state = defaultState, action) {
         remainingTime: state.startTime,
       };
     case actions.STOP_RECORDING_TASKS:
+    case actions.DELETE_TASK_REQUEST:
       return {
         ...state,
         isTimerActive: false,
+        remainingTime: state.startTime,
       };
     case actions.TOGGLE_DESKTOP_NOTIFICATION:
       return {

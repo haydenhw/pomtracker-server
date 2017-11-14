@@ -1,7 +1,4 @@
 **Goals for this Week**:
-  ☐ test to see that new tasks modal animations run smoothly
-  ☐ slack Michal
-  ☐ write readme
 
 **Forms to Refactor**:
   ☐ AddTasksForm
@@ -19,9 +16,10 @@
   ☐ test the play button on the timer: start and stop the timer
   ☐ try selecting different tasks from the timer dropdown task select while timer is and isn't running
   ☐ try clicking a project list item
-  ☐ Edit a project name and add/delete tasks from the edit project page
-  ☐ Add a new project from the New Project page
-  ☐ Delete a project
+  ☐ edit a project name and add/delete tasks from the edit project page
+  ☐ add a new project from the New Project page
+  ☐ delete a project
+  ☐ delete all tasks. confirm that nag message looks good and works correctly
 
 **Goals for Today**:
   ☐ refactor all componenents
