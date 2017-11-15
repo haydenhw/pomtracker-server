@@ -13,9 +13,6 @@ export default class Select extends Component {
     this.state = {
       isActive: false,
     };
-
-    // this.handleBodyClick = this.handleBodyClick;
-    // this.toggleIsActive = this.toggleIsActive;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -35,8 +32,8 @@ export default class Select extends Component {
     const targetClassNames = evt.target.className.split(' ');
 
     if (
-      targetClassNames.indexOf('option') === -1 &&
-      targetClassNames.indexOf('option-item') === -1
+      targetClassNames.includes('option') &&
+      targetClassNames.includes('option-item')
     ) {
       this.setState({ isActive: false });
     }

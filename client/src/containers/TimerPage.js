@@ -7,7 +7,6 @@ import shortid from 'shortid';
 import {
   deleteTask,
   decrementTimer,
-  changeActiveContextMenu,
   confirmDeleteTask,
   fetchProjects,
   setSelectedProject,
@@ -181,7 +180,6 @@ const TimerPage = class extends Component {
   renderTask = (task) => {
     const {
       activeTaskId,
-      changeActiveContextMenu,
       isTimerActive,
       selectedProject,
       selectedTaskId,
@@ -203,7 +201,6 @@ const TimerPage = class extends Component {
       >
         <ContextMenu
           className="list-item-context-menu"
-          onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
           <li className="popup-menu-item" onClick={this.handleEditTask(shortId)} role="menuitem">
@@ -240,7 +237,7 @@ const TimerPage = class extends Component {
 
     return (
       <Select
-        className={'task-select'}
+        className="task-select"
         handleOptionClick={this.handleTaskChange}
         items={simplifiedTasks}
       >
@@ -351,7 +348,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  changeActiveContextMenu,
   confirmDeleteTask,
   decrementTimer,
   deleteTask,
@@ -372,7 +368,6 @@ export default connect(mapStateToProps, {
 
 TimerPage.propTypes = {
   activeTaskId: PropTypes.string,
-  changeActiveContextMenu: PropTypes.func.isRequired,
   confirmDeleteTask: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool,
   isModalActive: PropTypes.bool,

@@ -8,68 +8,46 @@ import PopupMenuContent from '../components/PopupMenuContent';
 import PopupMenuTrigger from '../components/PopupMenuTrigger';
 
 class ContextMenu extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isActive: false,
-    };
-
-    this.handleBodyClick = this.handleBodyClick;
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.isActive === true && this.state.isActive === false) {
-      document.body.removeEventListener('click', this.handleBodyClick);
-    }
-  }
-
   bindBodyClickHandler() {
     document.body.addEventListener('click', this.handleBodyClick);
   }
 
   handleClick = (evt) => {
+    const { isMenuActive, changeActiveContextMenu, parentId } = this.props;
     evt.stopPropagation();
 
-    const { onMenuClick, parentId } = this.props;
-
-    onMenuClick
-      ? onMenuClick(parentId)
-      : this.setState({ isActive: true });
-
-    this.bindBodyClickHandler();
-  }
-
-  handleBodyClick = (evt) => {
-    const { onMenuClick } = this.props;
-    const targetClassName = evt.target.className;
-
-    if (
-      targetClassName !== 'task-select option' &&
-      targetClassName !== 'task-select option-item'
-    ) {
-      onMenuClick
-        ? onMenuClick(null)
-        : this.setState({ isActive: false });
-
-      document.body.removeEventListener('click', this.handleBodyClick);
+    if (!isMenuActive) {
+      changeActiveContextMenu(parentId);
+      this.bindBodyClickHandler();
+    } else {
+      changeActiveContextMenu(null);
     }
   }
 
+  handleBodyClick = (evt) => {
+    const { changeActiveContextMenu } = this.props;
+    const targetClassName = evt.target.className;
+
+    if (!/context-menu-trigger-element/.test(targetClassName)) {
+      changeActiveContextMenu(null);
+    }
+
+    document.body.removeEventListener('click', this.handleBodyClick);
+  }
+
   render() {
-    const { activeContextMenuParentId, children, className, parentId } = this.props;
-    const { isActive } = this.state;
+    const { children, className, isMenuActive } = this.props;
 
     return (
       <Popup className={className}>
         <div className="popup-wrapper">
           <PopupMenuTrigger handleClick={this.handleClick}>
-            <div className="list-item-button list-item-outline-button">
-              <span className="icon-dots" />
+            <div className="list-item-button list-item-outline-button context-menu-trigger-element">
+              <span className="icon-dots context-menu-trigger-element" />
             </div>
           </PopupMenuTrigger>
           <PopupMenuContent
-            isActive={activeContextMenuParentId ? activeContextMenuParentId === parentId : isActive}
+            isActive={isMenuActive}
           >
             {children}
           </PopupMenuContent>
@@ -79,20 +57,22 @@ class ContextMenu extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const { editMenu } = state;
+  const { activeParentId } = editMenu;
+  const isMenuActive = activeParentId === ownProps.parentId;
 
   return {
-    activeContextMenuParentId: editMenu.activeParentId,
+    isMenuActive,
   };
 };
 
 export default connect(mapStateToProps, { changeActiveContextMenu })(ContextMenu);
 
 ContextMenu.propTypes = {
-  activeContextMenuParentId: PropTypes.string,
   children: PropTypes.array.isRequired,
   className: PropTypes.string,
-  onMenuClick: PropTypes.func.isRequired,
+  isMenuActive: PropTypes.bool,
+  changeActiveContextMenu: PropTypes.func.isRequired,
   parentId: PropTypes.string.isRequired,
 };
