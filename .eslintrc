@@ -23,7 +23,7 @@
         "react/jsx-filename-extension": "off",
         "react/jsx-indent": [2, 2],
         "react/require-default-props": "off",
-        "space-before-function-paren": "off",
+        "space-before-function-paren": "off"
   },
   "extends": "airbnb"
 }

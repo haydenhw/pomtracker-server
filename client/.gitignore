@@ -1,8 +1,8 @@
 # dependencies
-/node_modules
+node_modules/
 
 # testing
-/coverage
+build/
 
 # production
 
@@ -11,5 +11,3 @@
 .env
 npm-debug.log*
 tasks.todo
-yarn-debug.log*
-yarn-error.log*
