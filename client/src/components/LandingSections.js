@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
-export default function LandingSections() {
+export default function LandingSections({ copy }) {
+  const sectionItems = copy.map((copyItem) => {
+    const { title, description } = copyItem;
+    return (
+      <section key={shortid.generate()} className="lp-section">
+        <h1 className="lp-heading">{title}</h1>
+        <p className="lp-sub-heading">{description}</p>
+      </section>
+    );
+  });
+
   return (
     <div className="lp-sections">
-      <section className="lp-section">
-        <h1 className="lp-heading">Seemless synchronization</h1>
-        <p className="lp-sub-heading">Time tracking stops automatically when pomodoro sessions end</p>
-      </section>
-      <section className="lp-section">
-        <h1 className="lp-heading">Fun to use</h1>
-        <p className="lp-sub-heading">Quirky animations keep things light</p>
-      </section>
-      <section className="lp-section">
-        <h1 className="lp-heading">Minimal Design</h1>
-        <p className="lp-sub-heading">Clean, simple, easy to use interface</p>
-      </section>
+      {sectionItems}
     </div>
   );
 }

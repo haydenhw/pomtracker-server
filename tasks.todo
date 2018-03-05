@@ -1,9 +1,4 @@
 **LandingPage**:
-✔ make bullet font color faded @done(2018-03-05 09:22)
-✔ make bullet font-size smaller for > 1440px views @done(2018-03-05 09:59)
-✔ make button start button smaller @done(2018-03-05 10:13)
-☐ add tomato logo
-☐ edit bullet copy
 
 **Forms to Refactor**:
   ☐ AddTasksForm
