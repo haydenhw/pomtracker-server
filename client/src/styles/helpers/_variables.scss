@@ -1,4 +1,7 @@
 // colors
+$debug-border-color: black;
+$debug-border-color: transparent;
+
 $aqua: #1dd7b9;
 $black: #000;
 $black-faded: #424242;
@@ -27,11 +30,9 @@ $font-form: 'Raleway', sans-serif;
 $font-modal: $font-form;
 $font-title: 'Roboto Condensed', sans-serif;
 
+
 $placeholder-font-weight: bold;
 $placeholder-font-size: 18px;
-
-$debug-border-color: black;
-$debug-border-color: transparent;
 
 // element structure
 $onboard-screen-top-margin: 15vh;

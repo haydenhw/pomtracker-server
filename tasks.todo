@@ -1,10 +1,9 @@
 **LandingPage**:
-✔ Break landing page into componenents @done(2018-03-04 16:32)
-✔ Add rows and column @done(2018-03-04 16:32)
-☐ Hide landing sections at appropriate width
-☐ Add media queries to exapnd rows/ column appropriately
-☐ Add media queries to show hide approprate sections
-☐ Add get started button to mobile view
+✔ make bullet font color faded @done(2018-03-05 09:22)
+✔ make bullet font-size smaller for > 1440px views @done(2018-03-05 09:59)
+✔ make button start button smaller @done(2018-03-05 10:13)
+☐ add tomato logo
+☐ edit bullet copy
 
 **Forms to Refactor**:
   ☐ AddTasksForm

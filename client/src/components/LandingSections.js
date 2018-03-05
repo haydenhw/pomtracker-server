@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function LandingSections() {
   return (
-    <div>
+    <div className="lp-sections">
       <section className="lp-section">
         <h1 className="lp-heading">Seemless synchronization</h1>
         <p className="lp-sub-heading">Time tracking stops automatically when pomodoro sessions end</p>

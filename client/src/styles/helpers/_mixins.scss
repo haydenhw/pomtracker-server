@@ -5,6 +5,12 @@
   @include transform(translate(-50%, -50%));
 }
 
+@mixin center-horiz() {
+  position: absolute;
+  left: 50%;
+  @include transform(translateX(-50%));
+}
+
 @mixin fade-in-delay($seconds) {
   opacity: 0;
   animation: fade-in 1s ease-out $seconds forwards;
