@@ -39,6 +39,3 @@ export default function LandingPage() {
 
   );
 }
-
-LandingPage.propTypes = {
-};
