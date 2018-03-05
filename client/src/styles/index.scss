@@ -8,6 +8,7 @@
   'base/normalize';
 
 @import
+  'layout/float-grid',
   'layout/time-tracker-sections';
 
 @import
@@ -31,6 +32,7 @@
   'components/nav-link',
   'components/nav-logo',
   'components/nav',
+  'components/landing-page',
   'components/popup-menu',
   'components/select',
   'components/task-list',

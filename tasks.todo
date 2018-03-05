@@ -1,4 +1,10 @@
-**Goals for this Week**:
+**LandingPage**:
+✔ Break landing page into componenents @done(2018-03-04 16:32)
+✔ Add rows and column @done(2018-03-04 16:32)
+☐ Hide landing sections at appropriate width
+☐ Add media queries to exapnd rows/ column appropriately
+☐ Add media queries to show hide approprate sections
+☐ Add get started button to mobile view
 
 **Forms to Refactor**:
   ☐ AddTasksForm

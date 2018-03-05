@@ -6,6 +6,6 @@ export const routeToProjectsPage = () => {
 };
 
 export const routeToTimerPage = () => {
-  hashHistory.push('/');
+  hashHistory.push('/timer');
   window.scrollTo(0, 0);
 };

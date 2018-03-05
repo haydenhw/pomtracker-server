@@ -46,6 +46,21 @@ label {
   margin-bottom: 10px;
 }
 
+p {
+  margin-bottom: 0;
+}
+
+ul,li {
+  list-style-type: none;
+  list-style-position:inside;
+  margin:0;
+  padding:0;
+}
+
+li {
+  text-align: left;
+}
+
 @include placeholder() {
   font-family: $font-form;
   font-size: $placeholder-font-size;

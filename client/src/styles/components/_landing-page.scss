@@ -1,0 +1,48 @@
+.landing-page {
+  text-align: center;
+  padding: 20px;
+  line-height: 1.25;
+  font-size: 16px;
+}
+
+.lp-heading {
+  font-weight: 700;
+  font-size: 1.8em;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-sub-heading {
+  color: $grey-super-dark;
+  font-size: 1.3em;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+}
+
+.lp-iphone-screenshot {
+  margin: 50px 0;
+  max-width: 350px;
+  width: 100%;
+}
+
+.lp-description-list {
+  @include hide();
+  display: inline-block;
+}
+
+.lp-section {
+  // border: 1px solid $debug-border-color;
+  padding-bottom: 50px;
+}
+
+.lp-description-item {
+  font-size: 1.2em;
+  margin-bottom: 12px;
+}
+
+.lp-description-item-icon {
+  margin-right: 10px;
+}
