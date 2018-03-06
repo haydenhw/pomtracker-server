@@ -11,8 +11,9 @@ mongoose.Promise = global.Promise;
 const app = express();
 const shouldDeleteDb = false;
 
-
+console.log('hello from server')
 if (process.env.NODE_ENV === 'production') {
+  console.log('production var identified')
   app.use(express.static('client/build'));
 }
 

@@ -34,6 +34,7 @@
   "scripts": {
     "start": "concurrently \"node server.js\"  \"cd client && npm start\"",
     "server": "node server.js",
+    "production:debug": "NODE_ENV=production node server.js",
     "test": "mocha",
     "lint": "eslint --ext .js --ext .jsx server-files || 0",
     "lint:fix": "eslint --fix --ext .js --ext .jsx client/src/ || exit 0",
