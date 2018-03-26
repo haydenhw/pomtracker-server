@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import Notification from 'react-web-notification';
 
 import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
-import { changeActiveLink, fetchProjects, toggleProjectNagModal } from '../actions/indexActions';
+import { changeActiveLink, fetchProjects, handleExistingUserVisit, handleNewUserVisit, toggleProjectNagModal } from '../actions/indexActions';
+import { doesUserExist, isJWTExpired, getUser, getJWT, clearUser, clearJWT  } from 'helpers/users';
 
 import Nav from '../components/Nav';
+
 
 class App extends Component {
   constructor() {
@@ -19,9 +21,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { fetchProjects } = this.props;
+    // const { fetchProjects } = this.props;
+    const { handleNewUserVisit, handleExistingUserVisit } = this.props;
 
-    fetchProjects();
+    const jwt = getJWT();
+    const user = getUser();
+
+    doesUserExist()
+      ? handleExistingUserVisit(jwt, user)
+      : handleNewUserVisit();
+
+    // fetchProjects();
   }
 
   handleTimerLinkClick = () => {
@@ -75,6 +85,8 @@ export default connect(mapStateToProps, {
   changeActiveLink,
   fetchProjects,
   toggleProjectNagModal,
+  handleExistingUserVisit,
+  handleNewUserVisit,
 },
 )(App);
 
