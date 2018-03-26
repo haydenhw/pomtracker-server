@@ -1,11 +1,12 @@
 const express = require('express');
+const passport = require('passport');
 
 const { Projects } = require('../models');
-
 const projectRouter = express.Router();
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 projectRouter.route('/')
-  .get((req, res) => {
+  .get(jwtAuth, (req, res) => {
     Projects
       .find()
       .exec()

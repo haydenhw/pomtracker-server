@@ -2,27 +2,34 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
-const { PORT, DATABASE_URL } = require('./server-files/config');
-const projectRouter = require('./server-files/routes/projectRouter');
-const taskRouter = require('./server-files/routes/taskRouter');
+const { localStrategy, jwtStrategy } = require('./api/strategies');
+const { PORT, DATABASE_URL } = require('./api/config');
+const authRouter = require('./api/routes/authRouter');
+const projectRouter = require('./api/routes/projectRouter');
+const taskRouter = require('./api/routes/taskRouter');
+const userRouter = require('./api/routes/userRouter');
+
 
 mongoose.Promise = global.Promise;
 const app = express();
 const shouldDeleteDb = false;
 
-console.log('hello from server')
 if (process.env.NODE_ENV === 'production') {
-  console.log('production var identified')
   app.use(express.static('client/build'));
 }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 projectRouter.use('/:id/tasks', taskRouter);
+app.use('/auth', authRouter);
 app.use('/projects', projectRouter);
+app.use('/users', userRouter);
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Not Found' });
 });
