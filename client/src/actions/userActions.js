@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import jwtDecode from 'jwt-decode';
-import { fetchProjects } from 'actions/indexActions';
+import { fetchProjects } from '../actions/indexActions';
 import { isJWTExpired, setJWT, setUser } from 'helpers/users';
 
 const createNewUser = (userData, userUrl) => postJSON(userUrl)(userData);

@@ -138,19 +138,4 @@ userRouter.post('/', jsonParser, (req, res) => {
     });
 });
 
-// Never expose all your users like below in a prod application
-// we're just doing this so we have a quick way to see
-// if we're creating users. keep in mind, you can also
-// verify this in the Mongo shell.
-userRouter.get('/', (req, res) => {
-  return User.find()
-    // .then(users => res.json(users.map(user => user.serialize())))
-    .then(users => res.send(JSON.stringify(users, null, 2)))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
-
-userRouter.delete('/delete', (req, res) => {
-  return User.deleteMany().then(() => res.send('deleted'));
-});
-
 module.exports = userRouter;

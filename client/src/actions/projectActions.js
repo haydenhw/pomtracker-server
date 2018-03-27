@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import { getUser, getJWTAuthHeader } from '../helpers/users';
 
 export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
@@ -63,6 +64,7 @@ export function postProject(projectName, tasks) {
   return (dispatch) => {
     const newProject = {
       projectName,
+      ownerId: getUser()._id,
       shortId: shortid.generate(),
       tasks: tasks || [],
     };
@@ -225,11 +227,19 @@ export function switchRecordingTask(taskId) {
 
 export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
 export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-export function fetchProjects() {
+export function fetchProjects(jwt) {
   return (dispatch) => {
-    dispatch({ type: 'TOGGLE_FETCHING' });
+    if (!jwt) {
+      console.warn('JWT not provided or undefined');
+    }
 
-    fetch('projects')
+    dispatch({ type: 'TOGGLE_FETCHING' });
+    fetch('projects', {
+      method: 'GET',
+      headers: {
+        ...getJWTAuthHeader(jwt),
+      },
+    })
       .then((res) => {
         return res.json();
       })

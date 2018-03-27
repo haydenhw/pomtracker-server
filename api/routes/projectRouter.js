@@ -7,8 +7,9 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 projectRouter.route('/')
   .get(jwtAuth, (req, res) => {
+    const query = { ownerId: req.user._id };
     Projects
-      .find()
+      .find(query)
       .exec()
       .then(projects => res.json({ projects }))
       .catch(
@@ -35,6 +36,7 @@ projectRouter.route('/')
         } else {
           return Projects
             .create({
+              ownerId: req.body.ownerId,
               projectName: req.body.projectName,
               position: req.body.position,
               tasks: req.body.tasks,
