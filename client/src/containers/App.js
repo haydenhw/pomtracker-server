@@ -26,8 +26,8 @@ class App extends Component {
     const user = getUser();
 
     doesUserExist()
-      ? console.log('existing') || handleExistingUserVisit(jwt, user)
-      : console.log('new') || handleNewUserVisit();
+      ? handleExistingUserVisit(jwt, user)
+      : handleNewUserVisit();
   }
 
   handleTimerLinkClick = () => {
