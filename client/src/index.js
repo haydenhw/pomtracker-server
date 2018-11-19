@@ -19,7 +19,7 @@ import './styles/icons/icomoon/style.css';
 render((
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="/" component={LandingPage}/>
+      <Route path="/" component={LandingPage} />
       <Route path="/timer" component={App}>
         <IndexRoute component={TimerPage} />
         <Route path="/projects" component={ProjectsPage} />

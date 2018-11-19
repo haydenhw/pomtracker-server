@@ -31,7 +31,7 @@ const generateDemoUser = () => ({
   password: 'public_placeholder_pw',
 });
 
-const postJSON = (url) => (data) => {
+const postJSON = url => (data) => {
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -39,7 +39,7 @@ const postJSON = (url) => (data) => {
       'Content-Type': 'application/json',
     },
   })
-  .then(res => res.json())
+    .then(res => res.json());
 };
 
 const refreshJWT = (jwt, refreshUrl) => {
@@ -53,17 +53,18 @@ const refreshJWT = (jwt, refreshUrl) => {
 
 export const handleNewUserVisit = () => (dispatch) => {
   const newUser = generateDemoUser();
-  const userUrl =  '/users';
+  const userUrl = '/users';
   const loginUrl = '/auth/login';
 
   createNewUser(newUser, userUrl)
-  .then((user) => {
-    setUser(user);
-    return fetchJWT(loginUrl, newUser);
-  })
-  .then((jwt) => {
-    setJWT(jwt);
-  });
+    .then((user) => {
+      setUser(user);
+      return fetchJWT(loginUrl, newUser);
+    })
+    .then((jwt) => {
+      setJWT(jwt);
+      dispatch(fetchProjects(jwt));
+    });
 };
 
 export const handleExistingUserVisit = (jwt, user) => (dispatch) => {
@@ -74,11 +75,11 @@ export const handleExistingUserVisit = (jwt, user) => (dispatch) => {
   if (isJWTExpired(jwt)) {
     console.log('jwt is expired. fetching a new one...')
     return getNewJWT(userCredentials)
-    .then((newJWTObj) => {
-      const { authToken } = newJWTObj;
-      setJWT(authToken)
-      dispatch(fetchProjects(authToken));
-    });
+      .then((newJWTObj) => {
+        const { authToken } = newJWTObj;
+        setJWT(authToken);
+        dispatch(fetchProjects(authToken));
+      });
   }
 
   dispatch(fetchProjects(jwt));

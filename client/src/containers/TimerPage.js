@@ -65,8 +65,8 @@ const TimerPage = class extends Component {
     }
 
     if (
-      ((sessionStorage.isFirstSessionVisit === undefined)) ||
-      ((projects.length === 0) && isOnboardingActive)
+      sessionStorage.isFirstSessionVisit === undefined
+      || (projects.length === 0) && isOnboardingActive
     ) {
       sessionStorage.isFirstSessionVisit = false;
       toggleOnboardMode();

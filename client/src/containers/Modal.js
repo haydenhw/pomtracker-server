@@ -45,7 +45,7 @@ function Modal(props) {
   return (
     <RootModal className={rootModalClass}>
       <div className={`modal ${modalClass}`} style={style}>
-        {isCloseButtonActive !== false &&
+        {true !== false &&
           <span
             className="modal-close"
             onClick={closeModal}

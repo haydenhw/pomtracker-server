@@ -21,17 +21,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // const { fetchProjects } = this.props;
     const { handleNewUserVisit, handleExistingUserVisit } = this.props;
-
     const jwt = getJWT();
     const user = getUser();
 
     doesUserExist()
-      ? handleExistingUserVisit(jwt, user)
-      : handleNewUserVisit();
-
-    // fetchProjects();
+      ? console.log('existing') || handleExistingUserVisit(jwt, user)
+      : console.log('new') || handleNewUserVisit();
   }
 
   handleTimerLinkClick = () => {
@@ -92,7 +88,6 @@ export default connect(mapStateToProps, {
 
 App.propTypes = {
   children: PropTypes.node.isRequired,
-  fetchProjects: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool.isRequired,
   isDesktopNotificationActive: PropTypes.bool,
   location: PropTypes.object.isRequired,

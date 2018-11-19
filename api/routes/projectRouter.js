@@ -30,7 +30,7 @@ projectRouter.route('/')
       .findOne({ projectName: req.body.projectName })
       .exec()
       .then((project) => {
-        if (project) {
+        if (project && (project.ownerId === req.body.ownerId)) {
           const message = 'That project already exists. Please use a different project name';
           res.status(409).send(message);
         } else {
