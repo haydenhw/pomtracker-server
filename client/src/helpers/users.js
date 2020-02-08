@@ -13,21 +13,7 @@ export const isJWTExpired = jwt => {
   const now = new Date() / 1000;
 
   return now > jwtExp;
-}
-
-const postJSON = (url, data) => {
-  return fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
 };
-
-const refreshJWT = (refreshURL) => {
-
-}
 
 export const getJWTAuthHeader = jwt => ({
   'Authorization': 'Bearer ' + jwt,

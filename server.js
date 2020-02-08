@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cors = require('cors');
 
 const { localStrategy, jwtStrategy } = require('./api/strategies');
 const { PORT, DATABASE_URL } = require('./api/config');
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));

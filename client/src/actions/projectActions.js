@@ -1,5 +1,6 @@
 import shortid from 'shortid';
 import { getUser, getJWTAuthHeader } from '../helpers/users';
+import { projectsUrl } from "../config/endpointUrls";
 
 export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
@@ -24,7 +25,7 @@ export function deleteProject(project) {
     });
 
     fetch(
-      `projects/${project._id}`,
+      `${projectsUrl}/${project._id}`,
       {
         method: 'DELETE',
         headers: new Headers({
@@ -47,7 +48,7 @@ export function deleteTask(project, task, shouldUpdateLocalState) {
     }
 
     fetch(
-      `projects/${project._id}/tasks/${task._id}`,
+      `${projectsUrl}/${project._id}/tasks/${task._id}`,
       {
         method: 'DELETE',
         headers: new Headers({
@@ -75,7 +76,7 @@ export function postProject(projectName, tasks) {
     });
 
     fetch(
-      'projects',
+      `${projectsUrl}`,
       {
         method: 'POST',
         body: JSON.stringify(newProject),
@@ -106,7 +107,7 @@ export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
 export function postTask(projectId, task) {
   return (dispatch) => {
     fetch(
-      `projects/${projectId}`,
+      `${projectsUrl}/${projectId}`,
       {
         method: 'POST',
         body: JSON.stringify(task),
@@ -151,7 +152,7 @@ export function updateTask(project, task, toUpdate) {
     });
 
     fetch(
-      `projects/${project._id}/tasks/${task._id}`,
+      `${projectsUrl}/${project._id}/tasks/${task._id}`,
       {
         method: 'PUT',
         body: JSON.stringify(toUpdate),
@@ -234,7 +235,7 @@ export function fetchProjects(jwt) {
     }
 
     dispatch({ type: 'TOGGLE_FETCHING' });
-    fetch('projects', {
+    fetch(projectsUrl, {
       method: 'GET',
       headers: {
         ...getJWTAuthHeader(jwt),
@@ -262,7 +263,7 @@ export function updateProjectName(project, newName) {
     });
 
     fetch(
-      `projects/${project._id}`,
+      `${projectsUrl}/${project._id}`,
       {
         method: 'PUT',
         body: JSON.stringify({ projectName: newName }),

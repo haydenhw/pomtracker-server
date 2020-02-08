@@ -1,6 +1,6 @@
 import * as actions from '../actions/indexActions';
 
-import { modalType, renderFormModal } from '../src-config/devSettings';
+import { modalType, renderFormModal } from '../config/devSettings';
 
 const defaultState = {
   modalType,

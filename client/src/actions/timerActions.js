@@ -1,4 +1,5 @@
 import { timeStringToSeconds } from '../helpers/time';
+import {projectsUrl} from "../config/endpointUrls";
 
 export const DECREMENT_TIMER = 'DECREMENT_TIMER';
 export function decrementTimer() {
@@ -33,7 +34,7 @@ export function incrementTaskTime(project, task) {
     });
 
 
-    fetch(`projects/${project._id}/tasks/${task._id}`, {
+    fetch(`${projectsUrl}/${project._id}/tasks/${task._id}`, {
       method: 'PUT',
       body: JSON.stringify(updatedTask),
       headers: {
