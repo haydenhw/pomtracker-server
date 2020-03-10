@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 bucket_name=pomtracker.haydenhw.com
+distribution_id=E273JJKLU3MMFH
 
-npm run build
-aws2 s3 sync build s3://$bucket_name 
-#aws2 s3 rm s3://$bucket_name --recursive
-#aws2 s3 cp build  s3://$bucket_name --recursive
+if [[ "$1" != --no-build ]]; then
+    npm run build
+fi
+
+aws2 s3 sync build s3://$bucket_name
+aws2 cloudfront create-invalidation \
+    --distribution-id $distribution_id \
+    --paths "/*"
+
