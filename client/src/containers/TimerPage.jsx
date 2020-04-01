@@ -314,7 +314,6 @@ const TimerPage = class extends Component {
           />
         }
         <Modal
-          isCloseButtonActive={isDevOnboardingActive || !isOnboardingActive}
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
           rootModalClass={
             `${isOnboardingActive ? 'unfold' : 'roadrunner'}

@@ -28,7 +28,6 @@ function Modal(props) {
 
   const {
     closeModal,
-    isCloseButtonActive,
     isModalActive,
     modalClass,
     modalProps,
@@ -76,7 +75,6 @@ export default connect(mapStateToProps, { closeModal })(Modal);
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  isCloseButtonActive: PropTypes.bool,
   isModalActive: PropTypes.bool,
   modalClass: PropTypes.string,
   modalProps: PropTypes.object,
