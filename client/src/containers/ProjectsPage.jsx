@@ -25,6 +25,7 @@ import Modal from './Modal';
 
 class ProjectsPage extends Component {
   static defaultProps = {
+    // TODO can I get rid of this dummyString?
     projects: ['dummyString'],
   }
 
@@ -55,23 +56,19 @@ class ProjectsPage extends Component {
 
   handleAddButtonClick = () => {
     const { setTempTasks } = this.props;
-
     setTempTasks([]);
     hashHistory.push('/projects/new');
   }
 
   handleProjectDelete = project => (evt) => {
-    evt.stopPropagation();
-
     const { confirmDeleteProject } = this.props;
-
+    evt.stopPropagation();
     confirmDeleteProject({ payload: project });
   }
 
   handleProjectEdit = project => (evt) => {
-    evt.stopPropagation();
     const { setSelectedProject } = this.props;
-
+    evt.stopPropagation();
     setSelectedProject(project.shortId);
     hashHistory.push(`/projects/${project.shortId}`);
   }

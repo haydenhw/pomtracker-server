@@ -118,15 +118,15 @@ const TimerPage = class extends Component {
     this.setState({ activeContextMenuParentId });
   }
 
+  // TODO why not just pass in the action?
   handleAddTasks = () => {
     const { toggleAddTasksForm } = this.props;
-
     toggleAddTasksForm();
   }
 
+  // TODO consider alternatives to using closures like this
   handleEditTask = taskId => () => {
     const { toggleEditTaskForm } = this.props;
-
     toggleEditTaskForm(taskId);
   }
 
@@ -199,6 +199,7 @@ const TimerPage = class extends Component {
         time={recordedTime}
 
       >
+        {/*TODO do we have to pass this in as a child*/}
         <ContextMenu
           className="list-item-context-menu"
           parentId={shortId}
@@ -257,7 +258,7 @@ const TimerPage = class extends Component {
       tasks,
     } = this.props;
 
-
+    // TODO move this calculation to mapProps and inject as a prop
     const totalTime = tasks.length
       ? tasks.map(task => Number(task.recordedTime)).reduce((a, b) => a + b)
       : 0;
@@ -269,6 +270,7 @@ const TimerPage = class extends Component {
 
     return (
       <div>
+        {/*TODO accessibility tags? */}
         <section className="timer-section">
           <div className="timer-container">
             {tasks.length > 0 && this.renderTaskSelect()}
@@ -284,9 +286,11 @@ const TimerPage = class extends Component {
           ? <section className="timesheet-section">
             <Timesheet
               buttonText="NEW TASKS"
+              // TODO what type of button?
               handleButtonClick={this.handleAddTasks}
               titleText={
-                <span>Tasks for project
+                <span>
+                  Tasks for project
                   <span className={'grey-title-text'} key={shortid.generate()}>
                     {` ${selectedProject.projectName}`}
                   </span>

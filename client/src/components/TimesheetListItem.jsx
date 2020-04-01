@@ -37,7 +37,6 @@ export default function TimesheetListItem(props) {
           <div className="timesheet-col-time">{secondsToHMMSS(time)}</div>
         </div>
       </TimesheetColumn>
-
       <TimesheetColumn colNumber="3">
         <div
           className={`list-item-button list-item-${isActive ? 'stop' : 'play'} 
