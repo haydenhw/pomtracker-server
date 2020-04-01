@@ -44,16 +44,14 @@ function Modal(props) {
   return (
     <RootModal className={rootModalClass}>
       <div className={`modal ${modalClass}`} style={style}>
-        {true !== false &&
-          <span
-            className="modal-close"
-            onClick={closeModal}
-            role="button"
-            tabIndex={0}
-          >
+        <span
+          className="modal-close"
+          onClick={closeModal}
+          role="button"
+          tabIndex={0}
+        >
             &times;
-          </span>
-        }
+        </span>
         <SpecificModal {...modalProps} />
       </div>
     </RootModal>
