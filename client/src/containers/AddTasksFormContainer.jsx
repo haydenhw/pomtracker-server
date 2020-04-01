@@ -30,14 +30,14 @@ let AddTasksFormContainer = class extends Component {
 
   componentDidMount() {
     const {
-      isModalActive,
+      showModal,
       isOnboardingActive,
       setTempTasks,
       showTasksForSelectedProject,
       tasks,
     } = this.props;
 
-    if (showTasksForSelectedProject || (!isOnboardingActive && isModalActive)) {
+    if (showTasksForSelectedProject || (!isOnboardingActive && showModal)) {
       setTempTasks(tasks);
     }
   }
@@ -150,7 +150,7 @@ let AddTasksFormContainer = class extends Component {
   }
 
   render() {
-    const { formType, isModalActive, isOnboardingActive } = this.props;
+    const { formType, showModal, isOnboardingActive } = this.props;
 
     return (
       <RemoteSubmitForm
@@ -165,7 +165,7 @@ let AddTasksFormContainer = class extends Component {
           handleTaskSubmit={this.handleAddTask}
           parentContainerClass={this.getContainerClass('PARENT', formType)}
           renderFormTask={this.renderFormTask}
-          shouldAutoFocus={isModalActive}
+          shouldAutoFocus={showModal}
           submitButtonClass="fade-in-medium-delay  outline-button modal-button-bottom-right"
           titleAnimationName={isOnboardingActive ? 'bounce-in-down' : ''}
         />
@@ -176,7 +176,7 @@ let AddTasksFormContainer = class extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { customForm, modal, projects } = state;
-  const { isModalActive, isOnboardingActive } = modal;
+  const { showModal, isOnboardingActive } = modal;
   const { selectedProjectId } = projects;
   const formTasks = customForm.taskForm.tasks;
 
@@ -191,7 +191,7 @@ const mapStateToProps = (state, ownProps) => {
     selectedProject,
     selectedProjectId,
     selectedProjectDatabaseId,
-    isModalActive,
+    showModal,
     isOnboardingActive,
     tasks,
     formTasks,
@@ -221,7 +221,7 @@ AddTasksFormContainer.propTypes = {
   formTasks: PropTypes.array,
   formType: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func,
-  isModalActive: PropTypes.bool,
+  showModal: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   reset: PropTypes.func,
   selectedProject: PropTypes.object,

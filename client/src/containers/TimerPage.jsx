@@ -91,12 +91,12 @@ const TimerPage = class extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { isModalActive } = this.props;
+    const { showModal } = this.props;
 
     if (
       this.props.selectedProjectId &&
       (nextProps.selectedProjectId !== this.props.selectedProjectId) &&
-      isModalActive
+      showModal
     ) {
       return false;
     }
@@ -328,7 +328,7 @@ const TimerPage = class extends Component {
 const mapStateToProps = (state) => {
   const { modal, projects, timer } = state;
   const { activeTaskId, hasFetched, isFetching, selectedProjectId, selectedTaskId } = projects;
-  const { isModalActive, isModalClosing, isOnboardingActive } = modal;
+  const { showModal, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
@@ -338,7 +338,7 @@ const mapStateToProps = (state) => {
     activeTaskId,
     hasFetched,
     isFetching,
-    isModalActive,
+    showModal,
     isModalClosing,
     isOnboardingActive,
     isTimerActive,
@@ -373,7 +373,7 @@ TimerPage.propTypes = {
   activeTaskId: PropTypes.string,
   confirmDeleteTask: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool,
-  isModalActive: PropTypes.bool,
+  showModal: PropTypes.bool,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   isTimerActive: PropTypes.bool,

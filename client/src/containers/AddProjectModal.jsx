@@ -36,7 +36,7 @@ class AddProjectModal extends Component {
         fieldAnimationName="bounce-in-down-second"
         formName="projectName"
         handleFormSubmit={this.handleAddProject}
-        isModalActive
+        showModal
         isOnlyInput
         parentContainerClass="fullscreen-container"
         placeholder="Project Name"

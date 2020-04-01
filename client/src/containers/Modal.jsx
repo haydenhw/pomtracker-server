@@ -28,7 +28,7 @@ function Modal(props) {
 
   const {
     closeModal,
-    isModalActive,
+    showModal,
     modalClass,
     modalProps,
     modalType,
@@ -36,7 +36,7 @@ function Modal(props) {
     style,
   } = props;
 
-  if (!isModalActive) {
+  if (!showModal) {
     return null;
   }
 
@@ -60,10 +60,10 @@ function Modal(props) {
 
 const mapStateToProps = (state) => {
   const { modal } = state;
-  const { isModalActive, modalProps, modalType } = modal;
+  const { showModal, modalProps, modalType } = modal;
 
   return {
-    isModalActive,
+    showModal,
     modalProps,
     modalType,
   };
@@ -73,7 +73,7 @@ export default connect(mapStateToProps, { closeModal })(Modal);
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  isModalActive: PropTypes.bool,
+  showModal: PropTypes.bool,
   modalClass: PropTypes.string,
   modalProps: PropTypes.object,
   modalType: PropTypes.string.isRequired,
