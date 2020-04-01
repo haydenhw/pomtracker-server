@@ -32,7 +32,6 @@ class App extends Component {
 
   handleTimerLinkClick = () => {
     const { projects, toggleProjectNagModal } = this.props;
-
     projects.length ? routeToTimerPage() : toggleProjectNagModal();
   }
 
@@ -46,7 +45,7 @@ class App extends Component {
         <Nav
           activeLink={isProjectRoute ? 'PROJECTS' : 'TIMER'}
           handleTimerLinkClick={this.handleTimerLinkClick}
-          handleProjectsLinkClck={routeToProjectsPage}
+          handleProjectsLinkClick={routeToProjectsPage}
           isProjectRoute={isProjectRoute}
         />
         {hasFetched

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Nav(props) {
-  const { activeLink, handleTimerLinkClick, handleProjectsLinkClck } = props;
+  const { activeLink, handleTimerLinkClick, handleProjectsLinkClick } = props;
 
   return (
     <nav className="nav">
@@ -25,7 +25,7 @@ export default function Nav(props) {
       <div className="nav-link-wrapper">
         <a
           className={`nav-link ${activeLink === 'PROJECTS' ? 'active-link' : ''}`}
-          onClick={handleProjectsLinkClck}
+          onClick={handleProjectsLinkClick}
           role="link"
           tabIndex={0}
         >
@@ -41,5 +41,5 @@ export default function Nav(props) {
 Nav.propTypes = {
   activeLink: PropTypes.string.isRequired,
   handleTimerLinkClick: PropTypes.func.isRequired,
-  handleProjectsLinkClck: PropTypes.func.isRequired,
+  handleProjectsLinkClick: PropTypes.func.isRequired,
 };
