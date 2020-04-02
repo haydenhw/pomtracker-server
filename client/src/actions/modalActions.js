@@ -71,7 +71,7 @@ export function toggleAddTasksModal() {
 }
 
 export const TOGGLE_EDIT_TASK_FORM = 'TOGGLE_EDIT_TASK_FORM';
-export function toggleEditTaskForm(taskId) {
+export function toggleEditTaskModal(taskId) {
   return {
     type: 'TOGGLE_EDIT_TASK_FORM',
     taskId,

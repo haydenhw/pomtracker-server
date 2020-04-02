@@ -18,7 +18,7 @@ import {
   switchRecordingTask,
   toggleAddTasksModal,
   toggleConfig,
-  toggleEditTaskForm,
+  toggleEditTaskModal,
   toggleOnboardMode,
   toggleTimer,
 } from '../actions/indexActions';
@@ -120,8 +120,8 @@ const TimerPage = class extends Component {
 
   // TODO consider alternatives to using closures like this
   handleEditTask = taskId => () => {
-    const { toggleEditTaskForm } = this.props;
-    toggleEditTaskForm(taskId);
+    const { toggleEditTaskModal } = this.props;
+    toggleEditTaskModal(taskId);
   }
 
   handlePlayClick = taskId => (evt) => {
@@ -359,7 +359,7 @@ export default connect(mapStateToProps, {
   switchRecordingTask,
   toggleAddTasksModal,
   toggleConfig,
-  toggleEditTaskForm,
+  toggleEditTaskModal,
   toggleOnboardMode,
   toggleTimer,
 })(TimerPage);
@@ -383,6 +383,6 @@ TimerPage.propTypes = {
   switchRecordingTask: PropTypes.func.isRequired,
   tasks: PropTypes.array,
   toggleAddTasksModal: PropTypes.func.isRequired,
-  toggleEditTaskForm: PropTypes.func.isRequired,
+  toggleEditTaskModal: PropTypes.func.isRequired,
   toggleOnboardMode: PropTypes.func.isRequired,
 };

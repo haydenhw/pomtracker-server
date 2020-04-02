@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { closeModal, updateTask, toggleEditTaskForm } from '../actions/indexActions';
+import { closeModal, updateTask, toggleEditTaskModal } from '../actions/indexActions';
 
 import Confirm from '../components/Confirm';
 
@@ -43,7 +43,7 @@ function ConfirmEditTask(props) {
   );
 }
 
-export default connect(null, { closeModal, updateTask, toggleEditTaskForm })(ConfirmEditTask);
+export default connect(null, { closeModal, updateTask, toggleEditTaskModal })(ConfirmEditTask);
 
 ConfirmEditTask.propTypes = {
   closeModal: PropTypes.func.isRequired,
