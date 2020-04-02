@@ -50,13 +50,13 @@ export default function modal(state = defaultState, action) {
         modalType: 'CONFIRM_EDIT_TASK',
         modalProps: action.modalProps,
       };
-    case actions.TOGGLE_ADD_TASKS_FORM:
+    case actions.TOGGLE_ADD_TASKS_MODAL:
       return {
         ...state,
         showModal: !state.showModal,
         modalType: 'ADD_TASKS',
       };
-    case actions.TOGGLE_EDIT_TASK_FORM:
+    case actions.TOGGLE_EDIT_TASK_MODAL:
       return {
         ...state,
         showModal: true,

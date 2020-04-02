@@ -63,17 +63,17 @@ export function toggleConfig() {
   };
 }
 
-export const TOGGLE_ADD_TASKS_FORM = 'TOGGLE_ADD_TASKS_FORM';
+export const TOGGLE_ADD_TASKS_MODAL = 'TOGGLE_ADD_TASKS_MODAL';
 export function toggleAddTasksModal() {
   return {
-    type: 'TOGGLE_ADD_TASKS_FORM',
+    type: 'TOGGLE_ADD_TASKS_MODAL',
   };
 }
 
-export const TOGGLE_EDIT_TASK_FORM = 'TOGGLE_EDIT_TASK_FORM';
+export const  TOGGLE_EDIT_TASK_MODAL = 'TOGGLE_EDIT_TASK_MODAL';
 export function toggleEditTaskModal(taskId) {
   return {
-    type: 'TOGGLE_EDIT_TASK_FORM',
+    type: 'TOGGLE_EDIT_TASK_MODAL',
     taskId,
   };
 }

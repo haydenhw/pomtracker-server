@@ -12,7 +12,7 @@ export default function editMenu(state = defaultState, action) {
         ...state,
         activeParentId: action.parentId,
       };
-    case actions.TOGGLE_EDIT_TASK_FORM:
+    case actions.TOGGLE_EDIT_TASK_MODAL:
       return {
         ...state,
         clickedTaskId: action.taskId,
