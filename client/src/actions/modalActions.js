@@ -64,7 +64,7 @@ export function toggleConfig() {
 }
 
 export const TOGGLE_ADD_TASKS_FORM = 'TOGGLE_ADD_TASKS_FORM';
-export function toggleAddTasksForm() {
+export function toggleAddTasksModal() {
   return {
     type: 'TOGGLE_ADD_TASKS_FORM',
   };

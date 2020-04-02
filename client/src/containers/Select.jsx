@@ -23,12 +23,12 @@ export default class Select extends Component {
 
   toggleIsActive = () => {
     const { isActive } = this.state;
-
-    document.body.addEventListener('click', this.handleBodyClick);
     this.setState({ isActive: !isActive });
+    document.body.addEventListener('click', this.handleBodyClick);
   }
 
   handleBodyClick = (evt) => {
+    // TODO consider finding a more robust way to achieve this, ie without relying on classnames https://blog.campvanilla.com/reactjs-dropdown-menus-b6e06ae3a8fe
     const targetClassNames = evt.target.className.split(' ');
 
     if (
@@ -38,7 +38,6 @@ export default class Select extends Component {
       this.setState({ isActive: false });
     }
   }
-
 
   handleOptionClick = optionId => () => {
     const { handleOptionClick } = this.props;
@@ -76,7 +75,6 @@ export default class Select extends Component {
   render() {
     const { isActive } = this.state;
     const { className } = this.props;
-
     return (
       <PopupMenu className={`${className || ''} select`}>
         <div className="popup-wrapper">

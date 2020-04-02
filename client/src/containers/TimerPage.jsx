@@ -16,7 +16,7 @@ import {
   startRecordingTask,
   stopRecordingTasks,
   switchRecordingTask,
-  toggleAddTasksForm,
+  toggleAddTasksModal,
   toggleConfig,
   toggleEditTaskForm,
   toggleOnboardMode,
@@ -116,12 +116,6 @@ const TimerPage = class extends Component {
 
   setActiveContextMenu = activeContextMenuParentId => () => {
     this.setState({ activeContextMenuParentId });
-  }
-
-  // TODO why not just pass in the action?
-  handleAddTasks = () => {
-    const { toggleAddTasksForm } = this.props;
-    toggleAddTasksForm();
   }
 
   // TODO consider alternatives to using closures like this
@@ -256,6 +250,7 @@ const TimerPage = class extends Component {
       selectedProject,
       selectedTaskId,
       tasks,
+      toggleAddTasksModal,
     } = this.props;
 
     // TODO move this calculation to mapProps and inject as a prop
@@ -287,7 +282,7 @@ const TimerPage = class extends Component {
             <Timesheet
               buttonText="NEW TASKS"
               // TODO what type of button?
-              handleButtonClick={this.handleAddTasks}
+              handleButtonClick={toggleAddTasksModal}
               titleText={
                 <span>
                   Tasks for project
@@ -310,14 +305,14 @@ const TimerPage = class extends Component {
                 </span> to start tracking time.
               </span>
             }
-            onActionButtonClick={this.handleAddTasks}
+            onActionButtonClick={toggleAddTasksModal}
           />
         }
         <Modal
+          // TODO move these classes to the render method
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
           rootModalClass={
-            `${isOnboardingActive ? 'unfold' : 'roadrunner'}
-             ${isModalClosing ? 'out' : ''}`
+            `${isOnboardingActive ? 'unfold' : 'roadrunner'} ${isModalClosing ? 'out' : ''}`
           }
         />
       </div>
@@ -362,7 +357,7 @@ export default connect(mapStateToProps, {
   startRecordingTask,
   stopRecordingTasks,
   switchRecordingTask,
-  toggleAddTasksForm,
+  toggleAddTasksModal,
   toggleConfig,
   toggleEditTaskForm,
   toggleOnboardMode,
@@ -387,7 +382,7 @@ TimerPage.propTypes = {
   stopRecordingTasks: PropTypes.func.isRequired,
   switchRecordingTask: PropTypes.func.isRequired,
   tasks: PropTypes.array,
-  toggleAddTasksForm: PropTypes.func.isRequired,
+  toggleAddTasksModal: PropTypes.func.isRequired,
   toggleEditTaskForm: PropTypes.func.isRequired,
   toggleOnboardMode: PropTypes.func.isRequired,
 };
