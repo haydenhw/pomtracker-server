@@ -265,7 +265,7 @@ const TimerPage = class extends Component {
 
     return (
       <div>
-        {/*TODO accessibility tags? */}
+        {/* TODO accessibility tags? */}
         <section className="timer-section">
           <div className="timer-container">
             {tasks.length > 0 && this.renderTaskSelect()}

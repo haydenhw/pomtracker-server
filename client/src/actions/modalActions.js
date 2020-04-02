@@ -70,7 +70,7 @@ export function toggleAddTasksModal() {
   };
 }
 
-export const  TOGGLE_EDIT_TASK_MODAL = 'TOGGLE_EDIT_TASK_MODAL';
+export const TOGGLE_EDIT_TASK_MODAL = 'TOGGLE_EDIT_TASK_MODAL';
 export function toggleEditTaskModal(taskId) {
   return {
     type: 'TOGGLE_EDIT_TASK_MODAL',
