@@ -14,7 +14,7 @@ import EditTaskModal from './EditTaskModal';
 import ProjectNagModal from './ProjectNagModal';
 import WelcomeModal from './WelcomeModal';
 
-function Modal(props) {
+function ModalController(props) {
   const MODAL_COMPONENTS = {
     ADD_PROJECT: AddProjectModal,
     ADD_TASKS: AddTasksModal,
@@ -69,9 +69,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { closeModal })(Modal);
+export default connect(mapStateToProps, { closeModal })(ModalController);
 
-Modal.propTypes = {
+ModalController.propTypes = {
   closeModal: PropTypes.func.isRequired,
   showModal: PropTypes.bool,
   modalClass: PropTypes.string,

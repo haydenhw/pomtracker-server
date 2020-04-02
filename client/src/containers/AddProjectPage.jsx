@@ -8,7 +8,7 @@ import { hasAnyValue, isDuplicate } from '../helpers/validate';
 import { routeToProjectsPage } from '../helpers/route';
 
 import AddOrEditProjectForm from '../components/AddOrEditProjectForm';
-import Modal from './Modal';
+import ModalController from './ModalController';
 import ProjectTaskForm from './ProjectTaskForm';
 
 let AddProjectPage = class extends Component {

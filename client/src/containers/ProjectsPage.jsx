@@ -21,7 +21,7 @@ import Timesheet from '../components/Timesheet';
 import TimesheetListItem from '../components/TimesheetListItem';
 import TotalTime from '../components/TotalTime';
 import ContextMenu from './ContextMenu';
-import Modal from './Modal';
+import ModalController from './ModalController';
 
 class ProjectsPage extends Component {
   static defaultProps = {
