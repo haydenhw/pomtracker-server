@@ -36,14 +36,11 @@ let AddProjectPage = class extends Component {
   }
 
   handleRemoteSubmit = () => {
-    const { remoteSubmit } = this.props;
-
-    remoteSubmit('ADD_PROJECT');
+    this.props.remoteSubmit('ADD_PROJECT');
   }
 
   render() {
     const { isModalClosing } = this.props;
-
     return (
       <div>
         <ProjectTaskForm
@@ -61,7 +58,7 @@ let AddProjectPage = class extends Component {
             targetPropKey="remoteSubmitForm"
           />
         </ProjectTaskForm>
-        <Modal rootModalClass={`roadrunner ${isModalClosing ? 'out' : ''}`} />
+        <ModalController rootModalClass={`roadrunner ${isModalClosing ? 'out' : ''}`} />
       </div>
     );
   }

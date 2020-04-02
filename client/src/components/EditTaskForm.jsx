@@ -17,7 +17,7 @@ let EditTaskForm = function(props) {
             <Field
               name="taskName"
               component={Input}
-              shouldAutoFocus
+              autoFocus
               type="text"
             />
           </div>

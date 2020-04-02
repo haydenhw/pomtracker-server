@@ -20,7 +20,8 @@ export default function ProjectTaskForm(props) {
         <h2
           className="form-title"
         >
-          {title} <span className="grey-title-text">{selectedProjectName}</span>
+          {title}
+          <span className="grey-title-text">{selectedProjectName}</span>
         </h2>
         {label && <label htmlFor={label}>{label}</label>}
         {children}

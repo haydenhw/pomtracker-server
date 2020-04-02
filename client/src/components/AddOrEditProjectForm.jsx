@@ -41,7 +41,7 @@ let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
               name="singleInput"
               placeholder="Project Name"
               type="text"
-              shouldAutoFocus
+              autoFocus
             />
           </div>
         </form>

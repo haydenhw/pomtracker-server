@@ -7,7 +7,7 @@ export default function Input(props) {
     meta: { error, touched },
     name,
     placeholder,
-    shouldAutoFocus,
+    autoFocus,
     type,
   } = props;
 
@@ -15,7 +15,7 @@ export default function Input(props) {
     <div>
       <input
         {...input}
-        autoFocus={shouldAutoFocus || false}
+        autoFocus={!!autoFocus}
         autoComplete="off"
         className="form-input"
         name={name}
@@ -32,7 +32,7 @@ Input.propTypes = {
   meta: PropTypes.object,
   name: PropTypes.string,
   placeholder: PropTypes.string,
-  shouldAutoFocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   type: PropTypes.string,
 };
 

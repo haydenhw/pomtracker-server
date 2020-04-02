@@ -43,6 +43,7 @@ function ModalController(props) {
   const SpecificModal = MODAL_COMPONENTS[modalType];
   return (
     <RootModal className={rootModalClass}>
+      {/* TODO refactor out this markup into Regular modal component and pass SpecificModal as child*/}
       <div className={`modal ${modalClass}`} style={style}>
         <span
           className="modal-close"

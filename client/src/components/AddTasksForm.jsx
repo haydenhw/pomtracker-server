@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-
 import callOnTargetUpdate from '../hocs/callOnTargetUpdate';
-
 import Input from './Input';
 import List from './List';
 
@@ -18,7 +16,7 @@ let AddTasksForm = (props) => {
     parentContainerClass,
     renderFormTask,
     shouldRenderSubmitButton,
-    shouldAutoFocus,
+    autoFocus,
     submitButtonText,
     submitButtonClass,
     title,
@@ -43,7 +41,7 @@ let AddTasksForm = (props) => {
               component={Input}
               name="taskName"
               placeholder="Add Tasks"
-              shouldAutoFocus={shouldAutoFocus}
+              autoFocus={autoFocus}
             />
           </form>
         </div>
@@ -83,7 +81,7 @@ AddTasksForm.propTypes = {
   handleTaskSubmit: PropTypes.func.isRequired,
   parentContainerClass: PropTypes.string,
   renderFormTask: PropTypes.func.isRequired,
-  shouldAutoFocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   shouldRenderSubmitButton: PropTypes.bool,
   submitButtonClass: PropTypes.string,
   submitButtonText: PropTypes.string,

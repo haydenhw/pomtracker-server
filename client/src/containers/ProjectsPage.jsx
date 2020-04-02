@@ -157,7 +157,7 @@ class ProjectsPage extends Component {
             />
           </div>
         }
-        <Modal
+        <ModalController
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
           rootModalClass={
             `${isOnboardingActive ? 'unfold' : 'roadrunner'}

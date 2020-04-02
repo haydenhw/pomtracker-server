@@ -308,7 +308,7 @@ const TimerPage = class extends Component {
             onActionButtonClick={toggleAddTasksModal}
           />
         }
-        <Modal
+        <ModalController
           // TODO move these classes to the render method
           modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
           rootModalClass={
