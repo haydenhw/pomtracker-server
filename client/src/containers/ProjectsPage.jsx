@@ -138,7 +138,7 @@ class ProjectsPage extends Component {
           ? <Timesheet
             buttonText="NEW PROJECT"
             className="timesheet-projects"
-            handleButtonClick={this.handleAddButtonClick}
+            onNewEntityButtonClick={this.handleAddButtonClick}
             titleText={'Projects'}
           >
             <List

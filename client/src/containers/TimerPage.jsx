@@ -282,7 +282,7 @@ const TimerPage = class extends Component {
             <Timesheet
               buttonText="NEW TASKS"
               // TODO what type of button?
-              handleButtonClick={toggleAddTasksModal}
+              onNewEntityButtonClick={toggleAddTasksModal}
               titleText={
                 <span>
                   Tasks for project
