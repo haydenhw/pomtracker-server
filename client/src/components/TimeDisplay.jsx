@@ -20,9 +20,13 @@ export default function TimeDisplay(props) {
     time,
   } = props;
 
+  let handleButtonClick = null;
+  if (isTimerControlActive) {
+    handleButtonClick = isTimerActive ? handleStopClick : handlePlayClick;
+  }
+
   const progressPercentage = isTimerActive ? (1 - (time / startCount)) * 100 : 100;
   const displayTime = time || startCount;
-
   return (
     <div className="timer">
       <div className="progress-bar-container" />
@@ -40,7 +44,7 @@ export default function TimeDisplay(props) {
         />
         <div
           className={`timer-control ${isTimerControlActive ? '' : 'disabled'} `}
-          onClick={isTimerControlActive && (isTimerActive ? handleStopClick : handlePlayClick)}
+          onClick={handleButtonClick}
           role="button"
           tabIndex={0}
         >
