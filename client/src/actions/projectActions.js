@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import { getUser, getJWTAuthHeader } from '../helpers/users';
-import { projectsUrl } from "../config/endpointUrls";
+import { projectsUrl } from '../config/endpointUrls';
 
 export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
@@ -37,9 +37,9 @@ export function deleteProject(project) {
 }
 
 export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
-export function deleteTask(project, task, shouldUpdateLocalState) {
+export function deleteTask(project, task, updateLocalState = false) {
   return (dispatch) => {
-    if (shouldUpdateLocalState) {
+    if (updateLocalState) {
       dispatch({
         type: 'DELETE_TASK_REQUEST',
         projectId: project.shortId,
@@ -277,14 +277,16 @@ export function updateProjectName(project, newName) {
 
 const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
   // delete tasks that do not already exist in the database
-  // we assume that taks without the database created id '_id' do not yet exist in the database
+  // we assume that tasks without the database created id '_id' do not yet exist in the database
   tasks.filter(task => task.shouldDelete && task._id)
-    .forEach(task => dispatch(deleteTask(selectedProject, task, true)));
+  // updateLocalState flag (third argument to delete task) should stay false here because we've
+  // already made the local update via updateTasks()
+    .forEach(task => dispatch(deleteTask(selectedProject, task, false)));
 };
 
 const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
   // post tasks that do not already exist in the database
-  // we assume that taks without the database created id '_id' do not yet exist in the database
+  // we assume that tasks without the database created id '_id' do not yet exist in the database
 
   tasks.filter(task => !task._id)
     .forEach(task => dispatch(postTask(selectedProjectDatabaseId, task)));

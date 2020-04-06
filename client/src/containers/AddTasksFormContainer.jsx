@@ -112,9 +112,7 @@ let AddTasksFormContainer = class extends Component {
   }
 
   handleDeleteButtonClick = taskId => () => {
-    const { toggleShouldDelete } = this.props;
-
-    toggleShouldDelete(taskId);
+    this.props.toggleShouldDelete(taskId);
   }
 
   handleDeleteButtonMouseOver = taskId => () => {

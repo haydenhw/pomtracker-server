@@ -10,7 +10,7 @@ const deleteTaskAndCloseModal = (deleteTaskParams, deleteTask, closeModal) => ()
   closeModal();
 };
 
-const getDangerText = (taskName) => {
+const renderDangerText = (taskName) => {
   return (
     <span>
       Are you sure you want to delete task <span className="bold-title">{taskName}</span> ?
@@ -24,7 +24,7 @@ function ConfirmDeleteTask(props) {
   return (
     <Confirm
       onDangerClick={deleteTaskAndCloseModal(payload, deleteTask, closeModal)}
-      dangerText={getDangerText(taskName)}
+      dangerText={renderDangerText(taskName)}
       onCancel={closeModal}
       title={<h2>Confirm Delete</h2>}
     />
