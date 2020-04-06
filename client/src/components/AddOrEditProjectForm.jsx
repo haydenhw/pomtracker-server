@@ -32,7 +32,7 @@ let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
           {title &&
             <h2 className={`form-title ${titleAnimationName || ''}`}>
               {title}
-              {titleName && <span className="grey-title-text">{titleName}</span>}
+              {titleName && <span className="bold-title">{titleName}</span>}
             </h2>
           }
           <div className={fieldAnimationName || ''}>

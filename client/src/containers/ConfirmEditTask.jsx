@@ -26,7 +26,7 @@ const getDangerMessage = (oldTime, newTime) => {
 const getTitle = (taskName) => {
   return (
     <h2 className="form-title">
-      Confirm time change for task <span className="grey-title-text">{taskName}</span>
+      Confirm time change for task <span className="bold-title">{taskName}</span>
     </h2>
   );
 };

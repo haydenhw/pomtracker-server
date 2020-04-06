@@ -13,7 +13,7 @@ const deleteTaskAndCloseModal = (deleteTaskParams, deleteTask, closeModal) => ()
 const getDangerText = (taskName) => {
   return (
     <span>
-      Are you sure you want to delete task <span className="grey-title-text">{taskName}</span> ?
+      Are you sure you want to delete task <span className="bold-title">{taskName}</span> ?
     </span>
   );
 };

@@ -14,7 +14,7 @@ const getDangerText = (projectName) => {
   return (
     <span>
       Are you sure you want to delete project
-      <span className="grey-title-text"> {projectName}</span> ?
+      <span className="bold-title"> {projectName}</span> ?
     </span>
   );
 };

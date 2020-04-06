@@ -65,15 +65,15 @@ const TimerPage = class extends Component {
     }
 
     if (
-      sessionStorage.isFirstSessionVisit === undefined
-      || (projects.length === 0) && isOnboardingActive
+      sessionStorage.isFirstSessionVisit === undefined ||
+      (projects.length === 0 && isOnboardingActive)
     ) {
       sessionStorage.isFirstSessionVisit = false;
       toggleOnboardMode();
       return null;
     }
 
-    if ((projects.length === 0) && !isOnboardingActive) {
+    if (projects.length === 0 && !isOnboardingActive) {
       hashHistory.push('/projects');
       return null;
     }
@@ -286,7 +286,7 @@ const TimerPage = class extends Component {
               titleText={
                 <span>
                   Tasks for project
-                  <span className={'grey-title-text'} key={shortid.generate()}>
+                  <span className={'bold-title'} key={shortid.generate()}>
                     {` ${selectedProject.projectName}`}
                   </span>
                 </span>
@@ -300,7 +300,7 @@ const TimerPage = class extends Component {
             actionButtonText="ADD TASKS"
             nagMessage={
               <span>Add tasks to project
-                <span className="grey-title-text">
+                <span className="bold-title">
                   {` ${selectedProjectName}`}
                 </span> to start tracking time.
               </span>
