@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InlineEdit from 'react-edit-inline';
+import InlineEdit from '../components/InlineEdit';
 
 import { timeStringToSeconds } from '../helpers/time';
 
