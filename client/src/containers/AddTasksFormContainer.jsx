@@ -101,7 +101,6 @@ let AddTasksFormContainer = class extends Component {
     } = this.props;
 
     const tasksToSubmit = tasks.filter(task => !task.shouldDelete);
-
     if (!tasksToSubmit.length && isOnboardingActive) {
       throw new SubmissionError({
         taskName: 'Please add at least one task',

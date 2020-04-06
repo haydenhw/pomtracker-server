@@ -15,7 +15,7 @@ let AddTasksForm = (props) => {
     handleTaskSubmit,
     parentContainerClass,
     renderFormTask,
-    shouldRenderSubmitButton,
+    showSubmitButton,
     autoFocus,
     submitButtonText,
     submitButtonClass,
@@ -46,7 +46,7 @@ let AddTasksForm = (props) => {
           </form>
         </div>
       </div>
-      {!(shouldRenderSubmitButton === false) &&
+      {!(showSubmitButton === false) &&
         <button
           className={submitButtonClass}
           onClick={handleSubmit(handleFormSubmit)}
@@ -82,7 +82,7 @@ AddTasksForm.propTypes = {
   parentContainerClass: PropTypes.string,
   renderFormTask: PropTypes.func.isRequired,
   autoFocus: PropTypes.bool,
-  shouldRenderSubmitButton: PropTypes.bool,
+  showSubmitButton: PropTypes.bool,
   submitButtonClass: PropTypes.string,
   submitButtonText: PropTypes.string,
   title: PropTypes.string,

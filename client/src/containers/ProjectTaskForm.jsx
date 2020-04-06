@@ -28,7 +28,7 @@ export default function ProjectTaskForm(props) {
         <AddTasksFormContainer
           formType="FORM_PAGE"
           shouldDisableFocusOnMount
-          shouldRenderSubmitButton={false}
+          showSubmitButton={false}
           showTasksForSelectedProject={showTasksForSelectedProject}
         />
         <div className="form-page-button-group">

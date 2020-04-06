@@ -40,7 +40,7 @@ class AddProjectModal extends Component {
         isOnlyInput
         parentContainerClass="fullscreen-container"
         placeholder="Project Name"
-        shouldRenderSubmitButton
+        showSubmitButton
         title="Add a project name"
         titleAnimationName="bounce-in-down"
       />

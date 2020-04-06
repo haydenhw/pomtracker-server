@@ -19,7 +19,7 @@ let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
     handleSubmit,
     isOnlyInput,
     parentContainerClass,
-    shouldRenderSubmitButton,
+    showSubmitButton,
     title,
     titleAnimationName,
     titleName,
@@ -46,7 +46,7 @@ let AddOrEditProjectForm = function AddOrEditProjectForm(props) {
           </div>
         </form>
       </div>
-      {shouldRenderSubmitButton &&
+      {showSubmitButton &&
         <button
           className="fade-in-medium-delay
           outline-button
@@ -85,7 +85,7 @@ AddOrEditProjectForm.propTypes = {
   fieldAnimationName: PropTypes.string,
   parentContainerClass: PropTypes.string,
   isOnlyInput: PropTypes.bool,
-  shouldRenderSubmitButton: PropTypes.bool,
+  showSubmitButton: PropTypes.bool,
   title: PropTypes.string,
   titleAnimationName: PropTypes.string,
   titleName: PropTypes.string,

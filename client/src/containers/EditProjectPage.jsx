@@ -86,7 +86,7 @@ class EditProjectPage extends Component {
           formName="projectName"
           initialValues={{ singleInput: selectedProject.projectName }}
           placeholder="Project Name"
-          shouldRenderSubmitButton={false}
+          showSubmitButton={false}
           onTargetUpdate={this.handleEditProjectSubmit}
           targetPropKey="remoteSubmitForm"
           targetValue="ADD_PROJECT"

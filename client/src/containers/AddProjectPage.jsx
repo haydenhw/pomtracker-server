@@ -52,7 +52,7 @@ let AddProjectPage = class extends Component {
           <AddOrEditProjectForm
             formName="projectName"
             placeholder="Project Name"
-            shouldRenderSubmitButton={false}
+            showSubmitButton={false}
             onTargetUpdate={this.handleNewProjectSubmit}
             targetValue="ADD_PROJECT"
             targetPropKey="remoteSubmitForm"
