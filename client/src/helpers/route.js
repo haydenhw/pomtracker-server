@@ -1,11 +1,9 @@
-import { hashHistory } from 'react-router';
-
-export const routeToProjectsPage = () => {
-  hashHistory.push('/projects');
+export const routeToProjectsPage = (history) => {
+  history.push('/app/projects');
   window.scrollTo(0, 0);
 };
 
-export const routeToTimerPage = () => {
-  hashHistory.push('/timer');
+export const routeToTimerPage = (history) => {
+  history.push('/app/timer');
   window.scrollTo(0, 0);
 };

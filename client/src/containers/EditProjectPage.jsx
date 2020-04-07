@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
 
@@ -25,27 +26,22 @@ class EditProjectPage extends Component {
 
   constructor(props) {
     super(props);
-
-    const { selectedProject } = props;
-
-    this.handleEditProjectSubmit = this.handleEditProjectSubmit(selectedProject);
+    this.handleEditProjectSubmit = this.handleEditProjectSubmit(props.selectedProject);
   }
 
   componentWillMount() {
-    const { remoteSubmit } = this.props;
-
-    remoteSubmit(null);
+    this.props.remoteSubmit(null);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.remoteSubmitForm === 'ADD_TASKS' && prevProps.remoteSubmitForm === 'ADD_TASKS') {
-      routeToProjectsPage();
+      this.routeToProjects();
     }
   }
 
   handleEditProjectSubmit = project => ({ singleInput: projectName }) => {
     const { updateProjectName, remoteSubmit, updateTasks, tasks } = this.props;
-
+    // TODO should I leave a space here?
     if (!hasAnyValue(projectName)) {
       remoteSubmit(null);
 
@@ -57,25 +53,28 @@ class EditProjectPage extends Component {
     updateProjectName(project, projectName);
     updateTasks(project, tasks);
     remoteSubmit(null);
-    routeToProjectsPage();
+    this.routeToProjects();
   }
 
   handleRemoteSubmit = () => {
-    const { remoteSubmit } = this.props;
-
-    remoteSubmit('ADD_PROJECT');
+    this.props.remoteSubmit('ADD_PROJECT');
   }
+
+  routeToProjects = () => {
+    routeToProjectsPage(this.props.history)
+  }
+
 
   render() {
     const { selectedProject } = this.props;
-
+    // TODO should I leave a space here?
     if (!selectedProject) {
       return null;
     }
 
     return (
       <ProjectTaskForm
-        handleCancel={routeToProjectsPage}
+        handleCancel={this.routeToProjects}
         handleSubmit={this.handleRemoteSubmit}
         label="Project Name"
         shouldDisableTaskFormFocus
@@ -122,7 +121,7 @@ export default connect(mapStateToProps, {
   remoteSubmit,
   updateProjectName,
   updateTasks,
-})(EditProjectPage);
+})(withRouter(EditProjectPage));
 
 EditProjectPage.propTypes = {
   remoteSubmit: PropTypes.func.isRequired,

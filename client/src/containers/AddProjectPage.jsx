@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
+import { withRouter } from 'react-router';
 
 import { postProject, remoteSubmit } from '../actions/indexActions';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
@@ -12,6 +13,10 @@ import ModalController from './ModalController';
 import ProjectTaskForm from './ProjectTaskForm';
 
 let AddProjectPage = class extends Component {
+  routeToProjects = () => {
+    routeToProjectsPage(this.props.history)
+  }
+
   handleNewProjectSubmit = ({ singleInput: projectName }) => {
     const { newTasks, postProject, projects, remoteSubmit } = this.props;
     const projectNames = projects.items.map(project => project.projectName);
@@ -32,8 +37,9 @@ let AddProjectPage = class extends Component {
 
     postProject(projectName, newTasks);
     remoteSubmit(null);
-    routeToProjectsPage();
+    this.routeToProjects();
   }
+
 
   handleRemoteSubmit = () => {
     this.props.remoteSubmit('ADD_PROJECT');
@@ -44,7 +50,7 @@ let AddProjectPage = class extends Component {
     return (
       <div>
         <ProjectTaskForm
-          handleCancel={routeToProjectsPage}
+          handleCancel={this.routeToProjects}
           handleSubmit={this.handleRemoteSubmit}
           label="Project Name"
           title="New Project"
@@ -80,7 +86,7 @@ const mapStateToProps = (state) => {
 export default AddProjectPage = connect(mapStateToProps, {
   postProject,
   remoteSubmit,
-})(AddProjectPage);
+})(withRouter(AddProjectPage));
 
 AddProjectPage.propTypes = {
   newTasks: PropTypes.array,

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
 import shortid from 'shortid';
 
 import { secondsToHMMSS } from '../helpers/time';
 import { routeToTimerPage } from '../helpers/route';
+import { withRouter } from 'react-router';
 
 import {
   changeActiveContextMenu,
@@ -30,16 +30,14 @@ class ProjectsPage extends Component {
   }
 
   componentWillMount() {
-    const { isOnboardingActive } = this.props;
-
+    const { isOnboardingActive, history } = this.props;
     if (isOnboardingActive) {
-      routeToTimerPage();
+      routeToTimerPage(history);
     }
   }
 
   getTotalTime() {
     const { projects } = this.props;
-
     if (!projects.length) {
       return 0;
     }
@@ -55,9 +53,9 @@ class ProjectsPage extends Component {
   }
 
   handleAddButtonClick = () => {
-    const { setTempTasks } = this.props;
+    const { history, setTempTasks } = this.props;
     setTempTasks([]);
-    hashHistory.push('/projects/new');
+    history.push('/app/new-project');
   }
 
   handleProjectDelete = project => (evt) => {
@@ -67,20 +65,20 @@ class ProjectsPage extends Component {
   }
 
   handleProjectEdit = project => (evt) => {
-    const { setSelectedProject } = this.props;
+    const { history, setSelectedProject } = this.props;
     evt.stopPropagation();
     setSelectedProject(project.shortId);
-    hashHistory.push(`/projects/${project.shortId}`);
+    history.push(`/app/edit-project/${project.shortId}`);
   }
 
   handleListItemClick = projectId => () => {
-    const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
+    const { history, isTimerActive, setSelectedProject, toggleTimer } = this.props;
     if (isTimerActive) {
       toggleTimer();
     }
 
     setSelectedProject(projectId);
-    routeToTimerPage();
+    routeToTimerPage(history);
   }
 
   renderProject = (project) => {
@@ -192,7 +190,7 @@ export default connect(mapStateToProps, {
   setSelectedProject,
   setTempTasks,
   toggleTimer,
-})(ProjectsPage);
+})(withRouter(ProjectsPage));
 
 ProjectsPage.propTypes = {
   changeActiveContextMenu: PropTypes.func.isRequired,

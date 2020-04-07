@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { withRouter } from 'react-router';
+import {Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Notification from 'react-web-notification';
 
 import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
 import { changeActiveLink, fetchProjects, handleExistingUserVisit, handleNewUserVisit, toggleProjectNagModal } from '../actions/indexActions';
-import { doesUserExist, isJWTExpired, getUser, getJWT, clearUser, clearJWT  } from 'helpers/users';
+import { doesUserExist, isJWTExpired, getUser, getJWT, clearUser, clearJWT } from 'helpers/users';
 
+import AddProjectPage from './AddProjectPage';
+import EditProjectPage from './EditProjectPage';
+import ProjectsPage from './ProjectsPage';
+import TimerPage from './TimerPage';
 import Nav from '../components/Nav';
 
 
@@ -30,9 +35,13 @@ class App extends Component {
       : handleNewUserVisit();
   }
 
-  handleTimerLinkClick = () => {
-    const { projects, toggleProjectNagModal } = this.props;
-    projects.length ? routeToTimerPage() : toggleProjectNagModal();
+  handleProjectsLinkClick = () =>  {
+      routeToProjectsPage(this.props.history)
+  }
+
+  handleTimerLinkClick = () =>  {
+    const { history, projects, toggleProjectNagModal } = this.props;
+    projects.length ? routeToTimerPage(history) : toggleProjectNagModal();
   }
 
   render() {
@@ -44,21 +53,36 @@ class App extends Component {
       <div>
         <Nav
           activeLink={isProjectRoute ? 'PROJECTS' : 'TIMER'}
-          handleTimerLinkClick={this.handleTimerLinkClick}
-          handleProjectsLinkClick={routeToProjectsPage}
+          onTimerLinkClick={this.handleTimerLinkClick}
+          onProjectsLinkClick={this.handleProjectsLinkClick }
           isProjectRoute={isProjectRoute}
         />
-        {hasFetched
-          ? this.props.children
-          : <div className="loader">Loading...</div>
-        }
-        {isDesktopNotificationActive
-          && <Notification
+        {!hasFetched ? (
+          <div className="loader">Loading...</div>
+        ) : (
+          <Switch>
+            <Route path={'/app/new-project'}>
+              <AddProjectPage />
+            </Route>
+            <Route path={'/app/edit-project/:id'}>
+              <EditProjectPage />
+            </Route>
+            <Route path={'/app/projects'}>
+              <ProjectsPage />
+            </Route>
+            <Route path={'/app/timer'}>
+              <TimerPage />
+            </Route>
+          </Switch>
+        )}
+
+        {isDesktopNotificationActive && (
+          <Notification
             title="Time's Up!"
             ignore={false}
             options={{ icon: 'images/tomato-timer.png' }}
           />
-        }
+        )}
       </div>
     );
   }
@@ -83,10 +107,9 @@ export default connect(mapStateToProps, {
   handleExistingUserVisit,
   handleNewUserVisit,
 },
-)(App);
+)(withRouter(App));
 
 App.propTypes = {
-  children: PropTypes.node.isRequired,
   hasFetched: PropTypes.bool.isRequired,
   isDesktopNotificationActive: PropTypes.bool,
   location: PropTypes.object.isRequired,

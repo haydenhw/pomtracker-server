@@ -1,11 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { routeToTimerPage } from '../helpers/route';
+
+import { useHistory } from "react-router-dom";
 
 import LandingDescriptionList from '../components/LandingDescriptionList';
 import LandingHeading from '../components/LandingHeading';
 import LandingScreenshot from '../components/LandingScreenshot';
 import LandingSections from '../components/LandingSections';
+import {routeToTimerPage} from "../helpers/route";
 
 const landingCopy = [
   {
@@ -23,12 +24,14 @@ const landingCopy = [
 ];
 
 export default function LandingPage() {
+  const history = useHistory();
+  const routeToApp = () => { routeToTimerPage(history) };
   return (
     <div className="landing-page row">
       <div className="col7 col-lp-hero">
         <div className="lp-hero">
-          <LandingHeading handleStartClick={routeToTimerPage} />
-          <LandingDescriptionList copy={landingCopy} handleStartClick={routeToTimerPage} />
+          <LandingHeading handleStartClick={routeToApp} />
+          <LandingDescriptionList copy={landingCopy} handleStartClick={routeToApp} />
         </div>
       </div>
       <div className="col5">

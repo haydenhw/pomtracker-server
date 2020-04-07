@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { useHistory } from "react-router-dom";
 import { closeModal } from '../actions/indexActions';
 
 import RootModal from '../components/RootModal';
@@ -40,6 +41,7 @@ function ModalController(props) {
     return null;
   }
 
+  const history = useHistory();
   const SpecificModal = MODAL_COMPONENTS[modalType];
   return (
     <RootModal className={rootModalClass}>
@@ -53,7 +55,7 @@ function ModalController(props) {
         >
             &times;
         </span>
-        <SpecificModal {...modalProps} />
+        <SpecificModal {...modalProps} history={history} />
       </div>
     </RootModal>
   );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
 import shortid from 'shortid';
 
 import {
@@ -52,6 +52,7 @@ const TimerPage = class extends Component {
 
   componentWillMount() {
     const {
+      history,
       isOnboardingActive,
       projects,
       setSelectedProject,
@@ -74,7 +75,7 @@ const TimerPage = class extends Component {
     }
 
     if (projects.length === 0 && !isOnboardingActive) {
-      hashHistory.push('/projects');
+      history.push('/app/projects');
       return null;
     }
 
