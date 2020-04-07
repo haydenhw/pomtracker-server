@@ -17,9 +17,7 @@ import {
 } from '../actions/indexActions';
 
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
-
 import AddTasksForm from '../components/AddTasksForm';
-import RemoteSubmitForm from './RemoteSubmitForm';
 
 
 let AddTasksFormContainer = class extends Component {
@@ -42,6 +40,8 @@ let AddTasksFormContainer = class extends Component {
     }
   }
 
+  // TODO should this method be made static or defined as a function a the beginning of the file?
+  // Or is it fine to leave as is ?
   getContainerClass(containerType, formType) {
     const childContainerClasses = {
       MODAL: 'form-container',
@@ -66,12 +66,12 @@ let AddTasksFormContainer = class extends Component {
 
   handleAddTask = ({ taskName }) => {
     const { addTempTask, reset, formTasks: tasks } = this.props;
-    const taskNames = tasks.map(task => task.taskName);
 
     if (!hasAnyValue(taskName)) {
       return null;
     }
 
+    const taskNames = tasks.map(task => task.taskName);
     if (isDuplicate(taskName, taskNames)) {
       throw new SubmissionError({
         taskName: `A task with the name '${taskName}' already exists`,
@@ -149,23 +149,19 @@ let AddTasksFormContainer = class extends Component {
   render() {
     const { formType, showModal, isOnboardingActive } = this.props;
     return (
-      <RemoteSubmitForm
-        onTargetUpdate={this.handleFormSubmit}
-      >
-        <AddTasksForm
-          {...this.props}
-          childContainerClass={this.getContainerClass('CHILD', formType)}
-          fieldAnimationName={isOnboardingActive ? 'bounce-in-down-second' : ''}
-          formAnimationName={isOnboardingActive ? '' : 'bounce-in-down'}
-          handleFormSubmit={this.handleFormSubmit}
-          handleTaskSubmit={this.handleAddTask}
-          parentContainerClass={this.getContainerClass('PARENT', formType)}
-          renderFormTask={this.renderFormTask}
-          autoFocus={showModal}
-          submitButtonClass="fade-in-medium-delay  outline-button modal-button-bottom-right"
-          titleAnimationName={isOnboardingActive ? 'bounce-in-down' : ''}
-        />
-      </RemoteSubmitForm>
+      <AddTasksForm
+        {...this.props}
+        childContainerClass={this.getContainerClass('CHILD', formType)}
+        fieldAnimationName={isOnboardingActive ? 'bounce-in-down-second' : ''}
+        formAnimationName={isOnboardingActive ? '' : 'bounce-in-down'}
+        handleFormSubmit={this.handleFormSubmit}
+        handleTaskSubmit={this.handleAddTask}
+        parentContainerClass={this.getContainerClass('PARENT', formType)}
+        renderFormTask={this.renderFormTask}
+        autoFocus={showModal}
+        submitButtonClass="fade-in-medium-delay  outline-button modal-button-bottom-right"
+        titleAnimationName={isOnboardingActive ? 'bounce-in-down' : ''}
+      />
     );
   }
 };

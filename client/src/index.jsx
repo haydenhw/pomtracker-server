@@ -20,7 +20,7 @@ import './styles/icons/icomoon/style.css';
 
 if (process.env.NODE_ENV === 'production') {
   TagManager.initialize({
-    gtmId: 'GTM-KJWS7WT'
+    gtmId: 'GTM-KJWS7WT',
   });
 
   ReactGA.initialize('UA-160393427-3');

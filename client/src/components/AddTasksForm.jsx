@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-import callOnTargetUpdate from '../hocs/callOnTargetUpdate';
 import Input from './Input';
 import List from './List';
 
-let AddTasksForm = (props) => {
+const AddTasksForm = (props) => {
   const {
     childContainerClass,
     fieldAnimationName,
@@ -58,19 +57,7 @@ let AddTasksForm = (props) => {
   );
 };
 
-const targetInfo = () => {
-  return {
-    targetValue: 'ADD_TASKS',
-    targetPropKey: 'remoteSubmitForm',
-  };
-};
-
-const onTargetUpdate = (props) => {
-  const { handleSubmit, onTargetUpdate } = props;
-  handleSubmit(onTargetUpdate)();
-};
-
-export default AddTasksForm = callOnTargetUpdate(targetInfo, onTargetUpdate)(AddTasksForm);
+export default AddTasksForm;
 
 AddTasksForm.propTypes = {
   childContainerClass: PropTypes.string,
