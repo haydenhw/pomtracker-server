@@ -39,10 +39,8 @@ export default class Select extends Component {
     }
   }
 
-  handleOptionClick = optionId => () => {
-    const { handleOptionClick } = this.props;
-
-    handleOptionClick(optionId);
+  handleChange = optionId => () => {
+    this.props.onChange(optionId);
     this.toggleIsActive();
   }
 
@@ -55,7 +53,7 @@ export default class Select extends Component {
         <li
           className={`${className || ''} option`}
           key={shortid.generate()}
-          onClick={this.handleOptionClick(item.id)}
+          onClick={this.handleChange(item.id)}
           role="option"
         >
           <span className={`${className || ''} option-item`}>{item.name}</span>
@@ -93,6 +91,6 @@ export default class Select extends Component {
 Select.propTypes = {
   children: PropTypes.object,
   className: PropTypes.string,
-  handleOptionClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
 };

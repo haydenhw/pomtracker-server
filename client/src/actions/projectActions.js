@@ -1,17 +1,24 @@
 import shortid from 'shortid';
 import { getUser, getJWTAuthHeader } from '../helpers/users';
-import { projectsUrl } from '../config/endpointUrls';
+import { projectsUrl, projectsUrl2, tasksUrl } from '../config/endpointUrls';
+
+import {
+  underscoreProjectIds,
+  camelizeProjectKeys,
+  snakecaseObject,
+  removeKey,
+} from '../helpers/projects';
 
 export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
   const newProject = {
     projectName,
     tasks: [],
-    shortId: shortid.generate(),
+    clientId: shortid.generate(),
   };
 
   return {
-    type: 'ADD_PROJECT',
+    type: ADD_PROJECT,
     project: newProject,
   };
 }
@@ -20,12 +27,12 @@ export const DELETE_PROJECT_REQUEST = 'DELETE_PROJECT_REQUEST';
 export function deleteProject(project) {
   return (dispatch) => {
     dispatch({
-      type: 'DELETE_PROJECT_REQUEST',
+      type: DELETE_PROJECT_REQUEST,
       project,
     });
 
     fetch(
-      `${projectsUrl}/${project._id}`,
+      `${projectsUrl2}/${project._id}`,
       {
         method: 'DELETE',
         headers: new Headers({
@@ -41,14 +48,15 @@ export function deleteTask(project, task, updateLocalState = false) {
   return (dispatch) => {
     if (updateLocalState) {
       dispatch({
-        type: 'DELETE_TASK_REQUEST',
-        projectId: project.shortId,
-        taskId: task.shortId,
+        type: DELETE_TASK_REQUEST,
+        projectId: project.clientId,
+        taskId: task.clientId,
       });
     }
 
+
     fetch(
-      `${projectsUrl}/${project._id}/tasks/${task._id}`,
+      `${tasksUrl}/${task._id}`,
       {
         method: 'DELETE',
         headers: new Headers({
@@ -59,27 +67,38 @@ export function deleteTask(project, task, updateLocalState = false) {
   };
 }
 
-export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
 export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
+function postProjectSuccess(clientId, databaseId) {
+  return {
+    type: POST_PROJECT_SUCCESS,
+    clientId,
+    databaseId,
+  };
+}
+
+export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
+export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
 export function postProject(projectName, tasks) {
   return (dispatch) => {
     const newProject = {
       projectName,
-      ownerId: getUser()._id,
-      shortId: shortid.generate(),
-      tasks: tasks || [],
+      userId: getUser()._id,
+      clientId: shortid.generate(),
     };
 
+    newProject.tasks = tasks.map(t => Object.assign({}, t, { userId: newProject.userId }));
     dispatch({
-      type: 'POST_PROJECT_REQUEST',
+      type: POST_PROJECT_REQUEST,
       project: newProject,
     });
 
+    const dbProject = snakecaseObject(newProject);
+    dbProject.tasks = newProject.tasks.map(t => snakecaseObject(t));
     fetch(
-      `${projectsUrl}`,
+      projectsUrl2,
       {
         method: 'POST',
-        body: JSON.stringify(newProject),
+        body: JSON.stringify(dbProject),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -88,29 +107,40 @@ export function postProject(projectName, tasks) {
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
-        const projectId = data.shortId;
-        const databaseId = data._id;
+      .then((project) => {
+        // Add database id to new project in redux
+        dispatch(postProjectSuccess(project.client_id, project.id));
 
-        dispatch({
-          type: 'POST_PROJECT_SUCCESS',
-          projectId,
-          databaseId,
-        });
+        // Add database id to new tasks in redux
+        const { tasks } = project;
+        if (tasks && tasks.length > 0) {
+          tasks.forEach((t) => {
+            dispatch({
+              type: POST_TASK_SUCCESS,
+              projectDatabaseId: t.project_id,
+              taskClientId: t.client_id,
+              taskDatabaseId: t.id,
+            });
+          });
+        }
 
-        localStorage.selectedProjectId = projectId;
+        localStorage.selectedProjectId = project.client_id;
       });
   };
 }
 
-export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
-export function postTask(projectId, task) {
+
+export function postTask(projectDatabaseId, task) {
+  let dbTask = snakecaseObject(task);
+  dbTask = removeKey(dbTask, 'tasks');
+  dbTask.user_id = getUser()._id;
+  dbTask.project_id = projectDatabaseId;
   return (dispatch) => {
     fetch(
-      `${projectsUrl}/${projectId}`,
+      tasksUrl,
       {
         method: 'POST',
-        body: JSON.stringify(task),
+        body: JSON.stringify(dbTask),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -119,43 +149,43 @@ export function postTask(projectId, task) {
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
-        const taskId = data.shortId;
-        const databaseId = data._id;
-
+      .then((task) => {
+        // update tasks in redux with id generated by database
         dispatch({
-          type: 'POST_TASK_SUCCESS',
-          projectId,
-          taskId,
-          databaseId,
+          type: POST_TASK_SUCCESS,
+          projectDatabaseId,
+          taskClientId: task.client_id,
+          taskDatabaseId: task.id,
         });
       });
   };
 }
 
 export const QUEUE_NEW_PROJECT = 'QUEUE_NEW_PROJECT';
+
 export function queueNewProject(projectName) {
   return {
-    type: 'QUEUE_NEW_PROJECT',
+    type: QUEUE_NEW_PROJECT,
     projectName,
   };
 }
 
 export const UPDATE_TASK_REQUEST = 'UPDATE_TASK_REQUEST';
+
 export function updateTask(project, task, toUpdate) {
   return (dispatch) => {
     dispatch({
-      type: 'UPDATE_TASK_REQUEST',
-      projectId: project.shortId,
-      taskId: task.shortId,
+      type: UPDATE_TASK_REQUEST,
+      projectId: project.clientId,
+      taskId: task.clientId,
       toUpdate,
     });
 
     fetch(
-      `${projectsUrl}/${project._id}/tasks/${task._id}`,
+      `${tasksUrl}/${task._id}`,
       {
-        method: 'PUT',
-        body: JSON.stringify(toUpdate),
+        method: 'PATCH',
+        body: JSON.stringify(snakecaseObject(toUpdate)),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -165,17 +195,19 @@ export function updateTask(project, task, toUpdate) {
 }
 
 export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK';
+
 export function setActiveTask() {
   return {
-    type: 'SET_ACTIVE_TASK',
+    type: SET_ACTIVE_TASK,
   };
 }
 
 export const SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT';
+
 export function setSelectedProject(projectId) {
   return (dispatch) => {
     dispatch({
-      type: 'SET_SELECTED_PROJECT',
+      type: SET_SELECTED_PROJECT,
       projectId,
     });
 
@@ -184,10 +216,11 @@ export function setSelectedProject(projectId) {
 }
 
 export const SET_SELECTED_TASK = 'SET_SELECTED_TASK';
+
 export function setSelectedTask(taskId) {
   return (dispatch) => {
     dispatch({
-      type: 'SET_SELECTED_TASK',
+      type: SET_SELECTED_TASK,
       taskId,
     });
 
@@ -196,10 +229,11 @@ export function setSelectedTask(taskId) {
 }
 
 export const START_RECORDING_TASK = 'START_RECORDING_TASK';
+
 export function startRecordingTask(taskId) {
   return (dispatch) => {
     dispatch({
-      type: 'START_RECORDING_TASK',
+      type: START_RECORDING_TASK,
       taskId,
     });
 
@@ -208,17 +242,19 @@ export function startRecordingTask(taskId) {
 }
 
 export const STOP_RECORDING_TASKS = 'STOP_RECORDING_TASKS';
+
 export function stopRecordingTasks() {
   return {
-    type: 'STOP_RECORDING_TASKS',
+    type: STOP_RECORDING_TASKS,
   };
 }
 
 export const SWITCH_RECORDING_TASK = 'SWITCH_RECORDING_TASK';
+
 export function switchRecordingTask(taskId) {
   return (dispatch) => {
     dispatch({
-      type: 'SWITCH_RECORDING_TASK',
+      type: SWITCH_RECORDING_TASK,
       taskId,
     });
 
@@ -228,14 +264,15 @@ export function switchRecordingTask(taskId) {
 
 export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
 export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+
 export function fetchProjects(jwt) {
   return (dispatch) => {
     if (!jwt) {
       console.warn('JWT not provided or undefined');
     }
 
-    dispatch({ type: 'TOGGLE_FETCHING' });
-    fetch(projectsUrl, {
+    dispatch({ type: TOGGLE_FETCHING });
+    fetch(projectsUrl2, {
       method: 'GET',
       headers: {
         ...getJWTAuthHeader(jwt),
@@ -245,28 +282,31 @@ export function fetchProjects(jwt) {
         return res.json();
       })
       .then((data) => {
+        let projects = camelizeProjectKeys(data);
+        projects = underscoreProjectIds(projects);
         return dispatch({
-          type: 'FETCH_PROJECTS_SUCCESS',
-          projects: data.projects,
+          type: FETCH_PROJECTS_SUCCESS,
+          projects,
         });
       });
   };
 }
 
-export const UPDATE_PROJECT_NAME_REQUEST = 'UPDATE_PROJECT_NAME_REQUEST ';
+export const UPDATE_PROJECT_NAME_REQUEST = 'UPDATE_PROJECT_NAME_REQUEST';
+
 export function updateProjectName(project, newName) {
   return (dispatch) => {
     dispatch({
-      type: 'UPDATE_PROJECT_NAME_REQUEST ',
-      projectId: project.shortId,
+      type: UPDATE_PROJECT_NAME_REQUEST,
+      projectId: project.clientId,
       projectName: newName,
     });
 
     fetch(
-      `${projectsUrl}/${project._id}`,
+      `${projectsUrl2}/${project._id}`,
       {
-        method: 'PUT',
-        body: JSON.stringify({ projectName: newName }),
+        method: 'PATCH',
+        body: JSON.stringify({ project_name: newName }),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -287,7 +327,6 @@ const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
 const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
   // post tasks that do not already exist in the database
   // we assume that tasks without the database created id '_id' do not yet exist in the database
-
   tasks.filter(task => !task._id)
     .forEach(task => dispatch(postTask(selectedProjectDatabaseId, task)));
 };
@@ -298,8 +337,8 @@ export function updateTasks(selectedProject, tasks) {
     const tasksToSubmit = tasks.filter(task => !task.shouldDelete);
 
     dispatch({
-      type: 'UPDATE_TASKS',
-      projectId: selectedProject.shortId,
+      type: UPDATE_TASKS,
+      projectClientId: selectedProject.clientId,
       newTasks: tasksToSubmit,
     });
 

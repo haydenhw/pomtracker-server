@@ -29,7 +29,7 @@ export default function customForm(state = defaultState, action) {
       const { tasks } = state.taskForm;
 
       const newTasks = tasks.map((task) => {
-        if (task.shortId === action.taskId) {
+        if (task.clientId === action.taskId) {
           const shouldDelete = !task.shouldDelete;
           return Object.assign({}, task, { shouldDelete });
         }

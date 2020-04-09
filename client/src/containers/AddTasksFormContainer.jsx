@@ -82,7 +82,7 @@ let AddTasksFormContainer = class extends Component {
       taskName,
       key: shortid.generate(),
       recordedTime: 0,
-      shortId: shortid.generate(),
+      clientId: shortid.generate(),
       shouldDelete: false,
     };
 
@@ -124,17 +124,17 @@ let AddTasksFormContainer = class extends Component {
   }
 
   renderFormTask = (task) => {
-    const { shouldDelete, shortId, taskName } = task;
+    const { shouldDelete, clientId, taskName } = task;
 
     return (
       <div className="task-list-item" key={shortid.generate()}>
         <div className="task-list-button-wrapper" >
           <button
             className={`${shouldDelete ? 'task-list-restore' : 'task-list-delete'} circular-delete`}
-            ref={(el) => { this.deleteButtonRefs[shortId] = el; }}
-            onClick={this.handleDeleteButtonClick(shortId)}
-            onMouseOver={this.handleDeleteButtonMouseOver(shortId)}
-            onMouseOut={this.handleDeleteButtonMouseOut(shortId)}
+            ref={(el) => { this.deleteButtonRefs[clientId] = el; }}
+            onClick={this.handleDeleteButtonClick(clientId)}
+            onMouseOver={this.handleDeleteButtonMouseOver(clientId)}
+            onMouseOut={this.handleDeleteButtonMouseOut(clientId)}
           >
             { shouldDelete ? 'Restore' : <div className="icon-close" /> }
           </button>
@@ -172,7 +172,7 @@ const mapStateToProps = (state, ownProps) => {
   const { selectedProjectId } = projects;
   const formTasks = customForm.taskForm.tasks;
 
-  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
+  const selectedProject = projects.items.find(project => project.clientId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
 
   const tasks = selectedProject && (ownProps.showTasksForSelectedProject !== false)

@@ -40,7 +40,7 @@ class EditProjectPage extends Component {
   }
 
   handleEditProjectSubmit = project => ({ singleInput: projectName }) => {
-    const { updateProjectName, remoteSubmit, updateTasks, tasks } = this.props;
+    const { updateProjectName, updateTasks, remoteSubmit, tasks } = this.props;
     // TODO should I leave a space here?
     if (!hasAnyValue(projectName)) {
       remoteSubmit(null);
@@ -61,7 +61,7 @@ class EditProjectPage extends Component {
   }
 
   routeToProjects = () => {
-    routeToProjectsPage(this.props.history)
+    routeToProjectsPage(this.props.history);
   }
 
 
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => {
   const { tasks } = taskForm;
 
   const selectedProject = state.projects.items.length > 0 && selectedProjectId
-    ? projects.items.find(project => project.shortId === selectedProjectId)
+    ? projects.items.find(project => project.clientId === selectedProjectId)
     : null;
 
   return {
@@ -124,6 +124,7 @@ export default connect(mapStateToProps, {
 })(withRouter(EditProjectPage));
 
 EditProjectPage.propTypes = {
+  history: PropTypes.object.isRequired,
   remoteSubmit: PropTypes.func.isRequired,
   remoteSubmitForm: PropTypes.string,
   tasks: PropTypes.array.isRequired,

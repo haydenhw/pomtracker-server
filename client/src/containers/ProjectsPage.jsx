@@ -67,8 +67,8 @@ class ProjectsPage extends Component {
   handleProjectEdit = project => (evt) => {
     const { history, setSelectedProject } = this.props;
     evt.stopPropagation();
-    setSelectedProject(project.shortId);
-    history.push(`/app/edit-project/${project.shortId}`);
+    setSelectedProject(project.clientId);
+    history.push(`/app/edit-project/${project.clientId}`);
   }
 
   handleListItemClick = projectId => () => {
@@ -83,7 +83,7 @@ class ProjectsPage extends Component {
 
   renderProject = (project) => {
     const { changeActiveContextMenu, projects, selectedProjectId } = this.props;
-    const { projectName, shortId } = project;
+    const { projectName, clientId } = project;
 
     const totalTime =
       project.tasks.length > 0
@@ -94,16 +94,16 @@ class ProjectsPage extends Component {
       <TimesheetListItem
         actionIconClass="arrow-right"
         key={shortid.generate()}
-        handleItemClick={this.handleListItemClick(shortId)}
-        handlePlayClick={this.handleListItemClick(shortId)}
-        isSelected={(selectedProjectId === shortId) && (projects.length > 1)}
+        handleItemClick={this.handleListItemClick(clientId)}
+        handlePlayClick={this.handleListItemClick(clientId)}
+        isSelected={(selectedProjectId === clientId) && (projects.length > 1)}
         title={projectName}
         time={totalTime}
       >
         <ContextMenu
           className="list-item-context-menu"
           onMenuClick={changeActiveContextMenu}
-          parentId={shortId}
+          parentId={clientId}
         >
           <li className="popup-menu-item" onClick={this.handleProjectEdit(project)} role="menuitem">
             <i className="context-menu-icon icon-edit" />

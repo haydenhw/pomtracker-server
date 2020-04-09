@@ -1,6 +1,8 @@
 import jwtDecode from 'jwt-decode';
 
-export const getUser = () => JSON.parse(localStorage.getItem('pomtrackerDemoUser'));
+let id = 1;
+// TODO change this back to something functional after adding users
+export const getUser = () => ({ _id: id++, username: 'fdsa' + id }) //JSON.parse(localStorage.getItem('pomtrackerDemoUser'));
 export const getJWT= () => localStorage.getItem('pomtrackerJWT');
 export const setUser = user => localStorage.setItem('pomtrackerDemoUser', JSON.stringify(user));
 export const setJWT = jwt => localStorage.setItem('pomtrackerJWT', jwt);

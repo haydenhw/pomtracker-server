@@ -79,10 +79,10 @@ const mapStateToProps = (state) => {
   const { clickedTaskId } = editMenu;
   const { selectedProjectId } = projects;
 
-  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
+  const selectedProject = projects.items.find(project => project.clientId === selectedProjectId);
 
   const selectedTask = projects.items.concatMap(project => project.tasks)
-    .find(task => clickedTaskId === task.shortId);
+    .find(task => clickedTaskId === task.clientId);
 
   const taskNames = selectedProject.tasks.map(task => task.taskName);
 

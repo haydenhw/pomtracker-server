@@ -1,10 +1,11 @@
 import { timeStringToSeconds } from '../helpers/time';
-import {projectsUrl} from "../config/endpointUrls";
+import { tasksUrl } from '../config/endpointUrls';
+import { snakecaseObject } from '../helpers/projects';
 
 export const DECREMENT_TIMER = 'DECREMENT_TIMER';
 export function decrementTimer() {
   return {
-    type: 'DECREMENT_TIMER',
+    type: DECREMENT_TIMER,
   };
 }
 
@@ -13,11 +14,11 @@ export const TOGGLE_DESKTOP_NOTIFICATION = 'TOGGLE_DESKTOP_NOTIFICATION';
 export function handleTimerComplete() {
   return (dispatch) => {
     dispatch({
-      type: 'HANDLE_TIMER_COMPLETE',
+      type: HANDLE_TIMER_COMPLETE,
     });
 
     setTimeout(() => dispatch({
-      type: 'TOGGLE_DESKTOP_NOTIFICATION',
+      type: TOGGLE_DESKTOP_NOTIFICATION,
     }), 1500);
   };
 }
@@ -28,15 +29,14 @@ export function incrementTaskTime(project, task) {
     const updatedTask = Object.assign({}, task, { recordedTime: task.recordedTime + 1 });
 
     dispatch({
-      type: 'INCREMENT_TASK_TIME',
-      projectId: project.shortId,
-      taskId: task.shortId,
+      type: INCREMENT_TASK_TIME,
+      projectId: project.clientId,
+      taskId: task.clientId,
     });
 
-
-    fetch(`${projectsUrl}/${project._id}/tasks/${task._id}`, {
-      method: 'PUT',
-      body: JSON.stringify(updatedTask),
+    fetch(`${tasksUrl}/${task._id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(snakecaseObject(updatedTask)),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -48,14 +48,14 @@ export function incrementTaskTime(project, task) {
 export const RESET_TIMER = 'RESET_TIMER';
 export function resetTimer() {
   return {
-    type: 'RESET_TIMER',
+    type: RESET_TIMER,
   };
 }
 
 export const SET_INTERVAL_ID = 'SET_INTERVAL_ID';
 export function setIntervalId(intervalId) {
   return {
-    type: 'SET_INTERVAL_ID',
+    type: SET_INTERVAL_ID,
     intervalId,
   };
 }
@@ -72,7 +72,7 @@ export function setStartTime(startTime, shouldToggleTimer) {
       : numericStartTime;
 
     return dispatch({
-      type: 'SET_START_TIME',
+      type: SET_START_TIME,
       numericStartTime,
       shouldToggleTimer,
     });
@@ -82,6 +82,6 @@ export function setStartTime(startTime, shouldToggleTimer) {
 export const TOGGLE_TIMER = 'TOGGLE_TIMER';
 export function toggleTimer() {
   return {
-    type: 'TOGGLE_TIMER',
+    type: TOGGLE_TIMER,
   };
 }

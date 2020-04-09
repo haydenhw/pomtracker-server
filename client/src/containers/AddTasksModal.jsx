@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
   const { selectedProjectId } = projects;
 
   const selectedProjectName = projects.items.length > 0
-    ? projects.items.find(project => project.shortId === selectedProjectId).projectName
+    ? projects.items.find(project => project.clientId === selectedProjectId).projectName
     : null;
 
   return {

@@ -81,11 +81,11 @@ const TimerPage = class extends Component {
 
     if (
       localStorage.selectedProjectId &&
-      projects.find(project => project.shortId === localStorage.selectedProjectId)
+      projects.find(project => project.clientId === localStorage.selectedProjectId)
     ) {
       setSelectedProject(localStorage.selectedProjectId);
     } else {
-      setSelectedProject(projects[projects.length - 1].shortId);
+      setSelectedProject(projects[projects.length - 1].clientId);
     }
 
     setSelectedTask(localStorage.prevSelectedTaskId);
@@ -180,26 +180,26 @@ const TimerPage = class extends Component {
       selectedTaskId,
     } = this.props;
 
-    const { shortId, taskName, recordedTime } = task;
+    const { clientId, taskName, recordedTime } = task;
 
     return (
       <TimesheetListItem
         actionIconClass="play"
         key={shortid.generate()}
-        handleItemClick={this.handleTaskItemClick(shortId)}
-        handlePlayClick={this.handlePlayClick(shortId)}
-        isActive={(activeTaskId === shortId) && isTimerActive}
-        isSelected={selectedTaskId === shortId}
+        handleItemClick={this.handleTaskItemClick(clientId)}
+        handlePlayClick={this.handlePlayClick(clientId)}
+        isActive={(activeTaskId === clientId) && isTimerActive}
+        isSelected={selectedTaskId === clientId}
         title={taskName}
         time={recordedTime}
 
       >
-        {/*TODO do we have to pass this in as a child*/}
+        {/* TODO do we have to pass this in as a child */}
         <ContextMenu
           className="list-item-context-menu"
-          parentId={shortId}
+          parentId={clientId}
         >
-          <li className="popup-menu-item" onClick={this.handleEditTask(shortId)} role="menuitem">
+          <li className="popup-menu-item" onClick={this.handleEditTask(clientId)} role="menuitem">
             <i className="context-menu-icon icon-edit" />
             <a className="popup-menu-item-name">Edit</a>
           </li>
@@ -222,11 +222,11 @@ const TimerPage = class extends Component {
     const simplifiedTasks = tasks.map((task) => {
       return {
         name: task.taskName,
-        id: task.shortId,
+        id: task.clientId,
       };
     });
 
-    const selectedTask = tasks.find(task => task.shortId === selectedTaskId);
+    const selectedTask = tasks.find(task => task.clientId === selectedTaskId);
     const selectedTaskName = selectedTask && selectedTask.taskName;
     const taskSelectHeading = selectedTaskName || 'Click to select a task...';
     const headingClass = selectedTaskName ? '' : 'grey';
@@ -234,7 +234,7 @@ const TimerPage = class extends Component {
     return (
       <Select
         className="task-select"
-        handleOptionClick={this.handleTaskChange}
+        onChange={this.handleTaskChange}
         items={simplifiedTasks}
       >
         <span className={headingClass}>{taskSelectHeading}</span>
@@ -327,7 +327,7 @@ const mapStateToProps = (state) => {
   const { showModal, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
 
-  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
+  const selectedProject = projects.items.find(project => project.clientId === selectedProjectId);
   const selectedTasks = selectedProject && selectedProject.tasks;
 
   return {
@@ -363,13 +363,14 @@ export default connect(mapStateToProps, {
   toggleEditTaskModal,
   toggleOnboardMode,
   toggleTimer,
-})(TimerPage);
+})(withRouter(TimerPage));
 
 TimerPage.propTypes = {
   activeTaskId: PropTypes.string,
   confirmDeleteTask: PropTypes.func.isRequired,
   hasFetched: PropTypes.bool,
   showModal: PropTypes.bool,
+  history: PropTypes.object.isRequired,
   isModalClosing: PropTypes.bool,
   isOnboardingActive: PropTypes.bool,
   isTimerActive: PropTypes.bool,
