@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import { getUser, getJWTAuthHeader } from '../helpers/users';
-import { projectsUrl, projectsUrl2, tasksUrl } from '../config/endpointUrls';
+import { projectsUrl, projectsUrl, tasksUrl } from '../config/endpointUrls';
 
 import {
   underscoreProjectIds,
@@ -32,7 +32,7 @@ export function deleteProject(project) {
     });
 
     fetch(
-      `${projectsUrl2}/${project._id}`,
+      `${projectsUrl}/${project._id}`,
       {
         method: 'DELETE',
         headers: new Headers({
@@ -95,7 +95,7 @@ export function postProject(projectName, tasks) {
     const dbProject = snakecaseObject(newProject);
     dbProject.tasks = newProject.tasks.map(t => snakecaseObject(t));
     fetch(
-      projectsUrl2,
+      projectsUrl,
       {
         method: 'POST',
         body: JSON.stringify(dbProject),
@@ -272,7 +272,7 @@ export function fetchProjects(jwt) {
     }
 
     dispatch({ type: TOGGLE_FETCHING });
-    fetch(projectsUrl2, {
+    fetch(projectsUrl, {
       method: 'GET',
       headers: {
         ...getJWTAuthHeader(jwt),
@@ -303,7 +303,7 @@ export function updateProjectName(project, newName) {
     });
 
     fetch(
-      `${projectsUrl2}/${project._id}`,
+      `${projectsUrl}/${project._id}`,
       {
         method: 'PATCH',
         body: JSON.stringify({ project_name: newName }),
