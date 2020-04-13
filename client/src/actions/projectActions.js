@@ -5,7 +5,7 @@ import { projectsUrl, projectsUrl, tasksUrl } from '../config/endpointUrls';
 import {
   underscoreProjectIds,
   camelizeProjectKeys,
-  snakecaseObject,
+  snakecaseKeys,
   removeKey,
 } from '../helpers/projects';
 
@@ -76,8 +76,17 @@ function postProjectSuccess(clientId, databaseId) {
   };
 }
 
-export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
 export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
+function postTaskSuccess({ projectDatabaseId, taskClientId, taskDatabaseId }) {
+  return {
+    type: POST_TASK_SUCCESS,
+    projectDatabaseId,
+    taskClientId,
+    taskDatabaseId
+  }
+}
+
+export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
 export function postProject(projectName, tasks) {
   return (dispatch) => {
     const newProject = {
@@ -86,14 +95,15 @@ export function postProject(projectName, tasks) {
       clientId: shortid.generate(),
     };
 
-    newProject.tasks = tasks.map(t => Object.assign({}, t, { userId: newProject.userId }));
+    newProject.tasks = tasks.map(t => ({ ...t, userId: newProject.userId }));
+
     dispatch({
       type: POST_PROJECT_REQUEST,
       project: newProject,
     });
 
-    const dbProject = snakecaseObject(newProject);
-    dbProject.tasks = newProject.tasks.map(t => snakecaseObject(t));
+    const dbProject = snakecaseKeys(newProject);
+    dbProject.tasks = newProject.tasks.map(t => snakecaseKeys(t));
     fetch(
       projectsUrl,
       {
@@ -108,19 +118,18 @@ export function postProject(projectName, tasks) {
         return res.json();
       })
       .then((project) => {
-        // Add database id to new project in redux
+        // Add database id to new project in redux store
         dispatch(postProjectSuccess(project.client_id, project.id));
 
-        // Add database id to new tasks in redux
+        // Add database id to new tasks in redux store
         const { tasks } = project;
         if (tasks && tasks.length > 0) {
           tasks.forEach((t) => {
-            dispatch({
-              type: POST_TASK_SUCCESS,
+            dispatch(postTaskSuccess({
               projectDatabaseId: t.project_id,
               taskClientId: t.client_id,
               taskDatabaseId: t.id,
-            });
+            }));
           });
         }
 
@@ -131,7 +140,7 @@ export function postProject(projectName, tasks) {
 
 
 export function postTask(projectDatabaseId, task) {
-  let dbTask = snakecaseObject(task);
+  let dbTask = snakecaseKeys(task);
   dbTask = removeKey(dbTask, 'tasks');
   dbTask.user_id = getUser()._id;
   dbTask.project_id = projectDatabaseId;
@@ -185,7 +194,7 @@ export function updateTask(project, task, toUpdate) {
       `${tasksUrl}/${task._id}`,
       {
         method: 'PATCH',
-        body: JSON.stringify(snakecaseObject(toUpdate)),
+        body: JSON.stringify(snakecaseKeys(toUpdate)),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',

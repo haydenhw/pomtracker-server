@@ -27,7 +27,7 @@ const camelToSnake = (string) => {
 const camelizeObject = transformKeys(camelCase);
 export const camelizeProjectKeys = transformProjectKeys(camelizeObject);
 export const underscoreProjectIds = transformProjectKeys(underscoreIdKey);
-export const snakecaseObject = transformKeys(camelToSnake);
+export const snakecaseKeys = transformKeys(camelToSnake);
 
 export const removeKey = (obj, propToDelete) => {
   const { [propToDelete]: deleted, ...objectWithoutDeletedProp } = obj;

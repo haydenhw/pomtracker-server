@@ -1,6 +1,6 @@
 import { timeStringToSeconds } from '../helpers/time';
 import { tasksUrl } from '../config/endpointUrls';
-import { snakecaseObject } from '../helpers/projects';
+import { snakecaseKeys } from '../helpers/projects';
 
 export const DECREMENT_TIMER = 'DECREMENT_TIMER';
 export function decrementTimer() {
@@ -36,7 +36,7 @@ export function incrementTaskTime(project, task) {
 
     fetch(`${tasksUrl}/${task._id}`, {
       method: 'PATCH',
-      body: JSON.stringify(snakecaseObject(updatedTask)),
+      body: JSON.stringify(snakecaseKeys(updatedTask)),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
