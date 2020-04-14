@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import { getUser, getJWTAuthHeader } from '../helpers/users';
-import { projectsUrl, projectsUrl, tasksUrl } from '../config/endpointUrls';
+import { projectsUrl, tasksUrl } from '../config/endpointUrls';
 
 import {
   underscoreProjectIds,

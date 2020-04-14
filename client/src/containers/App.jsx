@@ -26,13 +26,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { handleNewUserVisit, handleExistingUserVisit } = this.props;
+    const { fetchProjects, handleNewUserVisit, handleExistingUserVisit } = this.props;
     const jwt = getJWT();
     const user = getUser();
 
-    doesUserExist()
-      ? handleExistingUserVisit(jwt, user)
-      : handleNewUserVisit();
+    fetchProjects();
+    // doesUserExist()
+    //   ? handleExistingUserVisit(jwt, user)
+    //   : handleNewUserVisit();
   }
 
   handleProjectsLinkClick = () =>  {
