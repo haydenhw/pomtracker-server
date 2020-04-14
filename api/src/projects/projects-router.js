@@ -37,11 +37,8 @@ projectsRouter
     }
   })
   .post(jsonParser, async (req, res, next) => {
-    // what if project had mnay more properties than this?
     let {project_name, client_id, user_id, tasks} = req.body
     const newProject = {project_name, client_id, user_id}
-    // how are the variable names?
-    // the order and placement of statements?
 
     for (const [key, value] of Object.entries(newProject))
       if (value == null)
@@ -57,8 +54,6 @@ projectsRouter
 
     let savedTasks;
     if (tasks) {
-      // is 't' a good variable name here
-      // is it better not to reassign the values of t?
       const newTasks = tasks.map(t => {
         const { client_id, user_id, task_name, recorded_time } = t;
         t = { client_id, user_id, task_name, recorded_time };

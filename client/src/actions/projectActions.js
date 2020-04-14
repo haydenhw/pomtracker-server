@@ -87,7 +87,7 @@ function postTaskSuccess({ projectDatabaseId, taskClientId, taskDatabaseId }) {
 }
 
 export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
-export function postProject(projectName, tasks) {
+export function postProject(projectName, tasks = []) {
   return (dispatch) => {
     const newProject = {
       projectName,
