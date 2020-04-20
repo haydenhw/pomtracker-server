@@ -1,8 +1,5 @@
 {
-  "env": {
-    "browser": true,
-  },
-  "parser": "babel-eslint",
+  parser: "babel-eslint",
   "plugins": [
     "react"
   ],
@@ -18,16 +15,15 @@
         "jsx-a11y/no-autofocus": "off",
         "jsx-a11y/role-has-required-aria-props": "off",
         "jsx-quotes": ["error", "prefer-double"],
-        "max-len": ["error", 100],
         "no-case-declarations": "off",
+        "no-shadow": "off",
         "no-underscore-dangle": "off",
         "no-unused-expressions": ["error", { "allowTernary": true }],
-        "no-shadow": "off",
         "react/forbid-prop-types": "off",
         "react/jsx-filename-extension": "off",
         "react/jsx-indent": [2, 2],
         "react/require-default-props": "off",
-        "space-before-function-paren": "off",
+        "space-before-function-paren": "off"
   },
   "extends": "airbnb"
 }

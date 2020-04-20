@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'postgres-pomtracker',
-    script: 'src/app.js',
+    script: 'src/server.js',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
     instances: 1,
@@ -13,7 +13,7 @@ module.exports = {
     },
     env_production: {
       NODE_ENV: 'production',
-      PORT: 3005,
+      PORT: 3004,
     }
   }],
 

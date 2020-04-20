@@ -277,7 +277,8 @@ export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 export function fetchProjects(jwt) {
   return (dispatch) => {
     if (!jwt) {
-      console.warn('JWT not provided or undefined');
+      if (process.env.NODE_ENV !== 'production')
+        console.warn('JWT not provided or undefined');
     }
 
     dispatch({ type: TOGGLE_FETCHING });

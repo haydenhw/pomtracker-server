@@ -20,8 +20,6 @@ ssh -A -i ~/.ssh/MyKeyPair.pem ubuntu@$EC2IP4 /bin/bash <<EOF
     git fetch origin $CURRENT_BRANCH
     git checkout $CURRENT_BRANCH
     git pull origin $CURRENT_BRANCH &&
-#    yarn &&
-#    pm2 stop ecosystem.config.js --env production
-#    pm2 start ecosystem.config.js --env production
-#    pm2 save
+    yarn &&
+    pm2 reload ecosystem.config.js --env production
 EOF
