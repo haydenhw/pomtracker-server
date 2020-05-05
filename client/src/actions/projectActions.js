@@ -303,7 +303,6 @@ export function fetchProjects(userId, jwt) {
         if (data.error && data.error.message === 'No projects for supplied user id found') {
           createNewUser();
           projects = [];
-          projects = [];
         } else {
           projects = camelizeProjectKeys(data);
           projects = underscoreProjectIds(projects);

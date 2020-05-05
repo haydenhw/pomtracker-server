@@ -1,7 +1,5 @@
 {
-  "name": "blogful-api",
-  "version": "0.0.1",
-  "description": "",
+  "name": "PomTracker API",
   "main": "src/server.js",
   "scripts": {
     "test": "mocha --require test/setup.js",
@@ -12,9 +10,7 @@
     "predeploy": "npm audit",
     "deploy": "git push heroku master"
   },
-  "keywords": [],
-  "author": "Thomas `tomatao` Hudspith-Tatham <iammotivated@gmail.com>",
-  "license": "MIT",
+  "author": "Hayden HarkWright <hayden321@gmail.com>",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
