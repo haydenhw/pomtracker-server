@@ -7,7 +7,7 @@ import Notification from 'react-web-notification';
 
 import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
 import { changeActiveLink, fetchProjects, handleExistingUserVisit, handleNewUserVisit, toggleProjectNagModal } from '../actions/indexActions';
-import { doesUserExist, isJWTExpired, getUser, getJWT, clearUser, clearJWT } from 'helpers/users';
+import { doesUserExist, isJWTExpired, getUser, getJWT, clearUser, clearJWT, createNewUser, getUserId } from 'helpers/users';
 
 import AddProjectPage from './AddProjectPage';
 import EditProjectPage from './EditProjectPage';
@@ -29,8 +29,16 @@ class App extends Component {
     const { fetchProjects, handleNewUserVisit, handleExistingUserVisit } = this.props;
     const jwt = getJWT();
     const user = getUser();
+    let userId = getUserId();
 
-    fetchProjects();
+    if (userId) {
+       fetchProjects(userId);
+    } else {
+      userId = createNewUser();
+      fetchProjects(userId);
+    }
+
+    // This logic is being saved for when jwt auth is re-enabled
     // doesUserExist()
     //   ? handleExistingUserVisit(jwt, user)
     //   : handleNewUserVisit();

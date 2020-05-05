@@ -27,7 +27,7 @@ projectsRouter
       const tasks = await TasksService.getAllTasks(knexInstance)
       let projects = await ProjectsService.getProjectsByUserId(knexInstance, user_id)
       if (projects.length === 0) {
-        return res.status(404).json({
+        return res.json({
           error: {message: 'No projects for supplied user id found'}
         })
       }
@@ -69,7 +69,6 @@ projectsRouter
       })
       savedTasks = await TasksService.insertTasks(knexInstance, newTasks)
       savedProject.tasks = savedTasks
-      console.log(require('util').inspect(savedProject, false, null, true))
     }
     res
       .status(201)

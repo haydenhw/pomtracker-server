@@ -1,6 +1,6 @@
 import shortid from 'shortid';
-import { getUser, getJWTAuthHeader } from '../helpers/users';
-import { projectsUrl, tasksUrl } from '../config/endpointUrls';
+import {getUser, getJWTAuthHeader, createNewUser, getUserId } from '../helpers/users';
+import {projectsUrl, tasksUrl} from '../config/endpointUrls';
 
 import {
   underscoreProjectIds,
@@ -10,6 +10,7 @@ import {
 } from '../helpers/projects';
 
 export const ADD_PROJECT = 'ADD_PROJECT';
+
 export function addProject(projectName) {
   const newProject = {
     projectName,
@@ -24,6 +25,7 @@ export function addProject(projectName) {
 }
 
 export const DELETE_PROJECT_REQUEST = 'DELETE_PROJECT_REQUEST';
+
 export function deleteProject(project) {
   return (dispatch) => {
     dispatch({
@@ -44,6 +46,7 @@ export function deleteProject(project) {
 }
 
 export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
+
 export function deleteTask(project, task, updateLocalState = false) {
   return (dispatch) => {
     if (updateLocalState) {
@@ -68,6 +71,7 @@ export function deleteTask(project, task, updateLocalState = false) {
 }
 
 export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
+
 function postProjectSuccess(clientId, databaseId) {
   return {
     type: POST_PROJECT_SUCCESS,
@@ -77,7 +81,8 @@ function postProjectSuccess(clientId, databaseId) {
 }
 
 export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
-function postTaskSuccess({ projectDatabaseId, taskClientId, taskDatabaseId }) {
+
+function postTaskSuccess({projectDatabaseId, taskClientId, taskDatabaseId}) {
   return {
     type: POST_TASK_SUCCESS,
     projectDatabaseId,
@@ -87,15 +92,16 @@ function postTaskSuccess({ projectDatabaseId, taskClientId, taskDatabaseId }) {
 }
 
 export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
+
 export function postProject(projectName, tasks = []) {
   return (dispatch) => {
     const newProject = {
       projectName,
-      userId: getUser()._id,
+      userId: getUserId(),
       clientId: shortid.generate(),
     };
 
-    newProject.tasks = tasks.map(t => ({ ...t, userId: newProject.userId }));
+    newProject.tasks = tasks.map(t => ({...t, userId: newProject.userId}));
 
     dispatch({
       type: POST_PROJECT_REQUEST,
@@ -122,7 +128,7 @@ export function postProject(projectName, tasks = []) {
         dispatch(postProjectSuccess(project.client_id, project.id));
 
         // Add database id to new tasks in redux store
-        const { tasks } = project;
+        const {tasks} = project;
         if (tasks && tasks.length > 0) {
           tasks.forEach((t) => {
             dispatch(postTaskSuccess({
@@ -274,31 +280,40 @@ export function switchRecordingTask(taskId) {
 export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
 export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
-export function fetchProjects(jwt) {
+export function fetchProjects(userId, jwt) {
   return (dispatch) => {
-    if (!jwt) {
+    if (false && !jwt) {
       if (process.env.NODE_ENV !== 'production')
         console.warn('JWT not provided or undefined');
     }
 
-    dispatch({ type: TOGGLE_FETCHING });
-    fetch(projectsUrl, {
+    dispatch({type: TOGGLE_FETCHING});
+    fetch(projectsUrl + '?userid=' + userId, {
       method: 'GET',
       headers: {
         ...getJWTAuthHeader(jwt),
       },
     })
       .then((res) => {
+
         return res.json();
       })
       .then((data) => {
-        let projects = camelizeProjectKeys(data);
-        projects = underscoreProjectIds(projects);
+        let projects;
+        if (data.error && data.error.message === 'No projects for supplied user id found') {
+          createNewUser();
+          projects = [];
+          projects = [];
+        } else {
+          projects = camelizeProjectKeys(data);
+          projects = underscoreProjectIds(projects);
+        }
+
         return dispatch({
           type: FETCH_PROJECTS_SUCCESS,
           projects,
         });
-      });
+      })
   };
 }
 
@@ -316,7 +331,7 @@ export function updateProjectName(project, newName) {
       `${projectsUrl}/${project._id}`,
       {
         method: 'PATCH',
-        body: JSON.stringify({ project_name: newName }),
+        body: JSON.stringify({project_name: newName}),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -342,6 +357,7 @@ const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
 };
 
 export const UPDATE_TASKS = 'UPDATE_TASKS';
+
 export function updateTasks(selectedProject, tasks) {
   return (dispatch) => {
     const tasksToSubmit = tasks.filter(task => !task.shouldDelete);
