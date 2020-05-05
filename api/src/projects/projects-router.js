@@ -21,9 +21,16 @@ projectsRouter
   .route('/')
   .get(async (req, res, next) => {
     const knexInstance = req.app.get('db')
+    const user_id = req.query.userid
+
     try {
       const tasks = await TasksService.getAllTasks(knexInstance)
-      let projects = await ProjectsService.getAllProjects(knexInstance)
+      let projects = await ProjectsService.getProjectsByUserId(knexInstance, user_id)
+      if (projects.length === 0) {
+        return res.status(404).json({
+          error: {message: 'No projects for supplied user id found'}
+        })
+      }
       projects = projects.map(project => {
         const childTasks = tasks.filter(t => t.project_id === project.id)
         return {
@@ -55,8 +62,8 @@ projectsRouter
     let savedTasks;
     if (tasks) {
       const newTasks = tasks.map(t => {
-        const { client_id, user_id, task_name, recorded_time } = t;
-        t = { client_id, user_id, task_name, recorded_time };
+        const {client_id, user_id, task_name, recorded_time} = t;
+        t = {client_id, user_id, task_name, recorded_time};
         t.project_id = savedProject.id;
         return t;
       })

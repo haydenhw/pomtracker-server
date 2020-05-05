@@ -1,4 +1,5 @@
-// TODO why are these function
+const shortid = require('shortid');
+
 function makeProjectsArray() {
   return [
     {
@@ -6,21 +7,21 @@ function makeProjectsArray() {
       date_created: '2029-01-22T16:28:32.615Z',
       project_name: 'Learn django',
       client_id: 'abc',
-      user_id: 1,
+      user_id: shortid.generate(),
     },
     {
       id: 2,
       date_created: '2100-05-22T16:28:32.615Z',
       project_name: 'Build SMTP API',
       client_id: 'xyz',
-      user_id: 2,
+      user_id: shortid.generate(),
     },
     {
       id: 3,
       date_created: '1919-12-22T16:28:32.615Z',
       project_name: 'Migrate time tracker typescript',
       client_id: '123',
-      user_id: 2,
+      user_id: shortid.generate(),
     },
   ];
 }

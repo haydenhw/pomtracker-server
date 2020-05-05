@@ -1,3 +1,4 @@
+const shortid = require('shortid');
 function makeTasksArray() {
   return [
     {
@@ -7,7 +8,7 @@ function makeTasksArray() {
       recorded_time: 1000,
       project_id: 1,
       client_id: 'abc',
-      user_id: 1,
+      user_id: shortid.generate(),
     },
     {
       id: 2,
@@ -16,7 +17,7 @@ function makeTasksArray() {
       recorded_time: 1500,
       project_id: 1,
       client_id: 'xyz',
-      user_id: 1,
+      user_id: shortid.generate(),
     },
     {
       id: 3,
@@ -25,7 +26,7 @@ function makeTasksArray() {
       recorded_time: 8589,
       project_id: 2,
       client_id: '123',
-      user_id: 2,
+      user_id: shortid.generate(),
     },
   ];
 }
