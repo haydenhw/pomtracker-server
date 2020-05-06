@@ -51,9 +51,8 @@ let AddTasksFormContainer = class extends Component {
 
     const parentContainerClasses = {
       MODAL: 'bounce-in-down',
-      ONBOARDING: 'fullscreen-container',
-      FORM_PAGE: 'fullscreen-container',
-    };
+      ONBOARDING: 'fullscreen-container'
+    }
 
     if (containerType === 'CHILD') {
       return childContainerClasses[formType];

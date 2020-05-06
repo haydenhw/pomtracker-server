@@ -20,7 +20,7 @@ const AddTasksForm = (props) => {
     submitButtonClass,
     title,
     titleAnimationName,
-    titleName,
+    titleName
   } = props;
 
   return (

@@ -1,5 +1,6 @@
 {
-  "name": "PomTracker API",
+  "name": "PomTracker-API",
+  "license": "MIT",
   "main": "src/server.js",
   "scripts": {
     "test": "mocha --require test/setup.js",

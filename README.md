@@ -64,7 +64,7 @@ Successful response
 ## Create project 
 <strong>POST /api/projects</strong>
 
-Example request
+Example request body
 ```json 
 {
     "project_name": "Learn Django",
@@ -77,7 +77,7 @@ Example request
 ## Update project 
 <strong>PATCH /api/projects/:projectId</strong>
 
-Example request
+Example request body
 ```json
 { 
     "task_name": "Read Docs",
@@ -93,7 +93,7 @@ Tasks
 ## Create task 
 <strong>POST /api/tasks</strong>
 
-Example request
+Example request body
 ```json 
 {
    "task_name": "Build Todo App",
@@ -109,7 +109,7 @@ Example request
 ## Update task 
 <strong>PATCH /api/tasks/:taskId</strong>
 
-Example request
+Example request body
 ```json
 { 
     "task_name": "Read Docs",
