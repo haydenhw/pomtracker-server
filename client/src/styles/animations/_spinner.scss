@@ -1,5 +1,0 @@
-@include keyframes(spinner) {
-  to {
-    @include transform(rotate(360deg));
-  }
-}
